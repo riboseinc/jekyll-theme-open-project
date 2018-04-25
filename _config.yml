@@ -1,0 +1,39 @@
+# Open Hub theme setup
+
+title: Open Hub Theme
+
+description: Description here
+
+seo:
+  type: Organization
+
+social:
+  links: []
+
+# You’re not expected to change further settings.
+
+markdown: kramdown
+theme: jekyll-theme-open-hub
+plugins:
+  - jekyll-seo-tag
+
+collections:
+  projects:
+    output: false
+  posts:
+    output: true
+    permalink: /blog/:month-:day-:year/:title/
+  pages:
+    output: true
+    permalink: /:name/
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+  - scope:
+      path: _posts
+      type: posts
+    values:
+      layout: post
