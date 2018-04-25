@@ -1,0 +1,16 @@
+---
+---
+
+$primary-color: #05C7DF;
+$primary-dark-color: #0446CC;
+$accent-color: #FF6357;
+
+$header-background: linear-gradient(135deg, #0446CC 0%, #2864DD 100%);
+$hero-background: linear-gradient(135deg, #0446CC 0%, #2864DD 100%);
+$superhero-background: linear-gradient(135deg, #0446CC 0%, #2864DD 100%);
+
+@import 'jekyll-theme-open-hub';
+
+.site-logo svg path {
+  fill: white;
+}
