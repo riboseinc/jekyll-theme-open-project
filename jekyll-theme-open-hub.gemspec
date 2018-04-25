@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-incl = /%r!^(assets|_layouts|_includes|_sass|LICENSE|README)!i/
+incl = /%r!^(assets|_layouts|_includes|_sass|_pages|LICENSE|README)!i/
 
 Gem::Specification.new do |s|
   s.name          = 'jekyll-theme-open-hub'
-  s.version       = '0.1.0'
+  s.version       = '0.1.1'
   s.authors       = ['Ribose Inc.', 'Anton Strogonoff', 'Ricardo Salazar']
   s.email         = ['feedback@ribose.com']
 
