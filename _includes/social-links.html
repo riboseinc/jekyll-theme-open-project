@@ -1,0 +1,13 @@
+{% if site.social.links %}
+  <aside class="social-links">
+    {% for link in site.social.links %}
+      <a href="{{ link }}">
+        {% if link contains "twitter.com" %}
+          <i class="fab fa-twitter"></i>
+        {% elsif link contains "github.com" %}
+          <i class="fab fa-github"></i>
+        {% endif %}
+      </a>
+    {% endfor %}
+  </aside>
+{% endif %}

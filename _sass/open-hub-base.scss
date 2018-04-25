@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+body {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, serif;
+  font-size: 15px;
+  line-height: 1.6;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+}
+
+a {
+  &:link, &:hover, &:visited {
+    color: $primary-color;
+    text-decoration: none;
+  }
+}
+
+.item-grid {
+  @media screen and (min-width: $bigscreen-breakpoint) {
+    margin: 0 -#{$gutter} 0 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+
+    > .item {
+      margin-right: $gutter;
+    }
+  }
+}
+
+.index-item-grid {
+  margin-top: 40px;
+
+  @media screen and (min-width: $bigscreen-breakpoint) {
+    margin-top: 80px;
+  }
+}
+
+.main-section {
+  margin-top: 50px;
+
+  @media screen and (min-width: $bigscreen-breakpoint) {
+    margin-top: 100px;
+  }
+
+  > .puny-label {
+    text-align: center;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: $primary-color;
+  }
+
+  > .title {
+    text-align: center;
+    font-weight: 600;
+
+    margin-top: 0;
+    margin-bottom: 1em;
+    font-size: 32px;
+  }
+
+  > .items {
+    @extend .item-grid;
+  }
+}
+
+@mixin hoverable-card($base-y, $base-blur, $color) {
+  $hovered-y: $base-y * 2;
+  $hovered-blur: $base-blur * 2;
+
+  transition: all .15s ease;
+  box-shadow: 0px $base-y $base-blur $color;
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0px $hovered-y $hovered-blur $color;
+  }
+}
+
+.item-card {
+  background: white;
+  display: block;
+
+  &:link, &:hover, &:visited {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .header {
+    font-weight: 600;
+    margin: 0 0 .5em 0;
+  }
+  .body {
+    margin: 0;
+  }
+}
+
+.post-card {
+  .meta {
+    margin-top: 8px;
+    color: grey;
+  }
+}
+
+.main-article {
+  max-width: 750px;
+
+  > header {
+    .title {
+      font-size: 36px;
+      font-weight: 600;
+    }
+  }
+  .body {
+    font-size: 18px;
+    line-height: 1.65;
+  }
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.underlay,
+section,
+header,
+footer,
+article {
+  body > &,
+  body > main > & {
+    padding: 0 2em;
+    @media screen and (min-width: $bigscreen-breakpoint) {
+      padding: 0;
+    }
+  }
+}
+
+body {
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 100vh;
+  align-items: stretch;
+
+  > main {
+    flex: 1;
+  }
+}
+@media screen and (min-width: $bigscreen-breakpoint) {
+  body > .underlay,
+  body > main,
+  body > main > .underlay {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+  .underlay {
+    width: 100%;
+  }
+}
+
+header,
+footer,
+section,
+article {
+  body > &,
+  body > .underlay > &,
+  body > main > &,
+  body > main > .underlay > & {
+    @media screen and (min-width: $bigscreen-breakpoint) {
+      padding: 0;
+      width: $bigscreen-breakpoint - $gutter * 2;
+    }
+    @media screen and (min-width: $widescreen-breakpoint) {
+      width: $widescreen-breakpoint - $gutter * 2;
+    }
+  }
+}

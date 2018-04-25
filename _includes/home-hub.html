@@ -1,0 +1,61 @@
+{% assign featured_projects = site.projects | where: "featured", true %}
+{% assign num_featured_projects = featured_projects | size %}
+{% if num_featured_projects > 0 %}
+  <section class="featured-projects">
+    <h2 class="title">Featured Projects</h2>
+
+    <div class="items" role="presentation">
+
+      {% for item in featured_projects limit:3 %}
+        {% assign symbol_path = item.path | split: "/" | slice: 0, 2 | join: "/" | append: "/_includes/symbol.svg" %}
+        {% assign relative_symbol_path = "/" | append: symbol_path %}
+
+        <a class="item" href="{{ item.home_url }}" role="article">
+          <div class="logo-container" role="presentation">
+            <div class="logo">{% include_relative {{ relative_symbol_path }} %}</div>
+          </div>
+          <h3 class="header">{{ item.title }}</h3>
+          <p class="body">
+            {{ item.description }}
+          </p>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% assign num_featured_posts = site.posts | size %}
+{% if num_featured_posts > 0 %}
+  <section class="featured-posts">
+    <div role="presentation" class="puny-label">Latest news</div>
+    <h2 class="title">From the Blog</h2>
+
+    <div class="items" role="presentation">
+      {% for item in site.posts limit:3 %}
+        <a class="item" href="{{ item.url }}" role="article">
+          {% include post-card.html %}
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% assign other_projects = site.projects | where: "featured", false %}
+{% assign num_other_projects = other_projects | size %}
+{% if num_other_projects > 0 %}
+<section class="other-projects">
+  <h2 class="title">Other Projects</h2>
+
+  <div class="items {% if num_other_projects < 5 %}one-row{% endif %}"
+      role="presentation">
+    {% for item in other_projects %}
+      <a class="item" href="{{ item.home_url }}" role="article">
+        <h3 class="header">{{ item.title }}</h3>
+        <p class="body">
+          {{ item.description }}
+        </p>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

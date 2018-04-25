@@ -1,0 +1,18 @@
+---
+layout: index-page
+---
+{% assign software = site.projects | where_exp: "item", "item.url contains '_software'" %}
+
+{% for product in software %}
+  {% assign project_name = product.url | split: "/" | slice: 2 | first %}
+  {% assign project_index_path = "_projects/" | append: project_name | append: "/index.md" %}
+  {% assign project = site.projects | where: "path", project_index_path | first %}
+  {% assign product_home_url = project.home_url | append: product.slug | append: "/" %}
+
+  <a class="item" href="{{ product_home_url }}" role="article">
+    <h3 class="header">{{ product.title }}</h3>
+    <p class="body">
+      {{ product.description }}
+    </p>
+  </a>
+{% endfor %}

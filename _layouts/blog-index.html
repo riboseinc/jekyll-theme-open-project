@@ -1,0 +1,9 @@
+---
+layout: index-page
+---
+
+{% for item in site.posts %}
+  <a class="item" href="{{ item.url }}" role="article">
+    {% include post-card.html %}
+  </a>
+{% endfor %}

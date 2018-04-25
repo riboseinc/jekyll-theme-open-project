@@ -1,0 +1,56 @@
+{% assign num_software = site.software | size %}
+{% assign num_specs = site.specs | size %}
+{% assign num_posts = site.posts | size %}
+
+{% if num_software > 0 %}
+  <section class="software">
+    <h2 class="title">Software</h2>
+
+    <div class="items">
+      {% for item in site.software %}
+        <a class="item" href="{{ item.url }}" role="article">
+          {% if item.logo_svg %}
+            <div class="logo-container" role="presentation">
+              <div class="logo">{{ item.logo_svg }}</div>
+            </div>
+          {% endif %}
+          <h3 class="header">{{ item.title }}</h3>
+          <p class="body">
+            {{ item.description }}
+          </p>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% if num_specs > 0 %}
+  <section class="specs">
+    <h2 class="title">Specifications</h2>
+
+    <div class="items">
+      {% for item in site.specs %}
+        <a class="item" href="{{ item.url }}" role="article">
+          <h3 class="header">{{ item.title }}</h3>
+          <p class="body">
+            {{ item.description }}
+          </p>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% if num_posts > 0 %}
+  <section class="featured-posts">
+    <h2 class="title">From the Blog</h2>
+
+    <div class="items" role="presentation">
+      {% for item in site.posts %}
+        <a class="item" href="{{ item.url }}" role="article">
+          {% include post-card.html %}
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

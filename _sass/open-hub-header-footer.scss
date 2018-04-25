@@ -1,0 +1,136 @@
+body > .underlay > header,
+body > .underlay > footer {
+  display: flex;
+  flex-flow: row wrap;
+
+  @media screen and (min-width: $bigscreen-breakpoint) {
+    flex-flow: row nowrap;
+  }
+
+  .site-logo {
+    margin: 0;
+    padding: 0;
+    margin-right: 100px;
+
+    line-height: .5;
+    font-size: 24px;
+
+    text-transform: lowercase;
+    color: white;
+    font-weight: 600;
+
+    :link, :hover, :visited {
+      color: inherit;
+    }
+
+    svg {
+      height: 30px;
+      vertical-align: middle;
+    }
+  }
+  .social-links {
+    > a {
+      margin-left: 14px;
+      font-size: 18px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+body > .underlay.header {
+  background: $header-background;
+
+  > .hero {
+    padding-top: 20px;
+    padding-bottom: 40px;
+
+    @media screen and (min-width: $widescreen-breakpoint) {
+      padding-top: 45px;
+      padding-bottom: 110px;
+    }
+
+    text-align: center;
+    color: white;
+
+    > h1 {
+      font-size: 44px;
+      font-weight: bold;
+      margin: 0;
+    }
+    > .desc {
+      font-size: 20px;
+      margin: 0;
+    }
+  }
+}
+body.layout-index-page > .underlay.header {
+  background: $hero-background;
+}
+body.layout-home > .underlay.header {
+  background: $superhero-background;
+  > .hero {
+    text-align: left;
+  }
+}
+
+body > .underlay.footer {
+  background: #2E333B;
+  margin-top: 50px;
+  @media screen and (min-width: $bigscreen-breakpoint) {
+    margin-top: 100px;
+  }
+}
+
+body > .underlay > header {
+  padding-top: 32px;
+  padding-bottom: 32px;
+
+  color: white;
+
+  > nav {
+    flex: 1;
+    > * {
+      font-weight: 600;
+      margin-right: 40px;
+    }
+  }
+
+  > nav, > .social-links {
+    color: $primary-color;
+    a:link, a:hover, a:visited {
+    	color: white;
+    }
+  }
+}
+
+body > .underlay > footer {
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  color: #909B9C;
+
+  a:link, a:visited, a:hover {
+    color: #909B9C;
+  }
+
+  .legal {
+    font-size: 14px;
+
+    flex: 1;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    .copyright {
+      margin-right: 40px;
+      white-space: nowrap;
+    }
+    nav {
+      > * {
+        margin-right: 40px;
+      }
+    }
+  }
+}

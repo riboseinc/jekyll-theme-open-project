@@ -1,0 +1,18 @@
+---
+layout: index-page
+---
+{% assign specs = site.projects | where_exp: "item", "item.url contains '_specs'" %}
+
+{% for spec in specs %}
+  {% assign project_name = spec.url | split: "/" | slice: 2 | first %}
+  {% assign project_index_path = "_projects/" | append: project_name | append: "/index.md" %}
+  {% assign project = site.projects | where: "path", project_index_path | first %}
+  {% assign spec_home_url = project.home_url | append: spec.slug | append: "/" %}
+
+  <a class="item" href="{{ spec_home_url }}" role="article">
+    <h3 class="header">{{ spec.title }}</h3>
+    <p class="body">
+      {{ spec.description }}
+    </p>
+  </a>
+{% endfor %}

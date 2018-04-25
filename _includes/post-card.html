@@ -1,0 +1,7 @@
+<h3 class="header">{{ item.title }}</h3>
+<p class="body">
+  {{ item.excerpt | remove: '<p>' | remove: '</p>' }}
+</p>
+<div class="meta">
+  {{ item.date | date_to_string }}
+</div>
