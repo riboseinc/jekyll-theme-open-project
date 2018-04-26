@@ -20,11 +20,35 @@ and you have an Route 53 hosted zone associated with your domain.
 0. Choose the desired domain name for the site and take a note of it.
 
 1. Set up an S3 bucket for the static site, naming it after full domain name.
-Copy its ARN and take note of it. Add public read permissions: since
-it’ll be used for website hosting, everyone must be able to access it.
 
-2. Add an Alias record to your chosen domain’s hosted zone in Route 53,
-and select the S3 bucket as the alias.
+Copy its ARN and take note of it.
+
+Add public read permissions: since it’ll be used for website hosting,
+everyone must be able to access it.
+
+Add bucket policy like following (it is recommended to use S3 policy generator
+provided by AWS to enable s3:GetObject for all objects in your bucket):
+
+```json
+{
+  "Id": "PolicyNNNNNNNNNNNNN",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "StmtNNNNNNNNNNNNN",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Effect": "Allow",
+      "Resource": "<your_bucket_ARN>/*",
+      "Principal": "*"
+    }
+  ]
+}
+```
+
+2. Add Alias record to your chosen domain’s hosted zone in Route 53,
+and select the S3 bucket as the target.
 
 3. Create an IAM group, don’t assign any managed policies.
 This group will be used to facilitate CD updating bucket contents after each
@@ -36,7 +60,7 @@ giving s3:PutObject permission on the contents of the bucket you created.
 You are advised to use AWS console inline policy wizard instead of
 manually entering this.  Note that you’ll need your bucket’s ARN.
 
-```yaml
+```json
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -47,7 +71,7 @@ manually entering this.  Note that you’ll need your bucket’s ARN.
                 "s3:PutObject"
             ],
             "Resource": [
-                "arn:aws:s3:::<your_bucket_ARN>/*"
+                "<your_bucket_ARN>/*"
             ]
         }
     ]
