@@ -87,16 +87,38 @@ and it’ll use localhost.
 
 These are applicable to both site types (hub and project).
 
-You may want to remove the default about.md page added by Jekyll,
-as this theme does not account for its existence.
+- You may want to remove the default about.md page added by Jekyll,
+  as this theme does not account for its existence.
+- Add following items to _config.yml:
 
-### Configuration YAML
+  ```yaml
+  title: Site title
+  description: Site description
+  # The above two are used by jekyll-seo-tag for things such as
+  # `<title>` and `<meta>` tags, as well as elsewhere by the theme.
+  
+  collections:
+    posts:
+      output: true
+      permalink: /blog/:month-:day-:year/:title/
+    pages:
+      output: true
+      permalink: /:name/
+  
+  defaults:
+    - scope:
+        path: ""
+      values:
+        layout: default
+    - scope:
+        path: _posts
+        type: posts
+      values:
+        layout: post
 
-Add following items to _config.yml:
-
-- `title` and `description`: those are used by jekyll-seo-tag for
-  things such as `<title>` and `<meta>` tags, as well as elsewhere
-  by the theme.
+  plugins:
+    - jekyll-seo-tag
+  ```
 
 ### Logo
 
@@ -173,6 +195,11 @@ social:
 # to individual, this would make sense:
 seo:
   type: Organization
+
+collections:
+  projects:
+    output: false
+  # ... (other collections)
 ```
 
 ### Project, spec and software data
@@ -242,6 +269,28 @@ authors:
     email: your-email@example.com
 
 author: "Company or Individual Name Goes Here"
+
+collections:
+  software:
+    output: true
+    permalink: /:name/
+  specs:
+    output: true
+    permalink: /:name/
+  # ... (other collections)
+
+defaults:
+  - scope:
+      path: _software
+      type: software
+    values:
+      layout: product
+  - scope:
+      path: _specs
+      type: specs
+    values:
+      layout: spec
+  # ... (other defaults)
 ```
 
 File layout is the same as described in the section
