@@ -138,6 +138,12 @@ These are applicable to either hub or project site.
 You may want to remove the default about.md page added by Jekyll
 (this theme does not account for its existence).
 
+Add following items to _config.yml:
+
+- `title` and `description`: those are used by jekyll-seo-tag for
+  things such as `<title>` and `<meta>` tag, as well as elsewhere
+  by the theme.
+
 ### Logo
 
 Logo consists of a symbol and site name.
@@ -201,6 +207,20 @@ Place posts under _posts and name files e.g.
 The hub represents your company or department, links to all projects
 and offers a software and specification index.
 
+Additional items allowed/expected in _config.yml:
+
+```yaml
+social:
+  links:
+    - https://twitter.com/RiboseUS
+    - https://github.com/riboseinc
+
+# Since a hub would typically represent an organization as opposed
+# to individual, this would make sense:
+seo:
+  type: Organization
+```
+
 ### Project data (along with software and specs)
 
 See above section about project data structure.
@@ -258,9 +278,19 @@ hero_include: index-page-hero.html
 ## Project site
 
 When project is set up as a standalone site, _config.yml should include
-"title" and "description", corresponding to project’s information.
+site-wide `title` that is the same as project name.
 
-Otherwise, file layout is the same as described in the section
+Additional items allowed/expected in _config.yml:
+
+```yaml
+authors:
+  - name: Your Name
+    email: your-email@example.com
+
+author: "Company or Individual Name Goes Here"
+```
+
+File layout is the same as described in the section
 about shared project data structure, with _software and _specs directories
 found in the root of your Jekyll site.
 
