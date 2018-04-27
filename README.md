@@ -285,15 +285,85 @@ but no width or height attributes.
 - Post excerpt: about 20–24 words, no markup
 
 
-## TODO: Note on shared data
+## Select theme layout reference
 
-In the long run it is recommended to avoid maintaining two separate copies
-of data (e.g., same project data for project site, and one for parent hub site,
-or reposting posts from project site blogs into hub blog).
+Typical expected page frontmatter is `title` and `description`. Those are 
+also used by jekyll-seo-tag plugin to add the appropriate meta tags.
 
-Ideally, during static site build the automation would pull relevant data
-from a centralized or distributed source and place it as needed
-inside Jekyll site structure before executing `jekyll build`.
+Commonly supported in frontmatter is the hero_include option,
+which would show hero unit underneath top header.
+Currently, theme supports _includes/index-page-hero.html as the only value
+you can pass for hero_include (or you can leave hero_include out altogether).
+
+- blog-index: Blog index page. Pages using this layout are recommended
+  to supply hero_include.
+
+- post: Blog post
+
+- software-index: Software index page (hub site only).
+  Suggested to supply hero_include.
+  Will show a list of software across projects within the hub.
+
+- spec-index: Specification index page (hub site only).
+  Suggested to supply hero_include.
+  Will show a list of specs across projects within the hub.
+
+- product: Software product (project site only)
+
+- spec: Open specification (project site only)
+
+
+## Style customization
+
+To customize site appearance, create a file in your Jekyll site
+under assets/css/style.scss with following exact contents:
+
+```
+---
+---
+
+@import '{{ site.theme }}';
+```
+
+You can define custom style rules after the import, and customize variables
+before the import.
+
+### Custom rules
+
+One suggested custom rule would be to change the fill color for SVG paths
+used for your custom site symbol to white, unless it’s white by default.
+
+The rule would look like this:
+
+```scss
+.site-logo svg path {
+  fill: white;
+}
+```
+
+### SASS variables
+
+Following are the variables along with their defaults:
+
+```scss
+# Primary color—should be bright but dark enough to be readable,
+# since some text elements are set using this color:
+$primary-color: lightblue !default;
+
+# Darker variation of primary color used for background on elements where
+# text is set in white:
+$primary-dark-color: navy !default;
+
+# Bright color for accent elements, such as buttons (not yet in use).
+# Text on those elements is set in bold and white, so this color
+# should be dark enough:
+$accent-color: red !default;
+
+# Below are used for `background` CSS rule for top header, and for
+# hero unit respectively. Gradients can be supplied.
+$header-background: $primary-dark-color !default;
+$hero-background: $primary-dark-color !default;
+```
 
 
 ## Contributing
