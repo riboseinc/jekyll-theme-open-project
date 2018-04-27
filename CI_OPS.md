@@ -21,104 +21,104 @@ and you have an Route 53 hosted zone associated with your domain.
 
 1. Set up an S3 bucket for the static site, naming it after full domain name.
 
-Copy its ARN and take note of it.
-
-Add public read permissions: since it’ll be used for website hosting,
-everyone must be able to access it.
-
-Add bucket policy like following (it is recommended to use S3 policy generator
-provided by AWS to enable s3:GetObject for all objects in your bucket):
-
-```json
-{
-  "Id": "PolicyNNNNNNNNNNNNN",
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "StmtNNNNNNNNNNNNN",
-      "Action": [
-        "s3:GetObject"
-      ],
-      "Effect": "Allow",
-      "Resource": "<your_bucket_ARN>/*",
-      "Principal": "*"
-    }
-  ]
-}
-```
+   Copy its ARN and take note of it.
+   
+   Add public read permissions: since it’ll be used for website hosting,
+   everyone must be able to access it.
+   
+   Add bucket policy like following (it is recommended to use S3 policy generator
+   provided by AWS to enable s3:GetObject for all objects in your bucket):
+   
+   ```json
+   {
+     "Id": "PolicyNNNNNNNNNNNNN",
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Sid": "StmtNNNNNNNNNNNNN",
+         "Action": [
+           "s3:GetObject"
+         ],
+         "Effect": "Allow",
+         "Resource": "<your_bucket_ARN>/*",
+         "Principal": "*"
+       }
+     ]
+   }
+   ```
 
 2. Add Alias record to your chosen domain’s hosted zone in Route 53,
-and select the S3 bucket as the target.
+   and select the S3 bucket as the target.
 
 3. Create an IAM group, don’t assign any managed policies.
-This group will be used to facilitate CD updating bucket contents after each
-automatic site build.
+   This group will be used to facilitate CD updating bucket contents after each
+   automatic site build.
 
 4. To the group, attach an inline policy that looks like below,
-giving s3:PutObject permission on the contents of the bucket you created.
-
-You are advised to use AWS console inline policy wizard instead of
-manually entering this.  Note that you’ll need your bucket’s ARN.
-
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "StmtNNNNNNNNNNNNN",
-            "Effect": "Allow",
-            "Action": [
-                "s3:PutObject"
-            ],
-            "Resource": [
-                "<your_bucket_ARN>/*"
-            ]
-        }
-    ]
-}
-```
+   giving s3:PutObject permission on the contents of the bucket you created.
+   
+   You are advised to use AWS console inline policy wizard instead of
+   manually entering this.  Note that you’ll need your bucket’s ARN.
+   
+   ```json
+   {
+       "Version": "2012-10-17",
+       "Statement": [
+           {
+               "Sid": "StmtNNNNNNNNNNNNN",
+               "Effect": "Allow",
+               "Action": [
+                   "s3:PutObject"
+               ],
+               "Resource": [
+                   "<your_bucket_ARN>/*"
+               ]
+           }
+       ]
+   }
+   ```
 
 5. Create an IAM user in that group. Enable programmatic access (AWS API).
-Copy key and secret—this will be used during deployment.
+   Copy key and secret—this will be used during deployment.
 
 6. Connect repository with your Jekyll site to Gitlab CI with configuration like this:
 
-```yaml
-stages:
-- build
-- deploy
-
-build:
-  stage: build
-  image: ruby:2.4.4
-  before_script:
-  - gem install jekyll bundler
-  - bundle
-  script:
-  - bundle exec jekyll build
-  artifacts:
-    paths:
-    - _site/
-
-deploy:
-  stage: deploy
-  image: python:latest
-  before_script:
-  - pip install awscli
-  script:
-  - aws s3 cp _site/ s3://$S3_BUCKET_NAME/ --recursive
-  after_script:
-  - rm -r _site
-```
+   ```yaml
+   stages:
+   - build
+   - deploy
+   
+   build:
+     stage: build
+     image: ruby:2.4.4
+     before_script:
+     - gem install jekyll bundler
+     - bundle
+     script:
+     - bundle exec jekyll build
+     artifacts:
+       paths:
+       - _site/
+   
+   deploy:
+     stage: deploy
+     image: python:latest
+     before_script:
+     - pip install awscli
+     script:
+     - aws s3 cp _site/ s3://$S3_BUCKET_NAME/ --recursive
+     after_script:
+     - rm -r _site
+   ```
 
 7. Add following secret variables to your Gitlab CI configuration:
 
-- AWS_ACCESS_KEY_ID: your IAM user’s API key ID
-- AWS_DEFAULT_REGION: region chosen when creating S3 bucket
-- AWS_SECRET_ACCESS_KEY: your IAM user’s API key secret
-- S3_BUCKET_NAME: name of S3 bucket
+   - AWS_ACCESS_KEY_ID: your IAM user’s API key ID
+   - AWS_DEFAULT_REGION: region chosen when creating S3 bucket
+   - AWS_SECRET_ACCESS_KEY: your IAM user’s API key secret
+   - S3_BUCKET_NAME: name of S3 bucket
 
-Test by making a change and pushing it to master branch.
+8. Test by making a change and pushing it to master branch.
 
 ## Troubleshooting
 
