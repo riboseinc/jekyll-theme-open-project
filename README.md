@@ -25,7 +25,7 @@ to AWS S3.
 
   * [Style customization](style-customization)
   * [SVG guidelines](svg-guidelines)
-  * [Content guidelines](content-guidelines]
+  * [Content guidelines](content-guidelines)
 
 * [Select layout reference](select-layout-reference)
 
