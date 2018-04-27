@@ -10,7 +10,27 @@ See also: CI_OPS for how to set up automated build and deployment of the site
 to AWS S3.
 
 
-## Starting a site based on gem-based theme
+## Contents
+
+* Creating a site: [quick-start](starting-a-site-with-this-theme)
+
+  * [Universal site setup](universal-site)
+  * [Hub site setup](hub-site)
+  * [Project site setup](project-site)
+
+* Describing open projects:
+  [Project data structure](describing-a-project-shared-data-structure)
+
+* Customizing site looks without violating theme design constraints:
+
+  * [Style customization](style-customization)
+  * [SVG guidelines](svg-guidelines)
+  * [Content guidelines](content-guidelines]
+
+* [Select layout reference](select-layout-reference)
+
+
+## Starting a site with this theme
 
 ### Getting started with Ruby
 
@@ -20,7 +40,7 @@ let’s say 2.4.4.
 
 ### Start new Jekyll site
 
-jekyll new my-open-hub
+    jekyll new my-open-hub
 
 ### Installing theme
 
@@ -38,7 +58,7 @@ replacing default theme requirement:
 theme: jekyll-theme-open-hub
 ```
 
-(Default theme is “minima” at the time of this writing.)
+(Jekyll’s default theme was “minima” at the time of this writing.)
 
 Execute to install dependencies:
 
@@ -55,80 +75,12 @@ into detail about how to configure a project or hub site.
 
 ### Building site
 
-Execute to build the site:
+Execute to build the site locally and watch for changes:
 
     $ bundle exec jekyll serve --host mysite.local --port 4000
 
-
-## Describing a project: shared data structure
-
-Each project is expected to have a machine-readable and unique name, a title,
-a description, a symbol, and one or more software products and/or specs.
-
-Following data structure is shared and used to describe projects,
-whether on hub home site or each individual project site:
-
-    - <project-name>/
-      - _includes/
-        - symbol.svg
-      - _software/
-        - <name>.md
-      - _specs/
-        - <name>.md
-
-### Software and specs
-
-An open project serves as an umbrella for related
-software products and/or specifications.
-
-Each product or spec is described by its own <name>.md file with frontmatter,
-placed under _software/ or _specs/ subdirectory, respectively,
-of your open project’s Jekyll site.
-
-Note: even though they’re in different subdirectories, all software products and specs
-within one project share URL namespace and hence must have unique names.
-
-### Software product
-
-YAML frontmatter specific to software:
-
-```yaml
-version: v1.2.3
-docs_url: https://foobar.readthedocs.io/en/latest
-stack: [Python, Django, AWS]
-```
-
-#### Documentation
-
-**Recommended:** use a dedicated service supporting versioned and well-structured
-multi-page docs, such as Read the Docs. You can link users to that documentation
-using docs_url in software product’s frontmatter.
-
-Otherwise, if this open project’s page will serve as the authoritative source
-of documentation for the software product, documentation contents are expected
-to follow frontmatter. 
-
-Keep in mind that project name and description from before
-will be displayed by the theme first. Start with second-level header (##),
-with installation instructions or quick-start guide.
-
-### Specification
-
-YAML frontmatter specific to specs:
-
-```yaml
-rfc_id: XXXX
-```
-
-Specs that are not hosted elsewhere (such as ietf.org for RFCs)
-are expected to contain the actual specification content after frontmatter.
-Start with second-level header (##).
-
-### Symbol
-
-Symbol should be in SVG format, have equal height and width,
-and look OK with height under 30px.
-Place the symbol in _includes/symbol.svg within project directory.
+(This assumes you have mysite.local mapped, otherwise omit --host
+and it’ll use localhost.)
 
 
 ## Universal setup
@@ -221,12 +173,12 @@ seo:
   type: Organization
 ```
 
-### Project data (along with software and specs)
+### Project, spec and software data
 
-See above section about project data structure.
+See the section about project data structure.
 
-When used within hub site, each project is expected to contain directly inside
-project directory a file "index.md" with frontmatter like this:
+In addition to that, _when used within hub site_ each project subdirectory
+must contain a file "index.md" with frontmatter like this:
 
 ```yaml
 title: Sample Awesome Project
@@ -295,14 +247,83 @@ about shared project data structure, with _software and _specs directories
 found in the root of your Jekyll site.
 
 
-## SVG format guidelines
+## Describing a project: shared data structure
+
+Each project is expected to have a machine-readable and unique name, a title,
+a description, a symbol, and one or more software products and/or specs.
+
+Following data structure is shared and used to describe projects,
+whether on hub home site or each individual project site:
+
+    - <project-name>/
+      - _includes/
+        - symbol.svg
+      - _software/
+        - <name>.md
+      - _specs/
+        - <name>.md
+
+### Software and specs
+
+An open project serves as an umbrella for related
+software products and/or specifications.
+
+Each product or spec is described by its own <name>.md file with frontmatter,
+placed under _software/ or _specs/ subdirectory, respectively,
+of your open project’s Jekyll site.
+
+Note: even though they’re in different subdirectories, all software products and specs
+within one project share URL namespace and hence must have unique names.
+
+### Software product
+
+YAML frontmatter specific to software:
+
+```yaml
+version: v1.2.3
+docs_url: https://foobar.readthedocs.io/en/latest
+stack: [Python, Django, AWS]
+```
+
+#### Documentation
+
+**Recommended:** use a dedicated service supporting versioned and well-structured
+multi-page docs, such as Read the Docs. You can link users to that documentation
+using docs_url in software product’s frontmatter.
+
+Otherwise, if this open project’s page will serve as the authoritative source
+of documentation for the software product, documentation contents are expected
+to follow frontmatter. 
+
+Keep in mind that project name and description from before
+will be displayed by the theme first. Start with second-level header (##),
+with installation instructions or quick-start guide.
+
+### Specification
+
+YAML frontmatter specific to specs:
+
+```yaml
+rfc_id: XXXX
+```
+
+Specs that are not hosted elsewhere (such as ietf.org for RFCs)
+are expected to contain the actual specification content after frontmatter.
+Start with second-level header (##).
+
+### Symbol
+
+Should look OK in dimensions of 30x30px, and fit inside a square.
+Should be in SVG format (see also the SVG guidelines section).
+Place the symbol in _includes/symbol.svg within project directory.
+
+
+## SVG guidelines
 
 - Ensure SVG markup does not use IDs. It may appear multiple times
-on the page hence IDs would fail markup validation.
-
+  on the page hence IDs would fail markup validation.
 - Ensure root <svg> element specifies its viewBox,
-but no width or height attributes.
-
+  but no width or height attributes.
 - You can style SVG shapes using in site’s assets/css/style.scss.
 
 
@@ -315,15 +336,12 @@ but no width or height attributes.
 - Post excerpt: about 20–24 words, no markup
 
 
-## Select theme layout reference
+## Select layout reference
 
-Typical expected page frontmatter is `title` and `description`. Those are 
-also used by jekyll-seo-tag plugin to add the appropriate meta tags.
+Normally you don’t need to specify layouts manually, except where
+instructed in site setup sections of this document.
 
-Commonly supported in frontmatter is the hero_include option,
-which would show hero unit underneath top header.
-Currently, theme supports _includes/index-page-hero.html as the only value
-you can pass for hero_include (or you can leave hero_include out altogether).
+Commonly used layouts are:
 
 - blog-index: Blog index page. Pages using this layout are recommended
   to supply hero_include.
@@ -341,6 +359,16 @@ you can pass for hero_include (or you can leave hero_include out altogether).
 - product: Software product (project site only)
 
 - spec: Open specification (project site only)
+
+### Page frontmatter
+
+Typical expected page frontmatter is `title` and `description`. Those are 
+also used by jekyll-seo-tag plugin to add the appropriate meta tags.
+
+Commonly supported in page frontmatter is the hero_include option,
+which would show hero unit underneath top header.
+Currently, theme supports _includes/index-page-hero.html as the only value
+you can pass for hero_include (or you can leave hero_include out altogether).
 
 
 ## Style customization
