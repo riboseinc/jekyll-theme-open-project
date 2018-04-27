@@ -79,21 +79,23 @@ Execute to build the site locally and watch for changes:
 
     $ bundle exec jekyll serve --host mysite.local --port 4000
 
-(This assumes you have mysite.local mapped, otherwise omit --host
-and it’ll use localhost.)
+This assumes you have mysite.local mapped, otherwise omit --host
+and it’ll use localhost.
 
 
 ## Universal setup
 
-These are applicable to either hub or project site.
+These are applicable to both site types (hub and project).
 
-You may want to remove the default about.md page added by Jekyll
-(this theme does not account for its existence).
+You may want to remove the default about.md page added by Jekyll,
+as this theme does not account for its existence.
+
+### Configuration YAML
 
 Add following items to _config.yml:
 
 - `title` and `description`: those are used by jekyll-seo-tag for
-  things such as `<title>` and `<meta>` tag, as well as elsewhere
+  things such as `<title>` and `<meta>` tags, as well as elsewhere
   by the theme.
 
 ### Logo
