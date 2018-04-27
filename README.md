@@ -6,6 +6,9 @@ such as open-source software and specifications in a navigable and elegant way.
 Open Project fits two types of sites:
 that describe one individual project, and that combine projects into a hub.
 
+See also: CI_OPS for how to set up automated build and deployment of the site
+to AWS S3.
+
 
 ## Starting a site based on gem-based theme
 
@@ -41,31 +44,11 @@ Execute to install dependencies:
 
     $ bundle
 
-### Setting up pages
-
-You may want to remove the default about.md page (theme does not account
-for its existence).
-
-Create _pages directory and put in there pages for blog, software
-index, and specification index. Layouts to use are correspondingly
-`blog-index`, `software-index`, and `spec-index`.
-
-Example page frontmatter:
-
-```yaml
----
-title: Software
-description: Open-source software developed with our company’s cooperation.
-layout: software-index
-hero_include: index-page-hero.html
----
-```
-
 ### Configuring site
 
-Depending on the type of site, copy _config-hub.yml or _config-project.yml
-into main _config.yml of Jekyll installation. Edit that file to add necessary
-site-wide configuration options, and add necessary files and folders to site contents.
+Edit _config.yml to add necessary site-wide configuration options,
+and add necessary files and folders to site contents. This step depends
+on the type of site you’re creating: open hub or individual open project site.
 
 Below sections explain core concepts of open project and hub, and go
 into detail about how to configure a project or hub site.
@@ -148,51 +131,82 @@ and look OK with height under 30px.
 Place the symbol in _includes/symbol.svg within project directory.
 
 
-## Generic site
+## Universal setup
 
-### Blog
+These are applicable to either hub or project site.
 
-Both project site and hub site have blogs. Place posts under _posts
-and named files e.g. `2018-04-20-welcome-to-jekyll.markdown`.
+You may want to remove the default about.md page added by Jekyll
+(this theme does not account for its existence).
 
 ### Logo
 
 Logo consists of a symbol and site name.
 
-Both should look OK when placed in a 30px container.
+**Symbol** is basically an icon for the site.
+Should look OK in dimensions of 30x30px, and fit inside a square.
+Should be in SVG format (see also the SVG guidelines section).
+Place the symbol in _includes/symbol.svg.
 
-Symbol: should have equal height and width. Should look OK with height under 30px.
-Should be in SVG format. Place the symbol in _includes/symbol.svg.
-See also SVG guidelines.
-
-Site name: 1-3 words displayed to the right of the symbol.
-By default, the title you define in site config is used.
+**Site name** displayed to the right of the symbol.
+Limit the name to 1-3 words.
+By default, the title you define in site config is used (for project site,
+it is the name of the project).
 Alternatively, you can place site name in _includes/title.html with custom HTML
-or even SVG (same SVG guidelines apply).
+or SVG. (In that case it must look good when placed in a 30px tall container,
+and in case of SVG same SVG guidelines apply).
 
 ### Legal small text
 
 You may want to supply _includes/legal.html with content like this:
 
 ```html
-<span class="copyright">Copyright © 2018 Example. All rights reserved.</span>
+<span class="copyright">Copyright © 2018 MyCompany. All rights reserved.</span>
 <nav>
   <a href="https://www.example.com/tos">Terms</a>
   <a href="https://www.example.com/privacy">Privacy</a>
 </nav>
 ```
 
+### Blog
+
+Project sites and hub site can have a blog.
+
+#### Index
+
+Create blog index page as _pages/blog.html, with nothing but frontmatter.
+Use layout called "blog-index", pass `hero_include: index-page-hero.html`,
+and set `title` and `description` as appropriate for blog index page.
+
+Example:
+
+```yaml
+---
+title: Blog
+description: >-
+  Get the latest announcements and technical how-to’s
+  about our software and projects.
+layout: blog-index
+hero_include: index-page-hero.html
+---
+```
+
+#### Posts
+
+Place posts under _posts and name files e.g.
+`2018-04-20-welcome-to-jekyll.markdown`. This is typical Jekyll setup.
+
 
 ## Hub site
 
-The hub represents your company or department.
+The hub represents your company or department, links to all projects
+and offers a software and specification index.
 
-### Projects, software and specs
+### Project data (along with software and specs)
 
 See above section about project data structure.
 
 When used within hub site, each project is expected to contain directly inside
-project directory a file index.md with following frontmatter:
+project directory a file "index.md" with frontmatter like this:
 
 ```yaml
 title: Sample Awesome Project
@@ -200,10 +214,44 @@ title: Sample Awesome Project
 description: >-
   A sentence or two go here.
 
-# Whether the project is included in the three projects on hub home page
+# Whether the project is included in featured three projects on hub home page
 featured: true | false
 
 home_url: <URL to standalone project site>
+```
+
+### Software index page
+
+Create software index in _pages/software.html, with nothing but frontmatter.
+Use layout called "software-index", pass `hero_include: index-page-hero.html`,
+and set `title` and `description` as appropriate.
+
+Example:
+
+```yaml
+---
+title: Software
+description: Open-source software developed with MyCompany’s cooperation.
+layout: software-index
+hero_include: index-page-hero.html
+---
+```
+
+### Specification index page
+
+Create spec index in _pages/specs.html, with nothing but frontmatter.
+Use layout called "spec-index", pass `hero_include: index-page-hero.html`,
+and set `title` and `description` as appropriate.
+
+Example:
+
+```yaml
+---
+title: Specifications
+description: Because specifications are cool!
+layout: spec-index
+hero_include: index-page-hero.html
+---
 ```
 
 
@@ -212,8 +260,9 @@ home_url: <URL to standalone project site>
 When project is set up as a standalone site, _config.yml should include
 "title" and "description", corresponding to project’s information.
 
-Otherwise file layout is the same as described in the section
-about shared project data structure.
+Otherwise, file layout is the same as described in the section
+about shared project data structure, with _software and _specs directories
+found in the root of your Jekyll site.
 
 
 ## SVG format guidelines
@@ -259,14 +308,12 @@ to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## Theme development
 
-This directory is setup just like a Jekyll site.
+Generally, this directory is setup like a Jekyll site. To set it up,
+run `bundle install`.
 
-To set up your environment to develop this theme, run `bundle install`.
-
-To experiment with this code, add some sample content
-and run `bundle exec jekyll serve`.
-
-This starts a Jekyll server using your theme at `http://localhost:4000`. 
+To experiment with this code, add content (projects, software, specs)
+and run `bundle exec jekyll serve`. This starts a Jekyll server
+using this theme at `http://localhost:4000`. 
 
 Put your layouts in `_layouts`, your includes in `_includes`,
 your sass files in `_sass` and any other assets in `assets`.
