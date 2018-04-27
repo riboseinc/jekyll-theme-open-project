@@ -14,7 +14,7 @@ to AWS S3.
 
 * Creating a site: [quick-start](#starting-a-site-with-this-theme)
 
-  * [Universal site setup](#universal-site)
+  * [Universal site setup](#universal-setup)
   * [Hub site setup](#hub-site)
   * [Project site setup](#project-site)
 
