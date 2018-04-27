@@ -139,9 +139,17 @@ where the closing `/*` is important.
 ## Further improvements
 
 Currently this documentation doesn’t cover these,
-but guides are availableelsewhere:
+but guides are available elsewhere:
 
 - You may want to have separate staging and production branches in your
-CI configuration.
+  CI configuration.
 
 - You may want to put CloudFront in front of your S3-hosted site.
+
+- In the long run it is recommended to avoid maintaining two separate copies
+  of data (e.g., same project data for project site, and one for parent hub site,
+  or reposting posts from project site blogs into hub blog).
+  
+  Ideally, during static site build the automation would pull relevant data
+  from a centralized or distributed source and place it as needed
+  inside Jekyll site structure before executing `jekyll build`.
