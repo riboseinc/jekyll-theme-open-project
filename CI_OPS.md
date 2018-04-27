@@ -1,7 +1,7 @@
 # Setting up the site with continuous delivery via Gitlab CI and AWS
 
 This summarizes a simple CD setup with single branch (master) mapping
-to production server, with auto-build static site served from S3 bucket.
+to production server, with auto-built static site served from S3 bucket.
 
 ## Results
 
