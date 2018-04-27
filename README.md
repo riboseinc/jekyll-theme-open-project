@@ -12,22 +12,22 @@ to AWS S3.
 
 ## Contents
 
-* Creating a site: [quick-start](starting-a-site-with-this-theme)
+* Creating a site: [quick-start](#starting-a-site-with-this-theme)
 
-  * [Universal site setup](universal-site)
-  * [Hub site setup](hub-site)
-  * [Project site setup](project-site)
+  * [Universal site setup](#universal-site)
+  * [Hub site setup](#hub-site)
+  * [Project site setup](#project-site)
 
 * Describing open projects:
-  [Project data structure](describing-a-project-shared-data-structure)
+  [Project data structure](#describing-a-project-shared-data-structure)
 
 * Customizing site looks without violating theme design constraints:
 
-  * [Style customization](style-customization)
-  * [SVG guidelines](svg-guidelines)
-  * [Content guidelines](content-guidelines)
+  * [Style customization](#style-customization)
+  * [SVG guidelines](#svg-guidelines)
+  * [Content guidelines](#content-guidelines)
 
-* [Select layout reference](select-layout-reference)
+* [Select layout reference](#select-layout-reference)
 
 
 ## Starting a site with this theme
