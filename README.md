@@ -427,7 +427,7 @@ $hero-background: $primary-dark-color !default;
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub
-at https://github.com/riboseinc/openproject-theme.
+at https://github.com/riboseinc/jekyll-theme-open-hub.
 
 This project is intended to be a safe, welcoming space for collaboration,
 and contributors are expected to adhere
