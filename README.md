@@ -503,10 +503,21 @@ As you make modifications to your theme and to your content, your site will
 regenerate and you should see the changes in the browser after a refresh,
 like normal.
 
-When your theme is released, only the files in `_layouts`, `_includes`,
-`_sass` and `assets` tracked with Git will be bundled.
-To add a custom directory to your theme-gem, please edit the regexp in
-`openhub.gemspec` accordingly.
+When your theme is released, only files specified with gemspec file
+will be included. If you modify theme to add more directories that
+need to be included in the gem, edit regexp in the gemspec.
+
+### Building and releasing
+
+To check your theme, run:
+
+    ./develop/build
+
+It’ll build Jekyll site and run some checks, like HTML markup validation.
+
+To build new gem and push it to rubygems.org, run:
+
+    ./develop/release
 
 
 ## License
