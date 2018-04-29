@@ -1,9 +1,9 @@
-# Open Project theme by Ribose
+# Open Hub theme by Ribose
 
-Open Project is a theme for Jekyll oriented towards presenting open efforts
+Open Hub is a theme for Jekyll oriented towards presenting open efforts
 such as open-source software and specifications in a navigable and elegant way.
 
-Open Project fits two types of sites:
+Open Hub fits two types of sites:
 that describe one individual project, and that combine projects into a hub.
 
 See also: CI_OPS for how to set up automated build and deployment of the site
