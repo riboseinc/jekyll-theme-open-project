@@ -271,15 +271,16 @@ authors:
 author: "Company or Individual Name Goes Here"
 
 collections:
+  # ... (other collections)
   software:
     output: true
     permalink: /:name/
   specs:
     output: true
     permalink: /:name/
-  # ... (other collections)
 
 defaults:
+  # ... (other defaults)
   - scope:
       path: _software
       type: software
@@ -290,7 +291,6 @@ defaults:
       type: specs
     values:
       layout: spec
-  # ... (other defaults)
 ```
 
 File layout is the same as described in the section
