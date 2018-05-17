@@ -96,7 +96,7 @@ These are applicable to both site types (hub and project).
   description: Site description
   # The above two are used by jekyll-seo-tag for things such as
   # `<title>` and `<meta>` tags, as well as elsewhere by the theme.
-  
+
   collections:
     posts:
       output: true
@@ -104,7 +104,7 @@ These are applicable to both site types (hub and project).
     pages:
       output: true
       permalink: /:name/
-  
+
   defaults:
     - scope:
         path: ""
