@@ -206,7 +206,7 @@ collections:
 
 See the section about project data structure.
 
-In addition to that, _when used within hub site_ each project subdirectory
+_When used within hub site_ (only), each project subdirectory
 must contain a file "index.md" with frontmatter like this:
 
 ```yaml
