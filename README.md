@@ -356,6 +356,8 @@ YAML frontmatter specific to specs:
 
 ```yaml
 rfc_id: XXXX
+# IETF RFC URL would be in the form 
+# http://ietf.org/html/rfc<id>
 
 ietf_datatracker_id: some-string-identifier-here
 ietf_datatracker_ver: "01"
