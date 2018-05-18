@@ -356,6 +356,11 @@ YAML frontmatter specific to specs:
 
 ```yaml
 rfc_id: XXXX
+
+ietf_datatracker_id: some-string-identifier-here
+ietf_datatracker_ver: "01"
+# IETF datatracker URL would be in the form
+# https://datatracker.ietf.org/doc/<id>[-<version>]
 ```
 
 Specs that are not hosted elsewhere (such as ietf.org for RFCs)
