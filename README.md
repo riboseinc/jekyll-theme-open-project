@@ -326,6 +326,18 @@ of your open project’s Jekyll site.
 Note: even though they’re in different subdirectories, all software products and specs
 within one project share URL namespace and hence must have unique names.
 
+YAML frontmatter that can be used with both software and specs:
+
+```yaml
+title: A Few Words
+# Shown to the user
+# and used for HTML metadata if jekyll-seo-tag is enabled
+
+description: A sentence.
+# Not necessarily shown to the user,
+# but used for HTML metadata if jekyll-seo-tag is enabled
+```
+
 ### Software product
 
 YAML frontmatter specific to software:
@@ -333,6 +345,7 @@ YAML frontmatter specific to software:
 ```yaml
 version: v1.2.3
 docs_url: https://foobar.readthedocs.io/en/latest
+repo_url: https://github.com/…
 stack: [Python, Django, AWS]
 ```
 
