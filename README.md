@@ -402,11 +402,11 @@ Place the symbol in _includes/symbol.svg within project directory.
 
 ## Content guidelines
 
-- Project title: 1-3 words, capital case
-- Project feature description: about 20-24 words, no markup
-- Project, software, spec regular description: about 12 words, no markup
-- Post title: 3–7 words
-- Post excerpt: about 20–24 words, no markup
+- Project, software, spec title: 1-3 words, capital case
+- Project, software, spec description: about 12 words, no markup
+- Project description (featured): about 20-24 words, no markup
+- Blog post title: 3–7 words
+- Blog post excerpt: about 20–24 words, no markup
 
 
 ## Select layout reference
