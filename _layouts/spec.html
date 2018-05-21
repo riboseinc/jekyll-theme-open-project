@@ -7,7 +7,7 @@ layout: default
     <h1 class="title">{{ page.title }}</h1>
 
     <div class="meta">
-      {% if page.rfc_id or page.ietf_datatracker_id %}
+      {% if page.rfc_id or page.ietf_datatracker_id or page.source_url %}
         <ul>
           {% if page.rfc_id %}
             <li>
@@ -15,6 +15,9 @@ layout: default
           {% if page.ietf_datatracker_id %}
             <li>
             <a href="https://datatracker.ietf.org/doc/{{ page.ietf_datatracker_id }}{% if page.ietf_datatracker_ver %}-{{ page.ietf_datatracker_ver }}{% endif %}">IETF document</a> {% endif %}
+          {% if page.source_url %}
+            <li>
+            <a href="{{ page.source_url }}">Source markup</a> {% endif %}
         </ul>
       {% endif %}
     </div>

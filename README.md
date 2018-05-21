@@ -363,6 +363,8 @@ ietf_datatracker_id: some-string-identifier-here
 ietf_datatracker_ver: "01"
 # IETF datatracker URL would be in the form
 # https://datatracker.ietf.org/doc/<id>[-<version>]
+
+source_url: https://example.com/spec-source-markup
 ```
 
 Specs that are not hosted elsewhere (such as ietf.org for RFCs)
