@@ -1,6 +1,6 @@
-# Open Hub theme setup
+# Open Project theme setup
 
-title: Open Hub Theme
+title: Open Hub
 
 description: Description here
 
@@ -13,7 +13,7 @@ social:
 # You’re not expected to change further settings.
 
 markdown: kramdown
-theme: jekyll-theme-open-hub
+theme: jekyll-theme-open-project
 plugins:
   - jekyll-seo-tag
 

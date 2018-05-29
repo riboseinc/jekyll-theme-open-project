@@ -1,10 +1,10 @@
-# Open Hub theme by Ribose
+# Open Project theme by Ribose
 
-Open Hub is a theme for Jekyll oriented towards presenting open efforts
+Open Project is a theme for Jekyll oriented towards presenting open efforts
 such as open-source software and specifications in a navigable and elegant way.
 
-Open Hub fits two types of sites:
-that describe one individual project, and that combine projects into a hub.
+Open Project fits two types of sites:
+that describe one individual project, and that combine projects into sort of an open hub.
 
 See also: CI_OPS for how to set up automated build and deployment of the site
 to AWS S3.
@@ -40,7 +40,7 @@ let’s say 2.4.4.
 
 ### Start new Jekyll site
 
-    jekyll new my-open-hub
+    jekyll new my-open-site
 
 ### Installing theme
 
@@ -48,14 +48,14 @@ Add this line to your Jekyll site's `Gemfile`,
 replacing default theme requirement:
 
 ```ruby
-gem 'jekyll-theme-open-hub'
+gem 'jekyll-theme-open-project'
 ```
 
 Add this line to your Jekyll site's `_config.yml`,
 replacing default theme requirement:
 
 ```yaml
-theme: jekyll-theme-open-hub
+theme: jekyll-theme-open-project
 ```
 
 (Jekyll’s default theme was “minima” at the time of this writing.)
@@ -500,7 +500,7 @@ $hero-background: $primary-dark-color !default;
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub
-at https://github.com/riboseinc/jekyll-theme-open-hub.
+at https://github.com/riboseinc/jekyll-theme-open-project.
 
 This project is intended to be a safe, welcoming space for collaboration,
 and contributors are expected to adhere

@@ -14,8 +14,8 @@ $widescreen-breakpoint: 1140px + $gutter * 2;
 $bigscreen-breakpoint: 900px + $gutter * 2;
 
 
-@import "open-hub-base";
-@import "open-hub-header-footer";
+@import "open-project-base";
+@import "open-project-header-footer";
 
 
 /* Generic */

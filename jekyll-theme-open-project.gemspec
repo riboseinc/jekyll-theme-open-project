@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 Gem::Specification.new do |s|
-  s.name          = 'jekyll-theme-open-hub'
+  s.name          = 'jekyll-theme-open-project'
   s.version       = '0.1.5'
   s.authors       = ['Ribose Inc.']
   s.email         = ['open.source@ribose.com']
 
-  s.summary       = 'Open Hub Jekyll theme'
-  s.homepage      = 'https://github.com/riboseinc/jekyll-theme-open-hub/'
+  s.summary       = 'Open Project Jekyll theme'
+  s.homepage      = 'https://github.com/riboseinc/jekyll-theme-open-project/'
   s.license       = 'MIT'
 
   s.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r{^((_includes|_layouts|_sass|assets|_pages)/|(LICENSE|README)((\.(txt|md|markdown)|$)))}i) }
