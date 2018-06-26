@@ -51,6 +51,17 @@ replacing default theme requirement:
 gem 'jekyll-theme-open-project'
 ```
 
+Also in the `Gemfile`, add two important plugins to the `:jekyll_plugins` group.
+(The SEO tag plugin is not mandatory, but these docs assume you use it.)
+
+```ruby
+group :jekyll_plugins do
+  gem "jekyll-seo-tag"
+  gem "jekyll-theme-open-project-helpers"
+  # ...other plugins, if you use any
+end
+```
+
 Add this line to your Jekyll site's `_config.yml`,
 replacing default theme requirement:
 
@@ -115,9 +126,6 @@ These are applicable to both site types (hub and project).
         type: posts
       values:
         layout: post
-
-  plugins:
-    - jekyll-seo-tag
   ```
 
 ### Logo
