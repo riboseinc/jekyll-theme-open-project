@@ -26,12 +26,42 @@ $bigscreen-breakpoint: 900px + $gutter * 2;
 @import "open-project-header-footer";
 
 
-/* Generic */
+main {
 
-body {
+  /* Generic */
 
-  &.layout-home > main {
-    > .featured-posts {
+  body.layout-home > & {
+    > .underlay {
+      > svg {
+        display: none;
+      }
+      @media screen and (min-width: $bigscreen-breakpoint) {
+        position: relative;
+
+        > * {
+          z-index: 1;
+        }
+        > svg {
+          display: block;
+          z-index: 0;
+          position: absolute;
+        }
+
+        // Top section(s) background
+        &:first-child {
+          padding-bottom: 80px;
+          background-color: #F7F7F7;
+
+          > svg {
+            top: 0;
+            width: 100%;
+            height: 35vw;
+          }
+        }
+      }
+    }
+
+    > .underlay > .featured-posts {
       @extend .main-section;
 
       .items {
@@ -62,8 +92,8 @@ body {
     }
   }
 
-  &.layout-spec-index > main,
-  &.layout-software-index > main {
+  body.layout-spec-index > &,
+  body.layout-software-index > & {
     > .item-filter {
       padding: 18px 40px;
       background-color: #F3F3F3;
@@ -106,7 +136,7 @@ body {
         @extend .item-card;
         @include hoverable-card(4px, 12px, rgba(0, 0, 0, 0.08));
 
-        padding: 32px 30px;
+        padding: 16px 30px 22px 30px;
 
         .header {
           font-size: 18px;
@@ -135,7 +165,7 @@ body {
     }
   }
 
-  &.layout-blog-index > main {
+  body.layout-blog-index > & {
     > .items {
       @extend .item-grid;
       @extend .index-item-grid;
@@ -167,11 +197,54 @@ body {
     }
   }
 
-  &.layout-post > main > article {
-    @extend .main-article;
+  body.layout-post > & {
+    > article {
+      @extend .main-article;
 
-    > header > .meta {
-      color: grey;
+      > header > .meta {
+        @extend .post-meta-row;
+        margin-bottom: 36px;
+      }
+      aside.social-links {
+        position: relative;
+        top: -10px;
+        margin-bottom: 14px;
+
+        @media screen and (min-width: $bigscreen-breakpoint) {
+          // “Remove” from the flow, and offset to the left
+          $height: 100px;
+
+          height: $height;
+          width: 80px;
+
+          margin-bottom: -$height;
+
+          top: 10px;
+          left: -140px;
+
+          display: flex;
+          flex-flow: column nowrap;
+          align-items: flex-start;
+        }
+
+        > .ico {
+          margin-right: 5px;
+
+          @media screen and (min-width: $bigscreen-breakpoint) {
+            margin-right: 0;
+            margin-bottom: 5px;
+          }
+
+          .fa-layers {
+            > .fa-circle {
+              color: $primary-color;
+            }
+            > :not(.fa-circle) {
+              color: white;
+            }
+          }
+        }
+      }
     }
   }
 }
