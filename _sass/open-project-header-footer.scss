@@ -88,14 +88,21 @@ body > .underlay > header {
 
   > nav {
     flex: 1;
+
     > * {
       font-weight: 600;
-      margin-right: 40px;
+      margin-right: 20px;
+      padding: 6px 10px 6px 10px;
+      white-space: nowrap;
     }
   }
 
   > nav, > .social-links {
-    color: $primary-color;
+    color: white;
+
+    span {
+      background-color: rgba(black, 0.1);
+    }
     a:link, a:hover, a:visited {
       color: white;
     }
