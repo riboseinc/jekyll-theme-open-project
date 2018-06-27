@@ -40,39 +40,96 @@ body > .underlay > footer {
   }
 }
 
-body > .underlay.header {
-  background: $header-background;
+.underlay.header {
+  body > & {
+    background: $header-background;
 
-  > .hero {
-    padding-top: 20px;
-    padding-bottom: 40px;
+    > .hero {
+      padding-top: 20px;
+      padding-bottom: 60px;
 
-    @media screen and (min-width: $widescreen-breakpoint) {
-      padding-top: 45px;
-      padding-bottom: 110px;
-    }
+      @media screen and (min-width: $widescreen-breakpoint) {
+        padding-top: 65px;
+        padding-bottom: 110px;
+      }
 
-    text-align: center;
-    color: white;
+      text-align: center;
+      color: white;
 
-    > h1 {
-      font-size: 44px;
-      font-weight: bold;
-      margin: 0;
-    }
-    > .desc {
-      font-size: 20px;
-      margin: 0;
+      > .text {
+        > .title {
+          font-size: 44px;
+          font-weight: bold;
+          margin: 0 0 20px 0;
+          line-height: 1.2;
+        }
+        > .desc {
+          font-size: 20px;
+          margin: 0;
+        }
+        > .cta {  // Call to action.
+          margin-top: 50px;
+
+          .button {
+            font-weight: 800;
+            font-size: 18px;
+            padding: 12px 18px;
+            border-radius: 4px;
+
+            .icon {
+              margin-right: 10px;
+              font-weight: 400;
+              position: relative;
+              top: 2px;
+              font-size: 120%;
+            }
+
+            &, &:link, &:hover, &:visited {
+              color: $primary-dark-color;
+              background-color: white;
+            }
+          }
+        }
+      }
     }
   }
-}
-body.layout-index-page > .underlay.header {
-  background: $hero-background;
-}
-body.layout-home > .underlay.header {
-  background: $superhero-background;
-  > .hero {
-    text-align: left;
+  body.layout-software-index > & {
+    background: $hub-software--hero-background;
+  }
+  body.layout-spec-index > & {
+    background: $hub-specs--hero-background;
+  }
+  body.layout-home > & {
+    background: $superhero-background;
+
+    @media screen and (min-width: $widescreen-breakpoint) {
+      background:
+        repeat-x bottom center/auto 30px url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='10' viewBox='0 0 80 10'><polygon fill='white' points='0,0 28,0 35,10 45,10 52,0 80,0 80,10 0,10'/></svg>"),
+        $superhero-background;
+    }
+
+    > .hero {
+      text-align: left;
+
+      .illustration {
+        display: none;
+      }
+
+      @media screen and (min-width: $bigscreen-breakpoint) {
+        display: flex;
+        flex-flow: row nowrap;
+
+        .text {
+          width: 550px;
+        }
+        .illustration {
+          flex: 1;
+          display: flex;
+          flex-flow: column nowrap;
+          align-items: center;
+        }
+      }
+    }
   }
 }
 
@@ -81,8 +138,8 @@ body > .underlay.footer {
 }
 
 body > .underlay > header {
-  padding-top: 32px;
-  padding-bottom: 32px;
+  padding-top: 26px;
+  padding-bottom: 26px;
 
   color: white;
 

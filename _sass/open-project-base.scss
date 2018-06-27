@@ -41,11 +41,16 @@ a {
 .main-section {
   margin-top: 50px;
 
+  display: flex;
+  flex-flow: column nowrap;
+
   @media screen and (min-width: $bigscreen-breakpoint) {
     margin-top: 100px;
   }
 
   > .puny-label {
+    align-self: center;
+
     text-align: center;
     margin: 0;
     font-size: 18px;
@@ -54,16 +59,56 @@ a {
   }
 
   > .title {
+    align-self: center;
+
     text-align: center;
     font-weight: 600;
 
     margin-top: 0;
     margin-bottom: 1em;
     font-size: 32px;
+
+    position: relative;
+
+    &:after {
+      // Underlaying border feature can be turned on
+      // in extending sections by providing border-bottom-color
+      // on this :after element.
+      content: " ";
+      border-bottom-width: 12px;
+      border-bottom-style: solid;
+      border-bottom-color: transparent;
+      position: absolute;
+      bottom: 8px;
+      left: -5px;
+      right: -5px;
+      z-index: -1;
+    }
   }
 
   > .items {
+    align-self: stretch;
+
     @extend .item-grid;
+  }
+}
+
+.with-symbol-background {
+  position: relative;
+
+  > * {
+    z-index: 1;
+  }
+  > svg {
+    z-index: 0;
+    position: absolute;
+    top: -38px;
+    right: -60px;
+    height: 525px;
+    width: 525px;
+    path {
+      fill: rgba($primary-color, 0.08);
+    }
   }
 }
 
@@ -88,19 +133,150 @@ a {
     text-decoration: none;
   }
 
-  .header {
-    font-weight: 600;
-    margin: 0 0 .5em 0;
+  header {
+    > .parent-project {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: space-between;
+
+      .project-logo {
+        width: 32px;
+        height: 32px;
+        vertical-align: middle;
+        margin-right: 10px;
+      }
+      .project-title {
+        font-size: 14px;
+        font-weight: 600;
+        flex: 1;
+
+        color: $primary-color;
+        body.layout-software-index & {
+          color: $hub-software--primary-color;
+        }
+        body.layout-spec-index & {
+          color: $hub-specs--primary-color;
+        }
+      }
+    }
+    > .title {
+      font-weight: 600;
+      margin: 0 0 .5em 0;
+    }
   }
+
   .body {
     margin: 0;
+  }
+
+  footer {
+    color: grey;
+    font-size: 14px;
+
+    .last-update, .tags {
+      margin: 6px 0 0 0;
+    }
+
+    .last-update {
+      padding: 0;
+    }
+
+    .tags {
+      list-style: none;
+      padding: 0;
+
+      > li {
+        display: inline;
+        font-weight: 600;
+        margin: 0;
+        padding: 0;
+
+        &::after {
+          content: ", ";
+          color: grey;
+          font-weight: normal;
+        }
+        &:last-child::after {
+          content: "";
+        }
+
+        color: $primary-color;
+
+        body.layout-software-index & {
+          color: $hub-software--primary-color;
+        }
+        body.layout-spec-index & {
+          color: $hub-specs--primary-color;
+        }
+      }
+    }
+  }
+}
+
+.post-meta-row {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+
+  color: grey;
+  font-size: 14px;
+
+  .author-name {
+    margin-right: 10px;
+    white-space: nowrap;
+
+    font-weight: 600;
+    color: $primary-color;
+  }
+
+  .author-avatar {
+    margin-right: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    display: inline-block;
+    vertical-align: middle;
+    img {
+      vertical-align: middle;
+    }
   }
 }
 
 .post-card {
-  .meta {
-    margin-top: 8px;
-    color: grey;
+  position: relative;
+
+  &.has-parent-project {
+    padding-top: 20px;
+  }
+  .hub-symbol {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+
+    svg path {
+      fill: lighten(desaturate($primary-color, 30), 45);
+    }
+  }
+  header {
+    .title {
+      font-weight: 600;
+      font-size: 22px;
+    }
+    .external-link-icon {
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+  footer {
+    @extend .post-meta-row;
+    margin-top: 14px;
   }
 }
 
@@ -111,11 +287,16 @@ a {
     .title {
       font-size: 36px;
       font-weight: 600;
+      margin-bottom: 14px;
     }
   }
   .body {
     font-size: 18px;
     line-height: 1.65;
+
+    > p:first-child {
+      margin-top: 0;
+    }
   }
 }
 
@@ -147,6 +328,7 @@ body {
 
   > main {
     flex: 1;
+    overflow: hidden;
     padding-bottom: 50px;
     @media screen and (min-width: $bigscreen-breakpoint) {
       padding-bottom: 100px;
@@ -169,6 +351,7 @@ body {
 header,
 footer,
 section,
+.hero,
 article {
   body > &,
   body > .underlay > &,
