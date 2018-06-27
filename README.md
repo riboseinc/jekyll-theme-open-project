@@ -155,6 +155,9 @@ You may want to supply _includes/legal.html with content like this:
 
 Project sites and hub site can have a blog.
 
+In case of the hub, blog index will show combined timeline
+from hub blog and projects’ blogs.
+
 #### Index
 
 Create blog index page as _pages/blog.html, with nothing but frontmatter.
@@ -176,8 +179,26 @@ hero_include: index-page-hero.html
 
 #### Posts
 
-Place posts under _posts and name files e.g.
-`2018-04-20-welcome-to-jekyll.markdown`. This is typical Jekyll setup.
+In general, posts are authored as per usual Jekyll setup.
+
+The following _additional_ data is expected within post document frontmatter:
+
+```yaml
+---
+author:
+  email: <author’s email>
+  name: <author’s full name>
+  social_links:
+    - https://twitter.com/username
+    - https://facebook.com/username
+    - https://linkedin.com/in/username
+---
+```
+
+For hub-wide posts, put posts under _posts/ in site root and name files e.g.
+`2018-04-20-welcome-to-jekyll.markdown` (no change from the usual Jekyll setup).
+
+For project posts, see below about shared project data structure.
 
 
 ## Hub site
@@ -296,7 +317,7 @@ defaults:
 ```
 
 File layout is the same as described in the section
-about shared project data structure, with _software and _specs directories
+about shared project data structure, with _software, _specs, _posts directories
 found in the root of your Jekyll site.
 
 
@@ -309,12 +330,19 @@ Following data structure is shared and used to describe projects,
 whether on hub home site or each individual project site:
 
     - <project-name>/
+      - _posts/
+        - 2038-02-31-blog-post-title.markdown
       - _includes/
         - symbol.svg
       - _software/
         - <name>.md
       - _specs/
         - <name>.md
+
+### Blog
+
+Project blog posts should be authored as described in the universal setup
+section.
 
 ### Software and specs
 

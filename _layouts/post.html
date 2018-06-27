@@ -7,10 +7,62 @@ layout: default
     <h1 class="title">{{ page.title }}</h1>
 
     <div class="meta">
-      <span>{{ page.author }}</span>
-      on {{ page.date | date_to_string }}
+      {% if page.author.name %}
+        {% if page.author.email %}
+          <span class="author-avatar">
+            <img src="https://gravatar.com/avatar/{{ page.author.email }}?s=32">
+          </span>
+        {% endif %}
+        <span class="author-name">
+          {{ page.author.name }}
+        </span>
+      {% endif %}
+      <span class="date">
+        {% if page.author.name %}on {% endif %}
+        {{ page.date | date_to_string }}
+      </span>
     </div>
   </header>
+
+  {% assign num_social_links = page.author.social_links | size %}
+  {% if num_social_links > 0 %}
+    <aside class="social-links">
+      {% for link in page.author.social_links %}
+        <a href="{{ link }}" class="ico">
+          <span class="fa-layers fa-2x">
+            <i class="fas fa-circle"></i>
+            <i
+              {% if link contains "twitter.com" %}
+                class="fab fa-twitter"
+                alt="Twitter"
+                title="Twitter"
+              {% elsif link contains "github.com" %}
+                class="fab fa-github"
+                alt="Github"
+                title="Github"
+              {% elsif link contains "linkedin.com" %}
+                class="fab fa-linkedin-in"
+                alt="LinkedIn"
+                title="LinkedIn"
+              {% elsif link contains "facebook.com" %}
+                class="fab fa-facebook-f"
+                alt="Facebook"
+                title="Facebook"
+              {% elsif link contains "tumblr.com" %}
+                class="fab fa-tumblr"
+                alt="Tumblr"
+                title="Tumblr"
+              {% elsif link contains "instagram.com" %}
+                class="fab fa-instagram"
+                alt="Instagram"
+                title="Instagram"
+              {% endif %}
+              data-fa-transform="shrink-9"></i>
+          </span>
+        </a>
+      {% endfor %}
+    </aside>
+  {% endif %}
 
   <div class="body" role="presentation">
     {{ content }}

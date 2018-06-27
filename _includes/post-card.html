@@ -1,7 +1,54 @@
-<h3 class="header">{{ item.title }}</h3>
-<p class="body">
-  {{ item.excerpt | remove: '<p>' | remove: '</p>' }}
-</p>
-<div class="meta">
-  {{ item.date | date_to_string }}
-</div>
+<a class="item {% if include.post.parent_project %}has-parent-project{% endif %}"
+  href="
+    {% if include.post.parent_project %}
+      {{ include.post.parent_project.home_url }}blog/{{ include.post.date | date: "%m-%d-%Y" }}/{{ include.post.slug }}/
+    {% else %}
+      {{ include.post.url }}
+    {% endif %}
+  " role="article">
+
+  {% if include.post.parent_project == nil %}
+    <div class="hub-symbol" role="presentation">
+      {% include symbol.svg %}
+    </div>
+  {% endif %}
+
+  <header>
+    {% if include.post.parent_project %}
+      {% assign project_symbol_path = "_projects/" | append: include.post.parent_project.name | append: "/_includes/symbol.svg" %}
+      {% assign relative_symbol_path = "/" | append: project_symbol_path %}
+      <div class="parent-project">
+        <div class="project-logo" role="presentation">
+          {% include {{ relative_symbol_path }} %}
+        </div>
+        <h4 class="project-title">{{ include.post.parent_project.title }}</h4>
+        <div class="external-link-icon" role="presentation">
+          <img src="{{ "assets/img/external-link.svg" | relative_url }}">
+        </div>
+      </div>
+    {% endif %}
+    <h3 class="title">{{ include.post.title }}</h3>
+  </header>
+
+  <p class="body">
+    {{ include.post.excerpt | remove: '<p>' | remove: '</p>' }}
+  </p>
+
+  <footer class="meta">
+    {% if include.post.author.name %}
+      {% if include.post.author.email %}
+        <span class="author-avatar">
+          <img src="https://gravatar.com/avatar/{{ include.post.author.email }}?s=32">
+        </span>
+      {% endif %}
+      <span class="author-name">
+        {{ include.post.author.name }}
+      </span>
+    {% endif %}
+    <span class="date">
+      {% if include.post.author.name %}on {% endif %}
+      {{ include.post.date | date_to_string }}
+    </span>
+  </footer>
+
+</a>
