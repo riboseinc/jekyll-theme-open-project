@@ -1,18 +1,17 @@
 ---
-layout: index-page
+layout: default
 ---
-{% assign specs = site.projects | where_exp: "item", "item.url contains '_specs'" %}
 
-{% for spec in specs %}
-  {% assign project_name = spec.url | split: "/" | slice: 2 | first %}
-  {% assign project_index_path = "_projects/" | append: project_name | append: "/index.md" %}
-  {% assign project = site.projects | where: "path", project_index_path | first %}
-  {% assign spec_home_url = project.home_url | append: spec.slug | append: "/" %}
+{% include index-page-item-filter.html url_tag_prefix="/specs/" items=page.items tag=page.tag %}
 
-  <a class="item" href="{{ spec_home_url }}" role="article">
-    <h3 class="header">{{ spec.title }}</h3>
-    <p class="body">
-      {{ spec.description }}
-    </p>
-  </a>
-{% endfor %}
+<section class="items">
+  {% include symbol.svg %}
+
+  {% for spec in page.items %}
+    {% assign project_name = spec.url | split: "/" | slice: 2 | first %}
+    {% assign project_index_path = "_projects/" | append: project_name | append: "/index.md" %}
+    {% assign project = site.projects | where: "path", project_index_path | first %}
+
+    {% include software-card-hub.html item=spec project_name=project_name project_data=project %}
+  {% endfor %}
+</section>

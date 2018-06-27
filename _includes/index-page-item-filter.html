@@ -1,0 +1,28 @@
+{% capture rawtags %}{% for doc in include.items %}{% for tag in doc.tags %}{{ tag }} {% endfor %}{% endfor %}{% endcapture %}
+
+{% assign tags = rawtags | split: " " | uniq %}
+{% assign num_tags = tags | size %}
+
+{% if num_tags > 0 %}
+  <nav class="item-filter">
+    <ul class="tags">
+      <li>
+        {% if include.tag %}
+          <a href="{{ include.url_tag_prefix }}">All</a>
+        {% else %}
+          <span>All</span>
+        {% endif %}
+      </li>
+
+      {% for tag in tags %}
+      <li>
+        {% if tag == include.tag %}
+          <span>{{ tag }}</span>
+        {% else %}
+          <a href="{{ include.url_tag_prefix }}{{ tag }}">{{ tag }}</a>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </nav>
+{% endif %}

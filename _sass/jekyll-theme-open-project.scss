@@ -6,6 +6,14 @@ $header-background: $primary-dark-color !default;
 $hero-background: $primary-dark-color !default;
 $superhero-background: $primary-dark-color !default;
 
+$hub-software--primary-color: lightsalmon !default;
+$hub-software--primary-dark-color: tomato !default;
+$hub-software--hero-background: $hub-software--primary-dark-color !default;
+
+$hub-specs--primary-color: lightpink !default;
+$hub-specs--primary-dark-color: palevioletred !default;
+$hub-specs--hero-background: $hub-specs--primary-dark-color !default;
+
 $gutter: 30px;
 $featured-cols: 3;
 $grid-cols: 4;
@@ -56,6 +64,36 @@ body {
 
   &.layout-spec-index > main,
   &.layout-software-index > main {
+    > .item-filter {
+      padding: 18px 40px;
+      background-color: #F3F3F3;
+      align-self: stretch;
+      text-align: center;
+
+      ul.tags {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+
+        > li {
+          display: inline;
+          margin: 0;
+          padding: 0;
+
+          > * {
+            font-weight: 800;
+            margin: 0 4px;
+            padding: 3px 10px 3px 10px;
+            white-space: nowrap;
+          }
+          > a {
+            color: grey;
+          }
+        }
+      }
+    }
+
     > .items {
       @extend .item-grid;
       @extend .index-item-grid;
@@ -83,6 +121,17 @@ body {
           margin-bottom: $gutter;
         }
       }
+    }
+  }
+  // Item filter: color override for selected tags
+  > .item-filter ul.tags li > span {
+    body.layout-software-index > & {
+      color: $hub-software--primary-color;
+      background-color: rgba($hub-software--primary-color, 0.1);
+    }
+    body.layout-spec-index > & {
+      color: $hub-specs--primary-color;
+      background-color: rgba($hub-specs--primary-color, 0.1);
     }
   }
 

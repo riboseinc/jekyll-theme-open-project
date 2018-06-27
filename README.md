@@ -545,6 +545,15 @@ $accent-color: red !default;
 # hero unit respectively. Gradients can be supplied.
 $header-background: $primary-dark-color !default;
 $hero-background: $primary-dark-color !default;
+
+# Below customize colors for different sections of the site.
+$hub-software--primary-color: lightsalmon !default;
+$hub-software--primary-dark-color: tomato !default;
+$hub-software--hero-background: $hub-software--primary-dark-color !default;
+
+$hub-specs--primary-color: lightpink !default;
+$hub-specs--primary-dark-color: palevioletred !default;
+$hub-specs--hero-background: $hub-specs--primary-dark-color !default;
 ```
 
 

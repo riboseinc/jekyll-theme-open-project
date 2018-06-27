@@ -1,0 +1,35 @@
+{% assign project_symbol_path = "_projects/" | append: include.project_name | append: "/_includes/symbol.svg" %}
+{% assign relative_symbol_path = "/" | append: project_symbol_path %}
+{% assign item_slug = include.item.title | slugify %}
+{% assign product_home_url = include.project_data.home_url | append: item_slug | append: "/" %}
+
+<a class="item" href="{{ product_home_url }}" role="article">
+  <header>
+    <div class="parent-project">
+      <div class="project-logo">{% include {{ relative_symbol_path }} %}</div>
+      <h4 class="project-title">{{ include.project_data.title }}</h4>
+    </div>
+    <h3 class="title">{{ include.item.title }}</h3>
+  </header>
+
+  <p class="body">
+    {{ include.item.description }}
+  </p>
+
+  <footer class="meta">
+    {% assign num_tags = include.item.tags | size %}
+    {% if num_tags > 0 %}
+      <ul class="tags">
+        {% for tag in include.item.tags %}
+          <li>{{ tag }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if include.item.last_update %}
+      <div class="last-update">
+        Last update: {{ include.item.last_update | date: "%d/%m/%Y" }}
+      </div>
+    {% endif %}
+  </footer>
+</a>
