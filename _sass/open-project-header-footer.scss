@@ -78,10 +78,6 @@ body.layout-home > .underlay.header {
 
 body > .underlay.footer {
   background: #2E333B;
-  margin-top: 50px;
-  @media screen and (min-width: $bigscreen-breakpoint) {
-    margin-top: 100px;
-  }
 }
 
 body > .underlay > header {
