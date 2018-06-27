@@ -523,8 +523,10 @@ under assets/css/style.scss with following exact contents:
 @import '{{ site.theme }}';
 ```
 
-You can define custom style rules after the import, and customize variables
-before the import.
+There are two aspects to theme customization:
+
+* Cutomize SASS variables before the import (such as colors)
+* Define custom style rules after the import
 
 ### Custom rules
 
