@@ -96,7 +96,7 @@ and it’ll use localhost.
 
 ## Universal setup
 
-These are applicable to both site types (hub and project).
+These settings are required to both site types (hub and project).
 
 - You may want to remove the default about.md page added by Jekyll,
   as this theme does not account for its existence.
