@@ -4,6 +4,10 @@ title: Open Hub
 
 description: Description here
 
+tagline: Tagline here
+
+pitch: Pitch here
+
 seo:
   type: Organization
 
@@ -14,8 +18,8 @@ social:
 
 markdown: kramdown
 theme: jekyll-theme-open-project
-plugins:
-  - jekyll-seo-tag
+
+includes_dir: .
 
 collections:
   projects:

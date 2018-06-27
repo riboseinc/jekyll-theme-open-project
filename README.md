@@ -102,6 +102,22 @@ These settings are required to both site types (hub and project).
   # The above two are used by jekyll-seo-tag for things such as
   # `<title>` and `<meta>` tags, as well as elsewhere by the theme.
 
+  tagline: Site tagline
+  pitch: Site pitch
+  # The above two are used on home hero unit.
+
+
+  # Further settings are not expected to be changed,
+  # unless you know what you’re doing:
+
+  markdown: kramdown
+  theme: jekyll-theme-open-project
+
+  # Theme layouts can include from any directory, not just _includes.
+  # There’s a quirk in Jekyll’s “safe” behavior around include and gem-based themes
+  # which means include_relative wouldn’t cut it.
+  includes_dir: .
+
   collections:
     posts:
       output: true
