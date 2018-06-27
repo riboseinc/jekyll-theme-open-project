@@ -19,14 +19,19 @@
       <h1 class="site-logo"><a href="/">{% include logo.html %}</a></h1>
       <nav>
         {% include nav-page-link.html url="/" title="Home" %}
-        {% for p in site.pages %}
-          {% comment %}
-            For project sites, exclude all links except for the blog.
-          {% endcomment %}
-          {% if num_projects > 0 or p.url contains "blog" %}
-            {% include nav-page-link.html url=p.url title=p.title %}
-          {% endif %}
-        {% endfor %}
+        {% assign contact_link = "mailto:" | append: site.contact_email %}
+        {% if num_projects > 0 %}
+          {% include nav-page-link.html url="/projects/" title="Open Projects" %}
+          {% include nav-page-link.html url="/software/" title="Open Source Software" active_for_nested=true %}
+          {% include nav-page-link.html url="/specs/" title="Open Specifications" active_for_nested=true %}
+          {% include nav-page-link.html url="/blog/" title="Blog" active_for_nested=true %}
+        {% else %}
+          {% include nav-page-link.html url="/software/" title="Open Source Software" active_for_nested=true %}
+          {% include nav-page-link.html url="/specs/" title="Open Specifications" active_for_nested=true %}
+          {% include project-nav.html %}
+          {% include nav-page-link.html url="/blog/" title="Blog" active_for_nested=true %}
+          {% include nav-page-link.html url=contact_link title="Contact" %}
+        {% endif %}
       </nav>
       {% include social-links.html %}
     </header>

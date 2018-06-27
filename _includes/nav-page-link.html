@@ -1,5 +1,16 @@
-{% if page.url == include.url %}
+{% if include.active_for_nested %}
+  {% assign first_component = page.url | split: '/' | slice: 0, 2 | join: '/' | append: '/' %}
+  {% if first_component == include.url %}
+    {% assign active_nested = true %}
+  {% else %}
+    {% assign active_nested = false %}
+  {% endif %}
+{% endif %}
+
+{% if active_nested or page.url == include.url %}
   <span>{{ include.title }}</span>
 {% else %}
   <a href="{{ include.url }}">{{ include.title }}</a>
 {% endif %}
+
+{% assign active_nested = false %}
