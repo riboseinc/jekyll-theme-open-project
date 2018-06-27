@@ -368,7 +368,13 @@ whether on hub home site or each individual project site:
       - _includes/
         - symbol.svg
       - _software/
-        - <name>.md
+        - <name>/
+          - symbol.svg
+          - index.md
+          - _docs/
+            - <version>/
+              - overview.md
+              - <documentation-page-name>.md
       - _specs/
         - <name>.md
 
