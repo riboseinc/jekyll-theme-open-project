@@ -211,7 +211,7 @@ main {
         margin-bottom: 14px;
 
         @media screen and (min-width: $bigscreen-breakpoint) {
-          // “Remove” from the flow, and offset to the left
+          // "Remove" from the flow, and offset to the left
           $height: 100px;
 
           height: $height;
