@@ -47,9 +47,7 @@
 
     <div class="items" role="presentation">
       {% for item in site.posts %}
-        <a class="item" href="{{ item.url }}" role="article">
-          {% include post-card.html %}
-        </a>
+        {% include post-card.html post=item %}
       {% endfor %}
     </div>
   </section>
