@@ -1,0 +1,46 @@
+---
+layout: default
+---
+{% assign projects = site.projects | where_exp: "item", "item.home_url != nil" %}
+{% assign num_projects = projects | size %}
+
+{% if num_projects > 0 %}
+  <section class="items">
+    {% include symbol.svg %}
+
+    {% for project in projects %}
+      {% assign symbol_path = project.path | split: "/" | slice: 0, 2 | join: "/" | append: "/_includes/symbol.svg" %}
+      {% assign relative_symbol_path = "/" | append: symbol_path %}
+
+      <a class="item {% if project.featured == true %}featured{% endif %}"
+          href="{{ project.home_url }}"
+          role="article">
+
+        <header>
+          <div class="logo-container" role="presentation">
+            <div class="logo">{% include {{ relative_symbol_path }} %}</div>
+          </div>
+          <h3 class="title">{{ project.title }}</h3>
+        </header>
+
+        <p class="body">
+          {{ project.description }}
+        </p>
+
+        <footer class="meta">
+          {% assign num_tags = project.tags | size %}
+          {% if num_tags > 0 %}
+            <ul class="tags">
+              {% for tag in project.tags %}
+                <li>{{ tag }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </footer>
+
+      </a>
+    {% endfor %}
+  </section>
+{% else  %}
+  <p>No projects to display.</p>
+{% endif %}

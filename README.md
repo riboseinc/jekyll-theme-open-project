@@ -244,6 +244,23 @@ featured: true | false
 home_url: <URL to standalone project site>
 ```
 
+### Project index page
+
+Create software index in _pages/projects.html, with nothing but frontmatter.
+Use layout called "project-index", pass `hero_include: index-page-hero.html`,
+and set `title` and `description` as appropriate.
+
+Example:
+
+```yaml
+---
+title: Open projects
+description: Projecting goodness into the world!
+layout: project-index
+hero_include: index-page-hero.html
+---
+```
+
 ### Software index page
 
 Create software index in _pages/software.html, with nothing but frontmatter.
@@ -450,6 +467,10 @@ Commonly used layouts are:
   to supply hero_include.
 
 - post: Blog post
+
+- project-index: Open project index page (hub site only).
+  Suggested to supply hero_include.
+  Will show a list of open projects across the hub.
 
 - software-index: Software index page (hub site only).
   Suggested to supply hero_include.
