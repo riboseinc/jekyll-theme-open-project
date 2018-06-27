@@ -51,6 +51,8 @@ replacing default theme requirement:
 gem 'jekyll-theme-open-project'
 ```
 
+(Jekyll’s default theme was “minima” at the time of this writing.)
+
 Also in the `Gemfile`, add two important plugins to the `:jekyll_plugins` group.
 (The SEO tag plugin is not mandatory, but these docs assume you use it.)
 
@@ -61,15 +63,6 @@ group :jekyll_plugins do
   # ...other plugins, if you use any
 end
 ```
-
-Add this line to your Jekyll site's `_config.yml`,
-replacing default theme requirement:
-
-```yaml
-theme: jekyll-theme-open-project
-```
-
-(Jekyll’s default theme was “minima” at the time of this writing.)
 
 Execute to install dependencies:
 
@@ -100,7 +93,8 @@ These settings are required to both site types (hub and project).
 
 - You may want to remove the default about.md page added by Jekyll,
   as this theme does not account for its existence.
-- Add following items to _config.yml:
+- Add following items to _config.yml
+  (don’t forget to remove default theme requirement):
 
   ```yaml
   title: Site title
