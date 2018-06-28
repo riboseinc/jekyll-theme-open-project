@@ -35,8 +35,10 @@ to AWS S3.
 ### Getting started with Ruby
 
 If you aren’t using Ruby often, the recommended way to install it is with RVM.
-Refer to RVM docs and use it to install a reasonably fresh Ruby version,
-let’s say 2.4.4.
+Refer to RVM docs and use it to install a fresh Ruby version.
+
+The currently recommended version is 2.4.4, it’s known to not work under 2.3
+and it hasn’t been tested on newer versions.
 
 ### Start new Jekyll site
 
