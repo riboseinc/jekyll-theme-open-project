@@ -19,33 +19,41 @@ and you have an Route 53 hosted zone associated with your domain.
 
 0. Choose the desired domain name for the site and take a note of it.
 
-1. Set up an S3 bucket for the static site, naming it after full domain name.
+1. Set up an S3 bucket for the static site, naming it after full domain name,
+   and configure as follows:
 
-   Copy its ARN and take note of it.
-   
-   Add public read permissions: since it’ll be used for website hosting,
-   everyone must be able to access it.
-   
-   Add bucket policy like following (it is recommended to use S3 policy generator
-   provided by AWS to enable s3:GetObject for all objects in your bucket):
-   
-   ```json
-   {
-     "Id": "PolicyNNNNNNNNNNNNN",
-     "Version": "2012-10-17",
-     "Statement": [
-       {
-         "Sid": "StmtNNNNNNNNNNNNN",
-         "Action": [
-           "s3:GetObject"
-         ],
-         "Effect": "Allow",
-         "Resource": "<your_bucket_ARN>/*",
-         "Principal": "*"
-       }
-     ]
-   }
-   ```
+   - Add public read permissions: since it’ll be used for website hosting,
+     everyone must be able to access it.
+
+   - Enable static website hosting in bucket settings,
+     set index document path to index.html.
+
+   - Add bucket policy like below (it is recommended to use S3 policy generator
+     provided by AWS; the goal is to enable anyone to s3:GetObject
+     on any object inside the bucket):
+
+      ```json
+      {
+        "Id": "PolicyNNNNNNNNNNNNN",
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "StmtNNNNNNNNNNNNN",
+            "Action": [
+              "s3:GetObject"
+            ],
+            "Effect": "Allow",
+            "Resource": "<your_bucket_ARN>/*",
+            "Principal": "*"
+          }
+        ]
+      }
+      ```
+
+    Take note of bucket’s ARN.
+
+    Note: Never use the created bucket for storing anything sensitive.
+    All contents will be visible to the entire Internet.
 
 2. Add Alias record to your chosen domain’s hosted zone in Route 53,
    and select the S3 bucket as the target.
