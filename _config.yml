@@ -1,29 +1,21 @@
-# Open Project theme setup
-
-title: Open Hub
-
-description: Description here
-
-tagline: Tagline here
-
-pitch: Pitch here
-
-seo:
-  type: Organization
-
-social:
-  links: []
-
-# You’re not expected to change further settings.
-
 markdown: kramdown
-theme: jekyll-theme-open-project
 
 includes_dir: .
+
+permalink: /blog/:month-:day-:year/:title/
+
+exclude:
+  - /**/.git/*
 
 collections:
   projects:
     output: false
+  software:
+    output: true
+    permalink: /software/:path/
+  specs:
+    output: true
+    permalink: /specs/:path/
   posts:
     output: true
     permalink: /blog/:month-:day-:year/:title/
@@ -41,3 +33,13 @@ defaults:
       type: posts
     values:
       layout: post
+  - scope:
+      path: _software
+      type: software
+    values:
+      layout: product
+  - scope:
+      path: _specs
+      type: specs
+    values:
+      layout: spec
