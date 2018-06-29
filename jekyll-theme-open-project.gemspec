@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'jekyll-seo-tag', '~> 2.0'
   s.add_runtime_dependency 'jekyll-data'
   s.add_runtime_dependency 'git'
-  s.add_runtime_dependency 'jekyll-theme-open-project-helpers', '~> 1.0.0.pre'
+  s.add_runtime_dependency 'jekyll-theme-open-project-helpers', '~> 1.0.0.pre2'
 
   s.add_development_dependency 'bundler', '~> 1.16'
   s.add_development_dependency 'rake', '~> 12.0'
