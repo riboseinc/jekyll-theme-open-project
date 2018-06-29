@@ -1,53 +1,72 @@
-{% assign num_software = site.software | size %}
-{% assign num_specs = site.specs | size %}
+{% assign software = site.software | where_exp: "item", "item.repo_url != nil" %}
+{% assign specs = site.specs | where_exp: "item", "item.source_url != nil" %}
+{% assign posts = site.posts %}
+
+{% assign num_software = software | size %}
+{% assign num_specs = specs | size %}
 {% assign num_posts = site.posts | size %}
 
-{% if num_software > 0 %}
-  <section class="software">
-    <h2 class="title">Software</h2>
+<div class="underlay top-background" role="presentation">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <polygon fill="white" points="0,0 100,0 100,60 0,100"/>
+  </svg>
 
-    <div class="items">
-      {% for item in site.software %}
-        <a class="item" href="{{ item.url }}" role="article">
-          {% if item.logo_svg %}
+  {% if num_software > 0 %}
+    <section class="software">
+      <h2 class="title">Open Source Software</h2>
+
+      <div class="items">
+        {% for item in software %}
+          <a class="item" href="{{ item.url }}" role="article">
             <div class="logo-container" role="presentation">
-              <div class="logo">{{ item.logo_svg }}</div>
+              {% include software-symbol.html item_id=item.id %}
             </div>
-          {% endif %}
-          <h3 class="header">{{ item.title }}</h3>
-          <p class="body">
-            {{ item.description }}
-          </p>
-        </a>
-      {% endfor %}
-    </div>
-  </section>
-{% endif %}
+
+            <header>
+              <h3 class="title">{{ item.title }}</h3>
+            </header>
+
+            <p class="body">
+              {{ item.description }}
+            </p>
+
+            {% include tag-list.html tags=item.tags %}
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if num_posts > 0 %}
+    <section class="featured-posts">
+      <h2 class="title">From the Blog</h2>
+
+      <div class="items" role="presentation">
+        {% for item in posts %}
+          {% include post-card.html post=item %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+</div>
 
 {% if num_specs > 0 %}
   <section class="specs">
-    <h2 class="title">Specifications</h2>
+    <h2 class="title">Open Specifications</h2>
 
     <div class="items">
-      {% for item in site.specs %}
+      {% for item in specs %}
         <a class="item" href="{{ item.url }}" role="article">
-          <h3 class="header">{{ item.title }}</h3>
+          <header>
+            <h3 class="title">{{ item.title }}</h3>
+          </header>
+
           <p class="body">
             {{ item.description }}
           </p>
+
+          {% include tag-list.html tags=item.tags %}
         </a>
-      {% endfor %}
-    </div>
-  </section>
-{% endif %}
-
-{% if num_posts > 0 %}
-  <section class="featured-posts">
-    <h2 class="title">From the Blog</h2>
-
-    <div class="items" role="presentation">
-      {% for item in site.posts %}
-        {% include post-card.html post=item %}
       {% endfor %}
     </div>
   </section>

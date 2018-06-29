@@ -2,14 +2,15 @@
   <h1 class="title">{{ site.tagline }}</h1>
   <p class="desc">{{ site.pitch | safe }}</p>
   <div class="cta explore-projects" role="presentation">
-    <a class="button" href="{{ "/projects/" | relative_url }}">
-      <i class="icon far fa-search"></i>
-      Explore Projects
-    </a>
-  </div>
-</div>
-<div role="presentation" class="illustration">
-  <div role="presentation" class="logo">
-    {% include symbol-hero.svg %}
+    {% if site.is_hub %}
+      <a class="button" href="{{ "/projects/" | relative_url }}">
+        <i class="icon far fa-search"></i>
+        Explore Projects
+      </a>
+    {% else if %}
+      <a class="button" href="{{ site.get_started_url | relative_url }}">
+        Get Started
+      </a>
+    {% endif %}
   </div>
 </div>

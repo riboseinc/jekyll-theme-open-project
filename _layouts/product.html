@@ -2,29 +2,4 @@
 layout: default
 ---
 
-<article>
-
-  <header>
-    <h1 class="title">{{ page.title }}</h1>
-
-    <p class="desc">{{ page.description }}</p>
-
-    <div class="meta">
-      {% if page.repo_url or page.docs_url %}
-        <ul>
-          {% if page.repo_url %}
-            <li>
-            <a href="{{ page.repo_url }}">Source code repository</a> {% endif %}
-          {% if page.docs_url %}
-            <li>
-            <a href="{{ page.docs_url }}">Documentation</a> {% endif %}
-        </ul>
-      {% endif %}
-    </div>
-  </header>
-
-  <div class="body" role="presentation">
-    {{ content }}
-  </div>
-
-</article>
+{% include item-doc-page.html items=site.software item_type='software' %}

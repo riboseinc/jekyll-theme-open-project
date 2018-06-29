@@ -61,6 +61,8 @@ Also in the `Gemfile`, add two important plugins to the `:jekyll_plugins` group.
 ```ruby
 group :jekyll_plugins do
   gem "jekyll-seo-tag"
+  gem "jekyll-data"
+  gem "jekyll-data"
   gem "jekyll-theme-open-project-helpers"
   # ...other plugins, if you use any
 end
@@ -95,6 +97,7 @@ These settings are required to both site types (hub and project).
 
 - You may want to remove the default about.md page added by Jekyll,
   as this theme does not account for its existence.
+- Add `hero_include: home-hero.html` to YAML frontmatter in `index.md`.
 - Add following items to _config.yml
   (don’t forget to remove default theme requirement):
 
@@ -108,36 +111,14 @@ These settings are required to both site types (hub and project).
   pitch: Site pitch
   # The above two are used on home hero unit.
 
+  permalink: /blog/:month-:day-:year/:title/
 
-  # Further settings are not expected to be changed,
-  # unless you know what you’re doing:
-
-  markdown: kramdown
   theme: jekyll-theme-open-project
 
-  # Theme layouts can include from any directory, not just _includes.
-  # There’s a quirk in Jekyll’s “safe” behavior around include and gem-based themes
-  # which means include_relative wouldn’t cut it.
-  includes_dir: .
-
-  collections:
-    posts:
-      output: true
-      permalink: /blog/:month-:day-:year/:title/
-    pages:
-      output: true
-      permalink: /:name/
-
-  defaults:
-    - scope:
-        path: ""
-      values:
-        layout: default
-    - scope:
-        path: _posts
-        type: posts
-      values:
-        layout: post
+  social:
+    links:
+      - https://twitter.com/<orgname>
+      - https://github.com/<orgname>
   ```
 
 ### Logo
@@ -227,20 +208,12 @@ and offers a software and specification index.
 Additional items allowed/expected in _config.yml:
 
 ```yaml
-social:
-  links:
-    - https://twitter.com/RiboseUS
-    - https://github.com/riboseinc
+is_hub: true
 
 # Since a hub would typically represent an organization as opposed
 # to individual, this would make sense:
 seo:
   type: Organization
-
-collections:
-  projects:
-    output: false
-  # ... (other collections)
 ```
 
 ### Project, spec and software data
@@ -327,33 +300,11 @@ authors:
     email: your-email@example.com
 
 author: "Company or Individual Name Goes Here"
-
-collections:
-  # ... (other collections)
-  software:
-    output: true
-    permalink: /:name/
-  specs:
-    output: true
-    permalink: /:name/
-
-defaults:
-  # ... (other defaults)
-  - scope:
-      path: _software
-      type: software
-    values:
-      layout: product
-  - scope:
-      path: _specs
-      type: specs
-    values:
-      layout: spec
 ```
 
 File layout is the same as described in the section
-about shared project data structure, with _software, _specs, _posts directories
-found in the root of your Jekyll site.
+about shared project data structure, with _software, _specs, _posts, _includes
+directories found in the root of your Jekyll site.
 
 
 ## Describing a project: shared data structure
@@ -370,13 +321,10 @@ whether on hub home site or each individual project site:
       - _includes/
         - symbol.svg
       - _software/
+        - <name>.md
         - <name>/
-          - symbol.svg
-          - index.md
-          - _docs/
-            - <version>/
-              - overview.md
-              - <documentation-page-name>.md
+          - _includes/
+            - symbol.svg
       - _specs/
         - <name>.md
 
@@ -394,10 +342,10 @@ Each product or spec is described by its own <name>.md file with frontmatter,
 placed under _software/ or _specs/ subdirectory, respectively,
 of your open project’s Jekyll site.
 
-Note: even though they’re in different subdirectories, all software products and specs
-within one project share URL namespace and hence must have unique names.
+A software product additionally is required to have a symbol in SVG format,
+placed in <name>/_includes/symbol.svg under _software/ directory.
 
-YAML frontmatter that can be used with both software and specs:
+YAML frontmatter that is expected with both software and specs:
 
 ```yaml
 title: A Few Words
@@ -407,32 +355,23 @@ title: A Few Words
 description: A sentence.
 # Not necessarily shown to the user,
 # but used for HTML metadata if jekyll-seo-tag is enabled
+
+tags: [Python, Ruby]
 ```
 
 ### Software product
 
-YAML frontmatter specific to software:
+YAML frontmatter required for software:
 
 ```yaml
-version: v1.2.3
-docs_url: https://foobar.readthedocs.io/en/latest
-repo_url: https://github.com/…
-stack: [Python, Django, AWS]
+repo_url: https://github.com/riboseinc/asciidoctor-rfc
+docs:
+  git_repo_url: git@example.com:path/to-repo.git
+  git_repo_subtree: docs
 ```
 
-#### Documentation
-
-**Recommended:** use a dedicated service supporting versioned and well-structured
-multi-page docs, such as Read the Docs. You can link users to that documentation
-using docs_url in software product’s frontmatter.
-
-Otherwise, if this open project’s page will serve as the authoritative source
-of documentation for the software product, documentation contents are expected
-to follow frontmatter. 
-
-Keep in mind that project name and description from before
-will be displayed by the theme first. Start with second-level header (##),
-with installation instructions or quick-start guide.
+About the `docs` key in this frontmatter, see nearby section
+about documentation.
 
 ### Specification
 
@@ -451,9 +390,30 @@ ietf_datatracker_ver: "01"
 source_url: https://example.com/spec-source-markup
 ```
 
-Specs that are not hosted elsewhere (such as ietf.org for RFCs)
-are expected to contain the actual specification content after frontmatter.
-Start with second-level header (##).
+### Documentation for specs and software
+
+Documentation contents for software should be kept in software
+package’s own repository, under a directory such as `docs/`.
+Inside that directory, place a file called `navigation.md` containing
+only frontmatter, in format like this:
+
+```yaml
+sections:
+- name: Introduction
+  items:
+    - overview
+    - installation
+- name: Usage
+  items:
+    - basic
+```
+
+In the same directory, place the required document pages—in this case, overview.md,
+installation.md, and basic.md. Each document page is required to contain
+standard YAML frontmatter with at least `title` specified.
+
+During project site build, Jekyll will pull docs for software products
+that are hosted under that project site.
 
 ### Symbol
 
@@ -527,8 +487,13 @@ under assets/css/style.scss with following exact contents:
 ```
 ---
 ---
+// Font imports can go here
 
-@import '{{ site.theme }}';
+// Variable redefinitions can go here
+
+@import 'jekyll-theme-open-project';
+
+// Custom rules can go here
 ```
 
 There are two aspects to theme customization:
@@ -554,6 +519,8 @@ The rule would look like this:
 Following are the variables along with their defaults:
 
 ```scss
+$font-family: Helvetica, Arial, sans-serif !default;
+
 # Primary color—should be bright but dark enough to be readable,
 # since some text elements are set using this color:
 $primary-color: lightblue !default;
@@ -571,6 +538,9 @@ $accent-color: red !default;
 # hero unit respectively. Gradients can be supplied.
 $header-background: $primary-dark-color !default;
 $hero-background: $primary-dark-color !default;
+
+# This is for the big big hero unit on home page.
+$superhero-background: $primary-dark-color !default;
 
 # Below customize colors for different sections of the site.
 $hub-software--primary-color: lightsalmon !default;

@@ -2,28 +2,4 @@
 layout: default
 ---
 
-<article>
-  <header>
-    <h1 class="title">{{ page.title }}</h1>
-
-    <div class="meta">
-      {% if page.rfc_id or page.ietf_datatracker_id or page.source_url %}
-        <ul>
-          {% if page.rfc_id %}
-            <li>
-            <a href="http://ietf.org/html/rfc{{ page.rfc_id }}">IETF RFC {{ page.rfc_id }}</a> {% endif %}
-          {% if page.ietf_datatracker_id %}
-            <li>
-            <a href="https://datatracker.ietf.org/doc/{{ page.ietf_datatracker_id }}{% if page.ietf_datatracker_ver %}-{{ page.ietf_datatracker_ver }}{% endif %}">IETF document</a> {% endif %}
-          {% if page.source_url %}
-            <li>
-            <a href="{{ page.source_url }}">Source markup</a> {% endif %}
-        </ul>
-      {% endif %}
-    </div>
-  </header>
-
-  <div class="body" role="presentation">
-    {{ content }}
-  </div>
-</article>
+{% include item-doc-page.html items=site.specs item_type='specs' %}

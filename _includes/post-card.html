@@ -7,9 +7,9 @@
     {% endif %}
   " role="article">
 
-  {% if include.post.parent_project == nil %}
+  {% if include.post.parent_project == nil and site.is_hub == true %}
     <div class="hub-symbol" role="presentation">
-      {% include symbol.svg %}
+      {% include _includes/symbol.svg %}
     </div>
   {% endif %}
 

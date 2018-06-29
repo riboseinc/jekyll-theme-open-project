@@ -1,0 +1,110 @@
+<section class="documentation">
+  {% assign product_base_url = page.url | split: "/" | slice: 0, 3 | join: "/" | append: "/" %}
+  {% assign docs_base_url = product_base_url | append: "docs/" %} 
+  {% assign item_docs = include.items | where_exp: "item", "item.url contains docs_base_url" %}
+  {% assign nav = item_docs | where_exp: "item", "item.path contains 'docs/navigation'" | first %}
+
+  {% assign product_data = include.items | where_exp: "item", "item.url == product_base_url" | first %}
+
+  {% assign num_sections = nav.sections | size %}
+  {% if num_sections > 0 %}
+  <nav class="nav-sidebar">
+    <header class="sidebar-header">
+      {% if include.item_type == 'software' and page.url != product_base_url %}
+        <div class="logo-container" role="presentation">
+          {% include software-symbol.html item_id=page.id %}
+        </div>
+        <h3 class="title"><a href="{{ product_base_url | relative_url }}">{{ product_data.title }}</a></h3>
+      {% else %}
+        <h3 class="title">Docs</h3>
+      {% endif %}
+    </header>
+
+    {% for section in nav.sections %}
+      <h4 class="section-title">{{ section.name }}</h4>
+      <ul class="section-items">
+        {% for item in section.items %}
+          {% assign link = docs_base_url | append: item | append: "/" %}
+          {% assign linked_page = include.items | where_exp: "item", "item.url contains link" | first %}
+
+          {% if page.url != link and linked_page %}
+            <li class="item">
+              <a href="{{ link | relative_url }}">
+                {{ linked_page.title }}
+              </a>
+            </li>
+
+          {% else %}
+            {% if page.url == link %}
+              <li class="item selected">
+                <span>
+                  {{ linked_page.title }}
+                </span>
+              </li>
+
+            {% else %}
+              <li class="item disabled">
+                <span>
+                  {{ item }}
+                </span>
+              </li>
+
+            {% endif %}
+          {% endif %}
+
+          {% assign link = "" %}
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  </nav>
+  {% endif %}
+
+  <article>
+    <header>
+      <div class="title" role="presentation">
+        {% if include.item_type == 'software' and page.url == product_base_url %}
+          <div class="logo-container" role="presentation">
+            {% include software-symbol.html item_id=page.id %}
+          </div>
+        {% endif %}
+
+        <h1 class="text">{{ page.title }}</h1>
+      </div>
+
+      <div role="presentation">
+        <h3 class="lead">{{ page.description }}</h3>
+
+        {% if page.repo_url or page.docs_url %}
+          <div class="meta">
+            <ul>
+              {% if page.repo_url %}
+                <li>
+                <a href="{{ page.repo_url }}">Source code repository</a> {% endif %}
+              {% if page.docs_url %}
+                <li>
+                <a href="{{ page.docs_url }}">Documentation</a> {% endif %}
+            </ul>
+          </div>
+        {% else if page.rfc_id or page.ietf_datatracker_id or page.source_url %}
+          <ul>
+            {% if page.rfc_id %}
+              <li>
+              <a href="http://ietf.org/html/rfc{{ page.rfc_id }}">IETF RFC {{ page.rfc_id }}</a> {% endif %}
+            {% if page.ietf_datatracker_id %}
+              <li>
+              <a href="https://datatracker.ietf.org/doc/{{ page.ietf_datatracker_id }}{% if page.ietf_datatracker_ver %}-{{ page.ietf_datatracker_ver }}{% endif %}">IETF document</a> {% endif %}
+            {% if page.source_url %}
+              <li>
+              <a href="{{ page.source_url }}">Source markup</a> {% endif %}
+          </ul>
+        {% endif %}
+      </div>
+    </header>
+
+    <div class="body" role="presentation">
+      {{ content }}
+    </div>
+
+  </article>
+</section>
+

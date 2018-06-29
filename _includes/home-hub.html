@@ -57,7 +57,7 @@
 {% assign num_other_projects = other_projects | size %}
 {% if num_other_projects > 0 %}
 <section class="other-projects">
-  {% include symbol.svg %}
+  {% include _includes/symbol.svg %}
 
   <h2 class="title">Other Projects</h2>
 
@@ -76,16 +76,7 @@
           {{ item.description }}
         </p>
 
-        {% assign num_tags = item.tags | size %}
-        {% if num_tags > 0 %}
-          <footer class="meta">
-            <ul class="tags">
-              {% for tag in item.tags %}
-                <li>{{ tag }}</li>
-              {% endfor %}
-            </ul>
-          </footer>
-        {% endif %}
+        {% include tag-list.html tags=item.tags %}
       </a>
     {% endfor %}
   </div>

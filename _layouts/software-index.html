@@ -2,16 +2,24 @@
 layout: default
 ---
 
-{% include index-page-item-filter.html url_tag_prefix="/software/" items=page.items tag=page.tag %}
+{% if site.is_hub %}
+  {% include index-page-item-filter.html url_tag_prefix="/software/" items=page.items tag=page.tag %}
+{% endif %}
 
 <section class="items">
-  {% include symbol.svg %}
+  {% if site.is_hub %}
+    {% include _includes/symbol.svg %}
+  {% endif %}
 
   {% for product in page.items %}
-    {% assign project_name = product.url | split: "/" | slice: 2 | first %}
-    {% assign project_index_path = "_projects/" | append: project_name | append: "/index.md" %}
-    {% assign project = site.projects | where: "path", project_index_path | first %}
+    {% if site.is_hub %}
+      {% assign project_name = product.url | split: "/" | slice: 2 | first %}
+      {% assign project_index_path = "_projects/" | append: project_name | append: "/index.md" %}
+      {% assign project = site.projects | where: "path", project_index_path | first %}
 
-    {% include software-card-hub.html item=product project_name=project_name project_data=project %}
+      {% include software-card-hub.html item=product item_type='software' project_name=project_name project_data=project %}
+    {% else %}
+      {% include software-card-hub.html item=product item_type='software' %}
+    {% endif %}
   {% endfor %}
 </section>

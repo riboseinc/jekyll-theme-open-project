@@ -6,7 +6,7 @@ layout: default
 
 {% if num_projects > 0 %}
   <section class="items">
-    {% include symbol.svg %}
+    {% include _includes/symbol.svg %}
 
     {% for project in projects %}
       {% assign symbol_path = project.path | split: "/" | slice: 0, 2 | join: "/" | append: "/_includes/symbol.svg" %}
