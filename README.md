@@ -68,7 +68,7 @@ group :jekyll_plugins do
 end
 ```
 
-Execute to install dependencies:
+Execute the following to install dependencies:
 
     $ bundle
 
@@ -330,8 +330,7 @@ whether on hub home site or each individual project site:
 
 ### Blog
 
-Project blog posts should be authored as described in the universal setup
-section.
+Author project site blog posts as described in the universal setup section.
 
 ### Software and specs
 
