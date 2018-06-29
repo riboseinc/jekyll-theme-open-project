@@ -2,6 +2,7 @@ body > .underlay > header,
 body > .underlay > footer {
   display: flex;
   flex-flow: row wrap;
+  align-items: center;
 
   @media screen and (min-width: $bigscreen-breakpoint) {
     flex-flow: row nowrap;
@@ -146,6 +147,7 @@ body > .underlay > header {
     flex: 1;
 
     > * {
+      display: inline-block;
       font-weight: 600;
       margin-right: 20px;
       padding: 6px 10px 6px 10px;
