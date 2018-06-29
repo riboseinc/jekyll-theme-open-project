@@ -50,7 +50,7 @@ Add this line to your Jekyll site's `Gemfile`,
 replacing default theme requirement:
 
 ```ruby
-gem 'jekyll-theme-open-project'
+gem "jekyll-theme-open-project"
 ```
 
 (Jekyll’s default theme was “minima” at the time of this writing.)
