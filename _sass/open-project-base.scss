@@ -203,10 +203,10 @@ a {
 
         color: $primary-color;
 
-        body.layout-software-index & {
+        body.hub.layout-software-index & {
           color: $hub-software--primary-color;
         }
-        body.layout-spec-index & {
+        body.hub.layout-spec-index & {
           color: $hub-specs--primary-color;
         }
       }
