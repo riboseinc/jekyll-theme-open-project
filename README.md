@@ -128,7 +128,7 @@ Logo consists of a symbol and site name.
 **Symbol** is basically an icon for the site.
 Should look OK in dimensions of 30x30px, and fit inside a square.
 Should be in SVG format (see also the SVG guidelines section).
-Place the symbol in _includes/symbol.svg.
+Place site-wide symbol in <site root>/assets/symbol.svg.
 
 **Site name** displayed to the right of the symbol.
 Limit the name to 1-3 words.
@@ -416,7 +416,7 @@ that are hosted under that project site.
 
 ### Symbol
 
-Should look OK in dimensions of 30x30px, and fit inside a square.
+Should look OK in dimensions of about 30x30, 60x60px. Must fit in a square.
 Should be in SVG format (see also the SVG guidelines section).
 Place the symbol in assets/symbol.svg within project directory.
 
