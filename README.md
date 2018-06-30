@@ -97,9 +97,12 @@ These settings apply to both site types (hub and project).
 
 - You may want to remove the default about.md page added by Jekyll,
   as this theme does not account for its existence.
-- Add `hero_include: home-hero.html` to YAML frontmatter in `index.md`.
-- Add following items to _config.yml
-  (don’t forget to remove default theme requirement):
+
+- Add `hero_include: home-hero.html` to YAML frontmatter
+  in your main `index.md`.
+
+- Add following items to site’s _config.yml
+  (and don’t forget to remove default theme requirement there):
 
   ```yaml
   title: Site title
