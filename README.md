@@ -111,9 +111,6 @@ These settings apply to both site types (hub and project).
   pitch: Site pitch
   # The above two are used on home hero unit.
 
-  permalink: /blog/:month-:day-:year/:title/
-
-  theme: jekyll-theme-open-project
 
   social:
     links:
@@ -124,6 +121,11 @@ These settings apply to both site types (hub and project).
     name: Full Organization Name
     tos_link: https://www.example.com/tos
     privacy_policy_link: https://www.example.com/privacy
+
+  # These are required for the theme to work:
+
+  theme: jekyll-theme-open-project
+  permalink: /blog/:month-:day-:year/:title/
   ```
 
 ### Logo
