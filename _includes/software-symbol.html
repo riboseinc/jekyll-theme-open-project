@@ -1,3 +1,8 @@
-{% assign symbol_path = include.item_id | split: "/" | slice: 2, 1 | join: "/" | append: "/_includes/symbol.svg" %}
-{% assign relative_symbol_path = "/_software/" | append: symbol_path %}
-<div class="logo">{% include {{ relative_symbol_path }} %}</div>
+{% assign symbol_path = include.item_id | split: "/" | slice: 2, 1 | join: "/" | append: "/assets/symbol.svg" %}
+{% if include.include_inline %}
+    {% assign relative_symbol_path = "/_software/" | append: symbol_path %}
+    <div class="logo">{% include {{ relative_symbol_path }} %}</div>
+{% else %}
+    {% assign relative_symbol_path = "/software/" | append: symbol_path %}
+    <div class="logo"><img src="{{ relative_symbol_path }}"></div>
+{% endif %}

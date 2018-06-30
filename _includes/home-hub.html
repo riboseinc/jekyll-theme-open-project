@@ -14,13 +14,12 @@
       <div class="items" role="presentation">
 
         {% for item in featured_projects limit:3 %}
-          {% assign symbol_path = item.path | split: "/" | slice: 0, 2 | join: "/" | append: "/_includes/symbol.svg" %}
-          {% assign relative_symbol_path = "/" | append: symbol_path %}
-
           <a class="item" href="{{ item.home_url }}" role="article">
             <header>
               <div class="logo-container" role="presentation">
-                <div class="logo">{% include {{ relative_symbol_path }} %}</div>
+                {% assign symbol_path = item.path | split: "/" | slice: 1, 1 | join: "/" | append: "/assets/symbol.svg" %}
+                {% assign relative_symbol_path = "/projects/" | append: symbol_path %}
+                <div class="logo"><img src="{{ relative_symbol_path }}"></div>
               </div>
               <h3 class="title">{{ item.title }}</h3>
             </header>
@@ -67,7 +66,9 @@
       <a class="item" href="{{ item.home_url }}" role="article">
         <header>
           <div class="logo-container" role="presentation">
-            <div class="logo">{% include {{ relative_symbol_path }} %}</div>
+            {% assign symbol_path = item.path | split: "/" | slice: 1, 1 | join: "/" | append: "/assets/symbol.svg" %}
+            {% assign relative_symbol_path = "/projects/" | append: symbol_path %}
+            <div class="logo"><img src="{{ relative_symbol_path }}"></div>
           </div>
           <h3 class="title">{{ item.title }}</h3>
         </header>

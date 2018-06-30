@@ -15,11 +15,11 @@
 
   <header>
     {% if include.post.parent_project %}
-      {% assign project_symbol_path = "_projects/" | append: include.post.parent_project.name | append: "/_includes/symbol.svg" %}
-      {% assign relative_symbol_path = "/" | append: project_symbol_path %}
+      {% assign project_symbol_path = include.post.parent_project.name | append: "/assets/symbol.svg" %}
+      {% assign relative_symbol_path = "/projects/" | append: project_symbol_path %}
       <div class="parent-project">
         <div class="project-logo" role="presentation">
-          {% include {{ relative_symbol_path }} %}
+          <img src="{{ relative_symbol_path }}">
         </div>
         <h4 class="project-title">{{ include.post.parent_project.title }}</h4>
         <div class="external-link-icon" role="presentation">

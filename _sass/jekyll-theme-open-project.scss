@@ -419,7 +419,8 @@ body.project {
           float: left;
           margin-left: -$logo-space;
           padding: 8px (($logo-space - $logo-side) / 2);
-          .logo svg {
+
+          .logo > :only-child {
             width: $logo-side;
             height: $logo-side;
           }
@@ -471,7 +472,7 @@ body.project {
           .logo-container {
             margin-right: 10px;
 
-            .logo svg {
+            .logo > :only-child {
               width: 32px;
               height: 32px;
             }
