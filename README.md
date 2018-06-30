@@ -119,6 +119,11 @@ These settings apply to both site types (hub and project).
     links:
       - https://twitter.com/<orgname>
       - https://github.com/<orgname>
+
+  legal:
+    name: Full Organization Name
+    tos_link: https://www.example.com/tos
+    privacy_policy_link: https://www.example.com/privacy
   ```
 
 ### Logo

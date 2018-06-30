@@ -1,5 +1,12 @@
-<span class="copyright">Copyright © 2018 Ribose. All rights reserved.</span>
-<nav>
-  <a href="https://www.ribose.com/tos">Terms</a>
-  <a href="https://www.ribose.com/privacy">Privacy</a>
-</nav>
+<span class="copyright">Copyright © 2018 {{ site.legal.name }}. All rights reserved.</span>
+
+{% if site.legal.privacy_policy_link or site.legal.tos_link %}
+  <nav>
+    {% if site.legal.tos_link %}
+      <a href="{{ site.legal.tos_link }}">Terms of Service</a>
+    {% endif %}
+    {% if site.legal.privacy_policy_link %}
+      <a href="{{ site.legal.privacy_policy_link }}">Privacy Policy</a>
+    {% endif %}
+  </nav>
+{% endif %}
