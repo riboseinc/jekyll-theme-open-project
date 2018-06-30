@@ -12,7 +12,7 @@ to AWS S3.
 
 ## Contents
 
-* Creating a site: [quick-start](#starting-a-site-with-this-theme)
+* Creating a site: [how to](#starting-a-site-with-this-theme)
 
   * [Universal site setup](#universal-setup)
   * [Hub site setup](#hub-site)
@@ -21,7 +21,7 @@ to AWS S3.
 * Describing open projects:
   [Project data structure](#describing-a-project-shared-data-structure)
 
-* Customizing site looks without violating theme design constraints:
+* Customizing site looks:
 
   * [Style customization](#style-customization)
   * [SVG guidelines](#svg-guidelines)
@@ -75,10 +75,10 @@ Execute the following to install dependencies:
 ### Configuring site
 
 Edit _config.yml to add necessary site-wide configuration options,
-and add necessary files and folders to site contents. This step depends
-on the type of site you’re creating: open hub or individual open project site.
+and add files and folders to site contents. This step depends
+on the type of site you’re creating: hub or individual project site.
 
-Below sections explain core concepts of open project and hub, and go
+Further sections explain core concepts of open project and hub, and go
 into detail about how to configure a project or hub site.
 
 ### Building site
@@ -87,13 +87,13 @@ Execute to build the site locally and watch for changes:
 
     $ bundle exec jekyll serve --host mysite.local --port 4000
 
-This assumes you have mysite.local mapped, otherwise omit --host
-and it’ll use localhost.
+This assumes you have mysite.local mapped in your hosts file,
+otherwise omit --host and it’ll use “localhost” as domain name.
 
 
 ## Universal setup
 
-These settings are required to both site types (hub and project).
+These settings apply to both site types (hub and project).
 
 - You may want to remove the default about.md page added by Jekyll,
   as this theme does not account for its existence.
@@ -123,7 +123,8 @@ These settings are required to both site types (hub and project).
 
 ### Logo
 
-Logo consists of a symbol and site name.
+By “logo” is meant the combination of site symbol as a graphic
+and name as word(s).
 
 **Symbol** is basically an icon for the site.
 Should look OK in dimensions of 30x30px, and fit inside a square.
