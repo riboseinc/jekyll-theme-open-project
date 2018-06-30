@@ -1,7 +1,8 @@
 <div role="presentation" class="text">
   <h1 class="title">{{ site.tagline }}</h1>
   <p class="desc">{{ site.pitch | safe }}</p>
-  <div class="cta explore-projects" role="presentation">
+
+  <div class="cta" role="presentation">
     {% if site.is_hub %}
       <a class="button" href="{{ "/projects/" | relative_url }}">
         <i class="icon far fa-search"></i>
