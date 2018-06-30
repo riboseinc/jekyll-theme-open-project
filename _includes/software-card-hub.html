@@ -36,9 +36,9 @@
     {% include tag-list.html tags=include.item.tags %}
 
     {% if include.item.last_update %}
-      <div class="last-update">
+      <section class="last-update">
         Last update: {{ include.item.last_update | date: "%d/%m/%Y" }}
-      </div>
+      </section>
     {% endif %}
   </footer>
 </a>
