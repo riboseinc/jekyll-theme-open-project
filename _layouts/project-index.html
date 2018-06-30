@@ -6,7 +6,7 @@ layout: default
 
 {% if num_projects > 0 %}
   <section class="items">
-    {% include _includes/symbol.svg %}
+    {% include assets/symbol.svg %}
 
     {% for project in projects %}
       <a class="item {% if project.featured == true %}featured{% endif %}"
