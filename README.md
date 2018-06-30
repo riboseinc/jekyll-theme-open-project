@@ -303,8 +303,8 @@ author: "Company or Individual Name Goes Here"
 ```
 
 File layout is the same as described in the section
-about shared project data structure, with _software, _specs, _posts, _includes
-directories found in the root of your Jekyll site.
+about shared project data structure, with _software, _specs, _posts, assets
+subdirectories found in the root of your Jekyll site.
 
 
 ## Describing a project: shared data structure
@@ -318,12 +318,12 @@ whether on hub home site or each individual project site:
     - <project-name>/
       - _posts/
         - 2038-02-31-blog-post-title.markdown
-      - _includes/
+      - assets/
         - symbol.svg
       - _software/
         - <name>.md
         - <name>/
-          - _includes/
+          - assets/
             - symbol.svg
       - _specs/
         - <name>.md
@@ -342,7 +342,7 @@ placed under _software/ or _specs/ subdirectory, respectively,
 of your open project’s Jekyll site.
 
 A software product additionally is required to have a symbol in SVG format,
-placed in <name>/_includes/symbol.svg under _software/ directory.
+placed in <name>/assets/symbol.svg within _software/ directory.
 
 YAML frontmatter that is expected with both software and specs:
 
@@ -418,7 +418,7 @@ that are hosted under that project site.
 
 Should look OK in dimensions of 30x30px, and fit inside a square.
 Should be in SVG format (see also the SVG guidelines section).
-Place the symbol in _includes/symbol.svg within project directory.
+Place the symbol in assets/symbol.svg within project directory.
 
 
 ## SVG guidelines
