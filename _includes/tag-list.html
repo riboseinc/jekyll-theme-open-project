@@ -1,10 +1,8 @@
 {% assign num_tags = include.tags | size %}
 {% if num_tags > 0 %}
-  <footer class="meta">
-    <ul class="tags">
-      {% for tag in include.tags %}
-        <li>{{ tag }}</li>
-      {% endfor %}
-    </ul>
-  </footer>
+  <ul class="tags">
+    {% for tag in include.tags %}
+      <li>{{ tag }}</li>
+    {% endfor %}
+  </ul>
 {% endif %}

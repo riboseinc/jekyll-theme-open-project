@@ -30,7 +30,9 @@
               {{ item.description }}
             </p>
 
-            {% include tag-list.html tags=item.tags %}
+            <footer class="meta">
+              {% include tag-list.html tags=item.tags %}
+            </footer>
           </a>
         {% endfor %}
       </div>
@@ -65,7 +67,9 @@
             {{ item.description }}
           </p>
 
-          {% include tag-list.html tags=item.tags %}
+          <footer class="meta">
+            {% include tag-list.html tags=item.tags %}
+          </footer>
         </a>
       {% endfor %}
     </div>
