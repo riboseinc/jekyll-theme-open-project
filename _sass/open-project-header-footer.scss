@@ -115,7 +115,7 @@ body > .underlay > footer {
             &:first-child {
               margin-right: 10px;
 
-              &, &:link, &:hover, &:visited {
+              &, &:link, &:visited {
                 color: white;
                 background-color: rgba(white, 0.32);
               }
@@ -123,10 +123,15 @@ body > .underlay > footer {
             &:last-child {
               margin-right: 0;
 
-              &, &:link, &:hover, &:visited {
+              &, &:link, &:visited {
                 color: $primary-dark-color;
                 background-color: white;
               }
+            }
+
+            transition: box-shadow .2s ease-out;
+            &:hover {
+              box-shadow: 0 0 0 4px rgba(black, 0.2);
             }
           }
         }
