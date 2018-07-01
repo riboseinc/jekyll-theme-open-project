@@ -40,6 +40,32 @@ body > .underlay > footer {
   }
 }
 
+.parent-hub-plug {
+  .logo {
+    display: block;
+  }
+  body.layout-home > .underlay.header > .hero > .text > & {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: right;
+  }
+  body > .underlay.footer & {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    margin-right: 50px;
+    line-height: .5;
+    opacity: 0.8;
+    color: white;
+
+    .label {
+      margin-right: 20px;
+      font-weight: 500;
+    }
+  }
+}
+
 .underlay.header {
   body > & {
     background: $header-background;
@@ -49,14 +75,17 @@ body > .underlay > footer {
       padding-bottom: 60px;
 
       @media screen and (min-width: $widescreen-breakpoint) {
-        padding-top: 65px;
-        padding-bottom: 110px;
+        padding-top: 55px;
+        padding-bottom: 30px;
       }
 
       text-align: center;
       color: white;
 
       > .text {
+        position: relative;
+        padding-bottom: 80px;
+
         > .title {
           font-size: 44px;
           font-weight: 700;
@@ -83,9 +112,21 @@ body > .underlay > footer {
               font-size: 120%;
             }
 
-            &, &:link, &:hover, &:visited {
-              color: $primary-dark-color;
-              background-color: white;
+            &:first-child {
+              margin-right: 10px;
+
+              &, &:link, &:hover, &:visited {
+                color: white;
+                background-color: rgba(white, 0.32);
+              }
+            }
+            &:last-child {
+              margin-right: 0;
+
+              &, &:link, &:hover, &:visited {
+                color: $primary-dark-color;
+                background-color: white;
+              }
             }
           }
         }
@@ -100,6 +141,12 @@ body > .underlay > footer {
   }
   body.layout-home > & {
     background: $superhero-background;
+
+    > .hero {
+      > .text {
+        padding-bottom: 130px;
+      }
+    }
   }
 
   body.hub.layout-home > & {

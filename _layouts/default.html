@@ -53,7 +53,17 @@
 
   <div class="underlay footer" role="presentation">
     <footer>
-      <div class="site-logo">{% include logo.html %}</div>
+      {% if site.is_hub %}
+        <div class="site-logo">{% include logo.html %}</div>
+      {% else %}
+        <div class="parent-hub-plug" role="presentation">
+          <span class="label">A project done by</span>
+          <a class="logo" role="presentation" href="{{ site.parent_hub.home_url }}">
+            {% include parent-hub/assets/symbol.svg %}&nbsp;<span class="title">{% include parent-hub/title.html %}</span>
+          </a>
+        </div>
+      {% endif %}
+
       <div class="legal">{% include legal.html %}</div>
       {% include social-links.html %}
     </footer>

@@ -307,6 +307,13 @@ authors:
     email: your-email@example.com
 
 author: "Company or Individual Name Goes Here"
+
+# Any given open project site is assumed to be part of a hub,
+# and hub details in this format are required to let project site
+# reference the hub.
+parent_hub:
+  git_repo_url: git@example.com:path/to-repo.git
+  home_url: https://www.example.com/
 ```
 
 File layout is the same as described in the section

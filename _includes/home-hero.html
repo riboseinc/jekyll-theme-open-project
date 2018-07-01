@@ -14,4 +14,13 @@
       </a>
     {% endif %}
   </div>
+
+  {% if site.parent_hub %}
+    <div class="parent-hub-plug" role="presentation">
+      <span class="label">A project done by</span>
+      <a class="logo" role="presentation" href="{{ site.parent_hub.home_url }}">
+        {% include parent-hub/assets/symbol.svg %}&nbsp;<span class="title">{% include parent-hub/title.html %}</span>
+      </a>
+    </div>
+  {% endif %}
 </div>
