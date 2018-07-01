@@ -466,6 +466,9 @@ body.project {
           .title {
             flex: 1;
             line-height: 1;
+            font-weight: normal;
+            font-size: 15px;
+
             a:link, a:visited {
               color: #444;
             }
@@ -480,48 +483,71 @@ body.project {
           }
         }
 
-        > .section-title {
-          font-size: 20px;
-          font-weight: bold;
-          margin: 0;
-          line-height: 1.8;
-        }
+        > section {
+          margin-bottom: 15px;
 
-        > .section-items {
-          list-style: none;
-          margin: 0 0 15px 0;
-          padding: 0;
-          line-height: 2;
+          &.external-links {
+            $side-margin: 16px;
 
-          > .item {
-            font-size: 15px;
-            font-weight: normal;
+            margin-left: -$side-margin;
 
-            &.disabled {
-              span {
-                $disabled-label-width: 50px;
-                opacity: 0.5;
-                position: relative;
+            > .section-items > .item {
+              margin-bottom: 10px;
+              margin-right: $side-margin;
 
-                &:before {
-                  opacity: 0.4;
-                  position: absolute;
-                  width: $disabled-label-width;
-                  left: -$disabled-label-width;;
-                  content: "TBD";
-                  font-weight: bold;
+              a {
+                background-color: #F7F7F7;
+                display: block;
+                font-weight: bold;
+                padding: 4px 0 4px $side-margin;
+                border-radius: 10px;
+              }
+            }
+          }
+
+          > .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+            line-height: 1.8;
+          }
+
+          > .section-items {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            line-height: 2;
+
+            > .item {
+              font-size: 15px;
+              font-weight: normal;
+
+              &.disabled {
+                span {
+                  $disabled-label-width: 50px;
+                  opacity: 0.5;
+                  position: relative;
+
+                  &:before {
+                    opacity: 0.4;
+                    position: absolute;
+                    width: $disabled-label-width;
+                    left: -$disabled-label-width;;
+                    content: "TBD";
+                    font-weight: bold;
+                  }
                 }
               }
-            }
-            &.selected {
-              span {
-                font-weight: bold;
-                color: $primary-dark-color;
+              &.selected {
+                span {
+                  font-weight: bold;
+                  color: $primary-dark-color;
+                }
               }
-            }
-            a {
-              &:link, &:hover, &:visited {
-                color: #444;
+              a {
+                &:link, &:hover, &:visited {
+                  color: #444;
+                }
               }
             }
           }
