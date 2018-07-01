@@ -12,10 +12,10 @@ Gem::Specification.new do |s|
 
   s.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r{^((_includes|_layouts|_sass|assets|_pages)/|(_config.yml|LICENSE|README)((\.(txt|md|markdown)|$)))}i) }
 
-  s.add_runtime_dependency 'jekyll', '~> 3.8.3'
+  s.add_runtime_dependency 'jekyll', '~> 3.8'
   s.add_runtime_dependency 'jekyll-seo-tag', '~> 2.0'
-  s.add_runtime_dependency 'jekyll-data'
-  s.add_runtime_dependency 'git'
+  s.add_runtime_dependency 'jekyll-data', '~> 1.0'
+  s.add_runtime_dependency 'git', '~> 1.4'
   s.add_runtime_dependency 'jekyll-theme-open-project-helpers', '~> 1.0.0.pre2'
 
   s.add_development_dependency 'bundler', '~> 1.16'
