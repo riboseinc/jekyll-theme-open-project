@@ -9,9 +9,13 @@
         Explore Projects
       </a>
     {% else if %}
-      <a class="button" href="{{ site.get_started_url | relative_url }}">
-        Get Started
-      </a>
+      {% assign ctas = site.home_calls_to_action | slice: 0, 2 %}
+
+      {% for link in ctas %}
+        <a class="button" href="{{ link.url | relative_url }}">
+          {{ link.title }}
+        </a>
+      {% endfor %}
     {% endif %}
   </div>
 
