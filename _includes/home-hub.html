@@ -52,7 +52,7 @@
   {% endif %}
 </div>
 
-{% assign other_projects = projects | where: "featured", true %}
+{% assign other_projects = projects | where: "featured", false %}
 {% assign num_other_projects = other_projects | size %}
 {% if num_other_projects > 0 %}
 <section class="other-projects">
