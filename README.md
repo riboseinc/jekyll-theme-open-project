@@ -27,7 +27,7 @@ to AWS S3.
   * [SVG guidelines](#svg-guidelines)
   * [Content guidelines](#content-guidelines)
 
-* [Select layout reference](#select-layout-reference)
+* [Layouts](#theme-layouts)
 
 
 ## Starting a site with this theme
@@ -445,7 +445,7 @@ Place the symbol in assets/symbol.svg within project directory.
 - Blog post excerpt: about 20–24 words, no markup
 
 
-## Select layout reference
+## Theme layouts
 
 Normally you don’t need to specify layouts manually, except where
 instructed in site setup sections of this document.
