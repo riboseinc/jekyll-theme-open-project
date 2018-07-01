@@ -115,7 +115,6 @@ These settings apply to both site types (hub and project).
   pitch: Site pitch
   # The above two are used on home hero unit.
 
-
   social:
     links:
       - https://twitter.com/<orgname>
