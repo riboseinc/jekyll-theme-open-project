@@ -28,6 +28,7 @@ to AWS S3.
   * [Content guidelines](#content-guidelines)
 
 * [Layouts](#theme-layouts)
+* [Includes](#theme-includes)
 
 
 ## Starting a site with this theme
@@ -444,6 +445,28 @@ Place the symbol in assets/symbol.svg within project directory.
 - Blog post title: 3–7 words
 - Blog post excerpt: about 20–24 words, no markup
 
+
+## Theme includes
+
+Commonly used overridable includes are (paths relative to your site root):
+
+- title.html: Site name in case you want to provide custom typography,
+  possibly as SVG.
+
+- project-nav.html (currently project sites only): Additional
+  links in project site’s top navigation, if needed.
+
+- assets/symbol.svg: Site-wide symbol is used as an include
+  to facilitate path fill color overrides via CSS rules.
+
+### Include location gotcha
+
+Theme configuration adds `includes_dir: .` to your site.
+This means when Jekyll encounters `{% include <include_name> %}`
+in a template, it looks first in `<site root>/<include_name>`,
+and then in `<theme root>/_includes/<include_name>`. Consequently,
+you put your include overrides directly in site root, **not** inside
+`_includes/` directory of your side.
 
 ## Theme layouts
 
