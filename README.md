@@ -136,30 +136,25 @@ These settings apply to both site types (hub and project).
 By “logo” is meant the combination of site symbol as a graphic
 and name as word(s).
 
-**Symbol** is basically an icon for the site.
-Should look OK in dimensions of 30x30px, and fit inside a square.
-Should be in SVG format (see also the SVG guidelines section).
-Place site-wide symbol in <site root>/assets/symbol.svg.
+- **Symbol** is basically an icon for the site.
+  Should look OK in dimensions of 30x30px, and fit inside a square.
+  Should be in SVG format (see also the SVG guidelines section).
 
-**Site name** displayed to the right of the symbol.
-Limit the name to 1-3 words.
-By default, the title you define in site config is used (for project site,
-it is the name of the project).
-Alternatively, you can place site name in _includes/title.html with custom HTML
-or SVG. (In that case it must look good when placed in a 30px tall container,
-and in case of SVG same SVG guidelines apply).
+  Drop your site-wide symbol in <site root>/assets/symbol.svg.
 
-### Legal small text
+- **Site name** displayed to the right of the symbol.
+  Limit the name to 1-3 words.
 
-You may want to supply _includes/legal.html with content like this:
-
-```html
-<span class="copyright">Copyright © 2018 MyCompany. All rights reserved.</span>
-<nav>
-  <a href="https://www.example.com/tos">Terms</a>
-  <a href="https://www.example.com/privacy">Privacy</a>
-</nav>
-```
+  Drop a file called `title.html` in the root of your site.
+  In its contents you can go as simple as `{{ site.name }}`
+  and as complex as a custom SVG shape.
+  
+  Note that it must look good when placed inside ~30px tall container.
+  In case of SVG, SVG guidelines apply.
+  
+Do not create custom CSS rules for .site-logo descendants:
+this may cause issues when one site’s logo is used in context of another site
+of the same hub. You can use inline styling, though.
 
 ### Blog
 
