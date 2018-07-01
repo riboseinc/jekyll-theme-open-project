@@ -238,7 +238,11 @@ description: >-
 # Whether the project is included in featured three projects on hub home page
 featured: true | false
 
+site:
+  git_repo_url: <Git URL to standalone project site source repo>
 home_url: <URL to standalone project site>
+
+tags: [Ruby, Python, RFC]
 ```
 
 ### Project index page
