@@ -32,6 +32,12 @@
 
             <footer class="meta">
               {% include tag-list.html tags=item.tags %}
+
+              {% if item.last_update %}
+                <section class="last-update">
+                  Last update: {{ item.last_update | date: "%d/%m/%Y" }}
+                </section>
+              {% endif %}
             </footer>
           </a>
         {% endfor %}
@@ -69,6 +75,12 @@
 
           <footer class="meta">
             {% include tag-list.html tags=item.tags %}
+
+            {% if item.last_update %}
+              <section class="last-update">
+                Last update: {{ item.last_update | date: "%d/%m/%Y" }}
+              </section>
+            {% endif %}
           </footer>
         </a>
       {% endfor %}
