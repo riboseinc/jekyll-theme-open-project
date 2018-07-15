@@ -100,6 +100,16 @@ and you have an Route 53 hosted zone associated with your domain.
      stage: build
      image: ruby:2.4.4
      before_script:
+
+     # Add SSH key to enable site build pull from repos.
+     # You may be able to omit this if you specify HTTPS URLs for Git repos
+     # (e.g., open project’s site.git_repo_url frontmatter variable).
+     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+     - eval $(ssh-agent -s)
+     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+     - mkdir -p ~/.ssh
+     - chmod 700 ~/.ssh
+
      - gem install jekyll bundler
      - bundle
      script:
@@ -125,6 +135,8 @@ and you have an Route 53 hosted zone associated with your domain.
    - AWS_DEFAULT_REGION: region chosen when creating S3 bucket
    - AWS_SECRET_ACCESS_KEY: your IAM user’s API key secret
    - S3_BUCKET_NAME: name of S3 bucket
+   - SSH_PRIVATE_KEY: private key of GitHub user who’s authorized to clone
+     requisite source repositories
 
 8. Test by making a change and pushing it to master branch.
 
