@@ -63,7 +63,6 @@ Also in the `Gemfile`, add two important plugins to the `:jekyll_plugins` group.
 group :jekyll_plugins do
   gem "jekyll-seo-tag"
   gem "jekyll-data"
-  gem "jekyll-data"
   gem "jekyll-theme-open-project-helpers"
   # ...other plugins, if you use any
 end
