@@ -63,6 +63,21 @@ main {
       }
     }
 
+    > .underlay, > section {
+      &:last-child {
+        padding-bottom: 50px;
+        @media screen and (min-width: $bigscreen-breakpoint) {
+          padding-bottom: 100px;
+        }
+      }
+      &:only-child {
+        padding-bottom: 130px;
+        @media screen and (min-width: $bigscreen-breakpoint) {
+          padding-bottom: 180px;
+        }
+      }
+    }
+
     > .underlay > .featured-posts {
       @extend .main-section;
 
