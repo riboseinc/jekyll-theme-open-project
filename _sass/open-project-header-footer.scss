@@ -79,7 +79,6 @@ body > .underlay > footer {
         padding-bottom: 30px;
       }
 
-      text-align: center;
       color: white;
 
       > .text {
@@ -150,6 +149,20 @@ body > .underlay > footer {
     > .hero {
       > .text {
         padding-bottom: 130px;
+      }
+    }
+  }
+
+  body.project.layout-home > & {
+    > .hero {
+      text-align: center;
+
+      > .text {
+        > .desc {
+          @media screen and (min-width: $bigscreen-breakpoint) {
+            margin: 0 7em;
+          }
+        }
       }
     }
   }
