@@ -580,10 +580,15 @@ body.project {
 
             border-bottom: 2px solid $primary-dark-color;
             padding-top: 70px;
-            padding-bottom: 10px;
+            padding-bottom: 20px;
 
             > .logo-container {
               margin-right: 22px;
+
+              > :only-child {
+                width: 58px;
+                height: 58px;
+              }
             }
 
             .text {
