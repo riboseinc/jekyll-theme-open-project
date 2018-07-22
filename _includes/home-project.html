@@ -16,7 +16,7 @@
       <h2 class="title">Open Source Software</h2>
 
       <div class="items">
-        {% for item in software %}
+        {% for item in software | limit: site.num_featured_software %}
           <a class="item" href="{{ item.url }}" role="article">
             <div class="logo-container" role="presentation">
               {% include software-symbol.html item_id=item.id %}
@@ -50,7 +50,7 @@
       <h2 class="title">From the Blog</h2>
 
       <div class="items" role="presentation">
-        {% for item in posts %}
+        {% for item in posts | limit: site.num_featured_posts %}
           {% include post-card.html post=item %}
         {% endfor %}
       </div>
@@ -63,7 +63,7 @@
     <h2 class="title">Open Specifications</h2>
 
     <div class="items">
-      {% for item in specs %}
+      {% for item in specs | limit: site.num_featured_specs %}
         <a class="item" href="{{ item.url }}" role="article">
           <header>
             <h3 class="title">{{ item.title }}</h3>
