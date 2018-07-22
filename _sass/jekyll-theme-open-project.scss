@@ -71,9 +71,8 @@ main {
         }
       }
       &:only-child {
-        padding-bottom: 130px;
         @media screen and (min-width: $bigscreen-breakpoint) {
-          padding-bottom: 180px;
+          padding-bottom: 130px;
         }
       }
     }
@@ -108,6 +107,14 @@ main {
         }
       }
     }
+  }
+
+  body.layout-spec-index > &,
+  body.layout-software-index > &,
+  body.layout-product > &,
+  body.layout-spec > &,
+  body.layout-project-index > & {
+    padding-bottom: 100px;
   }
 
   body.layout-spec-index > &,
