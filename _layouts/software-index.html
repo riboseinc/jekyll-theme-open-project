@@ -3,7 +3,7 @@ layout: default
 ---
 
 {% if site.is_hub %}
-  {% include index-page-item-filter.html url_tag_prefix="/software/" items=page.items tag=page.tag %}
+  {% include index-page-item-filter.html url_tag_prefix="/software/" items=site.all_software tag=page.tag %}
 {% endif %}
 
 <section class="items">
@@ -11,7 +11,7 @@ layout: default
     {% include assets/symbol.svg %}
   {% endif %}
 
-  {% for product in page.items %}
+  {% for product in site.all_software %}
     {% if site.is_hub %}
       {% assign project_name = product.url | split: "/" | slice: 2 | first %}
       {% assign project_index_path = "_projects/" | append: project_name | append: "/index.md" %}

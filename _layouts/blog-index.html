@@ -5,7 +5,7 @@ layout: default
 <section class="items">
   {% include assets/symbol.svg %}
 
-  {% for item in page.posts_combined %}
+  {% for item in site.posts_combined %}
     {% include post-card.html post=item %}
   {% endfor %}
 </section>

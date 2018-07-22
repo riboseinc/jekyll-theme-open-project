@@ -20,16 +20,34 @@
       <nav>
         {% include nav-page-link.html url="/" title="Home" %}
         {% assign contact_link = "mailto:" | append: site.contact_email %}
-        {% if num_projects > 0 %}
+
+        {% if site.is_hub %}
           {% include nav-page-link.html url="/projects/" title="Open Projects" %}
-          {% include nav-page-link.html url="/software/" title="Open Source Software" active_for_nested=true %}
-          {% include nav-page-link.html url="/specs/" title="Open Specifications" active_for_nested=true %}
-          {% include nav-page-link.html url="/blog/" title="Blog" active_for_nested=true %}
+
+          {% if site.num_all_software > 0 %}
+            {% include nav-page-link.html url="/software/" title="Open Source Software" active_for_nested=true %}
+          {% endif %}
+          {% if site.num_all_specs > 0 %}
+            {% include nav-page-link.html url="/specs/" title="Open Specifications" active_for_nested=true %}
+          {% endif %}
+          {% if site.num_posts_combined > 0 %}
+            {% include nav-page-link.html url="/blog/" title="Blog" active_for_nested=true %}
+          {% endif %}
+
         {% else %}
-          {% include nav-page-link.html url="/software/" title="Open Source Software" active_for_nested=true %}
-          {% include nav-page-link.html url="/specs/" title="Open Specifications" active_for_nested=true %}
+          {% if site.num_all_software > 0 %}
+            {% include nav-page-link.html url="/software/" title="Open Source Software" active_for_nested=true %}
+          {% endif %}
+          {% if site.num_all_specs > 0 %}
+            {% include nav-page-link.html url="/specs/" title="Open Specifications" active_for_nested=true %}
+          {% endif %}
+
           {% include project-nav.html %}
-          {% include nav-page-link.html url="/blog/" title="Blog" active_for_nested=true %}
+
+          {% if site.num_posts_combined > 0 %}
+            {% include nav-page-link.html url="/blog/" title="Blog" active_for_nested=true %}
+          {% endif %}
+
           {% include nav-page-link.html url=contact_link title="Contact" %}
         {% endif %}
       </nav>
