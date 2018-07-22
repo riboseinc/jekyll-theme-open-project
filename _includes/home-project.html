@@ -6,10 +6,14 @@
 {% assign num_specs = specs | size %}
 {% assign num_posts = site.posts | size %}
 
+{% assign num_top_items = num_software + num_posts %}
+
 <div class="underlay top-background" role="presentation">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-    <polygon fill="white" points="0,0 100,0 100,60 0,100"/>
-  </svg>
+  {% if num_top_items > 1 %}
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <polygon fill="white" points="0,0 100,0 100,60 0,100"/>
+    </svg>
+  {% endif %}
 
   {% if num_software > 0 %}
     <section class="software">
