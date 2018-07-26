@@ -479,6 +479,7 @@ body.project {
         border-right: #F7F7F7 2px solid;
         margin-right: 60px;
         padding-top: 70px;
+        flex-shrink: 0;
 
         > .sidebar-header {
           display: flex;
