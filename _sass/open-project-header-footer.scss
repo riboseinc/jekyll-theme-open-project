@@ -147,7 +147,10 @@ body > .underlay > footer {
 
     > .hero {
       > .text {
-        padding-bottom: 130px;
+        padding-bottom: 95px;
+        @media screen and (min-width: $bigscreen-breakpoint) {
+          padding-bottom: 130px;
+        }
       }
     }
   }
