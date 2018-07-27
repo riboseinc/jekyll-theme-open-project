@@ -152,6 +152,8 @@ body > .underlay > footer {
     }
   }
 
+  body.hub > & {
+    > .hero { text-align: center; }
   }
 
   body.hub.layout-home > & {
