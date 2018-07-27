@@ -152,18 +152,6 @@ body > .underlay > footer {
     }
   }
 
-  body.project > & {
-    > .hero {
-      text-align: center;
-
-      > .text {
-        > .desc {
-          @media screen and (min-width: $bigscreen-breakpoint) {
-            margin: 0 7em;
-          }
-        }
-      }
-    }
   }
 
   body.hub.layout-home > & {
@@ -186,6 +174,19 @@ body > .underlay > footer {
           display: flex;
           flex-flow: column nowrap;
           align-items: center;
+        }
+      }
+    }
+  }
+  body.project > & {
+    > .hero {
+      text-align: center;
+
+      > .text {
+        > .desc {
+          @media screen and (min-width: $bigscreen-breakpoint) {
+            margin: 0 7em;
+          }
         }
       }
     }
