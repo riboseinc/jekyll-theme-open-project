@@ -194,6 +194,15 @@ body > .underlay > footer {
       }
     }
   }
+
+  body.project.layout-home > & {
+    > .hero {
+      padding-bottom: 30px;
+      @media screen and (min-width: $widescreen-breakpoint) {
+        padding-bottom: 40px;
+      }
+    }
+  }
 }
 
 body > .underlay.footer {
