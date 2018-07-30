@@ -196,6 +196,7 @@ main {
   body.layout-post > & {
     > article {
       @extend .main-article;
+      padding-bottom: 60px;
 
       > header > .meta {
         @extend .post-meta-row;
@@ -473,6 +474,7 @@ body.project {
       flex: 1;
       display: flex;
       flex-flow: row nowrap;
+      padding-bottom: 60px;
 
       > .nav-sidebar {
         width: 320px;
