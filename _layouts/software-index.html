@@ -6,12 +6,14 @@ layout: default
   {% include index-page-item-filter.html url_tag_prefix="/software/" items=site.all_software tag=page.tag %}
 {% endif %}
 
+{% assign items = page.items | default: site.all_software %}
+
 <section class="items">
   {% if site.is_hub %}
     {% include assets/symbol.svg %}
   {% endif %}
 
-  {% for product in site.all_software %}
+  {% for product in items %}
     {% if site.is_hub %}
       {% assign project_name = product.url | split: "/" | slice: 2 | first %}
       {% assign project_index_path = "_projects/" | append: project_name | append: "/index.md" %}
