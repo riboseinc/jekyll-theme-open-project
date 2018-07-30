@@ -241,6 +241,10 @@ site:
   git_repo_url: <Git URL to standalone project site source repo>
 home_url: <URL to standalone project site>
 
+# Note: Avoid whitespaces and other characters that may make Jekyll
+# percent-encode the tag in URLs. Replace " " (a regular space)
+# with "_" (underline); underlines will be rewritten as spaces when tags
+# are presented to site users.
 tags: [Ruby, Python, RFC]
 ```
 

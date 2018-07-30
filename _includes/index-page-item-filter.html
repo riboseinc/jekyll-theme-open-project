@@ -15,13 +15,14 @@
       </li>
 
       {% for tag in tags %}
-      <li>
-        {% if tag == include.tag %}
-          <span>{{ tag }}</span>
-        {% else %}
-          <a href="{{ include.url_tag_prefix }}{{ tag }}">{{ tag }}</a>
-        {% endif %}
-      </li>
+        {% assign tag_human = tag | replace: "_", " " %}
+        <li>
+          {% if tag == include.tag %}
+            <span>{{ tag_human }}</span>
+          {% else %}
+            <a href="{{ include.url_tag_prefix }}{{ tag }}">{{ tag_human }}</a>
+          {% endif %}
+        </li>
       {% endfor %}
     </ul>
   </nav>
