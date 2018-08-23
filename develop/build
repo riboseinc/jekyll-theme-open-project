@@ -2,6 +2,15 @@
 
 set -e
 
+mv ./_config.yml ./_config_release.yml
+mv ./_config_test.yml ./_config.yml
+
+function returnConfig {
+    mv ./_config.yml ./_config_test.yml
+    mv ./_config_release.yml ./_config.yml
+}
+trap returnConfig EXIT
+
 bundle exec jekyll build
 bundle exec htmlproofer ./_site --check-html --check-sri --disable-external
 bundle exec rubocop -D
