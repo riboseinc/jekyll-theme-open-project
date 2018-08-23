@@ -628,15 +628,44 @@ need to be included in the gem, edit regexp in the gemspec.
 
 ### Building and releasing
 
+#### Manual test during development
+
+While working on a site using this Jekyll theme, you can use local theme copy,
+and thus test the theme before release. The sequence would be as follows:
+
+1. Change Gemfile to point to local theme copy.
+
+   For example, change from `gem "jekyll-theme-open-project", "~> 1.0.6"`
+   to `gem "jekyll-theme-open-project", :path => "../jekyll-theme-open-project"`
+
+2. Run `bundle exec jekyll serve`.
+
+3. Make changes to theme and reload site (it may not reload automatically).
+
+4. Release theme — see below.
+
+5. (To bump the site to this latest version, change Gemfile back,
+   bump theme dependency version to the one just released,
+   run `bundle --full-index` to update lockfile properly,
+   and your site is ready to go.)
+
+#### Releasing
+
+Update .gemspec file with the new version and commit the change.
+
+Build new gem version and push it to rubygems.org with:
+
+    ./develop/release
+
+#### Testing with build script (TBD)
+
+May not work at the moment — see #26. Please use the other test option.
+
 To check your theme, run:
 
     ./develop/build
 
 It’ll build Jekyll site and run some checks, like HTML markup validation.
-
-To build new gem and push it to rubygems.org, run:
-
-    ./develop/release
 
 
 ## License
