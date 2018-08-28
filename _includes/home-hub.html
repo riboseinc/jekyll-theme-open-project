@@ -1,4 +1,6 @@
 {% assign projects = site.projects | where_exp: "item", "item.home_url != nil" %}
+{% assign posts = site.posts_combined %}
+{% assign num_posts = site.num_posts_combined %}
 
 <div class="underlay top-background" role="presentation">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -37,14 +39,13 @@
     </section>
   {% endif %}
 
-  {% assign num_featured_posts = site.posts | size %}
-  {% if num_featured_posts > 0 %}
+  {% if num_posts > 0 %}
     <section class="featured-posts">
       <div role="presentation" class="puny-label">Latest news</div>
       <h2 class="title">From the Blog</h2>
 
       <div class="items" role="presentation">
-        {% for item in site.posts limit:3 %}
+        {% for item in posts limit:3 %}
           {% include post-card.html post=item %}
         {% endfor %}
       </div>
