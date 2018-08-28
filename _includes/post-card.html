@@ -31,7 +31,7 @@
   </header>
 
   <p class="body">
-    {{ include.post.excerpt | remove: '<p>' | remove: '</p>' }}
+    {{ include.post.excerpt | remove: '<p>' | remove: '</p>' | remove: '<div class="presentation">' | remove: '</div>' }}
   </p>
 
   <footer class="meta">
