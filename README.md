@@ -185,12 +185,20 @@ hero_include: index-page-hero.html
 
 In general, posts are authored as per usual Jekyll setup.
 
-The following _additional_ data is expected within post document frontmatter:
+It is recommended that you provide explicit hand-crafted post excerpts,
+as automatically-generated excerpts may break post card markup.
+
+Theme also anticipates author information within frontmatter.
+Together with excerpts, here’s how post frontmatter (in addition to anything
+already required by Jekyll) looks like:
 
 ```yaml
 ---
+excerpt: >-
+  Post excerpt goes here, and supports inline formatting only.
+
 author:
-  email: <author’s email>
+  email: <author’s email; associated Gravatar will be shown>
   name: <author’s full name>
   social_links:
     - https://twitter.com/username
