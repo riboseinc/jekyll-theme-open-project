@@ -3,7 +3,9 @@ layout: default
 ---
 
 <section class="items">
-  {% include assets/symbol.svg %}
+  {% if site.is_hub %}
+    {% include assets/symbol.svg %}
+  {% endif %}
 
   {% for item in site.posts_combined %}
     {% include post-card.html post=item %}
