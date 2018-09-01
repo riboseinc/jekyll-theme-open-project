@@ -384,6 +384,15 @@ description: A sentence.
 # but used for HTML metadata if jekyll-seo-tag is enabled
 
 tags: [Python, Ruby]
+
+feature_with_priority: 1
+# With this key, software or spec will be featured on home
+# page of project site. Lower number means higher priority
+# (as in, priority no. 1 means topmost item on home page,
+# as long as there aren’t others with the same value).
+# If no documents in the collection have this key,
+# items on home will be ordered according to Jekyll’s
+# default behavior.
 ```
 
 ### Software product
