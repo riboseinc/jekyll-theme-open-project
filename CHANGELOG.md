@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.2
+
+- Fixed an issue preventing hub site build if child project sites’
+  SCSS imported files from outside the assets directory
+
+## 1.1.1
+
+- Fixed an issue breaking Jekyll build on sites which do not have
+  a scripts.html include
+
 ## 1.1.0
 
 Minor features:
