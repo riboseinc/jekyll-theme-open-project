@@ -1,3 +1,5 @@
+@import 'open-project-mixins';
+
 body {
   font-family: $font-family;
   font-size: 15px;
@@ -106,18 +108,6 @@ a {
     path {
       fill: rgba($primary-color, 0.08);
     }
-  }
-}
-
-@mixin hoverable-card($base-y, $base-blur, $color) {
-  $hovered-y: $base-y * 2;
-  $hovered-blur: $base-blur * 2;
-
-  transition: all .15s ease;
-  box-shadow: 0px $base-y $base-blur $color;
-  &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0px $hovered-y $hovered-blur $color;
   }
 }
 
