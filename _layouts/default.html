@@ -12,8 +12,8 @@
 
 {% assign num_projects = site.projects | size %}
 <body class="
-    {% if num_projects > 0 %}hub{% else %}project{% endif %}
-    {% if page.layout %}layout-{{ page.layout }}{% endif %}">
+    {% if num_projects > 0 %}site--hub{% else %}site--project{% endif %}
+    {% if page.layout %}layout--{{ page.layout }}{% endif %}">
   <div class="underlay header" role="presentation">
     <header>
       <h1 class="site-logo"><a href="/">{% include logo.html %}</a></h1>

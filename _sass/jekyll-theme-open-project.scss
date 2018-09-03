@@ -32,7 +32,7 @@ main {
 
   /* Generic */
 
-  body.layout-home > & {
+  .layout--home > & {
     > .underlay {
       > svg {
         display: none;
@@ -109,17 +109,17 @@ main {
     }
   }
 
-  body.layout-spec-index > &,
-  body.layout-software-index > &,
-  body.layout-blog-index > &,
-  body.layout-product > &,
-  body.layout-spec > &,
-  body.layout-project-index > & {
+  .layout--spec-index > &,
+  .layout--software-index > &,
+  .layout--blog-index > &,
+  .layout--product > &,
+  .layout--spec > &,
+  .layout--project-index > & {
     padding-bottom: 100px;
   }
 
-  body.layout-spec-index > &,
-  body.layout-software-index > & {
+  .layout--spec-index > &,
+  .layout--software-index > & {
     > .item-filter {
       padding: 18px 40px;
       background-color: #F3F3F3;
@@ -152,17 +152,17 @@ main {
   }
   // Item filter: color override for selected tags
   > .item-filter ul.tags li > span {
-    body.layout-software-index > & {
+    .layout--software-index > & {
       color: $hub-software--primary-color;
       background-color: rgba($hub-software--primary-color, 0.1);
     }
-    body.layout-spec-index > & {
+    .layout--spec-index > & {
       color: $hub-specs--primary-color;
       background-color: rgba($hub-specs--primary-color, 0.1);
     }
   }
 
-  body.layout-blog-index > & {
+  .layout--blog-index > & {
     > .items {
       @extend .item-grid;
       @extend .index-item-grid;
@@ -194,7 +194,7 @@ main {
     }
   }
 
-  body.layout-post > & {
+  .layout--post > & {
     > article {
       @extend .main-article;
 
@@ -249,9 +249,9 @@ main {
 
 /* Hub */
 
-body.hub {
+.site--hub {
 
-  &.layout-home > main {
+  &.layout--home > main {
     > .underlay > .featured-projects {
       @extend .main-section;
 
@@ -323,8 +323,8 @@ body.hub {
     }
   }
 
-  &.layout-software-index > main,
-  &.layout-spec-index > main {
+  &.layout--software-index > main,
+  &.layout--spec-index > main {
     > .items {
       @extend .item-grid;
       @extend .index-item-grid;
@@ -351,24 +351,24 @@ body.hub {
     }
   }
 
-  &.layout-project-index > main {
+  &.layout--project-index > main {
     .items {
       @extend .item-grid;
       @extend .index-item-grid;
     }
   }
 
-  &.layout-project-index > main,
-  &.layout-blog-index > main,
-  &.layout-software-index > main,
-  &.layout-spec-index > main {
+  &.layout--project-index > main,
+  &.layout--blog-index > main,
+  &.layout--software-index > main,
+  &.layout--spec-index > main {
     > .items {
       @extend .with-symbol-background;
     }
   }
 
-  &.layout-home > main > .other-projects,
-  &.layout-project-index > main {
+  &.layout--home > main > .other-projects,
+  &.layout--project-index > main {
     .items.one-row {
       justify-content: center;
     }
@@ -406,11 +406,11 @@ body.hub {
 
 /* Project */
 
-body.project {
-  &.layout-home > main > .underlay > .software,
-  &.layout-home > main > .specs,
-  &.layout-software-index > main,
-  &.layout-spec-index > main {
+.site--project {
+  &.layout--home > main > .underlay > .software,
+  &.layout--home > main > .specs,
+  &.layout--software-index > main,
+  &.layout--spec-index > main {
     > .items {
       .item {
         @extend .item-card;
@@ -431,8 +431,8 @@ body.project {
     }
   }
 
-  &.layout-home > main > .underlay > .software,
-  &.layout-software-index > main {
+  &.layout--home > main > .underlay > .software,
+  &.layout--software-index > main {
     > .items {
       .item {
         $logo-space: 132px;
@@ -453,23 +453,23 @@ body.project {
     }
   }
 
-  &.layout-home > main > .underlay > .software,
-  &.layout-home > main > .specs {
+  &.layout--home > main > .underlay > .software,
+  &.layout--home > main > .specs {
     @extend .main-section;
   }
 
-  &.layout-software-index > main,
-  &.layout-spec-index > main {
+  &.layout--software-index > main,
+  &.layout--spec-index > main {
     > .items {
       @extend .index-item-grid;
     }
   }
 
-  &.layout-spec > main > article {
+  &.layout--spec > main > article {
     @extend .main-article;
   }
-  &.layout-spec > main,
-  &.layout-product > main {
+  &.layout--spec > main,
+  &.layout--product > main {
     > .documentation:only-child {
       flex: 1;
       display: flex;

@@ -44,7 +44,7 @@ body > .underlay > footer {
   .logo {
     display: block;
   }
-  body.layout-home > .underlay.header > .hero > .text > & {
+  .layout--home > .underlay.header > .hero > .text > & {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -136,13 +136,13 @@ body > .underlay > footer {
       }
     }
   }
-  body.hub.layout-software-index > & {
+  .site--hub.layout--software-index > & {
     background: $hub-software--hero-background;
   }
-  body.hub.layout-spec-index > & {
+  .site--hub.layout--spec-index > & {
     background: $hub-specs--hero-background;
   }
-  body.layout-home > & {
+  .layout--home > & {
     background: $superhero-background;
 
     > .hero {
@@ -155,11 +155,11 @@ body > .underlay > footer {
     }
   }
 
-  body.hub > & {
+  .site--hub > & {
     > .hero { text-align: center; }
   }
 
-  body.hub.layout-home > & {
+  .site--hub.layout--home > & {
     > .hero {
       text-align: left;
 
@@ -184,7 +184,7 @@ body > .underlay > footer {
     }
   }
 
-  body.project > & {
+  .site--project > & {
     > .hero {
       text-align: center;
 
@@ -198,7 +198,7 @@ body > .underlay > footer {
     }
   }
 
-  body.project.layout-home > & {
+  .site--project.layout--home > & {
     > .hero {
       padding-bottom: 30px;
       @media screen and (min-width: $widescreen-breakpoint) {

@@ -149,10 +149,10 @@ a {
         flex: 1;
 
         color: $primary-color;
-        body.layout-software-index & {
+        .layout--software-index & {
           color: $hub-software--primary-color;
         }
-        body.layout-spec-index & {
+        .layout--spec-index & {
           color: $hub-specs--primary-color;
         }
       }
@@ -201,10 +201,10 @@ a {
 
         color: $primary-color;
 
-        body.hub.layout-software-index & {
+        .site--hub.layout--software-index & {
           color: $hub-software--primary-color;
         }
-        body.hub.layout-spec-index & {
+        .site--hub.layout--spec-index & {
           color: $hub-specs--primary-color;
         }
       }
