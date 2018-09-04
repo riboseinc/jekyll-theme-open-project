@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.3
+
+- A few appearance updates, including more elegant layout
+  and hamburger menu on narrower screens.
+
 ## 1.1.2
 
 - Fixed an issue preventing hub site build if child project sites’
