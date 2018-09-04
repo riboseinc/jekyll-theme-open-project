@@ -342,28 +342,42 @@ body > .underlay > footer {
 
     flex: 1;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column nowrap;
     justify-content: space-around;
 
     margin-top: 1em;
     margin-bottom: 1em;
+
+    .copyright {
+      text-align: center;
+
+      .copyright-head, .copyright-tail {
+        white-space: nowrap;
+      }
+    }
+
+    nav {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+    }
 
     @media screen and (min-width: $bigscreen-breakpoint) {
       margin-top: 0;
       margin-bottom: 0;
     }
 
-    nav {
-      > * {
+    @media screen and (min-width: $widescreen-breakpoint) {
+      flex-flow: row nowrap;
+
+      nav {
+        display: block;
+      }
+      nav > * {
         margin-right: 40px;
       }
-    }
-    .copyright {
-      margin-right: 40px;
-      text-align: center;
-
-      .copyright-head, .copyright-tail {
-        white-space: nowrap;
+      .copyright {
+        margin-right: 40px;
       }
     }
   }
