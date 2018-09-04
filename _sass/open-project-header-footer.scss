@@ -1,17 +1,10 @@
 body > .underlay > header,
 body > .underlay > footer {
   display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-
-  @media screen and (min-width: $bigscreen-breakpoint) {
-    flex-flow: row nowrap;
-  }
 
   .site-logo {
     margin: 0;
     padding: 0;
-    margin-right: 100px;
 
     line-height: .5;
     font-size: 24px;
@@ -26,6 +19,10 @@ body > .underlay > footer {
     svg {
       height: 30px;
       vertical-align: middle;
+    }
+
+    @media screen and (min-width: $bigscreen-breakpoint) {
+      margin-right: 100px;
     }
   }
   .social-links {
@@ -220,9 +217,78 @@ body > .underlay > header {
   padding-top: 26px;
   padding-bottom: 26px;
 
+  align-items: flex-start;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+
   color: white;
 
-  > nav {
+  > button.hamburger {
+    border: 0;
+    background: transparent;
+    color: white;
+    font-size: inherit;
+    z-index: 20;
+  }
+
+  > .hamburger-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(-100%);
+    transition: transform .2s ease-out;
+
+    height: 100vh;
+    z-index: 10;
+    color: white;
+    background: rgba($primary-dark-color, 0.95);
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: flex-start;
+
+    .site-logo-container {
+      margin-left: 2em;
+      margin-top: 26px;
+      align-self: flex-start;
+    }
+
+    > nav,
+    > .social-links {
+      span, a:link, a:visited, a:hover {
+        color: white;
+        font-size: 2em;
+      }
+    }
+
+    > nav {
+      flex: 1;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      justify-content: center;
+
+      > * {
+        margin: .25em;
+      }
+      > span {
+        font-weight: bold;
+      }
+    }
+
+    .social-links {
+      margin-top: 1em;
+      margin-bottom: 2em;
+    }
+
+    &.expanded {
+      transform: translateY(0);
+    }
+  }
+
+  > .top-menu {
     flex: 1;
 
     > * {
@@ -234,8 +300,10 @@ body > .underlay > header {
     }
   }
 
-  > nav, > .social-links {
+  > .top-menu, > .social-links {
     color: white;
+
+    display: none;
 
     span {
       background-color: rgba(black, 0.1);
@@ -244,11 +312,24 @@ body > .underlay > header {
       color: white;
     }
   }
+
+  @media screen and (min-width: $bigscreen-breakpoint) {
+    justify-content: unset;
+    > button.hamburger {
+      display: none;
+    }
+    > .top-menu, > .social-links {
+      display: block;
+    }
+  }
 }
 
 body > .underlay > footer {
   padding-top: 50px;
   padding-bottom: 50px;
+
+  align-items: center;
+  flex-flow: column nowrap;
 
   color: #909B9C;
 
@@ -285,5 +366,9 @@ body > .underlay > footer {
         white-space: nowrap;
       }
     }
+  }
+
+  @media screen and (min-width: $bigscreen-breakpoint) {
+    flex-flow: row nowrap;
   }
 }

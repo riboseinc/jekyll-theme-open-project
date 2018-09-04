@@ -18,10 +18,27 @@
   <div class="underlay header" role="presentation">
     <header>
       <h1 class="site-logo"><a href="/">{% include logo.html %}</a></h1>
-      <nav>
+      <nav class="top-menu">
         {% include nav-links.html %}
       </nav>
+
       {% include social-links.html %}
+
+      <button class="hamburger" aria-expanded="false" id="hamburgerButton">
+        <i class="fa fa-bars"></i>
+      </button>
+
+      <div class="hamburger-menu" id="hamburgerMenu" aria-hidden="true">
+        <div class="site-logo-container">
+          <h1 class="site-logo"><a href="/">{% include logo.html %}</a></h1>
+        </div>
+
+        <nav>
+          {% include nav-links.html %}
+        </nav>
+
+        {% include social-links.html %}
+      </div>
     </header>
 
     {% if page.hero_include %}
@@ -57,6 +74,22 @@
       {% include social-links.html %}
     </footer>
   </div>
+
+  <script>
+    (function () {
+      var hamBtn = document.getElementById('hamburgerButton');
+      var hamMnu = document.getElementById('hamburgerMenu');
+      var hasOpened = false;
+
+      hamBtn.addEventListener('click', function (evt) {
+        hasOpened = hamMnu.classList.toggle('expanded');
+        if (hasOpened) {
+          hamBtn.setAttribute('aria-expanded', true);
+          hamMnu.setAttribute('aria-hidden', false);
+        }
+      });
+    }());
+  </script>
 
   {% include scripts.html %}
 </body>
