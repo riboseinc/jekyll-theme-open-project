@@ -12,6 +12,8 @@ body > .underlay > footer {
     color: white;
     font-weight: 600;
 
+    white-space: nowrap;
+
     :link, :hover, :visited {
       color: inherit;
     }
