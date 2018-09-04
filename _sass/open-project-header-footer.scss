@@ -1,7 +1,7 @@
 body > .underlay > header,
 body > .underlay > footer {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column nowrap;
   align-items: center;
 
   @media screen and (min-width: $bigscreen-breakpoint) {
@@ -54,10 +54,14 @@ body > .underlay > footer {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    margin-right: 50px;
+    white-space: nowrap;
     line-height: .5;
     opacity: 0.8;
     color: white;
+
+    @media screen and (min-width: $bigscreen-breakpoint) {
+      margin-right: 50px;
+    }
 
     .label {
       margin-right: 20px;
@@ -257,16 +261,28 @@ body > .underlay > footer {
 
     flex: 1;
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
+    flex-flow: row wrap;
+    justify-content: space-around;
 
-    .copyright {
-      margin-right: 40px;
-      white-space: nowrap;
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+    @media screen and (min-width: $bigscreen-breakpoint) {
+      margin-top: 0;
+      margin-bottom: 0;
     }
+
     nav {
       > * {
         margin-right: 40px;
+      }
+    }
+    .copyright {
+      margin-right: 40px;
+      text-align: center;
+
+      .copyright-head, .copyright-tail {
+        white-space: nowrap;
       }
     }
   }
