@@ -26,10 +26,10 @@
           {% include nav-page-link.html url="/projects/" title="Open Projects" %}
 
           {% if site.num_all_software > 0 %}
-            {% include nav-page-link.html url="/software/" title="Open Source Software" active_for_nested=true %}
+            {% include nav-page-link.html url="/software/" title="Software" active_for_nested=true %}
           {% endif %}
           {% if site.num_all_specs > 0 %}
-            {% include nav-page-link.html url="/specs/" title="Open Specifications" active_for_nested=true %}
+            {% include nav-page-link.html url="/specs/" title="Specifications" active_for_nested=true %}
           {% endif %}
           {% if site.num_posts_combined > 0 %}
             {% include nav-page-link.html url="/blog/" title="Blog" active_for_nested=true %}
@@ -37,10 +37,10 @@
 
         {% else %}
           {% if site.num_all_software > 0 %}
-            {% include nav-page-link.html url="/software/" title="Open Source Software" active_for_nested=true %}
+            {% include nav-page-link.html url="/software/" title="Software" active_for_nested=true %}
           {% endif %}
           {% if site.num_all_specs > 0 %}
-            {% include nav-page-link.html url="/specs/" title="Open Specifications" active_for_nested=true %}
+            {% include nav-page-link.html url="/specs/" title="Specifications" active_for_nested=true %}
           {% endif %}
 
           {% include project-nav.html %}
