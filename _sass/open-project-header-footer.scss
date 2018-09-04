@@ -98,12 +98,13 @@ body > .underlay > footer {
           margin: 0;
         }
         > .cta {  // Call to action.
-          margin-top: 50px;
+          margin-top: 40px;
 
           .button {
             font-weight: 800;
             font-size: 18px;
             padding: 12px 18px;
+            display: inline-block;
 
             .icon {
               margin-right: 10px;
@@ -150,9 +151,9 @@ body > .underlay > footer {
 
     > .hero {
       > .text {
-        padding-bottom: 95px;
+        padding-bottom: 85px;
         @media screen and (min-width: $bigscreen-breakpoint) {
-          padding-bottom: 130px;
+          padding-bottom: 120px;
         }
       }
     }
