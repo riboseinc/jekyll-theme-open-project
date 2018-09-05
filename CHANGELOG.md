@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.3
+## 1.1.4
 
 - A few improvements to sites’ layout on narrow screens
 
