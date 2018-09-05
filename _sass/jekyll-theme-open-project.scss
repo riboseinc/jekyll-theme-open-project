@@ -438,16 +438,20 @@ main {
       .item {
         $logo-space: 132px;
         $logo-side: 48px;
-        padding-left: $logo-space;
-
         .logo-container {
-          float: left;
-          margin-left: -$logo-space;
-          padding: 8px (($logo-space - $logo-side) / 2);
-
           .logo > :only-child {
             width: $logo-side;
             height: $logo-side;
+          }
+        }
+
+        @media screen and (min-width: $bigscreen-breakpoint) {
+          padding-left: $logo-space;
+
+          .logo-container {
+            float: left;
+            margin-left: -$logo-space;
+            padding: 8px (($logo-space - $logo-side) / 2);
           }
         }
       }
