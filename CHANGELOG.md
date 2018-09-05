@@ -2,6 +2,10 @@
 
 ## 1.1.3
 
+- A few improvements to sites’ layout on narrow screens
+
+## 1.1.3
+
 - A few appearance updates, including more elegant layout
   and hamburger menu on narrower screens.
 
