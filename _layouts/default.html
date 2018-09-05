@@ -44,12 +44,6 @@
     {% if page.hero_include %}
       <div class="hero" role="presentation">{% include {{ page.hero_include }} %}</div>
     {% endif %}
-
-    {% comment %}
-    {% if page.layout == "home" %}
-      <div class="hero superhero" role="presentation">{% include home-hero.html %}</div>
-    {% endif %}
-    {% endcomment %}
   </div>
 
   <main>
