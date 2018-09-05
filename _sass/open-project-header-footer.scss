@@ -243,6 +243,7 @@ body > .underlay > header {
     transition: transform .2s ease-out;
 
     height: 100vh;
+    overflow: hidden;
     z-index: 10;
     color: white;
     background: rgba($primary-dark-color, 0.95);
