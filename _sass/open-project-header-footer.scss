@@ -304,9 +304,9 @@ body > .underlay > header {
     }
   }
 
-  > .top-menu, > .social-links {
+  > .top-menu,
+  > .social-links {
     color: white;
-
     display: none;
 
     span {
@@ -319,6 +319,7 @@ body > .underlay > header {
 
   @media screen and (min-width: $bigscreen-breakpoint) {
     justify-content: unset;
+
     > button.hamburger {
       display: none;
     }
