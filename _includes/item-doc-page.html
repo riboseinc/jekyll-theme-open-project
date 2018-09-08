@@ -8,23 +8,12 @@
 
   <nav class="nav-sidebar">
     <header class="sidebar-header">
-      {% if include.item_type == 'software' and page.url != product_base_url %}
+      {% if include.item_type == 'software' %}
         <div class="logo-container" role="presentation">
           {% include software-symbol.html item_id=page.id %}
         </div>
         <h3 class="title">
           <a href="{{ product_base_url | relative_url }}">{{ item_data.title }}</a>
-        </h3>
-      {% else %}
-        <h3 class="title">
-          <a href="{{ include.item_type | append: "/" | relative_url }}">
-            &larr;
-            {% if include.item_type == 'software' %}
-              Software
-            {% else if include.item_type == 'specs' %}
-              Specifications
-            {% endif %}
-          </a>
         </h3>
       {% endif %}
     </header>
