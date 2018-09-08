@@ -261,9 +261,11 @@ body > .underlay > header {
 
     > nav,
     > .social-links {
-      span, a:link, a:visited, a:hover {
-        color: white;
-        font-size: 1.3em;
+      span, a {
+        &:link, &:visited, &:hover {
+          color: white;
+          font-size: 1.3em;
+        }
       }
     }
 
@@ -277,7 +279,7 @@ body > .underlay > header {
       > * {
         margin: .25em;
       }
-      > span {
+      > .active {
         font-weight: bold;
       }
     }
@@ -309,7 +311,7 @@ body > .underlay > header {
     color: white;
     display: none;
 
-    span {
+    .active {
       background-color: rgba(black, 0.1);
     }
     a:link, a:hover, a:visited {
