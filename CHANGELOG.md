@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.5
+
+A couple of layout tweaks:
+
+- Preserve clickability of active item in top menu
+- Make software documentation/spec page layout fit narrow screens
+
 ## 1.1.4
 
 - A few improvements to sites’ layout on narrow screens
