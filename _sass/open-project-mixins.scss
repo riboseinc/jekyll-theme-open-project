@@ -168,22 +168,25 @@
   }
 
   @media screen and (min-width: $bigscreen-breakpoint) {
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
 
     > .nav-sidebar {
-      flex: 0.4;
-      min-width: 120px;
-      border-right: #F7F7F7 2px solid;
+      flex: 1;
+      flex-grow: 1;
       padding-top: 70px;
     }
+
     > article {
+      flex: 2;
+      border-left: #F7F7F7 2px solid;
+
       > header,
       > .body {
         margin-left: 60px;
       }
       .body {
-        overflow-x: scroll;
         pre {
+          overflow-x: scroll;
           line-height: 1;
           > code {
             font-size: 80%;
