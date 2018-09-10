@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.1.7
+
+Improved documentation layout:
+
+- Show external link markers
+
+- Fix an issue with “Documentation” header shown on item docs landing
+  even if no documentation pages exist
+
+Bugfixes:
+
+- Show tags in human-readable form (with underscores replaced to spaces)
+  on software & spec cards
+
+
 ## 1.1.6
 
 Much improved documentation layout:
