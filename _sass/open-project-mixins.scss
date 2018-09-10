@@ -10,10 +10,63 @@
   }
 }
 
+@mixin reset-list() {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin static-link-color($color) {
+  &:link, &:hover, &:visited {
+    color: $color;
+  }
+}
+
 @mixin docs-page($primary-dark-color) {
+  $side-margin: 16px;  // for external links
+
   flex: 1;
   display: flex;
   flex-flow: column nowrap;
+
+  .external-links {
+    margin-left: -$side-margin;
+
+    ul.section-items {
+      @include reset-list();
+    }
+
+    > .section-items > .item {
+      margin-bottom: 10px;
+      margin-right: -$side-margin;
+
+      > a {
+        @include static-link-color(#444);
+        background-color: #F7F7F7;
+
+        display: block;
+        font-weight: bold;
+        padding: 4px $side-margin 4px $side-margin;
+        border-radius: 10px;
+
+        display: flex;
+        flex-flow: row nowrap;
+
+        .lbl {
+          flex: 1;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        .ico {
+          flex-shrink: 0;
+          text-align: right;
+          width: 32px;
+          padding-right: 10px;
+        }
+      }
+    }
+  }
 
   > .nav-sidebar {
     padding-top: 50px;
@@ -28,10 +81,10 @@
         line-height: 1;
         font-weight: normal;
         font-size: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
 
-        a:link, a:visited {
-          color: #444;
-        }
+        a { @include static-link-color(#444); }
       }
       .logo-container {
         margin-right: 10px;
@@ -46,41 +99,6 @@
     > section {
       margin-bottom: 15px;
 
-      &.external-links {
-        $side-margin: 16px;
-
-        margin-left: -$side-margin;
-
-        > .section-items > .item {
-          margin-bottom: 10px;
-          margin-right: $side-margin;
-
-          > a {
-            background-color: #F7F7F7;
-            display: block;
-            font-weight: bold;
-            padding: 4px 0 4px $side-margin;
-            border-radius: 10px;
-
-            display: flex;
-            flex-flow: row nowrap;
-
-            .lbl {
-              flex: 1;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              overflow: hidden;
-            }
-            .ico {
-              flex-shrink: 0;
-              text-align: right;
-              width: 32px;
-              padding-right: 10px;
-            }
-          }
-        }
-      }
-
       > .section-title {
         font-size: 20px;
         font-weight: bold;
@@ -89,9 +107,8 @@
       }
 
       > .section-items {
-        list-style: none;
-        margin: 0;
-        padding: 0;
+        @include reset-list;
+
         line-height: 2;
 
         > .item {
@@ -120,11 +137,7 @@
               color: $primary-dark-color;
             }
           }
-          a {
-            &:link, &:hover, &:visited {
-              color: #444;
-            }
-          }
+          a { @include static-link-color(#444); }
         }
       }
     }
@@ -133,6 +146,9 @@
   > article {
     @extend .main-article;
     flex: 1;
+
+    background: white;
+    z-index: 1;
 
     > header {
       > .title {
@@ -176,6 +192,28 @@
     }
   }
 
+  &.docs-landing {
+    flex-direction: column-reverse;
+
+    .external-links > .section-items > .item {
+      margin: 0 $side-margin $side-margin $side-margin;
+
+      > a {
+        @include static-link-color(#fff);
+        background-color: $primary-dark-color;
+      }
+    }
+
+    > article {
+      max-width: none;
+
+      > header > .title {
+        border-bottom-width: 0;
+        padding-bottom: 0;
+      }
+    }
+  }
+
   @media screen and (min-width: $bigscreen-breakpoint) {
     flex-flow: row wrap;
 
@@ -192,6 +230,31 @@
       > header,
       > .body {
         margin-left: 60px;
+      }
+    }
+
+    &.docs-landing {
+      flex-direction: column-reverse;
+
+      > article {
+        border-left-width: 0;
+
+        .external-links {
+          > .section-items {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+
+            > * {
+              flex: 1;
+            }
+          }
+        }
+
+        > header,
+        > .body {
+          margin-left: 0;
+        }
       }
     }
   }

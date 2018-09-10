@@ -1,0 +1,70 @@
+{% if include.item_type == 'software' and item_data.repo_url or item_data.docs_url %}
+  <ul class="section-items">
+    {% if item_data.repo_url %}
+      <li class="item">
+        <a href="{{ item_data.repo_url }}">
+          {% if item_data.repo_url contains "github.com" %}
+            <span class="ico">
+              <i class="fab fa-github"></i>
+            </span>
+            <span class="lbl">
+              GitHub Repository
+            </span>
+          {% else %}
+            <span class="ico">
+              <i class="far fa-code"></i>
+            </span>
+            <span class="lbl">
+              Source Repository
+            </span>
+          {% endif %}
+        </a> {% endif %}
+    {% if item_data.docs_url %}
+      <li class="item">
+        <a href="{{ item_data.docs_url }}">
+          {% if item_data.docs_url contains "rubydoc" %}
+            <span class="ico">
+              <i class="far fa-gem"></i>
+            </span>
+            <span class="lbl">
+              RubyDocs
+            </span>
+          {% else %}
+            <span class="ico">
+              <i class="far fa-book"></i>
+            </span>
+            <span class="lbl">
+              Documentation
+            </span>
+          {% endif %}
+        </a> {% endif %}
+  </ul>
+{% else if include.item_type == 'specs' and item_data.rfc_id or item_data.ietf_datatracker_id or item_data.source_url %}
+  <ul class="section-items">
+    {% if item_data.rfc_id %}
+      <li class="item">
+        <a href="http://ietf.org/html/rfc{{ item_data.rfc_id }}">IETF RFC {{ item_data.rfc_id }}</a> {% endif %}
+    {% if item_data.ietf_datatracker_id %}
+      <li class="item">
+        <a href="https://datatracker.ietf.org/doc/{{ item_data.ietf_datatracker_id }}{% if page.ietf_datatracker_ver %}-{{ page.ietf_datatracker_ver }}{% endif %}">IETF document</a> {% endif %}
+    {% if item_data.source_url %}
+      <li class="item">
+        <a href="{{ item_data.source_url }}">
+          {% if item_data.source_url contains "github" %}
+            <span class="ico">
+              <i class="fab fa-github"></i>
+            </span>
+            <span class="lbl">
+              Source Markup on GitHub
+            </span>
+          {% else %}
+            <span class="ico">
+              <i class="far fa-code"></i>
+            </span>
+            <span class="lbl">
+              Source Markup
+            </span>
+          {% endif %}
+        </a> {% endif %}
+  </ul>
+{% endif %}

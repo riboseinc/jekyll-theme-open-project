@@ -1,5 +1,11 @@
-<section class="documentation">
-  {% assign product_base_url = page.url | split: "/" | slice: 0, 3 | join: "/" | append: "/" %}
+{% assign product_base_url = page.url | split: "/" | slice: 0, 3 | join: "/" | append: "/" %}
+{% if page.url == product_base_url %}
+  {% assign is_docs_landing = true %}
+{% else %}
+  {% assign is_docs_landing = false %}
+{% endif %}
+
+<section class="documentation {% if is_docs_landing %}docs-landing{% endif %}">
   {% assign docs_base_url = product_base_url | append: "docs/" %} 
   {% assign item_docs = include.items | where_exp: "item", "item.url contains docs_base_url" %}
   {% assign nav = item_docs | where_exp: "item", "item.path contains 'docs/navigation'" | first %}
@@ -7,41 +13,29 @@
   {% assign item_data = include.items | where_exp: "item", "item.url == product_base_url" | first %}
 
   <nav class="nav-sidebar">
-    <header class="sidebar-header">
-      {% if include.item_type == 'software' %}
-        <div class="logo-container" role="presentation">
-          {% include software-symbol.html item_id=page.id %}
-        </div>
-        <h3 class="title">
-          <a href="{{ product_base_url | relative_url }}">{{ item_data.title }}</a>
-        </h3>
-      {% endif %}
-    </header>
 
-    <section class="external-links">
-      {% if include.item_type == 'software' and item_data.repo_url or item_data.docs_url %}
-        <ul class="section-items">
-          {% if item_data.repo_url %}
-            <li class="item">
-              <a href="{{ item_data.repo_url }}">Source Repository</a> {% endif %}
-          {% if item_data.docs_url %}
-            <li class="item">
-              <a href="{{ item_data.docs_url }}">Documentation</a> {% endif %}
-        </ul>
-      {% else if include.item_type == 'specs' and item_data.rfc_id or item_data.ietf_datatracker_id or item_data.source_url %}
-        <ul class="section-items">
-          {% if item_data.rfc_id %}
-            <li class="item">
-              <a href="http://ietf.org/html/rfc{{ item_data.rfc_id }}">IETF RFC {{ item_data.rfc_id }}</a> {% endif %}
-          {% if item_data.ietf_datatracker_id %}
-            <li class="item">
-              <a href="https://datatracker.ietf.org/doc/{{ item_data.ietf_datatracker_id }}{% if page.ietf_datatracker_ver %}-{{ page.ietf_datatracker_ver }}{% endif %}">IETF document</a> {% endif %}
-          {% if item_data.source_url %}
-            <li class="item">
-              <a href="{{ item_data.source_url }}">Source Markup</a> {% endif %}
-        </ul>
-      {% endif %}
-    </section>
+    {% if is_docs_landing == false %}
+      <header class="sidebar-header">
+        {% if include.item_type == 'software' %}
+          <div class="logo-container" role="presentation">
+            {% include software-symbol.html item_id=page.id %}
+          </div>
+          <h3 class="title">
+            <a href="{{ product_base_url | relative_url }}">{{ item_data.title }}</a>
+          </h3>
+        {% endif %}
+      </header>
+
+      <section class="external-links">
+        {% include item-external-links.html item_type=include.item_type item_data=include.item_data %}
+      </section>
+    {% else %}
+      <header class="sidebar-header">
+        <h3 class="title">
+          Documentation
+        </h3>
+      </header>
+    {% endif %}
 
     {% for section in nav.sections %}
       <section>
@@ -91,6 +85,12 @@
       <div role="presentation">
         <h3 class="lead">{{ page.description }}</h3>
       </div>
+
+      {% if is_docs_landing %}
+        <div class="external-links">
+          {% include item-external-links.html item_type=include.item_type item_data=include.item_data %}
+        </div>
+      {% endif %}
     </header>
 
     <div class="body" role="presentation">
