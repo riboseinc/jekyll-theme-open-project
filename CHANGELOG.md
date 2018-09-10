@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.1.6
+
+Much improved documentation layout:
+
+- Docs landing page features commonly used external links
+  (external API reference docs, repository, IETF datatracker, etc.)
+  more prominently
+
+- Fixed how code samples are shown in documentation pages
+
+- Fixed documentation page layout issues on narrower screens
+
 ## 1.1.5
 
 A couple of layout tweaks:
