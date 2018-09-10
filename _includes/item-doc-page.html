@@ -10,6 +10,8 @@
   {% assign item_docs = include.items | where_exp: "item", "item.url contains docs_base_url" %}
   {% assign nav = item_docs | where_exp: "item", "item.path contains 'docs/navigation'" | first %}
 
+  {% assign num_nav_sections = nav.sections | size %}
+
   {% assign item_data = include.items | where_exp: "item", "item.url == product_base_url" | first %}
 
   <nav class="nav-sidebar">
@@ -29,7 +31,8 @@
       <section class="external-links">
         {% include item-external-links.html item_type=include.item_type item_data=include.item_data %}
       </section>
-    {% else %}
+
+    {% elsif num_nav_sections > 0 %}
       <header class="sidebar-header">
         <h3 class="title">
           Documentation
