@@ -2,7 +2,8 @@
 {% if num_tags > 0 %}
   <ul class="tags">
     {% for tag in include.tags %}
-      <li>{{ tag }}</li>
+      {% assign tag_human = tag | replace: "_", " " %}
+      <li>{{ tag_human }}</li>
     {% endfor %}
   </ul>
 {% endif %}
