@@ -64,6 +64,12 @@
           width: 32px;
           padding-right: 10px;
         }
+        .ico-ext {
+          flex-shrink: 0;
+          text-align: right;
+          width: 32px;
+          padding-left: 10px;
+        }
       }
     }
   }

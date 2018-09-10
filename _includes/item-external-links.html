@@ -18,6 +18,9 @@
               Source Repository
             </span>
           {% endif %}
+          <span class="ico-ext">
+            <i class="fas fa-external-link-square-alt"></i>
+          </span>
         </a> {% endif %}
     {% if item_data.docs_url %}
       <li class="item">
@@ -37,16 +40,33 @@
               Documentation
             </span>
           {% endif %}
+          <span class="ico-ext">
+            <i class="fas fa-external-link-square-alt"></i>
+          </span>
         </a> {% endif %}
   </ul>
 {% else if include.item_type == 'specs' and item_data.rfc_id or item_data.ietf_datatracker_id or item_data.source_url %}
   <ul class="section-items">
     {% if item_data.rfc_id %}
       <li class="item">
-        <a href="http://ietf.org/html/rfc{{ item_data.rfc_id }}">IETF RFC {{ item_data.rfc_id }}</a> {% endif %}
+        <a href="http://ietf.org/html/rfc{{ item_data.rfc_id }}">
+          <span class="lbl">
+            IETF RFC {{ item_data.rfc_id }}
+          </span>
+          <span class="ico-ext">
+            <i class="fas fa-external-link-square-alt"></i>
+          </span>
+        </a> {% endif %}
     {% if item_data.ietf_datatracker_id %}
       <li class="item">
-        <a href="https://datatracker.ietf.org/doc/{{ item_data.ietf_datatracker_id }}{% if page.ietf_datatracker_ver %}-{{ page.ietf_datatracker_ver }}{% endif %}">IETF document</a> {% endif %}
+        <a href="https://datatracker.ietf.org/doc/{{ item_data.ietf_datatracker_id }}{% if page.ietf_datatracker_ver %}-{{ page.ietf_datatracker_ver }}{% endif %}">
+          <span class="lbl">
+            IETF document
+          </span>
+          <span class="ico-ext">
+            <i class="fas fa-external-link-square-alt"></i>
+          </span>
+        </a> {% endif %}
     {% if item_data.source_url %}
       <li class="item">
         <a href="{{ item_data.source_url }}">
@@ -65,6 +85,9 @@
               Source Markup
             </span>
           {% endif %}
+          <span class="ico-ext">
+            <i class="fas fa-external-link-square-alt"></i>
+          </span>
         </a> {% endif %}
   </ul>
 {% endif %}
