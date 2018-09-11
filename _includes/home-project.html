@@ -11,7 +11,7 @@
 {% assign num_specs = specs | size %}
 {% assign num_featured_specs = featured_specs | size %}
 {% if num_featured_specs > 0 %}
-  [% assign specs = featured_specs %}
+  {% assign specs = featured_specs %}
 {% endif %}
 
 {% assign posts = site.posts %}
