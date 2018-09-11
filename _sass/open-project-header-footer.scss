@@ -114,21 +114,20 @@ body > .underlay > footer {
               font-size: 120%;
             }
 
-            &:first-child {
-              margin-right: 10px;
+            margin-right: 10px;
 
+            &, &:link, &:visited {
+              color: white;
+              background-color: rgba(white, 0.32);
+            }
+            &:first-child {
               &, &:link, &:visited {
-                color: white;
-                background-color: rgba(white, 0.32);
+                color: $primary-dark-color !important;
+                background-color: white !important;
               }
             }
             &:last-child {
               margin-right: 0;
-
-              &, &:link, &:visited {
-                color: $primary-dark-color;
-                background-color: white;
-              }
             }
 
             transition: box-shadow .2s ease-out;
