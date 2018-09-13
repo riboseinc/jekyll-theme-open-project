@@ -647,32 +647,49 @@ need to be included in the gem, edit regexp in the gemspec.
 
 #### Manual test during development
 
-While working on a site using this Jekyll theme, you can use local theme copy,
-and thus test the theme before release. The sequence would be as follows:
+When you’re working on visual aspects of the theme, it’s useful
+to see how it would affect the end result (a site *built with* this theme).
 
-1. Change Gemfile to point to local theme copy.
+Here’s how to develop the theme while simultaneously previewing the changes
+on a site. The sequence would be as follows, assuming you have a local copy
+of this repo and have a Jekyll site using this theme:
 
-   For example, change from `gem "jekyll-theme-open-project", "~> 1.0.6"`
-   to `gem "jekyll-theme-open-project", :path => "../jekyll-theme-open-project"`
+1. For the Jekyll site, change Gemfile to point to local copy
+   of the theme (the root of this repo) and run `bundle`.
 
-2. Run `bundle exec jekyll serve`.
+   For example, you’d change `gem "jekyll-theme-open-project", "~> 1.0.6"`
+   to `gem "jekyll-theme-open-project", :path => "../jekyll-theme-open-project"`.
+   The relative path assumes your site root and theme root are sibling directories.
 
-3. Make changes to theme and reload site (it may not reload automatically).
+2. Run `bundle exec jekyll serve` to start Jekyll’s development server.
 
-4. Release theme — see below.
+3. Make changes to both theme and site directory contents.
 
-5. (To bump the site to this latest version, change Gemfile back,
-   bump theme dependency version to the one just released,
+4. If needed, kill with Ctrl+C then relaunch the serve command
+   to apply the changes you made to the theme
+   (it may not reload automatically if changes only affect the theme and not the site
+   you’re serving).
+
+4. Once you’re satisfied, release a new version of the theme — see below.
+
+5. (To later bump the site to this latest version: revert the Gemfile change,
+   update theme dependency version to the one you’ve just released,
    run `bundle --full-index` to update lockfile properly,
    and your site is ready to go.)
 
 #### Releasing
 
-Update .gemspec file with the new version and commit the change.
+Make sure theme works: build script is under construction,
+so use good judgement and thorough manual testing.
 
-Build new gem version and push it to rubygems.org with:
+1. First, update version number in .gemspec within this repo’s root.
 
-    ./develop/release
+2. Then, execute `./develop/release`. This does the following:
+
+   * Builds new gem version
+   * Pushes gem to rubygems.org
+   * Creates new version tag in this repository
+   * Pushes changes to GitHub
 
 #### Testing with build script (TBD)
 
