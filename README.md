@@ -14,7 +14,7 @@ to AWS S3.
 
 * Creating a site: [how to](#starting-a-site-with-this-theme)
 
-  * [Universal site setup](#universal-setup)
+  * [General site setup](#general-setup)
   * [Hub site setup](#hub-site)
   * [Project site setup](#project-site)
 
@@ -91,7 +91,7 @@ This assumes you have mysite.local mapped in your hosts file,
 otherwise omit --host and it’ll use “localhost” as domain name.
 
 
-## Universal setup
+## General setup
 
 These settings apply to both site types (hub and project).
 
@@ -358,7 +358,7 @@ whether on hub home site or each individual project site:
 
 ### Blog
 
-Author project site blog posts as described in the universal setup section.
+Author project site blog posts as described in the general site setup section.
 
 ### Software and specs
 
