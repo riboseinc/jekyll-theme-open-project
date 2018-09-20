@@ -6,6 +6,7 @@ permalink: /blog/:month-:day-:year/:title/
 
 exclude:
   - /**/.git/*
+  - /**/_*_repo/*
   - /_projects/*/assets/css/*
 
 collections:
