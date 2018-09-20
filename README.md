@@ -462,9 +462,9 @@ Place the symbol in assets/symbol.svg within project directory.
 
 - Ensure SVG markup does not use IDs. It may appear multiple times
   on the page hence IDs would fail markup validation.
-- Ensure root <svg> element specifies its viewBox,
-  but no width or height attributes.
-- You can style SVG shapes using in site’s assets/css/style.scss.
+- Ensure root `<svg>` element specifies the `viewBox` attribute,
+  and no `width` or `height` attributes.
+- You can style SVG shapes by adding custom rules to site’s assets/css/style.scss.
 
 
 ## Content guidelines
