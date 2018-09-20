@@ -465,6 +465,12 @@ Place the symbol in assets/symbol.svg within project directory.
 - Ensure root `<svg>` element specifies the `viewBox` attribute,
   and no `width` or `height` attributes.
 - You can style SVG shapes by adding custom rules to site’s assets/css/style.scss.
+- Project symbols only: the same SVG is used both in hub site’s project list
+  (where it appears on white, and is expected to be colored)
+  and in project site’s top header
+  (where it appears on colored background, and is expected to be white).
+  It is recommended to use a normal color SVG, and style it in project site’s
+  custom CSS. The SVG must be created in a way that allows this to happen.
 
 
 ## Content guidelines
