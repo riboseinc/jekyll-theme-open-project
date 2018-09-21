@@ -406,14 +406,14 @@ repo_url: https://github.com/riboseinc/asciidoctor-rfc
 docs:
   git_repo_url: git@example.com:path/to-repo.git
   git_repo_subtree: docs
+# Docs that would be made part of open project site.
+# See the nearby section about documentation.
 
 docs_url: https://docs.rs/proj/ver/…/
 # External docs. For some links
 # like docs.rs and rubydoc, special icon and/or label will be shown.
 ```
 
-About the `docs` key in this frontmatter, see nearby section
-about documentation.
 
 ### Specification
 
