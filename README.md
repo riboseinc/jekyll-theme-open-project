@@ -401,6 +401,8 @@ YAML frontmatter required for software:
 
 ```yaml
 repo_url: https://github.com/riboseinc/asciidoctor-rfc
+# Required.
+
 docs:
   git_repo_url: git@example.com:path/to-repo.git
   git_repo_subtree: docs
@@ -424,6 +426,7 @@ ietf_datatracker_ver: "01"
 # https://datatracker.ietf.org/doc/<id>[-<version>]
 
 source_url: https://example.com/spec-source-markup
+# Required.
 ```
 
 ### Documentation for specs and software
