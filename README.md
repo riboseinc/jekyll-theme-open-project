@@ -406,6 +406,10 @@ repo_url: https://github.com/riboseinc/asciidoctor-rfc
 docs:
   git_repo_url: git@example.com:path/to-repo.git
   git_repo_subtree: docs
+
+docs_url: https://docs.rs/proj/ver/…/
+# External docs. For some links
+# like docs.rs and rubydoc, special icon and/or label will be shown.
 ```
 
 About the `docs` key in this frontmatter, see nearby section
