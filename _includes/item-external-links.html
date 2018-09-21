@@ -32,6 +32,13 @@
             <span class="lbl">
               RubyDocs
             </span>
+          {% else if item_data.docs_url contains "docs.rs" %}
+            <span class="ico">
+              <i class="far fa-book"></i>
+            </span>
+            <span class="lbl">
+              API reference at Docs.rs
+            </span>
           {% else %}
             <span class="ico">
               <i class="far fa-book"></i>
