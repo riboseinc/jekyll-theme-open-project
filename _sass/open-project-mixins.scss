@@ -239,7 +239,7 @@
   }
 
   @media screen and (min-width: $bigscreen-breakpoint) {
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
 
     > .nav-sidebar {
       flex: 1;
