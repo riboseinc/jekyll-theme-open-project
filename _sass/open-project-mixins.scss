@@ -194,8 +194,10 @@
         overflow-x: scroll;
         overflow-y: hidden;
         line-height: 1;
-        font-size: 80%;
         white-space: pre-wrap;
+        > code {
+          font-size: 80%;
+        }
       }
       .sectionbody {
 
