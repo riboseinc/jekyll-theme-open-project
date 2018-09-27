@@ -69,21 +69,7 @@
     </footer>
   </div>
 
-  <script>
-    (function () {
-      var hamBtn = document.getElementById('hamburgerButton');
-      var hamMnu = document.getElementById('hamburgerMenu');
-      var hasOpened = false;
-
-      hamBtn.addEventListener('click', function (evt) {
-        hasOpened = hamMnu.classList.toggle('expanded');
-        if (hasOpened) {
-          hamBtn.setAttribute('aria-expanded', true);
-          hamMnu.setAttribute('aria-hidden', false);
-        }
-      });
-    }());
-  </script>
+  <script src="{{ "assets/js/menu.js" | relative_url }}"></script>
 
   {% include scripts.html %}
 </body>
