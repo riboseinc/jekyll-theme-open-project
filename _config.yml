@@ -8,6 +8,7 @@ exclude:
   - /**/.git/*
   - /**/_*_repo/*
   - /_projects/*/assets/css/*
+  - /_projects/**/docs/*
 
 collections:
   projects:
