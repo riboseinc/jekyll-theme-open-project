@@ -245,6 +245,9 @@
       flex: 1;
       flex-grow: 1;
       padding-top: 70px;
+      > section > .section-items {
+        padding-right: 40px;
+      }
     }
 
     > article {
