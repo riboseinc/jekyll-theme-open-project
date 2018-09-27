@@ -2,7 +2,7 @@
 {% assign contact_link = "mailto:" | append: site.contact_email %}
 
 {% if site.is_hub %}
-  {% include nav-page-link.html url="/projects/" title="Open Projects" %}
+  {% include nav-page-link.html url="/projects/" title="Projects" %}
 
   {% if site.num_all_software > 0 %}
     {% include nav-page-link.html url="/software/" title="All Software" active_for_nested=true %}
