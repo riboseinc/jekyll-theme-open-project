@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.1.9
+
+Build-related fix:
+
+- Correct ``exclude`` to ensure hub site doesn’t try to build software docs
+
+Software documentation improvements:
+
+- Fixes to hosted (‘internal’) documentation page layout
+
+- Slightly more expressive formatting on documentation pages (highlighting “tip” blocks)
+
+- Improvements to how external documentation links are shown
+
+Various fixes and improvements:
+
+- Make hamburger menu script external to facilitate CSP policy implementation
+
+- Minor changes to layout & default copy
+
+- Remove redundant ARIA role definition from presentational divs
+
 ## 1.1.8
 
 - Minor improvements to layout & default copy phrasing here and there
