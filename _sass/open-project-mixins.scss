@@ -206,10 +206,29 @@
         }
 
         // Used for tip block labels
-        .icon {
-          border-left: 1px dotted grey;
-          > .title {
-            transform: rotate(-90deg);
+        .admonitionblock {
+          .icon {
+            border-left: 1px dotted grey;
+            > .title {
+              transform: rotate(-90deg);
+            }
+          }
+          .content {
+            > div:first-child {
+              > :first-child {
+                margin-top: 0;
+              }
+            }
+            > div:last-child {
+              > :last-child {
+                margin-bottom: 0;
+              }
+              &.ulist {
+                li:last-child > :last-child {
+                  margin-bottom: 0;
+                }
+              }
+            }
           }
         }
       }
