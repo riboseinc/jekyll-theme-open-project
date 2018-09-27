@@ -11,7 +11,7 @@
 
 <a class="item" href="{{ product_home_url }}" role="article">
   {% if include.item_type == 'software' and site.is_hub != true %}
-    <div role="presentation" class="logo-container">
+    <div class="logo-container">
       {% include software-symbol.html item_id=include.item.id %}
     </div>
   {% endif %}
@@ -20,8 +20,8 @@
     {% if include.project_data != nil and include.project_name != nil %}
       {% assign project_symbol_path = include.project_name | append: "/assets/symbol.svg" %}
       {% assign relative_symbol_path = "/projects/" | append: project_symbol_path %}
-      <div class="parent-project" role="presentation">
-        <div class="project-logo" role="presentation"><img src="{{ relative_symbol_path }}"></div>
+      <div class="parent-project">
+        <div class="project-logo"><img src="{{ relative_symbol_path }}"></div>
         <h4 class="project-title">{{ include.project_data.title }}</h4>
       </div>
     {% endif %}

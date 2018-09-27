@@ -15,7 +15,7 @@
 <body class="
     {% if num_projects > 0 %}site--hub{% else %}site--project{% endif %}
     {% if page.layout %}layout--{{ page.layout }}{% endif %}">
-  <div class="underlay header" role="presentation">
+  <div class="underlay header">
     <header>
       <h1 class="site-logo"><a href="/">{% include logo.html %}</a></h1>
       <nav class="top-menu">
@@ -42,7 +42,7 @@
     </header>
 
     {% if page.hero_include %}
-      <div class="hero" role="presentation">{% include {{ page.hero_include }} %}</div>
+      <div class="hero">{% include {{ page.hero_include }} %}</div>
     {% endif %}
   </div>
 
@@ -50,12 +50,12 @@
     {{ content }}
   </main>
 
-  <div class="underlay footer" role="presentation">
+  <div class="underlay footer">
     <footer>
       {% if site.is_hub %}
         <div class="site-logo">{% include logo.html %}</div>
       {% else %}
-        <div class="parent-hub-plug" role="presentation">
+        <div class="parent-hub-plug">
           <span class="label">{{ site.title }} is</span>
           <a class="logo" role="presentation" href="{{ site.parent_hub.home_url }}">
             {% include parent-hub/assets/symbol.svg %}&nbsp;<span class="title">{% include parent-hub/title.html %}</span>

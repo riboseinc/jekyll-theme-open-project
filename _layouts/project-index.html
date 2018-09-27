@@ -14,7 +14,7 @@ layout: default
           role="article">
 
         <header>
-          <div class="logo-container" role="presentation">
+          <div class="logo-container">
             {% assign symbol_path = project.path | split: "/" | slice: 1, 1 | join: "/" | append: "/assets/symbol.svg" %}
             {% assign relative_symbol_path = "/projects/" | append: symbol_path %}
             <div class="logo"><img src="{{ relative_symbol_path }}"></div>

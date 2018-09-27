@@ -1,8 +1,8 @@
-<div role="presentation" class="text">
+<div class="text">
   <h1 class="title">{{ site.tagline }}</h1>
   <p class="desc">{{ site.pitch | safe }}</p>
 
-  <div class="cta" role="presentation">
+  <div class="cta">
     {% if site.is_hub %}
       <a class="button" href="{{ "/projects/" | relative_url }}">
         <i class="icon far fa-search"></i>
@@ -20,7 +20,7 @@
   </div>
 
   {% if site.parent_hub %}
-    <div class="parent-hub-plug" role="presentation">
+    <div class="parent-hub-plug">
       <span class="label">{{ site.title }} is</span>
       <a class="logo" role="presentation" href="{{ site.parent_hub.home_url }}">
         {% include parent-hub/assets/symbol.svg %}&nbsp;<span class="title">{% include parent-hub/title.html %}</span>

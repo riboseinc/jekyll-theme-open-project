@@ -19,7 +19,7 @@
     {% if is_docs_landing == false %}
       <header class="sidebar-header">
         {% if include.item_type == 'software' %}
-          <div class="logo-container" role="presentation">
+          <div class="logo-container">
             {% include software-symbol.html item_id=page.id %}
           </div>
           <h3 class="title">
@@ -75,9 +75,9 @@
 
   <article>
     <header>
-      <div class="title" role="presentation">
+      <div class="title">
         {% if include.item_type == 'software' and page.url == product_base_url %}
-          <div class="logo-container" role="presentation">
+          <div class="logo-container">
             {% include software-symbol.html item_id=page.id %}
           </div>
         {% endif %}
@@ -85,7 +85,7 @@
         <h1 class="text">{{ page.title }}</h1>
       </div>
 
-      <div role="presentation">
+      <div>
         <h3 class="lead">{{ page.description }}</h3>
       </div>
 
@@ -96,7 +96,7 @@
       {% endif %}
     </header>
 
-    <div class="body" role="presentation">
+    <div class="body">
       {{ content }}
     </div>
 

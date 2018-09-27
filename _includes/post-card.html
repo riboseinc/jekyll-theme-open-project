@@ -8,7 +8,7 @@
   " role="article">
 
   {% if include.post.parent_project == nil and site.is_hub == true %}
-    <div class="hub-symbol" role="presentation">
+    <div class="hub-symbol">
       {% include assets/symbol.svg %}
     </div>
   {% endif %}
@@ -18,11 +18,11 @@
       {% assign project_symbol_path = include.post.parent_project.name | append: "/assets/symbol.svg" %}
       {% assign relative_symbol_path = "/projects/" | append: project_symbol_path %}
       <div class="parent-project">
-        <div class="project-logo" role="presentation">
+        <div class="project-logo">
           <img src="{{ relative_symbol_path }}">
         </div>
         <h4 class="project-title">{{ include.post.parent_project.title }}</h4>
-        <div class="external-link-icon" role="presentation">
+        <div class="external-link-icon">
           <img src="{{ "assets/img/external-link.svg" | relative_url }}">
         </div>
       </div>

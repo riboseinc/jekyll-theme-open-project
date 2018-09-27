@@ -19,7 +19,7 @@
 
 {% assign num_top_items = num_software + num_posts %}
 
-<div class="underlay top-background" role="presentation">
+<div class="underlay top-background">
   {% if num_top_items > 1 %}
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
       <polygon fill="white" points="0,0 100,0 100,60 0,100"/>
@@ -33,7 +33,7 @@
       <div class="items">
         {% for item in software | limit: site.num_featured_software %}
           <a class="item" href="{{ item.url }}" role="article">
-            <div class="logo-container" role="presentation">
+            <div class="logo-container">
               {% include software-symbol.html item_id=item.id %}
             </div>
 
@@ -64,7 +64,7 @@
     <section class="featured-posts">
       <h2 class="title">From the Blog</h2>
 
-      <div class="items" role="presentation">
+      <div class="items">
         {% for item in posts | limit: site.num_featured_posts %}
           {% include post-card.html post=item %}
         {% endfor %}

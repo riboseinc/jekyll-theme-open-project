@@ -2,7 +2,7 @@
 {% assign posts = site.posts_combined %}
 {% assign num_posts = site.num_posts_combined %}
 
-<div class="underlay top-background" role="presentation">
+<div class="underlay top-background">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
     <polygon fill="white" points="0,0 100,0 100,60 0,100"/>
   </svg>
@@ -13,12 +13,12 @@
     <section class="featured-projects">
       <h2 class="title">Featured Projects</h2>
 
-      <div class="items" role="presentation">
+      <div class="items">
 
         {% for item in featured_projects limit:3 %}
           <a class="item" href="{{ item.home_url }}" role="article">
             <header>
-              <div class="logo-container" role="presentation">
+              <div class="logo-container">
                 {% assign symbol_path = item.path | split: "/" | slice: 1, 1 | join: "/" | append: "/assets/symbol.svg" %}
                 {% assign relative_symbol_path = "/projects/" | append: symbol_path %}
                 <div class="logo"><img src="{{ relative_symbol_path }}"></div>
@@ -41,10 +41,10 @@
 
   {% if num_posts > 0 %}
     <section class="featured-posts">
-      <div role="presentation" class="puny-label">Latest news</div>
+      <div class="puny-label">Latest news</div>
       <h2 class="title">From the Blog</h2>
 
-      <div class="items" role="presentation">
+      <div class="items">
         {% for item in posts limit:3 %}
           {% include post-card.html post=item %}
         {% endfor %}
@@ -61,12 +61,11 @@
 
   <h2 class="title">Other Projects</h2>
 
-  <div class="items {% if num_other_projects < 5 %}one-row{% endif %}"
-      role="presentation">
+  <div class="items {% if num_other_projects < 5 %}one-row{% endif %}">
     {% for item in other_projects %}
       <a class="item" href="{{ item.home_url }}" role="article">
         <header>
-          <div class="logo-container" role="presentation">
+          <div class="logo-container">
             {% assign symbol_path = item.path | split: "/" | slice: 1, 1 | join: "/" | append: "/assets/symbol.svg" %}
             {% assign relative_symbol_path = "/projects/" | append: symbol_path %}
             <div class="logo"><img src="{{ relative_symbol_path }}"></div>
