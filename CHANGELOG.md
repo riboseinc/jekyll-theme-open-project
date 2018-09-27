@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.8
+
+- Minor improvements to layout & default copy phrasing here and there
+
+- Correct ``excludes`` in default ``_config.yml`` definition in the theme
+  to prevent Jekyll from trying to build what shouldn’t be built
+
 ## 1.1.7
 
 Improved documentation layout:
