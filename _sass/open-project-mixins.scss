@@ -197,6 +197,22 @@
         font-size: 80%;
         white-space: pre-wrap;
       }
+      .sectionbody {
+
+        // Used for e.g. code listing headings and tip block labels
+        .title {
+          text-transform: uppercase;
+          font-size: 12px;
+        }
+
+        // Used for tip block labels
+        .icon {
+          border-left: 1px dotted grey;
+          > .title {
+            transform: rotate(-90deg);
+          }
+        }
+      }
     }
   }
 
