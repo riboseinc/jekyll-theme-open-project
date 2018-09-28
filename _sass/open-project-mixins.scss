@@ -199,36 +199,34 @@
           font-size: 80%;
         }
       }
-      .sectionbody {
 
-        // Used for e.g. code listing headings and tip block labels
-        .title {
-          text-transform: uppercase;
-          font-size: 12px;
+      // Used for e.g. code listing headings and tip block labels
+      .title {
+        text-transform: uppercase;
+        font-size: 12px;
+      }
+
+      // Used for tip block labels
+      .admonitionblock {
+        .icon {
+          border-left: 1px dotted grey;
+          > .title {
+            transform: rotate(-90deg);
+          }
         }
-
-        // Used for tip block labels
-        .admonitionblock {
-          .icon {
-            border-left: 1px dotted grey;
-            > .title {
-              transform: rotate(-90deg);
+        .content {
+          > div:first-child {
+            > :first-child {
+              margin-top: 0;
             }
           }
-          .content {
-            > div:first-child {
-              > :first-child {
-                margin-top: 0;
-              }
+          > div:last-child {
+            > :last-child {
+              margin-bottom: 0;
             }
-            > div:last-child {
-              > :last-child {
+            &.ulist {
+              li:last-child > :last-child {
                 margin-bottom: 0;
-              }
-              &.ulist {
-                li:last-child > :last-child {
-                  margin-bottom: 0;
-                }
               }
             }
           }
