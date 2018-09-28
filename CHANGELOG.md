@@ -1,5 +1,36 @@
 # Changelog
 
+## 1.1.10
+
+### Synchronized versions & centralized change log
+
+- Each theme version will require (in its gemspec) the exact helpers library version
+
+- Theme’s CHANGELOG will reflect the development of Open Project framework
+  regardless of whether the actual changes belong to theme or helpers gem
+
+### Fixes to multi-site data integration
+
+- A few issues in data-fetching logic were fixed, now certain edge cases (such as missing
+  software docs) are handled better and (re)generation of sites,
+  especially for projects with many software packages and for project hubs,
+  should be faster on average.
+
+- Site’s `_config.yml` now supports optional string flag `refresh_remote_data`
+  with three possible values: 'always', 'last-resort' (default), and 'skip'.
+
+  - The default 'last-resort' choice means site build will attempt to fetch remote data
+    (such as last software update timestamp, software docs, hub logos, etc.)
+    when there is no local copy.
+  
+  - 'always' may be helpful during development if you have a local copy from previous build,
+    but the remote data has changed and you want your local sites to reflect that.
+  
+  - 'skip' will always leave local data intact and not attempt to contact remote repositories,
+    which would speed up regeneration during debugging or development
+    where you know you have a local copy alreay fetched as needed
+    (otherwise it’s likely going to break your build).
+
 ## 1.1.9
 
 Build-related fix:

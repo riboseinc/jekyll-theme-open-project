@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name          = 'jekyll-theme-open-project'
-  s.version       = '1.1.9'
+  s.version       = '1.1.10'
   s.authors       = ['Ribose Inc.']
   s.email         = ['open.source@ribose.com']
 
@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'jekyll-seo-tag', '~> 2.0'
   s.add_runtime_dependency 'jekyll-data', '~> 1.0'
   s.add_runtime_dependency 'git', '~> 1.4'
-  s.add_runtime_dependency 'jekyll-theme-open-project-helpers', '~> 1.0.6'
+  s.add_runtime_dependency 'jekyll-theme-open-project-helpers', '= 1.1.10'
 
   s.add_development_dependency 'bundler', '~> 1.16'
   s.add_development_dependency 'rake', '~> 12.0'
