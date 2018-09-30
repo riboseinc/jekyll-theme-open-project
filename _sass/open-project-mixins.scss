@@ -2,8 +2,10 @@
   $hovered-y: $base-y * 2;
   $hovered-blur: $base-blur * 2;
 
-  transition: all .15s ease;
   box-shadow: 0px $base-y $base-blur $color;
+
+  transition: box-shadow .17s ease, transform .17s ease;
+
   &:hover {
     transform: translateY(-1px);
     box-shadow: 0px $hovered-y $hovered-blur $color;
