@@ -18,6 +18,7 @@ $hub-specs--hero-background: $hub-specs--primary-dark-color !default;
 
 $gutter: 30px;
 $featured-cols: 3;
+$featured-cols-narrow: 2;
 $grid-cols: 4;
 
 $widescreen-breakpoint: 1140px + $gutter * 2;
@@ -103,7 +104,24 @@ main {
 
         @media screen and (min-width: $bigscreen-breakpoint) {
           box-sizing: border-box;
+          flex-basis: calc( 100%/#{$featured-cols-narrow} - #{$gutter} );
+
+          // Hide third element (there’re at most 3)
+          &:nth-child(3) {
+            opacity: 0;
+            display: none;
+          }
+        }
+
+        @media screen and (min-width: $widescreen-breakpoint) {
+          box-sizing: border-box;
           flex-basis: calc( 100%/#{$featured-cols} - #{$gutter} );
+
+          // Show third element
+          &:nth-child(3) {
+            opacity: 1;
+            display: block;
+          }
         }
       }
     }
