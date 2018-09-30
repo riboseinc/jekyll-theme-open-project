@@ -80,6 +80,10 @@
   > .nav-sidebar {
     padding-top: 50px;
 
+    > .sidebar-header, > section {
+      margin-bottom: 15px;
+    }
+
     > .sidebar-header {
       display: flex;
       flex-flow: row nowrap;
@@ -106,8 +110,6 @@
     }
 
     > section {
-      margin-bottom: 15px;
-
       > .section-title {
         font-size: 20px;
         font-weight: bold;
