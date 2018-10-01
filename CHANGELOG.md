@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.11
+
+- Even faster processing when `refresh_remote_data` is set to 'skip'
+
+- More flexible customization means for sites using the OP framework
+
+- Layout improvements across screen widths
+
+- Minor documentation page layout & content formatting improvements
+
 ## 1.1.10
 
 ### Synchronized versions & centralized change log
