@@ -1,3 +1,18 @@
+@mixin tbd($color: red) {
+  // TODO: Refactor disabled item doc navigation links with this mixin in mind
+
+  position: relative;
+
+  &:after {
+    position: absolute;
+    left: 100%;
+    content: "TBD";
+    color: $color;
+    font-size: .6em;
+    vertical-align: super;
+  }
+}
+
 @mixin cta-button($bgcolor, $color) {
   font-weight: 800;
   font-size: 18px;
