@@ -51,7 +51,7 @@ main {
         }
 
         // Top section(s) background
-        &:first-child {
+        &.top-background {
           padding-bottom: 80px;
           background-color: #F7F7F7;
 
