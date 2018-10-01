@@ -1,3 +1,31 @@
+@mixin cta-button($bgcolor, $color) {
+  font-weight: 800;
+  font-size: 18px;
+  padding: 12px 18px;
+  display: inline-block;
+
+  .icon {
+    margin-right: 10px;
+    font-weight: 400;
+    position: relative;
+    top: 2px;
+    font-size: 120%;
+  }
+
+  margin-right: 10px;
+
+  &, &:link, &:visited {
+    color: $color;
+    background-color: $bgcolor;
+  }
+
+  transition: box-shadow .2s ease-out;
+
+  &:hover {
+    box-shadow: 0 0 0 4px rgba(black, 0.2);
+  }
+}
+
 @mixin hoverable-card($base-y, $base-blur, $color) {
   $hovered-y: $base-y * 2;
   $hovered-blur: $base-blur * 2;

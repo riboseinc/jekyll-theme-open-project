@@ -101,38 +101,14 @@ body > .underlay > footer {
           margin-top: 40px;
 
           .button {
-            font-weight: 800;
-            font-size: 18px;
-            padding: 12px 18px;
-            display: inline-block;
-
-            .icon {
-              margin-right: 10px;
-              font-weight: 400;
-              position: relative;
-              top: 2px;
-              font-size: 120%;
-            }
-
-            margin-right: 10px;
-
-            &, &:link, &:visited {
-              color: white;
-              background-color: rgba(white, 0.32);
+            &:not(:first-child) {
+              @include cta-button(rgba(white, 0.32), white);
             }
             &:first-child {
-              &, &:link, &:visited {
-                color: $primary-dark-color !important;
-                background-color: white !important;
-              }
+              @include cta-button(white, $primary-dark-color);
             }
             &:last-child {
               margin-right: 0;
-            }
-
-            transition: box-shadow .2s ease-out;
-            &:hover {
-              box-shadow: 0 0 0 4px rgba(black, 0.2);
             }
           }
         }
