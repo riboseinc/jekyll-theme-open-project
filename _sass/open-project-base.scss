@@ -323,15 +323,17 @@ body {
     overflow: hidden;
   }
 }
-@media screen and (min-width: $bigscreen-breakpoint) {
-  body > .underlay,
-  body > main,
-  body > main > .underlay {
-    display: flex;
-    flex-flow: column nowrap;
+body > .underlay,
+body > main,
+body > main > .underlay {
+  display: flex;
+  flex-flow: column nowrap;
+  @media screen and (min-width: $bigscreen-breakpoint) {
     align-items: center;
   }
-  .underlay {
+}
+.underlay {
+  @media screen and (min-width: $bigscreen-breakpoint) {
     width: 100%;
   }
 }
