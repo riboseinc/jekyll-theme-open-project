@@ -291,6 +291,10 @@ a {
     > p:first-child {
       margin-top: 0;
     }
+
+    pre {
+      @include code-snippet-container();
+    }
   }
 }
 
