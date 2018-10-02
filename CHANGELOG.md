@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.12
+
+- Some changes in SASS structure aimed to improve customizability
+  of Open Project framework-based site UIs
+
 ## 1.1.11
 
 - Even faster processing when `refresh_remote_data` is set to 'skip'
