@@ -16,13 +16,13 @@
 @mixin code-snippet-container() {
   overflow-x: scroll;
   overflow-y: hidden;
-  line-height: 1;
-  white-space: pre-wrap;
+  line-height: 1.2;
+}
 
-  > code {
-    font-size: 80%;
-    color: lighten($main-font-color, 24);
-  }
+@mixin code-snippet() {
+  white-space: pre-wrap;
+  color: lighten($main-font-color, 24);
+  font-size: 80%;
 }
 
 @mixin cta-button($bgcolor, $color) {

@@ -292,6 +292,9 @@ a {
       margin-top: 0;
     }
 
+    code {
+      @include code-snippet();
+    }
     pre {
       @include code-snippet-container();
     }
