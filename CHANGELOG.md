@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.13
+
+- More consistent formatting of code snippets in docs and elsewhere on the site
+
+- Fixed a problem with fetched software documentation not always being rendered
+  as part of project site
+
 ## 1.1.12
 
 - Some changes in SASS structure aimed to improve customizability
