@@ -2,14 +2,17 @@
   // TODO: Refactor disabled item doc navigation links with this mixin in mind
 
   position: relative;
+  padding: 0 .3em;
+  border: 1px dashed lighten($main-font-color, 70);
 
   &:after {
     position: absolute;
     left: 100%;
     content: "TBD";
-    color: $color;
+    color: lighten($main-font-color, 70);
     font-size: .6em;
-    vertical-align: super;
+    line-height: 1;
+    padding: .05em .4em;
   }
 }
 
