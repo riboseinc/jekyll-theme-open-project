@@ -16,16 +16,52 @@
   }
 }
 
+@mixin padded-code-snippet() {
+  padding: 0 1em;
+  margin: 0 .2em;
+  background: rgba($main-font-color, 0.03);
+  border: 1px dashed lighten($main-font-color, 70);
+  border-radius: .5em;
+  font-size: 80%;
+}
+
+@mixin padded-code-snippet--reset() {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font-size: 100%;
+}
+
 @mixin code-snippet-container() {
   overflow-x: scroll;
   overflow-y: hidden;
   line-height: 1.2;
+
+  @include padded-code-snippet();
+  padding-top: .5em;
+  padding-bottom: .75em;
+
+  > code {
+    // Reset these for <code> elements when nested in a <pre>
+    // like adoc does
+    @include padded-code-snippet--reset();
+  }
 }
 
 @mixin code-snippet() {
   white-space: pre-wrap;
   color: lighten($main-font-color, 24);
-  font-size: 80%;
+
+  @include padded-code-snippet();
+  margin-top: -1px;
+  margin-bottom: -1px;
+
+  code {
+    // Apparently adoc outputs nested <code> sometimes (?)
+    @include padded-code-snippet--reset();
+  }
 }
 
 @mixin cta-button($bgcolor, $color) {
