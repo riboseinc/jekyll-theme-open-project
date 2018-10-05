@@ -219,9 +219,14 @@ main {
     > article {
       @extend .main-article;
 
-      > header > .meta {
-        @extend .post-meta-row;
-        margin-bottom: 36px;
+      > header {
+        > .title {
+          margin-bottom: 14px;
+        }
+        > .meta {
+          @extend .post-meta-row;
+          margin-bottom: 36px;
+        }
       }
       aside.social-links {
         position: relative;
