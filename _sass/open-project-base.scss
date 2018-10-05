@@ -12,6 +12,10 @@ body {
   color: $main-font-color;
 }
 
+abbr {
+  cursor: help;
+}
+
 a {
   &:link, &:hover, &:visited {
     color: $primary-dark-color;
