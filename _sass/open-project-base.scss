@@ -303,6 +303,25 @@ a {
     pre {
       @include code-snippet-container();
     }
+
+    table {
+      $border-color: lighten($main-font-color, 80);
+
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 1em;
+
+      th, td {
+        text-align: left;
+        padding: .5em;
+      }
+      tr {
+        border-bottom: 1px solid $border-color;
+        &:last-child {
+          border-bottom-width: 0;
+        }
+      }
+    }
   }
 }
 
