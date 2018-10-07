@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.1.14-15
+
+Incremental improvements to content presentation & formatting:
+
+- More consistent formatting of code snippets in docs and elsewhere on the site
+
+- Nicer styling of tables in article bodies
+
+- Whitespace consistency here and there
+
+- Better formatting of TBD labels
+
 ## 1.1.13
 
 - More consistent formatting of code snippets in docs and elsewhere on the site
