@@ -300,6 +300,7 @@ a {
     code {
       @include code-snippet();
     }
+
     pre {
       @include code-snippet-container();
     }
