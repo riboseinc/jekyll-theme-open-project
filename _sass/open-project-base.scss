@@ -305,6 +305,13 @@ a {
       @include code-snippet-container();
     }
 
+    ul, ol {
+      li > p:only-child {
+        // Keep list items visually together
+        margin: 0;
+      }
+    }
+
     table {
       $border-color: lighten($main-font-color, 80);
 
