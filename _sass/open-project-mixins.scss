@@ -43,6 +43,9 @@
   padding-top: .5em;
   padding-bottom: .75em;
 
+  margin-top: 1em;
+  margin-bottom: 1em;
+
   > code {
     // Avoid bad formatting in case of <code> element nested
     // inside a <pre>
@@ -297,11 +300,13 @@
 
       // Used for tip block labels
       .admonitionblock {
-        .icon {
+        table {
+          margin-top: 1em;
+          margin-bottom: 1em;
+        }
+        td.icon {
           border-left: 1px dotted grey;
-          > .title {
-            transform: rotate(-90deg);
-          }
+          vertical-align: top;
         }
         .content {
           font-size: 80%;
