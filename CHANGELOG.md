@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.16
+
+Improved formatting of code snippets, lists, tables and admonition blocks.
+
 ## 1.1.14-15
 
 Incremental improvements to content presentation & formatting:
