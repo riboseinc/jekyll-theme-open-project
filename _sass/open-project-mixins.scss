@@ -391,6 +391,12 @@
         > .body {
           margin-left: 0;
         }
+
+        @media screen and (min-width: $bigscreen-breakpoint) {
+          > .body {
+            padding-top: 70px;
+          }
+        }
       }
     }
   }
