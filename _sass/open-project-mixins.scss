@@ -44,8 +44,8 @@
   padding-bottom: .75em;
 
   > code {
-    // Reset these for <code> elements when nested in a <pre>
-    // like adoc does
+    // Avoid bad formatting in case of <code> element nested
+    // inside a <pre>
     @include padded-code-snippet--reset();
   }
 }
@@ -59,7 +59,8 @@
   margin-bottom: -1px;
 
   code {
-    // Apparently adoc outputs nested <code> sometimes (?)
+    // Avoid bad formatting in case of <code> elements nested
+    // into each other (possible with adoc output)
     @include padded-code-snippet--reset();
   }
 }
