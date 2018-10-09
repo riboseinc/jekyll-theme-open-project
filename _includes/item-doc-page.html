@@ -14,7 +14,7 @@
 
   {% assign item_data = include.items | where_exp: "item", "item.url == product_base_url" | first %}
 
-  <nav class="nav-sidebar">
+  <nav class="docs-nav">
 
     {% if is_docs_landing == false %}
       <header class="sidebar-header">

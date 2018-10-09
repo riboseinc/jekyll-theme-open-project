@@ -174,7 +174,7 @@
     }
   }
 
-  > .nav-sidebar {
+  > .docs-nav {
     padding-top: 50px;
 
     > .sidebar-header, > section {
@@ -347,7 +347,7 @@
       }
     }
 
-    > .nav-sidebar {
+    > .docs-nav {
       padding-top: 0;
     }
 
@@ -364,7 +364,7 @@
   @media screen and (min-width: $bigscreen-breakpoint) {
     flex-flow: row nowrap;
 
-    > .nav-sidebar {
+    > .docs-nav {
       flex: 1;
       flex-grow: 1;
       padding-top: 70px;
