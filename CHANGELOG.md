@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.17
+
+Fixed an issue with code listings not always being horizontally scrollable,
+in those cases causing layout of documentation pages to exceed screen width.
+
+**BREAKING**: Navigation block on documentation pages has changed its
+selector from .nav-sidebar to .docs-nav; sites customizing that have to
+update the selector in HTML/CSS.
+
+
 ## 1.1.16
 
 Improved formatting of code snippets, lists, tables and admonition blocks.
