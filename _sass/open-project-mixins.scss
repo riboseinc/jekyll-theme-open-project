@@ -54,7 +54,6 @@
 }
 
 @mixin code-snippet() {
-  white-space: pre-wrap;
   color: lighten($main-font-color, 24);
 
   @include padded-code-snippet();
@@ -258,6 +257,7 @@
 
     background: white;
     z-index: 1;
+    overflow-x: hidden;
 
     > header {
       > .title {
