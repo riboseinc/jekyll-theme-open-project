@@ -70,7 +70,7 @@
 @mixin cta-button($bgcolor, $color) {
   font-weight: 800;
   font-size: 18px;
-  padding: 12px 18px;
+  padding: 12px 22px;
   display: inline-block;
 
   .icon {
@@ -93,6 +93,12 @@
   &:hover {
     box-shadow: 0 0 0 4px rgba(black, 0.2);
   }
+}
+
+@mixin cta-button-mini($bgcolor, $color) {
+  @include cta-button($bgcolor, $color);
+  font-size: 14px;
+  padding: 6px 16px;
 }
 
 @mixin hoverable-card($base-y, $base-blur, $color) {

@@ -95,6 +95,16 @@ a {
   > .items {
     align-self: stretch;
   }
+
+  > footer {
+    text-align: center;
+
+    .more-link {
+      @include cta-button-mini(white, $primary-color);
+      border-radius: 25px;
+      border: 1px solid $primary-color;
+    }
+  }
 }
 
 .with-symbol-background {
