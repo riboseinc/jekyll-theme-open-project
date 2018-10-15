@@ -1,21 +1,21 @@
-{% assign software = site.software | where_exp: "item", "item.repo_url != nil" %}
-{% assign featured_software = software | where_exp: "item", "item.feature_with_priority != nil" | sort: 'feature_with_priority'  %}
-{% assign num_software = software | size %}
-{% assign num_featured_software = featured_software | size %}
+{% assign software = site.all_software %}
+{% assign featured_software = site.featured_software %}
+{% assign num_software = site.num_all_software %}
+{% assign num_featured_software = site.num_featured_software %}
 {% if num_featured_software > 0 %}
   {% assign software = featured_software %}
 {% endif %}
 
-{% assign specs = site.specs | where_exp: "item", "item.source_url != nil" %}
-{% assign featured_specs = specs  | where_exp: "item", "item.feature_with_priority != nil" | sort: 'feature_with_priority' %}
-{% assign num_specs = specs | size %}
-{% assign num_featured_specs = featured_specs | size %}
+{% assign specs = site.all_specs %}
+{% assign featured_specs = site.featured_specs %}
+{% assign num_specs = site.num_all_specs %}
+{% assign num_featured_specs = site.num_featured_specs %}
 {% if num_featured_specs > 0 %}
   {% assign specs = featured_specs %}
 {% endif %}
 
-{% assign posts = site.posts %}
-{% assign num_posts = site.posts | size %}
+{% assign posts = site.posts_combined %}
+{% assign num_posts = site.num_posts_combined %}
 
 {% assign num_top_items = num_software + num_posts %}
 
