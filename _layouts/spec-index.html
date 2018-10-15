@@ -15,6 +15,10 @@ layout: default
 
   {% for spec in items %}
     {% if site.is_hub %}
+      {% comment %}
+      TODO: refactor: Move this logic to helpers gem (#2)
+      {% endcomment %}
+
       {% assign project_name = spec.url | split: "/" | slice: 2 | first %}
       {% assign project_index_path = "_projects/" | append: project_name | append: "/index.md" %}
       {% assign project = site.projects | where: "path", project_index_path | first %}
