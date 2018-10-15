@@ -188,10 +188,6 @@ main {
       @extend .item-grid;
       @extend .index-item-grid;
 
-      .items.one-row {
-        justify-content: center;
-      }
-
       .item {
         @extend .item-card;
         @extend .post-card;
@@ -212,6 +208,10 @@ main {
           margin-bottom: $gutter;
         }
       }
+    }
+
+    > .items.one-row {
+      justify-content: center;
     }
   }
 
