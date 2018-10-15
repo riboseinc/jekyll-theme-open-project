@@ -1,10 +1,10 @@
-{% if include.project_data != nil and include.project_name != nil %}
+{% if include.item.project_data != nil and include.item.project_name != nil %}
   {% if include.item.slug == 'index' %}
     {% assign item_slug = include.item.id | split: "/" | reverse | slice: 1 | first %}
   {% else %}
     {% assign item_slug = include.item.id | split: "/" | reverse | first %}
   {% endif %}
-  {% assign product_home_url = include.project_data.home_url | append: include.item_type | append: "/" | append: item_slug | append: "/" %}
+  {% assign product_home_url = include.item.project_data.home_url | append: include.item_type | append: "/" | append: item_slug | append: "/" %}
 {% else %}
   {% assign product_home_url = include.item.url | relative_url %}
 {% endif %}
@@ -17,12 +17,12 @@
   {% endif %}
 
   <header>
-    {% if include.project_data != nil and include.project_name != nil %}
-      {% assign project_symbol_path = include.project_name | append: "/assets/symbol.svg" %}
+    {% if include.item.project_data != nil and include.item.project_name != nil %}
+      {% assign project_symbol_path = include.item.project_name | append: "/assets/symbol.svg" %}
       {% assign relative_symbol_path = "/projects/" | append: project_symbol_path %}
       <div class="parent-project">
         <div class="project-logo"><img src="{{ relative_symbol_path }}"></div>
-        <h4 class="project-title">{{ include.project_data.title }}</h4>
+        <h4 class="project-title">{{ include.item.project_data.title }}</h4>
       </div>
     {% endif %}
     <h3 class="title">{{ include.item.title }}</h3>

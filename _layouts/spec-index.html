@@ -7,25 +7,23 @@ layout: default
 {% endif %}
 
 {% assign items = page.items | default: site.all_specs %}
+{% assign num_items = items | size %}
 
-<section class="items">
+<section class="items {% if num_items < 3 %}one-row{% endif %}">
   {% if site.is_hub %}
     {% include assets/symbol.svg %}
-  {% endif %}
-
-  {% for spec in items %}
-    {% if site.is_hub %}
-      {% comment %}
-      TODO: refactor: Move this logic to helpers gem (#2)
-      {% endcomment %}
-
-      {% assign project_name = spec.url | split: "/" | slice: 2 | first %}
-      {% assign project_index_path = "_projects/" | append: project_name | append: "/index.md" %}
-      {% assign project = site.projects | where: "path", project_index_path | first %}
-
-      {% include software-card-hub.html item=spec item_type='specs' project_name=project_name project_data=project %}
-    {% else %}
+    {% for spec in items %}
       {% include software-card-hub.html item=spec item_type='specs' %}
+    {% endfor %}
+  {% else %}
+    {% if site.num_featured_specs > 0 %}
+      {% for spec in site.featured_specs %}
+        {% include software-card-hub.html item=spec item_type='specs' %}
+      {% endfor %}
+      <hr>
     {% endif %}
-  {% endfor %}
+    {% for spec in site.non_featured_specs %}
+      {% include software-card-hub.html item=spec item_type='specs' %}
+    {% endfor %}
+  {% endif %}
 </section>
