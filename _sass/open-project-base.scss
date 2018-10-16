@@ -358,7 +358,7 @@ footer,
 article {
   body > &,
   body > main > & {
-    padding: 0 2em;
+    padding: 0 1em;
     @media screen and (min-width: $bigscreen-breakpoint) {
       padding: 0;
     }

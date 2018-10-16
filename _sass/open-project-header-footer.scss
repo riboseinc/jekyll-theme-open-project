@@ -192,8 +192,13 @@ body > .underlay.footer {
 }
 
 body > .underlay > header {
-  padding-top: 26px;
-  padding-bottom: 26px;
+  padding-top: 13px;
+  padding-bottom: 13px;
+
+  @media screen and (min-width: $bigscreen-breakpoint) {
+    padding-top: 26px;
+    padding-bottom: 26px;
+  }
 
   align-items: flex-start;
   flex-flow: row nowrap;
