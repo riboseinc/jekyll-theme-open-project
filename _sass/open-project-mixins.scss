@@ -267,8 +267,10 @@
 
     > header {
       > .title {
-        display: flex;
-        flex-flow: row nowrap;
+        @media screen and (min-width: $bigscreen-breakpoint) {
+          display: flex;
+          flex-flow: row nowrap;
+        }
 
         border-bottom: 2px solid $primary-dark-color;
         padding-top: 70px;
