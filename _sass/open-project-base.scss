@@ -328,9 +328,15 @@ a {
         margin: 0;
       }
     }
+    blockquote {
+      margin-left: 1.25em;
+    }
 
     @media screen and (min-width: $bigscreen-breakpoint) {
       dl dd {
+        margin-left: 2em;
+      }
+      blockquote {
         margin-left: 2em;
       }
       ul, ol {
