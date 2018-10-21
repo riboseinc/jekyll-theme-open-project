@@ -313,6 +313,15 @@
 
       // Used for tip block labels
       .admonitionblock {
+        overflow-x: scroll;
+
+        table:first-child {
+          margin-top: 0;
+        }
+        table:last-child {
+          margin-bottom: 0;
+        }
+
         td.icon {
           vertical-align: top;
           padding-left: 0;
