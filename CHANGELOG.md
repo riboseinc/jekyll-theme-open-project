@@ -5,6 +5,9 @@
 Fixed an issue with code listings not always being horizontally scrollable,
 in those cases causing layout of documentation pages to exceed screen width.
 
+Added favicon to base page meta (sites are expected to provide
+`/assets/favicon.png` and `/assets/webclip.png` now).
+
 Made top header collapse on scroll for better docs readability on smaller screens.
 
 **BREAKING**: Navigation block on documentation pages has changed its
