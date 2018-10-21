@@ -315,10 +315,26 @@ a {
       @include code-snippet-container();
     }
 
+    dl {
+      dd {
+        margin-left: 1.25em;
+      }
+    }
     ul, ol {
+      padding-left: 1.25em;
+
       li > p:only-child {
         // Keep list items visually together
         margin: 0;
+      }
+    }
+
+    @media screen and (min-width: $bigscreen-breakpoint) {
+      dl dd {
+        margin-left: 2em;
+      }
+      ul, ol {
+        padding-left: 2em;
       }
     }
 
