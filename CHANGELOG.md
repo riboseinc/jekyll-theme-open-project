@@ -5,6 +5,8 @@
 Fixed an issue with code listings not always being horizontally scrollable,
 in those cases causing layout of documentation pages to exceed screen width.
 
+Made top header collapse on scroll for better docs readability on smaller screens.
+
 **BREAKING**: Navigation block on documentation pages has changed its
 selector from .nav-sidebar to .docs-nav; sites customizing that have to
 update the selector in HTML/CSS.

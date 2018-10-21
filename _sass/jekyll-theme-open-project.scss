@@ -29,6 +29,7 @@ $bigscreen-breakpoint: 900px + $gutter * 2;
 
 @import "open-project-base";
 @import "open-project-header-footer";
+@import "headroom";
 
 
 main {

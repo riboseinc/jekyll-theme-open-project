@@ -192,13 +192,8 @@ body > .underlay.footer {
 }
 
 body > .underlay > header {
-  padding-top: 13px;
-  padding-bottom: 13px;
-
-  @media screen and (min-width: $bigscreen-breakpoint) {
-    padding-top: 26px;
-    padding-bottom: 26px;
-  }
+  padding-top: 26px;
+  padding-bottom: 26px;
 
   align-items: flex-start;
   flex-flow: row nowrap;
@@ -220,7 +215,7 @@ body > .underlay > header {
     left: 0;
     right: 0;
     transform: translateY(-100%);
-    transition: transform .2s ease-out;
+    transition: transform .8s cubic-bezier(0.23, 1, 0.32, 1);
 
     height: 100vh;
     overflow: hidden;
