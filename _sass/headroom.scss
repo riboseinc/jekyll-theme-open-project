@@ -10,11 +10,15 @@
 }
 
 body.with-headroom {
-  .underlay.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
+  transition: padding 200ms linear;
+
+  &.layout--product {
+    .underlay.header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 6;
+    }
   }
 }
