@@ -8,7 +8,8 @@ in those cases causing layout of documentation pages to exceed screen width.
 Added favicon to base page meta (sites are expected to provide
 `/assets/favicon.png` and `/assets/webclip.png` now).
 
-Made top header collapse on scroll for better docs readability on smaller screens.
+Made top header collapse on scroll for better readability on smaller screens.
+Made documentation ToC collapsible as well.
 
 **BREAKING**: Navigation block on documentation pages has changed its
 selector from .nav-sidebar to .docs-nav; sites customizing that have to
