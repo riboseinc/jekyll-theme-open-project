@@ -175,7 +175,7 @@
     // Hiding docs nav
 
     // TODO: Replace with moving this to the top
-    // in top header’s headroom hook
+    // in top header’s headroom hook?
     var headroom = new Headroom(docsNavHeader, {
       classes: {
         pinned: 'pinned',
