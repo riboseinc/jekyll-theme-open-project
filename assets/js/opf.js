@@ -40,6 +40,7 @@
     var collapsibleDocsMenu;
     var body = document.querySelector('body');
     var headerElH = headerEl.offsetHeight;
+    var isPinned;
 
     body.style.paddingTop = '' + headerElH + 'px';
 
@@ -47,7 +48,12 @@
       onUnpin: function() {
         if (hamburgerMenu.hasOpened() || (collapsibleDocsMenu && collapsibleDocsMenu.hasOpened())) {
           this.pin();
+        } else {
+          isPinned = false;
         }
+      },
+      onPin: function() {
+        isPinned = true;
       },
     });
 
@@ -62,6 +68,9 @@
       },
       assignCollapsibleDocsNav: function (nav) {
         collapsibleDocsMenu = nav;
+      },
+      isPinned: function () {
+        return isPinned;
       },
     }
   };
@@ -88,8 +97,11 @@
     var docsNavH = docsNav.offsetHeight;
     var docsNavSections = docsNav.querySelectorAll('section');
 
+    // Offet represents the top header height; meaning it is offset
+    // of documentation menu from the topmost edge of viewport
     var offset = collapsibleHeader.getHeaderHeight();
 
+    article.style.paddingTop = '2em';
     docsNav.style.zIndex = '4';
     docsNav.style.position = 'fixed';
     docsNav.style.top = '' + offset + 'px';
@@ -98,14 +110,16 @@
     docsNav.style.paddingTop = '0';
     docsNav.style.paddingLeft = '2em';
     docsNav.style.paddingRight = '2em';
-    docsNav.style.transition = 'background .2s cubic-bezier(0.23, 1, 0.32, 1), top 200ms linear';
+    docsNav.style.transition = 'background 200ms cubic-bezier(0.23, 1, 0.32, 1), transform 200ms linear';
     docsNav.style.background = 'transparent';
     docsNav.style.overflow = 'hidden';
-    docsNav.style.boxShadow = '0 0 10px 10px white';
 
     docsNavHeader.style.background = 'white';
     docsNavHeader.style.paddingTop = '10px';
     docsNavHeader.style.paddingBottom = '10px';
+    docsNavHeader.style.cursor = 'pointer';
+
+    docsNavHeader.innerHTML = docsNavHeader.innerHTML + ' ▼';
 
     docsNavSections.forEach(function (el) {
       el.style.transition = 'opacity .2s cubic-bezier(0.23, 1, 0.32, 1)';
@@ -128,7 +142,8 @@
         docsNav.style.height = '' + docsNavHeaderH + 'px';
         docsNav.style.bottom = 'unset';
         docsNav.scrollTop = 0;
-      }, 200);
+        docsNav.style.borderBottom = '1px solid silver';
+      }, 2);
     };
     var open = function (docsNav) {
       hasOpened = true;
@@ -136,18 +151,24 @@
 
       docsNav.style.overflowY = 'scroll';
       docsNav.style.height = 'auto';
-      docsNav.style.bottom = '0';
+
+      if (collapsibleHeader.isPinned()) {
+        docsNav.style.bottom = '0';
+      } else {
+        docsNav.style.bottom = '-' + offset + 'px';
+      }
+
       docsNav.style.background = 'white';
+      docsNav.style.borderBottom = 'none';
       docsNavSections.forEach(function (el) {
         el.style.opacity = '1';
       });
     };
-    docsNavHeaderLink.addEventListener('click', function (e) {
+    var toggle = function () {
       if (hasOpened) { collapse(docsNav); }
       else { open(docsNav); }
-      e.preventDefault();
-      return true;
-    });
+    };
+    docsNavHeader.addEventListener('click', toggle);
 
     collapse(docsNav);
 
@@ -156,20 +177,22 @@
     // TODO: Replace with moving this to the top
     // in top header’s headroom hook
     var headroom = new Headroom(docsNavHeader, {
+      classes: {
+        pinned: 'pinned',
+        unpinned: 'unpinned',
+      },
       onUnpin: function () {
         if (hasOpened) {
           this.pin();
         } else {
-          docsNav.style.top = '0';
-          docsNav.style.zIndex = '0';
+          docsNav.style.transform = 'translateY(-' + offset + 'px)';
         }
       },
       onPin: function () {
-        console.debug('pin');
         docsNav.style.top = '' + offset + 'px';
         docsNav.style.zIndex = '4';
-      },
-      onTop: function () {
+        docsNav.style.transform = 'translateY(0)';
+        docsNav.style.borderBottom = '1px solid silver';
       },
     });
 

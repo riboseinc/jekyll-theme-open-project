@@ -10,8 +10,6 @@
 }
 
 body.with-headroom {
-  transition: padding 200ms linear;
-
   &.layout--product {
     .underlay.header {
       position: fixed;
