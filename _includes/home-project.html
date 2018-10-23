@@ -28,7 +28,14 @@
 
   {% if num_software > 0 %}
     <section class="software">
-      <h2 class="title">Open Source Software</h2>
+      {% if num_featured_software < num_software %}
+        <h2 class="title">
+          Featured Software
+          <a class="more-link" href="/software/" title="See all {{ site.title }} software">(see all)</a>
+        </h2>
+      {% else %}
+        <h2 class="title">Open-source Software</h2>
+      {% endif %}
 
       <div class="items">
         {% for item in software | limit: site.max_featured_software %}
@@ -57,12 +64,6 @@
           </a>
         {% endfor %}
       </div>
-
-      {% if num_featured_software < num_software %}
-      <footer>
-        <a class="more-link" href="/software/">See all {{ site.title }} software</a>
-      </footer>
-      {% endif %}
     </section>
   {% endif %}
 
@@ -81,7 +82,15 @@
 
 {% if num_specs > 0 %}
   <section class="specs">
-    <h2 class="title">Open Specifications</h2>
+    <h2 class="title">
+      {% if num_featured_specs < num_specs %}
+        Featured Specifications
+        <a class="more-link"
+          href="/specs/" title="See all {{ site.title }} specs">(see all)</a>
+      {% else %}
+        Open Specifications
+      {% endif %}
+    </h2>
 
     <div class="items">
       {% for item in specs | limit: site.max_featured_specs %}
@@ -106,11 +115,5 @@
         </a>
       {% endfor %}
     </div>
-
-    {% if num_featured_specs < num_specs %}
-    <footer>
-      <a class="more-link" href="/specs/">See all {{ site.title }} specs</a>
-    </footer>
-    {% endif %}
   </section>
 {% endif %}
