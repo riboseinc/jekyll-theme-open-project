@@ -51,10 +51,6 @@ a {
   display: flex;
   flex-flow: column nowrap;
 
-  @media screen and (min-width: $bigscreen-breakpoint) {
-    margin-top: 100px;
-  }
-
   > .puny-label {
     align-self: center;
 

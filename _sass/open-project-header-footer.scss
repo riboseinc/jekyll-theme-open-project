@@ -69,17 +69,11 @@ body > .underlay > footer {
 
     > .hero {
       padding-top: 20px;
-
-      @media screen and (min-width: $widescreen-breakpoint) {
-        padding-top: 55px;
-        padding-bottom: 30px;
-      }
-
       color: white;
 
       > .text {
+        padding-bottom: 50px;
         position: relative;
-        padding-bottom: 80px;
 
         > .title {
           font-size: 44px;
@@ -117,15 +111,6 @@ body > .underlay > footer {
   }
   .layout--home > & {
     background: $superhero-background;
-
-    > .hero {
-      > .text {
-        padding-bottom: 85px;
-        @media screen and (min-width: $bigscreen-breakpoint) {
-          padding-bottom: 100px;
-        }
-      }
-    }
   }
 
   .site--hub > & {
@@ -135,6 +120,7 @@ body > .underlay > footer {
   .site--hub.layout--home > & {
     > .hero {
       text-align: left;
+      padding-bottom: 50px;
 
       .illustration {
         display: none;
@@ -143,39 +129,17 @@ body > .underlay > footer {
       @media screen and (min-width: $bigscreen-breakpoint) {
         display: flex;
         flex-flow: row nowrap;
+        position: relative;
 
         .text {
           width: 550px;
         }
         .illustration {
-          flex: 1;
-          display: flex;
-          flex-flow: column nowrap;
-          align-items: center;
+          display: block;
+          position: absolute;
+          bottom: 100px;
+          right: -15%;
         }
-      }
-    }
-  }
-
-  .site--project > & {
-    > .hero {
-      text-align: center;
-
-      > .text {
-        > .desc {
-          @media screen and (min-width: $bigscreen-breakpoint) {
-            margin: 0 7em;
-          }
-        }
-      }
-    }
-  }
-
-  .site--project.layout--home > & {
-    > .hero {
-      padding-bottom: 30px;
-      @media screen and (min-width: $widescreen-breakpoint) {
-        padding-bottom: 40px;
       }
     }
   }
@@ -188,6 +152,7 @@ body > .underlay.footer {
 body > .underlay > header {
   padding-top: 26px;
   padding-bottom: 26px;
+  z-index: 2;
 
   align-items: flex-start;
   flex-flow: row nowrap;
