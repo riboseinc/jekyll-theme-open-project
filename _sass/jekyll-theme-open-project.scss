@@ -498,6 +498,35 @@ main {
   &.layout--home > main > .underlay > .software,
   &.layout--home > main > .specs {
     @extend .main-section;
+
+    .items {
+      @extend .item-grid;
+      justify-content: center;
+
+      > .item {
+        @media screen and (min-width: $bigscreen-breakpoint) {
+          box-sizing: border-box;
+          flex-basis: calc( 100%/#{$featured-cols-narrow} - #{$gutter} );
+
+          // Hide third element (there’re at most 3)
+          &:nth-child(3) {
+            opacity: 0;
+            display: none;
+          }
+        }
+
+        @media screen and (min-width: $widescreen-breakpoint) {
+          box-sizing: border-box;
+          flex-basis: calc( 100%/#{$featured-cols} - #{$gutter} );
+
+          // Show third element
+          &:nth-child(3) {
+            opacity: 1;
+            display: block;
+          }
+        }
+      }
+    }
   }
 
   &.layout--software-index > main,
