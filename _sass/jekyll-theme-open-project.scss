@@ -314,9 +314,14 @@ main {
 
         .body {
           font-size: 16px;
-          height: 100px;
+          padding-bottom: 20px;
           overflow: hidden;
           text-overflow: ellipsis;
+
+          @media screen and (min-width: $bigscreen-breakpoint) {
+            height: 100px;
+            padding-bottom: 0;
+          }
         }
 
         .cta-view-project {
