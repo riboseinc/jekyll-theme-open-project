@@ -302,6 +302,9 @@ main {
           display: inline-block;
           height: 80px;
           width: 80px;
+
+          // Without this, some items’ logos don’t conform to above dimensions
+          overflow: hidden;
         }
 
         header > .title {
