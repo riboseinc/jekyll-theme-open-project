@@ -120,25 +120,46 @@ body > .underlay > footer {
   .site--hub.layout--home > & {
     > .hero {
       text-align: left;
-      padding-bottom: 50px;
-
+      @media screen and (min-width: $bigscreen-breakpoint) {
+        padding-bottom: 50px;
+      }
+    }
+  }
+  .layout--home > & {
+    > .hero {
       .illustration {
         display: none;
       }
-
       @media screen and (min-width: $bigscreen-breakpoint) {
         display: flex;
         flex-flow: row nowrap;
         position: relative;
-
         .text {
-          width: 550px;
+          z-index: 4;
         }
         .illustration {
           display: block;
           position: absolute;
-          bottom: 100px;
-          right: -15%;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: $bigscreen-breakpoint) {
+    .site--hub.layout--home > & > .hero {
+      .illustration {
+        bottom: 100px;
+        right: -15%;
+        svg {
+          width: 700px;
+        }
+      }
+    }
+    .site--project.layout--home > & > .hero {
+      .illustration {
+        bottom: 40px;
+        right: 0;
+        svg {
+          width: 200px;
         }
       }
     }
