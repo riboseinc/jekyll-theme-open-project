@@ -442,6 +442,59 @@ main {
 /* Project */
 
 .site--project {
+  &.layout--home > main > .underlay.summary-background {
+    padding-top: 20px;
+
+    > svg {
+      > polygon {
+        fill: #F7F7F7;
+      }
+      bottom: 0;
+      width: 100%;
+      height: 35vw;
+    }
+
+    .summary {
+      font-size: 18px;
+
+      ul.you-can {
+        padding: 0;
+        display: flex;
+        flex-flow: column nowrap;
+        li {
+          flex: 1 1 auto;
+          &:first-child {
+            margin-right: 40px;
+          }
+        }
+      }
+      .cta {
+        margin-top: 30px;
+        .button {
+          @include cta-button($primary-dark-color, white);
+          border-radius: 25px;
+          border: 1px solid $primary-color;
+        }
+      }
+      p:first-child:first-letter {
+        color: $accent-color;
+        float: left;
+        font-size: 75px;
+        line-height: 60px;
+        padding-right: 8px;
+        margin-left: -5px;
+      }
+      @media screen and (min-width: $bigscreen-breakpoint) {
+        p:first-child {
+          padding-right: 20vw;
+        }
+        ul.you-can {
+          flex-flow: row nowrap;
+        }
+      }
+    }
+  }
+
   &.layout--home > main > .underlay > .software,
   &.layout--home > main > .specs,
   &.layout--software-index > main,
