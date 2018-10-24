@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.18
+
+Updated layout of landing pages for both project and hub sites.
+
+- Fixed issues with inelegant whitespace
+
+- Hero unit look updated overall, is now more compact
+
+- Now showing featured items as a grid
+
 ## 1.1.17
 
 Fixed an issue with code listings not always being horizontally scrollable,
