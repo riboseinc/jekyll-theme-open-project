@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.1.19
+
+- Fixed major regression introduced in previous version
+  that caused cards from hub site software & spec indexes to not link
+  to their pages on corresponding project sites, 404’ing instead
+
+Improved software and spec indexes on both hub and project sites:
+
+- Order software and specs by last update timestamp, descending
+
+- Highlight featured software and specs
+
+- Show featured software/specs first in corresponding index listing on project sites
+
 ## 1.1.18
 
 Updated layout of landing pages for both project and hub sites.
