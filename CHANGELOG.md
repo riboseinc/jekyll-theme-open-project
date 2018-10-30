@@ -1,10 +1,12 @@
 # Changelog
 
-## 1.1.19
+## 1.1.20
 
-- Fixed major regression introduced in previous version
+- Fixed a regression introduced in previous version
   that caused cards from hub site software & spec indexes to not link
-  to their pages on corresponding project sites, 404’ing instead
+  to their pages on corresponding project sites, 404’ing instead.
+
+## 1.1.19
 
 Improved software and spec indexes on both hub and project sites:
 
