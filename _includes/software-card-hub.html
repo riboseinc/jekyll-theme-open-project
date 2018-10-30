@@ -9,7 +9,8 @@
   {% assign product_home_url = include.item.url | relative_url %}
 {% endif %}
 
-<a class="item" href="{{ product_home_url }}" role="article">
+<a class="item {% if include.item.feature_with_priority != nil %}featured-item{% endif %}"
+    href="{{ product_home_url }}" role="article">
   {% if include.item_type == 'software' and site.is_hub != true %}
     <div class="logo-container">
       {% include software-symbol.html item_id=include.item.id %}
