@@ -2,28 +2,30 @@
 layout: default
 ---
 
-{% if site.is_hub %}
-  {% include index-page-item-filter.html url_tag_prefix="/specs/" items=site.all_specs tag=page.tag %}
-{% endif %}
+{% include index-page-item-filter.html url_tag_prefix="/specs/" items=site.all_specs tag=page.tag %}
 
-{% assign items = page.items | default: site.all_specs %}
-{% assign num_items = items | size %}
-
-<section class="items {% if num_items < 3 %}one-row{% endif %}">
+<section class="items">
   {% if site.is_hub %}
     {% include assets/symbol.svg %}
-    {% for spec in items %}
-      {% include software-card-hub.html item=spec item_type='specs' %}
+  {% endif %}
+
+  {% if page.tag and page.items %}
+    {% for item in page.items %}
+      {% include software-card-hub.html item=item item_type='specs' %}
+    {% endfor %}
+  {% elsif site.is_hub %}
+    {% for item in site.all_specs %}
+      {% include software-card-hub.html item=item item_type='specs' %}
     {% endfor %}
   {% else %}
     {% if site.num_featured_specs > 0 %}
-      {% for spec in site.featured_specs %}
-        {% include software-card-hub.html item=spec item_type='specs' %}
+      {% for item in site.featured_specs %}
+        {% include software-card-hub.html item=item item_type='specs' %}
       {% endfor %}
       <hr>
     {% endif %}
-    {% for spec in site.non_featured_specs %}
-      {% include software-card-hub.html item=spec item_type='specs' %}
+    {% for item in site.non_featured_specs %}
+      {% include software-card-hub.html item=item item_type='specs' %}
     {% endfor %}
   {% endif %}
 </section>
