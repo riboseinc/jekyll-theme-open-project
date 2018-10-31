@@ -317,7 +317,7 @@ a {
     font-size: 18px;
     line-height: 1.65;
 
-    > p:first-child {
+    > p:first-child, > .paragraph:first-child p:only-child {
       margin-top: 0;
     }
 
@@ -367,6 +367,10 @@ a {
       margin-top: 1em;
       margin-bottom: 1em;
 
+      p {
+        margin: 0;
+      }
+
       th, td {
         text-align: left;
         padding: .5em;
@@ -378,6 +382,8 @@ a {
         }
       }
     }
+
+    @include asciidoc-markup($primary-dark-color);
   }
 }
 

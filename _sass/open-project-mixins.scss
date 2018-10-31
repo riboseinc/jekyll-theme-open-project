@@ -127,6 +127,58 @@
   }
 }
 
+@mixin asciidoc-markup($highlight-color) {
+  // Used for e.g. code listing headings and tip block labels
+  .title {
+    text-transform: uppercase;
+    font-size: 12px;
+    border-radius: .25em;
+    background-color: $highlight-color;
+    color: white;
+    font-weight: bold;
+    padding: .3em .6em;
+  }
+
+  // Used for tip block labels
+  .admonitionblock {
+    overflow-x: scroll;
+
+    table:first-child {
+      margin-top: 0;
+    }
+    table:last-child {
+      margin-bottom: 0;
+    }
+
+    td.icon {
+      vertical-align: top;
+      padding-left: 0;
+    }
+    .content {
+      font-size: 80%;
+
+      > div:first-child {
+        > :first-child {
+          margin-top: 0;
+        }
+      }
+      > div:last-child {
+        > :last-child {
+          margin-bottom: 0;
+        }
+        &.ulist {
+          li:first-child > :first-child {
+            margin-top: 0;
+          }
+          li:last-child > :last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
 @mixin docs-page($primary-dark-color) {
   $side-margin: 16px;  // for external links
 
@@ -300,55 +352,7 @@
     }
 
     > .body {
-      // Used for e.g. code listing headings and tip block labels
-      .title {
-        text-transform: uppercase;
-        font-size: 12px;
-        border-radius: .25em;
-        background-color: $primary-dark-color;
-        color: white;
-        font-weight: bold;
-        padding: .3em .6em;
-      }
-
-      // Used for tip block labels
-      .admonitionblock {
-        overflow-x: scroll;
-
-        table:first-child {
-          margin-top: 0;
-        }
-        table:last-child {
-          margin-bottom: 0;
-        }
-
-        td.icon {
-          vertical-align: top;
-          padding-left: 0;
-        }
-        .content {
-          font-size: 80%;
-
-          > div:first-child {
-            > :first-child {
-              margin-top: 0;
-            }
-          }
-          > div:last-child {
-            > :last-child {
-              margin-bottom: 0;
-            }
-            &.ulist {
-              li:first-child > :first-child {
-                margin-top: 0;
-              }
-              li:last-child > :last-child {
-                margin-bottom: 0;
-              }
-            }
-          }
-        }
-      }
+      @include asciidoc-markup($primary-dark-color);
     }
   }
 
