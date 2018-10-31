@@ -325,6 +325,10 @@ a {
       @include code-snippet();
     }
 
+    a {
+      border-bottom: 1px solid;
+    }
+
     pre {
       @include code-snippet-container();
     }
