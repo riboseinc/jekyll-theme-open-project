@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.21
+
+- Better support for AsciiDoc-rendered HTML in site contents
+
+- Added tag-based filtering for software & spec indexes on project sites
+
+- Fixed an issue where ordering of software by last modification timestamp
+  was messed up when timestamp was not present on some packages
+
 ## 1.1.20
 
 - Fixed a regression introduced in previous version
