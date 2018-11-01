@@ -6,7 +6,7 @@
 
 ## 1.1.21
 
-- Better support for AsciiDoc-rendered HTML in site contents
+- Better styling support for AsciiDoc-rendered HTML in site contents
 
 - Added tag-based filtering for software & spec indexes on project sites
 
