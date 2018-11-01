@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.22
+
+- Started marking external links within main site contents
+
 ## 1.1.21
 
 - Better support for AsciiDoc-rendered HTML in site contents

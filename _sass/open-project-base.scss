@@ -327,6 +327,17 @@ a {
 
     a {
       border-bottom: 1px solid;
+      &[rel=external] {
+        border-bottom-style: dotted;
+        &:link, &:hover, &:focus, &:active {
+          .ico-ext {
+            font-size: 50%;
+            vertical-align: text-top;
+            position: relative;
+            left: .15em;
+          }
+        }
+      }
     }
 
     pre {
