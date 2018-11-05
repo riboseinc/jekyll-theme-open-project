@@ -1,6 +1,4 @@
 @mixin tbd($color: red) {
-  // TODO: Refactor disabled item doc navigation links with this mixin in mind
-
   position: relative;
   padding: 0 .3em;
   border: 1px dashed lighten($main-font-color, 70);
@@ -281,22 +279,6 @@
           font-size: 15px;
           font-weight: normal;
 
-          &.disabled {
-            span {
-              $disabled-label-width: 50px;
-              opacity: 0.5;
-              position: relative;
-
-              &:before {
-                opacity: 0.4;
-                position: absolute;
-                width: $disabled-label-width;
-                left: -$disabled-label-width;;
-                content: "TBD";
-                font-weight: bold;
-              }
-            }
-          }
           &.selected {
             span {
               font-weight: bold;
