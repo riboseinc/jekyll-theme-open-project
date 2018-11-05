@@ -2,6 +2,10 @@
 
 ## 1.1.22
 
+- Fixed an issue with software documentation landing page layout
+  not displaying correctly depending on viewport height & the amount
+  of landing page contents (Firefox only)
+
 - Started marking external links within main site contents
 
 ## 1.1.21
