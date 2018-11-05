@@ -28,10 +28,6 @@
     };
   };
 
-  var hamburgerMenu = initCollapsibleMenu(
-    document.getElementById('hamburgerButton'),
-    document.getElementById('hamburgerMenu'));
-
 
 
   /* Collapsible header */
@@ -74,14 +70,6 @@
       },
     }
   };
-
-  var collapsibleHeader;
-
-  if (document.querySelector('body.layout--product .documentation:not(.docs-landing)') != null) {
-    collapsibleHeader = initCollapsibleHeader(
-      document.querySelector('.underlay.header'),
-      hamburgerMenu);
-  }
 
 
 
@@ -204,6 +192,21 @@
       },
     }
   };
+
+
+
+  // Initializing stuff
+  var hamburgerMenu = initCollapsibleMenu(
+    document.getElementById('hamburgerButton'),
+    document.getElementById('hamburgerMenu'));
+
+  var collapsibleHeader;
+
+  if (document.querySelector('body.layout--product .documentation:not(.docs-landing)') != null) {
+    collapsibleHeader = initCollapsibleHeader(
+      document.querySelector('.underlay.header'),
+      hamburgerMenu);
+  }
 
   var docsRoot = body.querySelector('body.layout--product .documentation:not(.docs-landing)');
   var collapsibleDocsNav;
