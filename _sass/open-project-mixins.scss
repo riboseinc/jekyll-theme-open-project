@@ -354,7 +354,7 @@
     }
 
     > article {
-      max-width: none;
+      max-width: none;  // Overrides .main-article base style
 
       > header > .title {
         border-bottom-width: 0;
