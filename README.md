@@ -520,6 +520,7 @@ and then in `<theme root>/_includes/<include_name>`. Consequently,
 you put your include overrides directly in site root, **not** inside
 `_includes/` directory of your side.
 
+
 ## Theme layouts
 
 Normally you don’t need to specify layouts manually, except where
