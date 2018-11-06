@@ -1,21 +1,66 @@
 # Setting up the site with continuous delivery via Gitlab CI and AWS
 
-This summarizes a simple CD setup with single branch (master) mapping
-to production server, with auto-built static site served from S3 bucket.
+This summarizes a couple simple CD setup options
+with single repository branch (master) getting automatically
+built and deployed to a public AWS S3 bucket
+and served through your chosen domain name.
 
-## Results
+## Outcome
 
 After each push to master branch, the site will be built and deployed to S3,
 updating live site under corresponding domain.
 
-## Pre-requisites
+## Option 1: GitHub + Rakefile + Travis CI + AWS S3
+
+### Pre-requisites
+
+Provided you have
+
+* set up the Jekyll site based on README and have its source on GitHub
+  in a repo connected to Travis CI,
+* got the domain name you want to use to publish the site,
+* got an AWS account and created a public S3 bucket
+  named after the domain name
+  with appropriate Route 53 and optionally CloudFront configuration
+  to map the bucket to the domain
+  (Option 2 in this document covers a basic S3 + Route 53 setup).
+
+### Steps
+
+0. Configure environment variables in repository settings on Travis CI:
+
+   - AWS_ACCESS_KEY_ID
+   - AWS_SECRET_ACCESS_KEY
+   - AWS_REGION
+   - CLOUDFRONT_DISTRIBUTION_ID
+   - CLOUDFRONT_STAGING_DISTRIBUTION_ID
+   - S3_BUCKET_NAME
+   - S3_STAGING_BUCKET_NAME
+
+1. Copy `travis.yml` and `Rakefile` from Open Project theme file tree
+   into your Jekyll site repository root, and rename the copied
+   `travis.yml` to `.travis.yml` (prepend a dot to filename).
+
+2. Add new gems to your Gemfile for building & testing:
+
+   ```
+   gem "rake"
+   gem "html-proofer"
+   ```
+
+3. That’s it, site should build for you on next push, as long as there
+   are no issues with it (test it locally first; see README).
+
+## Option 2: Gitlab CI + AWS S3
+
+### Pre-requisites
 
 Provided you have set up the Jekyll site based on README,
 you own the domain you want to use to publish the site,
 you have AWS account, you know how to use AWS web console,
 and you have an Route 53 hosted zone associated with your domain.
 
-## Steps
+### Steps
 
 0. Choose the desired domain name for the site and take a note of it.
 
@@ -140,9 +185,9 @@ and you have an Route 53 hosted zone associated with your domain.
 
 8. Test by making a change and pushing it to master branch.
 
-## Troubleshooting
+### Troubleshooting
 
-### Build: Gem not found
+#### Build: Gem not found
 
 If build stage fails with an error about gem not found,
 try updating CI build script, changing `bundle` to `bundle --full-index`.
@@ -150,13 +195,13 @@ This may be needed if you’re using the latest theme version which
 was just recently published. --full-index will make build take longer,
 it’s advised to get rid of it when theme dependency becomes stable.
 
-### Deploy: Access denied
+#### Deploy: Access denied
 
 Ensure IAM group policy is correct. Bucket ARN should be correct,
 and should have the form of "arn:aws:s3:::<your_bucket_ARN>/*"
 where the closing `/*` is important.
 
-## Further improvements
+### Further improvements
 
 - In the long run it is recommended to avoid maintaining two separate copies
   of data (e.g., same project data for project site, and one for parent hub site,
