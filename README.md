@@ -105,6 +105,10 @@ These settings apply to both site types (hub and project).
   (and don’t forget to remove default theme requirement there):
 
   ```yaml
+  url: https://example.com/
+  # Site’s URL with protocol and without optional www. prefix.
+  # Used e.g. for marking external links in docs and blog posts.
+
   title: Site title
   description: Site description
   # The above two are used by jekyll-seo-tag for things such as
