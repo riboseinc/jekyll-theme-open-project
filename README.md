@@ -45,6 +45,10 @@ and it hasn’t been tested on newer versions.
 
     jekyll new my-open-site
 
+If you use Git for site source version management,
+see the “Extra .gitignore rules” section below
+for additional lines you should add to your `.gitignore`.
+
 ### Installing theme
 
 Add this line to your Jekyll site's `Gemfile`,
@@ -625,6 +629,21 @@ $hub-software--hero-background: $hub-software--primary-dark-color !default;
 $hub-specs--primary-color: lightpink !default;
 $hub-specs--primary-dark-color: palevioletred !default;
 $hub-specs--hero-background: $hub-specs--primary-dark-color !default;
+```
+
+
+## Extra .gitignore rules
+
+Add these lines to your .gitignore to prevent
+theme-generated files and directories from adding chaos to your Git staging.
+
+```
+_software/*/.git
+_software/*/docs
+_software/_*_repo
+_specs/*/.git
+_specs/*/docs
+parent-hub/*
 ```
 
 
