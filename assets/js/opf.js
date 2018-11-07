@@ -85,27 +85,15 @@
     var docsNavH = docsNav.offsetHeight;
     var docsNavSections = docsNav.querySelectorAll('section');
 
-    // Offet represents the top header height; meaning it is offset
-    // of documentation menu from the topmost edge of viewport
-    var offset = collapsibleHeader.getHeaderHeight();
+    // Used to offset expandable documentation menu from the topmost edge of viewport
+    // to account for top header height
+    var topHeaderHeight = collapsibleHeader.getHeaderHeight();
 
     article.style.paddingTop = '2em';
-    docsNav.style.zIndex = '4';
-    docsNav.style.position = 'fixed';
-    docsNav.style.top = '' + offset + 'px';
-    docsNav.style.left = '0';
-    docsNav.style.right = '0';
-    docsNav.style.paddingTop = '0';
-    docsNav.style.paddingLeft = '2em';
-    docsNav.style.paddingRight = '2em';
-    docsNav.style.transition = 'background 200ms cubic-bezier(0.23, 1, 0.32, 1), transform 200ms linear';
-    docsNav.style.background = 'transparent';
-    docsNav.style.overflow = 'hidden';
 
-    docsNavHeader.style.background = 'white';
-    docsNavHeader.style.paddingTop = '10px';
-    docsNavHeader.style.paddingBottom = '10px';
-    docsNavHeader.style.cursor = 'pointer';
+    docsNav.classList.add('top-expandable');
+    docsNav.style.zIndex = '4';
+    docsNav.style.top = '' + topHeaderHeight + 'px';
 
     docsNavHeader.innerHTML = docsNavHeader.innerHTML + ' ▼';
 
@@ -120,34 +108,29 @@
 
     var collapse = function (docsNav) {
       hasOpened = false;
-      docsNav.style.background = 'transparent';
+
+      docsNav.classList.remove('expanded');
+
       docsNavSections.forEach(function (el) {
         el.style.opacity = '0';
       });
 
       closingTransition = window.setTimeout(function () {
-        docsNav.style.overflowY = 'hidden';
         docsNav.style.height = '' + docsNavHeaderH + 'px';
         docsNav.style.bottom = 'unset';
         docsNav.scrollTop = 0;
-        docsNav.style.borderBottom = '1px solid silver';
       }, 2);
     };
     var open = function (docsNav) {
       hasOpened = true;
       window.clearTimeout(closingTransition);
 
-      docsNav.style.overflowY = 'scroll';
+      docsNav.classList.add('expanded');
       docsNav.style.height = 'auto';
 
-      if (collapsibleHeader.isPinned()) {
-        docsNav.style.bottom = '0';
-      } else {
-        docsNav.style.bottom = '-' + offset + 'px';
-      }
+      docsNav.style.bottom = '' + 100 + 'px';
+      console.debug(docsNav.style.bottom);
 
-      docsNav.style.background = 'white';
-      docsNav.style.borderBottom = 'none';
       docsNavSections.forEach(function (el) {
         el.style.opacity = '1';
       });
@@ -173,14 +156,12 @@
         if (hasOpened) {
           this.pin();
         } else {
-          docsNav.style.transform = 'translateY(-' + offset + 'px)';
+          docsNav.style.transform = 'translateY(-' + topHeaderHeight + 'px)';
         }
       },
       onPin: function () {
-        docsNav.style.top = '' + offset + 'px';
-        docsNav.style.zIndex = '4';
+        docsNav.style.top = '' + topHeaderHeight + 'px';
         docsNav.style.transform = 'translateY(0)';
-        docsNav.style.borderBottom = '1px solid silver';
       },
     });
 
