@@ -171,6 +171,7 @@
       hasOpened: function () {
         return hasOpened;
       },
+      toggle: toggle,
     }
   };
 
@@ -197,5 +198,11 @@
     collapsibleHeader.assignCollapsibleDocsNav(collapsibleDocsNav);
   }
 
+  var docArticleSelectorPrefix = 'body.layout--product .documentation:not(.docs-landing) > article ';
+  var docArticleHeaderNavToggle = document.querySelector(docArticleSelectorPrefix + '> header > nav > button.docs-nav-toggle');
+  var docArticleFooterNavToggle = document.querySelector(docArticleSelectorPrefix + '> footer > nav > button.docs-nav-toggle');
+  for (var el of [docArticleFooterNavToggle, docArticleHeaderNavToggle]) {
+    if (el) { i.addEventListener('click', collapsibleDocsNav.toggle); }
+  }
 
 }());

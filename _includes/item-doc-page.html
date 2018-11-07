@@ -29,7 +29,7 @@
       </header>
 
       <section class="external-links">
-        {% include item-external-links.html item_type=include.item_type item_data=include.item_data %}
+        {% include item-external-links.html item_type=include.item_type item_data=item_data %}
       </section>
 
     {% elsif num_nav_sections > 0 %}
@@ -85,13 +85,20 @@
         <h1 class="text">{{ page.title }}</h1>
       </div>
 
+      {% if is_docs_landing == false %}
+        <nav>
+          <button class="docs-nav-toggle">Show table of contents</button>
+          <a href="{{ item_data.docs.git_repo_url }}/edit/master/docs/{{ page.path | split: "/" | last }}" class="docs-suggest-edits">Suggest edits to this page</a>
+        </nav>
+      {% endif %}
+
       <div>
         <h3 class="lead">{{ page.description }}</h3>
       </div>
 
       {% if is_docs_landing %}
         <div class="external-links">
-          {% include item-external-links.html item_type=include.item_type item_data=include.item_data %}
+          {% include item-external-links.html item_type=include.item_type item_data=item_data %}
         </div>
       {% endif %}
     </header>
@@ -99,6 +106,15 @@
     <div class="body">
       {{ content }}
     </div>
+
+    {% if is_docs_landing == flase %}
+    <footer>
+      <nav>
+        <button class="docs-nav-toggle">Show table of contents</button>
+        <a href="{{ item_data.docs.git_repo_url }}/edit/master/docs/{{ page.path | split: "/" | last }}" class="docs-suggest-edits">Suggest edits to this page</a>
+      </nav>
+    </footer>
+    {% endif %}
 
   </article>
 </section>
