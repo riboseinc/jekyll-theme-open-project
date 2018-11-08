@@ -252,12 +252,50 @@ body > .underlay > header {
   > .top-menu {
     flex: 1;
 
-    > * {
+    > :not(.search-widget) {
       display: inline-block;
       font-weight: 600;
       margin-right: 20px;
       padding: 6px 10px 6px 10px;
       white-space: nowrap;
+    }
+    > .search-widget {
+      transition: width .2s ease-in-out;
+      width: 0;
+      overflow: hidden;
+      display: none;
+      position: relative;
+
+      > input[type=search] {
+        margin-right: 1rem;
+        padding: 6px 10px 6px 10px;
+        border: 0;
+        border-radius: 1em;
+        flex: 1;
+      }
+      > button {
+        border: 0;
+        font-size: inherit;
+        font-family: inherit;
+        position: absolute;
+        color: $primary-dark-color;
+        top: 50%;
+        background: transparent;
+        right: 1rem;
+        transform: translateY(-50%);
+      }
+    }
+    &.with-expanded-search {
+      > a {
+        display: none;
+      }
+      > .search-widget {
+        width: 90%;
+        display: inline-flex;
+
+        > input[type=search] {
+        }
+      }
     }
   }
 

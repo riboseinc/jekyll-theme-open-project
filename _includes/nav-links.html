@@ -28,5 +28,10 @@
     {% include nav-page-link.html url="/blog/" title="Blog" active_for_nested=true %}
   {% endif %}
 
-  {% include nav-page-link.html url=contact_link title="Contact" %}
+  <a href="javascript: void 0;" class="search"><i class="fas fa-search"></i></a>
+
+  <div class="search-widget">
+    <input type="search" id="siteSearchInput">
+    <button type="button"><i class="fas fa-search"></i></a>
+  </div>
 {% endif %}

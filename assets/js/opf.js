@@ -6,6 +6,28 @@
 
 
 
+  /* Search box */
+
+  var initSearchWidget = function(containerEl, triggerEl, inputEl) {
+    var showSearch = function() {
+      containerEl.classList.add('with-expanded-search');
+      inputEl.focus();
+    };
+    var hideSearch = function() {
+      containerEl.classList.remove('with-expanded-search');
+    };
+    triggerEl.addEventListener('click', showSearch);
+  };
+
+  var topMenuEl = body.querySelector('.top-menu');
+  var triggerEl = topMenuEl.querySelector('.search');
+  var inputEl = topMenuEl.querySelector('input[type=search]');
+  console.debug(topMenuEl, triggerEl, inputEl);
+
+  initSearchWidget(topMenuEl, triggerEl, inputEl);
+
+
+
   /* Topmost hamburger menu */
 
   var initCollapsibleMenu = function(triggerEl, menuEl) {
