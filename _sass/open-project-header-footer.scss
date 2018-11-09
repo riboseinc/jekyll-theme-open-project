@@ -216,10 +216,22 @@ body > .underlay > header {
 
     > nav,
     > .social-links {
-      span, a {
+      .search-widget {
+        // TODO: Refactor to avoid duplication
+        // with top-menu
+        input[type=search] {
+          background-color: white;
+          border: none;
+        }
+        button {
+          cursor: pointer;
+          background: white;
+        }
+      }
+      a {
         &:link, &:visited, &:hover {
-          color: white;
           font-size: 1.3em;
+          color: white;
         }
       }
     }
@@ -269,6 +281,8 @@ body > .underlay > header {
       > input[type=search] {
         margin-right: 1rem;
         padding: 6px 10px 6px 10px;
+        font-size: inherit;
+        line-height: inherit;
         border: 0;
         border-radius: 1em;
         flex: 1;
@@ -281,8 +295,9 @@ body > .underlay > header {
         color: $primary-dark-color;
         top: 50%;
         background: transparent;
-        right: 1rem;
+        right: 2rem;
         transform: translateY(-50%);
+        cursor: pointer;
       }
     }
     &.with-expanded-search {
@@ -292,9 +307,6 @@ body > .underlay > header {
       > .search-widget {
         width: 90%;
         display: inline-flex;
-
-        > input[type=search] {
-        }
       }
     }
   }
