@@ -114,6 +114,12 @@ These settings apply to both site types (hub and project).
   # Site’s URL with protocol and without optional www. prefix.
   # Used e.g. for marking external links in docs and blog posts.
 
+  algolia_search:
+    api_key: '<your Algolia API key>'
+    index_name: '<your Algolia index name>'
+  # Only add this if you want to use Algolia’s search.
+  # It’s free for open-source projects.
+
   title: Site title
   description: Site description
   # The above two are used by jekyll-seo-tag for things such as

@@ -4,6 +4,12 @@ includes_dir: .
 
 permalink: /blog/:month-:day-:year/:title/
 
+# algolia_search:
+#   api_key: ''
+#   index_name: ''
+# Uncomment this if you want to use Algolia’s search.
+# It’s free for open-source projects.
+
 exclude:
   - /**/.git/*
   - /_projects/**/_*_repo/*

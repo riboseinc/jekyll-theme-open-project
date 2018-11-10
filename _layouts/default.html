@@ -11,6 +11,10 @@
   <link id="themeCSS" rel="stylesheet" href="{{ "assets/css/style.css" | relative_url }}">
   <script defer src="https://pro.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-E5SpgaZcbSJx0Iabb3Jr2AfTRiFnrdOw1mhO19DzzrT9L+wCpDyHUG2q07aQdO6E" crossorigin="anonymous"></script>
 
+  {% if site.algolia_search %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
+  {% endif %}
+
   {% seo %}
 </head>
 
@@ -76,4 +80,16 @@
   <script src="{{ "assets/js/opf.js" | relative_url }}"></script>
 
   {% include scripts.html %}
+
+  {% if site.algolia_search %}
+    <script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script>
+      docsearch({ 
+        apiKey: '{{ site.algolia_search.api_key }}', 
+        indexName: '{{ site.algolia_search.index_name }}', 
+        inputSelector: 'header input[type=search]', 
+        debug: false,
+      }); 
+    </script> 
+  {% endif %}
 </body>

@@ -274,18 +274,18 @@ body > .underlay > header {
     > .search-widget {
       transition: width .2s ease-in-out;
       width: 0;
-      overflow: hidden;
       display: none;
       position: relative;
 
-      > input[type=search] {
-        margin-right: 1rem;
+      > :not(button) {
+        flex: 1;
+      }
+      input[type=search] {
         padding: 6px 10px 6px 10px;
+        border-radius: 1em;
         font-size: inherit;
         line-height: inherit;
         border: 0;
-        border-radius: 1em;
-        flex: 1;
       }
       > button {
         border: 0;
@@ -295,7 +295,7 @@ body > .underlay > header {
         color: $primary-dark-color;
         top: 50%;
         background: transparent;
-        right: 2rem;
+        right: 1rem;
         transform: translateY(-50%);
         cursor: pointer;
       }
