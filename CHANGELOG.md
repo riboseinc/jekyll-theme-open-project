@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.1.23
+
+- Added Algolia search, which can now be enabled as easily as
+  by adding a key to site’s _config.yml
+
+- Now linking software docs to corresponding GitHub’s edit pages,
+  a shortcut to allow documentation readers suggest edits
+  with less friction
+
+- Simplified deployment by bundling Rakefile and .travis.yml
+  and documenting the corresponding GitHub -> AWS S3 setup in CI_OPS
+
 ## 1.1.22
 
 - Fixed an issue with software documentation landing page layout
