@@ -46,7 +46,7 @@
           menuEl.insertBefore(origNavEl, menuEl.querySelector('.site-logo-container').nextSibling);
         } else {
           origNavEl.remove();
-          origNavNextSiblingEl.parent.insertBefore(origNavEl, origNavNextSiblingEl);
+          origNavNextSiblingEl.parentNode.insertBefore(origNavEl, origNavNextSiblingEl);
           origNavEl.classList.add('top-menu');
         }
       });

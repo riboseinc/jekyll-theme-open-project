@@ -238,13 +238,7 @@ body > .underlay > header {
       }
       .search-widget {
         margin-top: 2em;
-
-        // TODO: Refactor to avoid duplication
-        // with top-menu
-        input[type=search] {
-          background-color: white;
-          border: none;
-        }
+        margin-bottom: 1em;
       }
 
       > * {
@@ -266,6 +260,18 @@ body > .underlay > header {
     }
   }
 
+  > .top-menu > .search-widget,
+  > .hamburger-menu > nav > .search-widget {
+    input[type=search] {
+      padding: 6px 10px 6px 10px;
+      border-radius: 1em;
+      font-size: inherit;
+      line-height: inherit;
+      border: 0;
+      background-color: white;
+    }
+  }
+
   > .top-menu {
     flex: 1;
 
@@ -277,20 +283,12 @@ body > .underlay > header {
       white-space: nowrap;
     }
     > .search-widget {
-      transition: width .2s ease-in-out;
       width: 0;
       display: none;
       position: relative;
 
       > * {
         flex: 1;
-      }
-      input[type=search] {
-        padding: 6px 10px 6px 10px;
-        border-radius: 1em;
-        font-size: inherit;
-        line-height: inherit;
-        border: 0;
       }
     }
     &.with-expanded-search {
