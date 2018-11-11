@@ -2,8 +2,8 @@
 
 ## 1.1.23
 
-- Added Algolia search, which can now be enabled as easily as
-  by adding a key to site’s _config.yml
+- Algolia search can now be easily enabled on project sites
+  by adding a key to Jekyll’s _config.yml
 
 - Now linking software docs to corresponding GitHub’s edit pages,
   a shortcut to allow documentation readers suggest edits

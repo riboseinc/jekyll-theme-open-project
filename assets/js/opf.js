@@ -6,7 +6,7 @@
 
 
 
-  /* Search box */
+  /* Search box in top bar */
 
   var initSearchWidget = function(containerEl, triggerEl, inputEl) {
     var showSearch = function() {
@@ -17,21 +17,23 @@
       containerEl.classList.remove('with-expanded-search');
     };
     triggerEl.addEventListener('click', showSearch);
+
+    window.initAlgolia();
   };
+
+
 
   var topMenuEl = body.querySelector('.top-menu');
   var triggerEl = topMenuEl.querySelector('.search');
   var inputEl = topMenuEl.querySelector('input[type=search]');
-  console.debug(topMenuEl, triggerEl, inputEl);
-
-  initSearchWidget(topMenuEl, triggerEl, inputEl);
 
 
 
   /* Topmost hamburger menu */
 
-  var initCollapsibleMenu = function(triggerEl, menuEl) {
+  var initCollapsibleMenu = function(origNavEl, triggerEl, menuEl) {
     var hasOpened = false;
+    var origNavNextSiblingEl = origNavEl.nextSibling;
 
     if (triggerEl != null && menuEl != null) {
       triggerEl.addEventListener('click', function (evt) {
@@ -39,6 +41,13 @@
         if (hasOpened) {
           triggerEl.setAttribute('aria-expanded', true);
           menuEl.setAttribute('aria-hidden', false);
+          origNavEl.classList.remove('top-menu');
+          origNavEl.remove();
+          menuEl.insertBefore(origNavEl, menuEl.querySelector('.site-logo-container').nextSibling);
+        } else {
+          origNavEl.remove();
+          origNavNextSiblingEl.parent.insertBefore(origNavEl, origNavNextSiblingEl);
+          origNavEl.classList.add('top-menu');
         }
       });
     }
@@ -201,6 +210,7 @@
 
   // Initializing stuff
   var hamburgerMenu = initCollapsibleMenu(
+    document.querySelector('header nav.top-menu'),
     document.getElementById('hamburgerButton'),
     document.getElementById('hamburgerMenu'));
 
@@ -226,5 +236,7 @@
   for (var el of [docArticleFooterNavToggle, docArticleHeaderNavToggle]) {
     if (el) { i.addEventListener('click', collapsibleDocsNav.toggle); }
   }
+
+  initSearchWidget(topMenuEl, triggerEl, inputEl);
 
 }());

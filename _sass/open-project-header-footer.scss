@@ -173,7 +173,8 @@ body > .underlay.footer {
 body > .underlay > header {
   padding-top: 26px;
   padding-bottom: 26px;
-  z-index: 2;
+  z-index: 5;
+  // Higher than hero, otherwise Algolia search pop-up might have stuff over it
 
   align-items: flex-start;
   flex-flow: row nowrap;
@@ -216,18 +217,6 @@ body > .underlay > header {
 
     > nav,
     > .social-links {
-      .search-widget {
-        // TODO: Refactor to avoid duplication
-        // with top-menu
-        input[type=search] {
-          background-color: white;
-          border: none;
-        }
-        button {
-          cursor: pointer;
-          background: white;
-        }
-      }
       a {
         &:link, &:visited, &:hover {
           font-size: 1.3em;
@@ -240,11 +229,27 @@ body > .underlay > header {
       flex: 1;
       display: flex;
       flex-flow: column nowrap;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-start;
+      justify-content: flex-start;
+      align-self: stretch;
+
+      a.search {
+        display: none;
+      }
+      .search-widget {
+        margin-top: 2em;
+
+        // TODO: Refactor to avoid duplication
+        // with top-menu
+        input[type=search] {
+          background-color: white;
+          border: none;
+        }
+      }
 
       > * {
         margin: .25em;
+        margin-left: 2em;
       }
       > .active {
         font-weight: bold;
@@ -277,7 +282,7 @@ body > .underlay > header {
       display: none;
       position: relative;
 
-      > :not(button) {
+      > * {
         flex: 1;
       }
       input[type=search] {
@@ -286,18 +291,6 @@ body > .underlay > header {
         font-size: inherit;
         line-height: inherit;
         border: 0;
-      }
-      > button {
-        border: 0;
-        font-size: inherit;
-        font-family: inherit;
-        position: absolute;
-        color: $primary-dark-color;
-        top: 50%;
-        background: transparent;
-        right: 1rem;
-        transform: translateY(-50%);
-        cursor: pointer;
       }
     }
     &.with-expanded-search {

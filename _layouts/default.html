@@ -11,7 +11,7 @@
   <link id="themeCSS" rel="stylesheet" href="{{ "assets/css/style.css" | relative_url }}">
   <script defer src="https://pro.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-E5SpgaZcbSJx0Iabb3Jr2AfTRiFnrdOw1mhO19DzzrT9L+wCpDyHUG2q07aQdO6E" crossorigin="anonymous"></script>
 
-  {% if site.algolia_search %}
+  {% if site.is_hub == false and site.algolia_search %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
   {% endif %}
 
@@ -39,10 +39,6 @@
         <div class="site-logo-container">
           <h1 class="site-logo"><a href="/">{% include logo.html %}</a></h1>
         </div>
-
-        <nav>
-          {% include nav-links.html %}
-        </nav>
 
         {% include social-links.html %}
       </div>
@@ -76,20 +72,27 @@
     </footer>
   </div>
 
+  {% if site.is_hub == false and site.algolia_search %}
+    <script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+
+    {% comment %}
+    This would break a strict CSP, but Jekyll refuses to Liquid-process JS files
+    without also adding HTML wrapping. Eek.
+    {% endcomment %}
+    <script>
+      window.initAlgolia = function () {
+        docsearch({ 
+          apiKey: '{{ site.algolia_search.api_key }}', 
+          indexName: '{{ site.algolia_search.index_name }}', 
+          inputSelector: 'input[type=search]', 
+          debug: false,
+        }); 
+      };
+    </script> 
+  {% endif %}
+
   <script src="{{ "assets/js/headroom.min.js" | relative_url }}"></script>
   <script src="{{ "assets/js/opf.js" | relative_url }}"></script>
 
   {% include scripts.html %}
-
-  {% if site.algolia_search %}
-    <script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
-    <script>
-      docsearch({ 
-        apiKey: '{{ site.algolia_search.api_key }}', 
-        indexName: '{{ site.algolia_search.index_name }}', 
-        inputSelector: 'header input[type=search]', 
-        debug: false,
-      }); 
-    </script> 
-  {% endif %}
 </body>
