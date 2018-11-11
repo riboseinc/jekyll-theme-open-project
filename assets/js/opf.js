@@ -158,9 +158,7 @@
 
       docsNav.classList.add('expanded');
       docsNav.style.height = 'auto';
-
       docsNav.style.bottom = '' + 100 + 'px';
-      console.debug(docsNav.style.bottom);
 
       docsNavSections.forEach(function (el) {
         el.style.opacity = '1';
