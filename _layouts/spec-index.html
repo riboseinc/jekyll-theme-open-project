@@ -2,7 +2,7 @@
 layout: default
 ---
 
-{% include index-page-item-filter.html url_tag_prefix="/specs/" items=site.all_specs tag=page.tag %}
+{% include index-page-item-filter.html url_tag_prefix="/specs/" tag_namespaces="specs" items=site.all_specs tag=page.tag %}
 
 <section class="items">
   {% if site.is_hub %}

@@ -2,7 +2,7 @@
 layout: default
 ---
 
-{% include index-page-item-filter.html url_tag_prefix="/software/" items=site.all_software tag=page.tag %}
+{% include index-page-item-filter.html url_tag_prefix="/software/" tag_namespaces="software" items=site.all_software tag=page.tag %}
 
 <section class="items">
   {% if site.is_hub %}
