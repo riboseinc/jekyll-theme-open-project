@@ -4,6 +4,9 @@
 
   var body = document.querySelector('body');
 
+  // TODO: Best way (preferably w/o Node) to split these across files 
+  // and concatenate/minify the result on Jekyll build?
+
 
 
   /* Search box in top bar */
