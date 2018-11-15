@@ -236,6 +236,14 @@ is_hub: true
 # to individual, this would make sense:
 seo:
   type: Organization
+
+tag_namespaces:
+  software:
+    namespace_id: "Human-readable namespace name"
+    # E.g.:
+    # writtenin: "Written in"
+  specs:
+    namespace_id: "Human-readable namespace name"
 ```
 
 ### Project, spec and software data
@@ -262,7 +270,9 @@ home_url: <URL to standalone project site>
 # percent-encode the tag in URLs. Replace " " (a regular space)
 # with "_" (underline); underlines will be rewritten as spaces when tags
 # are presented to site users.
-tags: [Ruby, Python, RFC]
+# Tag can be prepended with a namespace to signify the type,
+# e.g. chosen programming language or target viewer audience.
+tags: [Ruby, Python, RFC, "<some_namespace_id>:<appropriate_tag>"]
 ```
 
 ### Project index page
