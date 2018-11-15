@@ -6,7 +6,6 @@
 {% if include.tag %}
   {% if include.tag contains":" %}
     {% assign tag_namespace = include.tag | split: ":" | first %}
-    HOI
   {% else %}
     {% assign tag_namespace = "" %}
   {% endif %}
