@@ -13,49 +13,13 @@
 
 {% if num_tags > 0 %}
   <nav class="item-filter">
-    {% for namespace in site.tag_namespaces[include.tag_namespaces] %}
-      {% assign namespace_human = namespace[1] %}
-      {% assign namespace_id = namespace[0] %}
-
-      <ul class="tags">
-        <li>
-          {% if include.tag and tag_namespace == namespace_id %}
-            <a href="{{ include.url_tag_prefix }}">{{{namespace_human }}: All</a>
-          {% else %}
-            <span>{{ namespace_human }}: All</span>
-          {% endif %}
-        </li>
-
-        {% for tag in tags %}
-          {% if tag contains ":" %}
-            {% assign _namespace = tag | split: ":" | first %}
-          {% else %}
-            {% assign _namespace = "" %}
-          {% endif %}
-
-          {% if _namespace == namespace_id %}
-            <li>
-              {% assign tag_human = tag | split: ":" | last | replace: "_", " " %}
-              {% if tag == include.tag %}
-                <span>{{ tag_human }}</span>
-              {% else %}
-                <a href="{{ include.url_tag_prefix }}{{ tag }}">{{ tag_human }}</a>
-              {% endif %}
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    {% endfor %}
-
     {% comment %}Non-namespaced tags{% endcomment %}
     <ul class="tags">
-      <li>
-        {% if include.tag and tag_namespace == "" %}
+      {% if include.tag and tag_namespace == "" %}
+        <li>
           <a href="{{ include.url_tag_prefix }}">All</a>
-        {% else %}
-          <span>All</span>
-        {% endif %}
-      </li>
+        </li>
+      {% endif %}
 
       {% for tag in tags %}
         {% if tag contains ":" %}
@@ -76,5 +40,42 @@
         {% endif %}
       {% endfor %}
     </ul>
+
+    {% comment %}Namespaced tags{% endcomment %}
+    {% for namespace in site.tag_namespaces[include.tag_namespaces] %}
+      {% assign namespace_human = namespace[1] %}
+      {% assign namespace_id = namespace[0] %}
+
+      <div class="namespace">
+        <span class="namespace-title">{{ namespace_human }}: </span>
+
+        <ul class="tags">
+          {% if include.tag and tag_namespace == namespace_id %}
+            <li>
+              <a href="{{ include.url_tag_prefix }}">All</a>
+            </li>
+          {% endif %}
+
+          {% for tag in tags %}
+            {% if tag contains ":" %}
+              {% assign _namespace = tag | split: ":" | first %}
+            {% else %}
+              {% assign _namespace = "" %}
+            {% endif %}
+
+            {% if _namespace == namespace_id %}
+              <li>
+                {% assign tag_human = tag | split: ":" | last | replace: "_", " " %}
+                {% if tag == include.tag %}
+                  <span>{{ tag_human }}</span>
+                {% else %}
+                  <a href="{{ include.url_tag_prefix }}{{ tag }}">{{ tag_human }}</a>
+                {% endif %}
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
   </nav>
 {% endif %}
