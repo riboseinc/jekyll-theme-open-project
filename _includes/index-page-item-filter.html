@@ -17,7 +17,7 @@
     <ul class="tags">
       {% if include.tag and tag_namespace == "" %}
         <li>
-          <a href="{{ include.url_tag_prefix }}">All</a>
+          <a href="{{ include.url_tag_prefix }}">(show all)</a>
         </li>
       {% endif %}
 
@@ -52,7 +52,7 @@
         <ul class="tags">
           {% if include.tag and tag_namespace == namespace_id %}
             <li>
-              <a href="{{ include.url_tag_prefix }}">All</a>
+              <a href="{{ include.url_tag_prefix }}">(show all)</a>
             </li>
           {% endif %}
 

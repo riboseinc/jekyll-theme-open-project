@@ -148,18 +148,26 @@ main {
       align-self: stretch;
       text-align: left;
 
+      .namespace, ul.tags {
+        font-size: 14px;
+      }
+
       .namespace {
         display: flex;
         flex-flow: row nowrap;
+        align-items: flex-start;
         margin-top: .5em;
+
+        .namespace-title {
+          margin-right: 14px;
+        }
+
+        &.empty {
+          display: none;
+        }
 
         &:first-child {
           margin-top: 0;
-        }
-
-        .namespace-title {
-          font-size: 80%;
-          margin-right: .5em;
         }
       }
 
@@ -169,7 +177,6 @@ main {
         list-style: none;
         margin: 0;
         padding: 0;
-        font-size: 14px;
 
         > li {
           display: inline;

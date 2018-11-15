@@ -210,13 +210,22 @@ a {
         margin: 0;
         padding: 0;
 
+        white-space: nowrap;
+
+        .namespace {
+          color: lighten($main-font-color, 50%);
+          font-weight: normal;
+        }
+
         &::after {
-          content: ", ";
+          content: " • ";
+          margin: 0 4px;
           color: grey;
           font-weight: normal;
         }
         &:last-child::after {
           content: "";
+          margin: 0;
         }
 
         color: $primary-color;

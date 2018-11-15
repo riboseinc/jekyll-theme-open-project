@@ -2,8 +2,16 @@
 {% if num_tags > 0 %}
   <ul class="tags">
     {% for tag in include.tags %}
-      {% assign tag_human = tag | replace: "_", " " %}
-      <li>{{ tag_human }}</li>
+      {% if tag contains ":" %}
+        {% assign namespace_id = tag | split: ":" | first %}
+        {% assign namespace = site.tag_namespaces[include.item_type][namespace_id] %}
+        {% assign tag_human = tag | split: ":" | last | replace: "_", " " %}
+      {% else %}
+        {% assign tag_human = tag | replace: "_", " " %}
+        {% assign namespace = "" %}
+      {% endif %}
+
+      <li>{% if namespace != "" %}<span class="namespace">{{ namespace }}:</span> {% endif %}{{ tag_human }}</li>
     {% endfor %}
   </ul>
 {% endif %}

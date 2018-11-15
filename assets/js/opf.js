@@ -206,6 +206,21 @@
 
 
 
+  /* Software/spec index filter bar */
+
+  var initIndexFilter = function(filterBar) {
+    var namespaces = filterBar.querySelectorAll('.namespace');
+
+    // Mark empty namespaces
+    for (let nsEl of namespaces) {
+      if (nsEl.querySelector('ul.tags > li') === null) {
+        nsEl.classList.add('empty');
+      }
+    }
+  };
+
+
+
   // Initializing stuff
   var hamburgerMenu = initCollapsibleMenu(
     document.querySelector('header nav.top-menu'),
@@ -238,5 +253,8 @@
   if (triggerEl !== null && inputEl !== null && topMenuEl !== null) {
     initSearchWidget(topMenuEl, triggerEl, inputEl);
   }
+
+  var indexFilterEl = document.querySelector('nav.item-filter');
+  initIndexFilter(indexFilterEl);
 
 }());

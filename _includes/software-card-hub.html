@@ -34,7 +34,7 @@
   </p>
 
   <footer class="meta">
-    {% include tag-list.html tags=include.item.tags %}
+    {% include tag-list.html tags=include.item.tags item_type=include.item_type %}
 
     {% if include.item.last_update %}
       <section class="last-update">

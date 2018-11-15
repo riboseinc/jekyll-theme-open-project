@@ -271,7 +271,9 @@ home_url: <URL to standalone project site>
 # with "_" (underline); underlines will be rewritten as spaces when tags
 # are presented to site users.
 # Tag can be prepended with a namespace to signify the type,
-# e.g. chosen programming language or target viewer audience.
+# e.g. chosen programming language or target viewer audience
+# (see hub site configuration for tag namespace setup).
+# Avoid long namespace/tag combos as they can overflow item’s card widget.
 tags: [Ruby, Python, RFC, "<some_namespace_id>:<appropriate_tag>"]
 ```
 
