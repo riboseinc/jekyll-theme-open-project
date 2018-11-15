@@ -235,6 +235,8 @@
     if (el) { el.addEventListener('click', collapsibleDocsNav.toggle); }
   }
 
-  initSearchWidget(topMenuEl, triggerEl, inputEl);
+  if (triggerEl !== null && inputEl !== null && topMenuEl !== null) {
+    initSearchWidget(topMenuEl, triggerEl, inputEl);
+  }
 
 }());
