@@ -48,6 +48,7 @@ a {
 
 .index-item-grid {
   margin-top: 40px;
+  padding: 0;  // Override padding set by main section
 
   @media screen and (min-width: $bigscreen-breakpoint) {
     margin-top: 80px;
