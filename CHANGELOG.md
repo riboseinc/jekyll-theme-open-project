@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.24
+
+- Improved tag filtering experience
+
+- Added support for tag namespaces
+
+- Fixed a bug where search widget would attempt to be initialized
+  in absence of search input
+
 ## 1.1.23
 
 - Algolia search can now be easily enabled on project sites
