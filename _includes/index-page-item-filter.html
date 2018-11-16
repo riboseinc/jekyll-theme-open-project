@@ -4,7 +4,7 @@
 {% assign num_tags = tags | size %}
 
 {% if include.tag %}
-  {% if include.tag contains":" %}
+  {% if include.tag contains ":" %}
     {% assign tag_namespace = include.tag | split: ":" | first %}
   {% else %}
     {% assign tag_namespace = "" %}
@@ -15,12 +15,6 @@
   <nav class="item-filter">
     {% comment %}Non-namespaced tags{% endcomment %}
     <ul class="tags">
-      {% if include.tag and tag_namespace == "" %}
-        <li>
-          <a href="{{ include.url_tag_prefix }}">(show all)</a>
-        </li>
-      {% endif %}
-
       {% for tag in tags %}
         {% if tag contains ":" %}
           {% assign _namespace = tag | split: ":" | first %}
@@ -50,12 +44,6 @@
         <span class="namespace-title">{{ namespace_human }}: </span>
 
         <ul class="tags">
-          {% if include.tag and tag_namespace == namespace_id %}
-            <li>
-              <a href="{{ include.url_tag_prefix }}">(show all)</a>
-            </li>
-          {% endif %}
-
           {% for tag in tags %}
             {% if tag contains ":" %}
               {% assign _namespace = tag | split: ":" | first %}
@@ -78,4 +66,18 @@
       </div>
     {% endfor %}
   </nav>
+{% endif %}
+
+{% if include.tag %}
+  {% assign tag_human = include.tag | split: ":" | last | replace: "_", " " %}
+  {% if tag_namespace != "" %}
+    {% assign namespace = site.tag_namespaces[include.tag_namespaces][tag_namespace] %}
+  {% endif %}
+  <header class="filter-header">
+    <h3 class="title">
+      Showing items matching
+      <span class="tag">{% if namespace %}<span class="namespace">{{ namespace }}:</span> {% endif %}{{ tag_human }}</span>
+      <a class="show-all" href="{{ include.url_tag_prefix }}">(show all)</a>
+    </h3>
+  </header>
 {% endif %}

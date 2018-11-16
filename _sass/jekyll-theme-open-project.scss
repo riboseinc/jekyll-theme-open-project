@@ -142,8 +142,36 @@ main {
 
   .layout--spec-index > &,
   .layout--software-index > & {
+    > .filter-header {
+      // Shown when a tag is selected.
+      background-color: #fafafa;
+      font-size: 80%;
+      box-shadow: 0 4px 40px -14px rgba(0, 0, 0, 0.4);
+      border-radius: .5em;
+      margin-top: -.5em;
+
+      .title {
+        font-weight: normal;
+        text-align: center;
+
+        .tag {
+          white-space: nowrap;
+          font-weight: bold;
+
+          .namespace {
+            font-weight: normal;
+          }
+
+          &:before { content: "“"; font-weight: normal; }
+          &:after { content: "”"; font-weight: normal; }
+        }
+        a.show-all {
+          white-space: nowrap;
+        }
+      }
+    }
     > .item-filter {
-      padding: 18px 40px;
+      padding: 18px 2em;
       background-color: #F3F3F3;
       align-self: stretch;
       text-align: left;
@@ -178,6 +206,12 @@ main {
         margin: 0;
         padding: 0;
 
+        white-space: nowrap;
+        overflow-x: scroll;
+        overflow-y: hidden;
+
+        text-overflow: ellipsis;
+
         > li {
           display: inline;
           margin: 0;
@@ -196,6 +230,10 @@ main {
           > a {
             color: grey;
           }
+        }
+
+        &.scrolled {
+          text-overflow: unset;
         }
       }
     }

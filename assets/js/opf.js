@@ -214,11 +214,26 @@
   var initIndexFilter = function(filterBar) {
     var namespaces = filterBar.querySelectorAll('.namespace');
 
+    var updateScrolledStatus = function (evt) {
+      if (!evt.target.classList) { return; }
+
+      if (evt.target.scrollLeft > 0) {
+        evt.target.classList.add('scrolled');
+      } else {
+        evt.target.classList.remove('scrolled');
+      }
+    };
+
     // Mark empty namespaces
     for (let nsEl of namespaces) {
       if (nsEl.querySelector('ul.tags > li') === null) {
         nsEl.classList.add('empty');
       }
+    }
+
+    // Update styling on tag bar on scroll
+    for (let tags of filterBar.querySelectorAll('ul.tags')) {
+      tags.addEventListener('scroll', updateScrolledStatus);
     }
   };
 
