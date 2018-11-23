@@ -14,6 +14,16 @@
   }
 }
 
+@mixin wide-container() {
+  @media screen and (min-width: $bigscreen-breakpoint) {
+    padding: 0;
+    width: $bigscreen-breakpoint - $gutter * 2;
+  }
+  @media screen and (min-width: $widescreen-breakpoint) {
+    width: $widescreen-breakpoint - $gutter * 2;
+  }
+}
+
 @mixin padded-code-snippet() {
   padding: 0 1em;
   margin: 0 .2em;

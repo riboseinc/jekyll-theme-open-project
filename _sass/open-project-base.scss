@@ -445,7 +445,8 @@ body {
 }
 body > .underlay,
 body > main,
-body > main > .underlay {
+body > main > .underlay,
+.item-filter {
   display: flex;
   flex-flow: column nowrap;
   @media screen and (min-width: $bigscreen-breakpoint) {
@@ -458,6 +459,10 @@ body > main > .underlay {
   }
 }
 
+nav.item-filter > * {
+  @include wide-container();
+}
+
 header,
 footer,
 section,
@@ -467,12 +472,6 @@ article {
   body > .underlay > &,
   body > main > &,
   body > main > .underlay > & {
-    @media screen and (min-width: $bigscreen-breakpoint) {
-      padding: 0;
-      width: $bigscreen-breakpoint - $gutter * 2;
-    }
-    @media screen and (min-width: $widescreen-breakpoint) {
-      width: $widescreen-breakpoint - $gutter * 2;
-    }
+    @include wide-container();
   }
 }
