@@ -53,7 +53,7 @@
             </p>
 
             <footer class="meta">
-              {% include tag-list.html tags=item.tags %}
+              {% include tag-list.html tags=item.tags item_type="software" %}
 
               {% if item.last_update %}
                 <section class="last-update">
@@ -104,7 +104,7 @@
           </p>
 
           <footer class="meta">
-            {% include tag-list.html tags=item.tags %}
+            {% include tag-list.html tags=item.tags item_type="specs" %}
 
             {% if item.last_update %}
               <section class="last-update">
