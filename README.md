@@ -275,6 +275,15 @@ home_url: <URL to standalone project site>
 # (see hub site configuration for tag namespace setup).
 # Avoid long namespace/tag combos as they can overflow item’s card widget.
 tags: [Ruby, Python, RFC, "<some_namespace_id>:<appropriate_tag>"]
+
+# NOTE: Must match corresponding hub site’s configuration entry.
+tag_namespaces:
+  software:
+    namespace_id: "Human-readable namespace name"
+    # E.g.:
+    # writtenin: "Written in"
+  specs:
+    namespace_id: "Human-readable namespace name"
 ```
 
 ### Project index page
