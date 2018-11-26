@@ -32,7 +32,7 @@
         {% include item-external-links.html item_type=include.item_type item_data=item_data %}
       </section>
 
-    {% elsif num_nav_sections > 0 %}
+    {% elsif num_nav_sections > 0 and include.item_type == 'software' %}
       <header class="sidebar-header">
         <h3 class="title">
           Documentation
