@@ -244,45 +244,6 @@
     padding-top: 50px;
     background: transparent;
 
-    &.top-expandable {
-      border-bottom: 1px solid silver;
-      z-index: 4;
-
-      position: fixed;
-      left: 0;
-      right: 0;
-
-      padding-top: 0;
-      padding-left: 2em;
-      padding-right: 2em;
-
-      transition:
-        background 200ms cubic-bezier(0.23, 1, 0.32, 1),
-        transform 200ms linear;
-
-      overflow: hidden;
-
-      .sidebar-header {
-        background: white;
-        cursor: pointer;
-        padding-top: 10px;
-        padding-bottom: 10px;
-      }
-
-      &.expanded {
-        box-shadow: 0px -10px 30px 0 rgba(black, 0.8);
-        z-index: 6;
-        overflow-y: scroll;
-        background: white;
-        border-bottom: none;
-      }
-    }
-
-    &.pinned {
-      z-index: 4;
-      transform: translateY(0);
-    }
-
     > .sidebar-header, > section {
       margin-bottom: 15px;
     }
@@ -504,6 +465,64 @@
             padding-top: 70px;
           }
         }
+      }
+    }
+  }
+
+  &.with-expandable-toc {
+    // Is enabled by a script.
+
+    position: relative;
+
+    > article {
+      border-left-width: 0;
+      padding-top: 2em;
+
+      > header, > .body {
+        margin-left: 0;
+      }
+    }
+
+    > .docs-nav {
+      z-index: 4;
+
+      &.top-expandable {
+        border-bottom: 1px solid silver;
+        z-index: 4;
+
+        position: fixed;
+        left: 0;
+        right: 0;
+
+        padding-top: 0;
+        padding-left: 2em;
+        padding-right: 2em;
+
+        transition:
+          background 200ms cubic-bezier(0.23, 1, 0.32, 1),
+          transform 200ms linear;
+
+        overflow: hidden;
+
+        .sidebar-header {
+          background: white;
+          cursor: pointer;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+
+        &.expanded {
+          box-shadow: 0px -5px 20px 0 rgba(black, 0.4);
+          z-index: 6;
+          overflow-y: scroll;
+          background: white;
+          border-bottom: none;
+        }
+      }
+
+      &.pinned {
+        z-index: 4;
+        transform: translateY(0);
       }
     }
   }
