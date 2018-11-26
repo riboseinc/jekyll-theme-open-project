@@ -48,24 +48,35 @@
             {% assign link = docs_base_url | append: item | append: "/" %}
             {% assign linked_page = include.items | where_exp: "item", "item.url contains link" | first %}
 
-            {% if page.url != link and linked_page %}
-              <li class="item">
-                <a href="{{ link | relative_url }}">
-                  {{ linked_page.title }}
-                </a>
-            {% else %}
-              {% if page.url == link %}
+            {% if item.title %}
+              {% assign item_title = item.title %}
+            {% elsif item.ignore_missing != true %}
+              {% assign item_title = linked_page.title %}
+            {% endif %}
+
+            {% if linked_page or item.ignore_missing %}
+              {% if page.url != link %}
+                <li class="item">
+                  <a href="{{ link | relative_url }}">
+                    {{ item_title }}
+                  </a>
+              {% else %}
                 <li class="item selected">
                   <span>
-                    {{ linked_page.title }}
-                  </span>
-              {% else %}
-                <li class="item">
-                  <span class="tbd">
-                    {{ item }}
+                    {{ item_title }}
                   </span>
               {% endif %}
+            {% else %}
+              <li class="item">
+                <span class="tbd">
+                  {% if item.title %}
+                    {{ item.title }}
+                  {% else %}
+                    {{ item }}
+                  {% endif %}
+                </span>
             {% endif %}
+
             {% assign link = "" %}
           {% endfor %}
         </ul>
