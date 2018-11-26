@@ -10,7 +10,7 @@
 }
 
 body.with-headroom {
-  &.layout--product {
+  &.layout--product, &.layout--spec {
     .underlay.header {
       position: fixed;
       top: 0;
