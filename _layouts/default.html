@@ -15,6 +15,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
   {% endif %}
 
+  {% if page.extra_stylesheets %}
+    {% for ss in page.extra_stylesheets %}
+      <link rel="stylesheet" href="{{ ss.href }}" integrity="{{ ss.integrity }}" crossorigin="{{ ss.crossorigin }}">
+    {% endfor %}
+  {% endif %}
+
+  {% if page.extra_scripts %}
+    {% for sc in page.extra_scripts %}
+      <script src="{{ sc.src }}" integrity="{{ sc.integrity }}" crossorigin="{{ sc.crossorigin }}"></script>
+    {% endfor %}
+  {% endif %}
+
   {% seo %}
 </head>
 
