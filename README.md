@@ -468,9 +468,9 @@ source_url: https://example.com/spec-source-markup
 # Required.
 ```
 
-### Documentation for specs and software
+### Documentation for software, and specification contents
 
-Documentation contents for software should be kept in software
+**Software docs** should be kept in software
 package’s own repository, under a directory such as `docs/`.
 Inside that directory, place a file called `navigation.md` containing
 only frontmatter, in format like this:
@@ -486,12 +486,37 @@ sections:
     - basic
 ```
 
-In the same directory, place the required document pages—in this case, overview.md,
-installation.md, and basic.md. Each document page is required to contain
+In the same directory, place the required document pages—in this case, `overview.md`,
+`installation.md`, and `basic.md`. Each document page is required to contain
 standard YAML frontmatter with at least `title` specified.
 
-During project site build, Jekyll will pull docs for software products
-that are hosted under that project site.
+For **specification contents** to be built, provide configuration
+and navigation in YAML frontmatter of corresponding `_specs/<specname>.adoc` file,
+following this example:
+
+```yaml
+spec_source:
+  git_repo_url: https://github.com/<user>/<repo>
+  git_repo_subtree: images
+  build:
+    engine: png_diagrams
+
+navigation:
+  sections:
+  - name: Model diagrams
+    items:
+    - title: "CSAND Normal Document"
+      path: "Csand_NormalDocument"
+      description: ""
+      ignore_missing: yes
+```
+
+For now, only the `png_diagrams` engine is supported, with Metanorma-based
+project build engine to come.
+
+During project site build, Jekyll pulls software docs or spec contents
+that are hosted under that project site. For spec contents, Jekyll runs
+a build, if specified.
 
 ### Symbol
 

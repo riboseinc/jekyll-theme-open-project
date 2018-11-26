@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.1.25
+
+- Added support for displaying specification contents as part of
+  project sites. In this first iteration, only PNG diagrams
+  as in Metanorma model specs are supported
+
+- Added support for new simpler way of configuring software/spec navigation
+  through document frontmatter, rather than a separate `navigation.adoc` file
+  (the latter approach is to be deprecated)
+
+- Fixed an issue where featured software cards on project site landing
+  would not display namespaced tags correctly
+
+- Layout improvements & fixes
+
 ## 1.1.24
 
 - Improved tag filtering experience
