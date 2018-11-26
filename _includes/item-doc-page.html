@@ -45,7 +45,16 @@
         <h4 class="section-title">{{ section.name }}</h4>
         <ul class="section-items">
           {% for item in section.items %}
-            {% assign link = docs_base_url | append: item | append: "/" %}
+            {% if item.path %}
+              {% comment %}Spec contents{% endcomment %}
+              {% assign item_path = item.path %}
+              {% assign link = product_base_url | append: item_path | append: "/" %}
+            {% else %}
+              {% comment %}Software docs{% endcomment %}
+              {% assign item_path = item %}
+              {% assign link = docs_base_url | append: item_path | append: "/" %}
+            {% endif %}
+
             {% assign linked_page = include.items | where_exp: "item", "item.url contains link" | first %}
 
             {% if item.title %}
