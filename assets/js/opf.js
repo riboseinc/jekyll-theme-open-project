@@ -247,13 +247,13 @@
 
   var collapsibleHeader;
 
-  if (document.querySelector('body.layout--product .documentation:not(.docs-landing)') != null) {
+  if (document.querySelector('body.layout--product .documentation:not(.docs-landing), body.layout--spec .documentation:not(.docs-landing)') != null) {
     collapsibleHeader = initCollapsibleHeader(
       document.querySelector('.underlay.header'),
       hamburgerMenu);
   }
 
-  var docsRoot = body.querySelector('body.layout--product .documentation:not(.docs-landing)');
+  var docsRoot = body.querySelector('body.layout--product .documentation:not(.docs-landing), body.layout--spec .documentation:not(.docs-landing)');
   var collapsibleDocsNav;
 
   if (docsRoot !== null) {
