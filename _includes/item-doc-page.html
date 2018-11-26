@@ -5,7 +5,7 @@
   {% assign is_docs_landing = false %}
 {% endif %}
 
-<section class="documentation {% if is_docs_landing %}docs-landing{% endif %}">
+<section class="documentation {% if is_docs_landing %}docs-landing{% endif %} {{ include.item_type }}">
   {% assign docs_base_url = product_base_url | append: "docs/" %} 
   {% assign item_docs = include.items | where_exp: "item", "item.url contains docs_base_url" %}
   {% assign nav = item_docs | where_exp: "item", "item.path contains 'docs/navigation'" | first %}
