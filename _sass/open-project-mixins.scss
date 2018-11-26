@@ -416,6 +416,12 @@
     }
   }
 
+  &.specs {
+    > article {
+      max-width: none;
+    }
+  }
+
   @media screen and (min-width: $bigscreen-breakpoint) {
     flex-flow: row nowrap;
 
