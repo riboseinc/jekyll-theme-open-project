@@ -10,6 +10,10 @@
   {% assign item_docs = include.items | where_exp: "item", "item.url contains docs_base_url" %}
   {% assign nav = item_docs | where_exp: "item", "item.path contains 'docs/navigation'" | first %}
 
+  {% if nav == nil %}
+    {% assign nav = page.navigation %}
+  {% endif %}
+
   {% assign num_nav_sections = nav.sections | size %}
 
   {% assign item_data = include.items | where_exp: "item", "item.url == product_base_url" | first %}
