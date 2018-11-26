@@ -270,6 +270,8 @@
   }
 
   var indexFilterEl = document.querySelector('nav.item-filter');
-  initIndexFilter(indexFilterEl);
+  if (indexFilterEl !== null) {
+    initIndexFilter(indexFilterEl);
+  }
 
 }());
