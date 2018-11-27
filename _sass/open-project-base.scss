@@ -132,6 +132,7 @@ a {
   background: white;
   display: block;
   position: relative;
+  overflow: hidden;
 
   &:link, &:hover, &:visited {
     color: inherit;
@@ -204,6 +205,8 @@ a {
     .tags {
       list-style: none;
       padding: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       > li {
         display: inline;
