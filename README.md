@@ -694,8 +694,7 @@ theme-generated files and directories from adding chaos to your Git staging.
 _software/*/.git
 _software/*/docs
 _software/_*_repo
-_specs/*/.git
-_specs/*/docs
+_specs/*/
 parent-hub/*
 ```
 
