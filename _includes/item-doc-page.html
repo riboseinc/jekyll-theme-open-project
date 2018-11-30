@@ -106,7 +106,7 @@
           </div>
         {% endif %}
 
-        <h1 class="text">{{ page.title }}</h1>
+        <h1 class="text">{{ page.article_header_title | default: page.title }}</h1>
       </div>
 
       {% if is_docs_landing == false and item_data.docs.git_repo_url %}
