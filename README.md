@@ -449,6 +449,31 @@ docs_url: https://docs.rs/proj/ver/…/
 # like docs.rs and rubydoc, special icon and/or label will be shown.
 ```
 
+#### Displaying software docs
+
+Inside the repository and optionally subtree specified under `docs`
+in above sample, place a file called `navigation.md` containing
+only frontmatter, following this sample:
+
+```yaml
+sections:
+- name: Introduction
+  items:
+    - overview
+    - installation
+- name: Usage
+  items:
+    - basic
+```
+
+In the same directory, place the required document pages—in this case, `overview.md`,
+`installation.md`, and `basic.md`. Each document page is required to contain
+standard YAML frontmatter with at least `title` specified.
+
+During project site build, Jekyll pulls docs for software that’s part of the
+site and builds them, converting pages from Markdown/AsciiDoc to HTML and adding
+the navigation.
+
 
 ### Specification
 
@@ -466,35 +491,10 @@ ietf_datatracker_ver: "01"
 
 source_url: https://example.com/spec-source-markup
 # Required.
-```
 
-### Documentation for software, and specification contents
 
-**Software docs** should be kept in software
-package’s own repository, under a directory such as `docs/`.
-Inside that directory, place a file called `navigation.md` containing
-only frontmatter, in format like this:
+# For displaying spec contents, see below:
 
-```yaml
-sections:
-- name: Introduction
-  items:
-    - overview
-    - installation
-- name: Usage
-  items:
-    - basic
-```
-
-In the same directory, place the required document pages—in this case, `overview.md`,
-`installation.md`, and `basic.md`. Each document page is required to contain
-standard YAML frontmatter with at least `title` specified.
-
-For **specification contents** to be built, provide configuration
-and navigation in YAML frontmatter of corresponding `_specs/<specname>.adoc` file,
-following this example:
-
-```yaml
 spec_source:
   git_repo_url: https://github.com/<user>/<repo>
   git_repo_subtree: images
@@ -511,12 +511,24 @@ navigation:
       ignore_missing: yes
 ```
 
+#### Displaying specification contents
+
+While software doc pages are currently simply generated using standard
+Jekyll means from Markdown/AsciiDoc into HTML,
+building specs is handled in a more flexible way,
+delegating the source -> Open Project site-compatible HTML conversion
+to an engine.
+
+For specs to be built, provide build config and navigation
+in the YAML frontmatter of corresponding `_specs/<specname>.adoc` file
+as described in spec YAML frontmatter sample.
+
 For now, only the `png_diagrams` engine is supported, with Metanorma-based
 project build engine to come.
 
-During project site build, Jekyll pulls software docs or spec contents
-that are hosted under that project site. For spec contents, Jekyll runs
-a build, if specified.
+During project site build, Jekyll pulls spec sources that’s part of the
+site and builds them, converting pages from source markup to HTML using
+the engine specified, and adding the navigation.
 
 ### Symbol
 
