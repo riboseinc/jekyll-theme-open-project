@@ -48,8 +48,9 @@ Provided you have
    gem "html-proofer"
    ```
 
-3. That’s it, site should build for you on next push, as long as there
-   are no issues with it (test it locally first; see README).
+3. That’s it, site should build for you on the next push lest there’re
+   issues preventing Jekyll build from succeeding
+   (test it locally first; see README).
 
 ## Option 2: Gitlab CI + AWS S3
 
