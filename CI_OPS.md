@@ -45,7 +45,7 @@ Provided you have
 
    ```
    gem "rake"
-   gem "html-proofer"
+   gem "html-proofer", "= 3.9.2"
    ```
 
 3. That’s it, site should build for you on the next push lest there’re
