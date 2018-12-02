@@ -581,7 +581,7 @@ This means when Jekyll encounters `{% include <include_name> %}`
 in a template, it looks first in `<site root>/<include_name>`,
 and then in `<theme root>/_includes/<include_name>`. Consequently,
 you put your include overrides directly in site root, **not** inside
-`_includes/` directory of your side.
+`_includes/` directory of your site.
 
 
 ## Theme layouts
