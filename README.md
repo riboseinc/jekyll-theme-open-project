@@ -707,6 +707,7 @@ _software/*/.git
 _software/*/docs
 _software/_*_repo
 _specs/*/
+!_specs/*.*
 parent-hub/*
 ```
 
