@@ -1,51 +1,22 @@
 {% assign product_base_url = page.url | split: "/" | slice: 0, 3 | join: "/" | append: "/" %}
-{% if page.url == product_base_url %}
-  {% assign is_docs_landing = true %}
-{% else %}
-  {% assign is_docs_landing = false %}
-{% endif %}
 
-<section class="documentation {% if is_docs_landing %}docs-landing{% endif %} {{ include.item_type }}">
+<section class="documentation">
   {% assign docs_base_url = product_base_url | append: "docs/" %} 
-  {% assign item_docs = include.items | where_exp: "item", "item.url contains docs_base_url" %}
-  {% assign nav = item_docs | where_exp: "item", "item.path contains 'docs/navigation'" | first %}
-
-  {% if nav == nil %}
-    {% assign nav = page.navigation || layout.navigation %}
-  {% endif %}
-
+  {% assign nav = page.navigation | default: layout.navigation %}
   {% assign num_nav_sections = nav.sections | size %}
-
-  {% assign item_data = include.items | where_exp: "item", "item.url == product_base_url" | first %}
 
   <nav class="docs-nav">
 
-    {% if is_docs_landing != true %}
-      <header class="sidebar-header">
-        {% if include.item_type == 'software' %}
-          <div class="logo-container">
-            {% include software-symbol.html item_id=page.id %}
-          </div>
-        {% endif %}
-        <h3 class="title">
-          <a href="{{ product_base_url | relative_url }}">{{ item_data.title }}</a>
-        </h3>
-        <span class="section-title">
-          &rarr;&nbsp;{{ page.title|replace: " ", "&nbsp;" }}
-        </span>
-      </header>
-
-      <section class="external-links">
-        {% include item-external-links.html item_type=include.item_type item_data=item_data %}
-      </section>
-
-    {% elsif num_nav_sections > 0 and include.item_type == 'software' %}
-      <header class="sidebar-header">
-        <h3 class="title">
-          Documentation
-        </h3>
-      </header>
-    {% endif %}
+    <header class="sidebar-header">
+      <h3 class="title">
+        <a href="javascript: void 0;">{{ include.header_main }}</a>
+      </h3>
+      {% if include.header_side %}
+      <span class="section-title">
+        &rarr;&nbsp;{{ include.header_side|replace: " ", "&nbsp;" }}
+      </span>
+      {% endif %}
+    </header>
 
     {% for section in nav.sections %}
       <section>
@@ -112,36 +83,14 @@
         <h1 class="text">{{ page.article_header_title | default: page.title }}</h1>
       </div>
 
-      {% if is_docs_landing == false and item_data.docs.git_repo_url %}
-        <nav>
-          <button class="docs-nav-toggle">Show table of contents</button>
-          <a href="{{ item_data.docs.git_repo_url }}/edit/master/docs/{{ page.path | split: "/" | last }}" class="docs-suggest-edits">Suggest edits to this page</a>
-        </nav>
-      {% endif %}
-
       <div>
         <h3 class="lead">{{ page.description }}</h3>
       </div>
-
-      {% if is_docs_landing %}
-        <div class="external-links">
-          {% include item-external-links.html item_type=include.item_type item_data=item_data %}
-        </div>
-      {% endif %}
     </header>
 
     <div class="body">
       {{ content }}
     </div>
-
-    {% if is_docs_landing == false and item_data.docs.git_repo_url %}
-    <footer>
-      <nav>
-        <button class="docs-nav-toggle">Show table of contents</button>
-        <a href="{{ item_data.docs.git_repo_url }}/edit/master/docs/{{ page.path | split: "/" | last }}" class="docs-suggest-edits">Suggest edits to this page</a>
-      </nav>
-    </footer>
-    {% endif %}
 
   </article>
 </section>

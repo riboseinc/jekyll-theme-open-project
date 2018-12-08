@@ -526,16 +526,22 @@
             display: none;
             margin-right: 10px;
           }
+          .title {
+            flex-grow: 0;
+          }
           .section-title {
             margin-left: 10px;
             margin-right: 10px;
             overflow: hidden;
             text-overflow: ellipsis;
+            flex-grow: 1;
+            transition: transform .2s ease-out;
           }
 
           &.headroom--top {
             .section-title {
-              display: none;
+              transform: translateY(-5em);
+              transition: none;
             }
           }
 

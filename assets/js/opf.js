@@ -243,13 +243,13 @@
 
   var collapsibleHeader;
 
-  if (document.querySelector('body.layout--product .documentation:not(.docs-landing), body.layout--spec .documentation:not(.docs-landing)') != null) {
+  if (document.querySelector('body.layout--docs .documentation, body.layout--product .documentation:not(.docs-landing), body.layout--spec .documentation:not(.docs-landing)') != null) {
     collapsibleHeader = initCollapsibleHeader(
       document.querySelector('.underlay.header'),
       hamburgerMenu);
   }
 
-  var docsRoot = body.querySelector('body.layout--product .documentation:not(.docs-landing), body.layout--spec .documentation:not(.docs-landing)');
+  var docsRoot = body.querySelector('body.layout--docs .documentation, body.layout--product .documentation:not(.docs-landing), body.layout--spec .documentation:not(.docs-landing)');
   var collapsibleDocsNav;
 
   if (docsRoot !== null) {
@@ -257,11 +257,17 @@
     collapsibleHeader.assignCollapsibleDocsNav(collapsibleDocsNav);
   }
 
-  var docArticleSelectorPrefix = 'body.layout--product .documentation:not(.docs-landing) > article ';
-  var docArticleHeaderNavToggle = document.querySelector(docArticleSelectorPrefix + '> header > nav > button.docs-nav-toggle');
-  var docArticleFooterNavToggle = document.querySelector(docArticleSelectorPrefix + '> footer > nav > button.docs-nav-toggle');
-  for (var el of [docArticleFooterNavToggle, docArticleHeaderNavToggle]) {
-    if (el) { el.addEventListener('click', collapsibleDocsNav.toggle); }
+  var docArticleSelectorPrefixes = [
+    'body.layout--docs .documentation > article',
+    'body.layout--spec .documentation > article',
+    'body.layout--product .documentation:not(.docs-landing) > article '];
+
+  for (var prefix of docArticleSelectorPrefixes) {
+    var docArticleHeaderNavToggle = document.querySelector(prefix + '> header > nav > button.docs-nav-toggle');
+    var docArticleFooterNavToggle = document.querySelector(prefix + '> footer > nav > button.docs-nav-toggle');
+    for (var el of [docArticleFooterNavToggle, docArticleHeaderNavToggle]) {
+      if (el) { el.addEventListener('click', collapsibleDocsNav.toggle); }
+    }
   }
 
   if (triggerEl !== null && inputEl !== null && topMenuEl !== null) {
