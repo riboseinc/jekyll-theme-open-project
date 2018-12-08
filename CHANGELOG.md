@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.1.26
+
+- Added support for project-wide documentation in the same style
+  as in software package docs
+
+- Improved documentation navigation UI
+  (now header is shown while scrolling)
+
+- Fixed issue where software/spec item cards fail to maintain width
+  depending on their contents
+
+- Fixed an issue where html-proofer gem recommended by
+  CI_OPS docs caused build failure due to breaking change in a recent version
+
 ## 1.1.25
 
 - Added support for displaying specification contents as part of
