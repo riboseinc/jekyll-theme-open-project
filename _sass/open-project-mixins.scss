@@ -517,6 +517,33 @@
           cursor: pointer;
           padding-top: 10px;
           padding-bottom: 10px;
+
+          &:after {
+            content: "▼";
+          }
+
+          .item-type {
+            display: none;
+            margin-right: 10px;
+          }
+          .section-title {
+            margin-left: 10px;
+            margin-right: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          &.headroom--top {
+            .section-title {
+              display: none;
+            }
+          }
+
+          &.unpinned {
+            .item-type, .subsection {
+              display: inline-block;
+            }
+          }
         }
 
         &.expanded {
@@ -526,11 +553,6 @@
           background: white;
           border-bottom: none;
         }
-      }
-
-      &.pinned {
-        z-index: 4;
-        transform: translateY(0);
       }
     }
   }

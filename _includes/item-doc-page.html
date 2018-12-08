@@ -22,6 +22,9 @@
 
     {% if is_docs_landing == false %}
       <header class="sidebar-header">
+        <span class="item-type">
+          {{ include.item_type }}&nbsp;&rarr; 
+        </span>
         {% if include.item_type == 'software' %}
           <div class="logo-container">
             {% include software-symbol.html item_id=page.id %}
@@ -30,6 +33,9 @@
         <h3 class="title">
           <a href="{{ product_base_url | relative_url }}">{{ item_data.title }}</a>
         </h3>
+        <span class="section-title">
+          {{ page.title|replace: " ", "&nbsp;" }}
+        </span>
       </header>
 
       <section class="external-links">

@@ -127,7 +127,6 @@
     docsNav.classList.add('top-expandable');
 
     docsNav.style.top = '' + topHeaderHeight + 'px';
-    docsNavHeader.innerHTML = docsNavHeader.innerHTML + ' ▼';
     docsNavSections.forEach(function (el) {
       el.style.transition = 'opacity .2s cubic-bezier(0.23, 1, 0.32, 1)';
     });
