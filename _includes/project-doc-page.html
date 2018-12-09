@@ -1,7 +1,6 @@
-{% assign product_base_url = page.url | split: "/" | slice: 0, 3 | join: "/" | append: "/" %}
+{% assign product_base_url = "/docs/" %}
 
-<section class="documentation">
-  {% assign docs_base_url = product_base_url | append: "docs/" %} 
+<section class="documentation {{ page.html-class }}">
   {% assign nav = page.navigation | default: layout.navigation %}
   {% assign num_nav_sections = nav.sections | size %}
 
@@ -11,6 +10,7 @@
       <h3 class="title">
         <a href="javascript: void 0;">{{ include.header_main }}</a>
       </h3>
+
       {% if include.header_side %}
       <span class="section-title">
         &rarr;&nbsp;{{ include.header_side|replace: " ", "&nbsp;" }}
@@ -23,44 +23,18 @@
         <h4 class="section-title">{{ section.name }}</h4>
         <ul class="section-items">
           {% for item in section.items %}
-            {% if item.path %}
-              {% comment %}Spec contents{% endcomment %}
-              {% assign item_path = item.path %}
-              {% assign link = product_base_url | append: item_path | append: "/" %}
-            {% else %}
-              {% comment %}Software docs{% endcomment %}
-              {% assign item_path = item %}
-              {% assign link = docs_base_url | append: item_path | append: "/" %}
-            {% endif %}
+            {% assign item_path = item.path %}
+            {% assign link = product_base_url | append: item_path %}
 
-            {% assign linked_page = include.items | where_exp: "item", "item.url contains link" | first %}
-
-            {% if item.title %}
-              {% assign item_title = item.title %}
-            {% elsif item.ignore_missing != true %}
-              {% assign item_title = linked_page.title %}
-            {% endif %}
-
-            {% if linked_page or item.ignore_missing %}
-              {% if page.url != link %}
-                <li class="item">
-                  <a href="{{ link | relative_url }}">
-                    {{ item_title }}
-                  </a>
-              {% else %}
-                <li class="item selected">
-                  <span>
-                    {{ item_title }}
-                  </span>
-              {% endif %}
-            {% else %}
+            {% if page.url != link %}
               <li class="item">
-                <span class="tbd">
-                  {% if item.title %}
-                    {{ item.title }}
-                  {% else %}
-                    {{ item }}
-                  {% endif %}
+                <a href="{{ link }}">
+                  {{ item.title }}
+                </a>
+            {% else %}
+              <li class="item selected">
+                <span>
+                  {{ item.title }}
                 </span>
             {% endif %}
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.27
+
+- Fixed broken project navigation links
+
 ## 1.1.26
 
 - Added support for project-wide documentation in the same style
