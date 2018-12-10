@@ -2,14 +2,18 @@
 {% assign num_nav_sections = nav.sections | size %}
 
 {% for item in nav.items %}
+  {% assign topmost_item = item %}
+
   {% if page.url == item.path %}
     {% assign selected_item = item %}
+    {% assign selected_section = item %}
   {% endif %}
 
   {% if item.items %}
     {% for item in item.items %}
         {% if page.url == item.path %}
           {% assign selected_item = item %}
+          {% assign selected_section = topmost_item %}
         {% endif %}
     {% endfor %}
   {% endif %}
@@ -20,7 +24,7 @@
     <header class="sidebar-header">
       <h3 class="title">
         <a href="javascript: void 0;">
-          {{ include.header_main }}: {{ selected_section.name }}
+          {{ include.header_main }}{% if selected_section %}: {{ selected_section.title }}{% endif %}
         </a>
       </h3>
 
