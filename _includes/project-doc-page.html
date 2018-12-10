@@ -1,14 +1,27 @@
-{% assign product_base_url = "/docs/" %}
+{% assign nav = page.navigation | default: layout.navigation %}
+{% assign num_nav_sections = nav.sections | size %}
+
+{% for item in nav.items %}
+  {% if page.url == item.path %}
+    {% assign selected_item = item %}
+  {% endif %}
+
+  {% if item.items %}
+    {% for item in item.items %}
+        {% if page.url == item.path %}
+          {% assign selected_item = item %}
+        {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
 
 <section class="documentation {{ page.html-class }}">
-  {% assign nav = page.navigation | default: layout.navigation %}
-  {% assign num_nav_sections = nav.sections | size %}
-
   <nav class="docs-nav">
-
     <header class="sidebar-header">
       <h3 class="title">
-        <a href="javascript: void 0;">{{ include.header_main }}</a>
+        <a href="javascript: void 0;">
+          {{ include.header_main }}: {{ selected_section.name }}
+        </a>
       </h3>
 
       {% if include.header_side %}
@@ -18,42 +31,16 @@
       {% endif %}
     </header>
 
-    {% for section in nav.sections %}
-      <section>
-        <h4 class="section-title">{{ section.name }}</h4>
-        <ul class="section-items">
-          {% for item in section.items %}
-            {% assign item_path = item.path %}
-            {% assign link = product_base_url | append: item_path %}
-
-            {% if page.url != link %}
-              <li class="item">
-                <a href="{{ link }}">
-                  {{ item.title }}
-                </a>
-            {% else %}
-              <li class="item selected">
-                <span>
-                  {{ item.title }}
-                </span>
-            {% endif %}
-
-            {% assign link = "" %}
-          {% endfor %}
-        </ul>
-      </section>
-    {% endfor %}
+    <ul class="nav-items">
+      {% for item in nav.items %}
+        {% include _nav-item.html selected_item=selected_item item=item %}
+      {% endfor %}
+    </ul>
   </nav>
 
   <article>
     <header>
       <div class="title">
-        {% if include.item_type == 'software' and page.url == product_base_url %}
-          <div class="logo-container">
-            {% include software-symbol.html item_id=page.id %}
-          </div>
-        {% endif %}
-
         <h1 class="text">{{ page.article_header_title | default: page.title }}</h1>
       </div>
 

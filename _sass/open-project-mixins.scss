@@ -274,6 +274,37 @@
       }
     }
 
+    // New style: Nav with nested items
+    > ul.nav-items {
+      @include reset-list;
+
+      li.item {
+        font-size: 15px;
+        font-weight: normal;
+        &.selected {
+          span {
+            font-weight: bold;
+            color: $primary-dark-color;
+          }
+        }
+        a { @include static-link-color(#444); }
+      }
+
+      > li.item {
+        > .item-title {
+          font-size: 20px;
+          font-weight: bold;
+          margin: 0;
+          line-height: 1.8;
+        }
+        > ul {
+          @include reset-list;
+          line-height: 2;
+        }
+      }
+    }
+
+    // Deprecated: software nav with sections & items without nesting
     > section {
       > .section-title {
         font-size: 20px;

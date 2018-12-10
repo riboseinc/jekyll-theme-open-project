@@ -1,0 +1,21 @@
+<li class="item {% if include.item == include.selected_item %}selected{% endif %}">
+  <div class="item-title">
+    {% if include.item.path == null or include.item == include.selected_item %}
+      <span>
+        {{ include.item.title }}
+      </span>
+    {% else %}
+      <a href="{{ include.item.path }}">
+        {{ include.item.title }}
+      </a>
+    {% endif %}
+  </div>
+
+  {% if include.item.items %}
+    <ul class="nav-items subitmes">
+      {% for item in include.item.items %}
+        {% include _nav-item.html item=item selected_item=include.selected_item %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</li>
