@@ -209,6 +209,15 @@
 
     &.headroom--not-top {
       background: white;
+      border-bottom: 1px solid silver;
+    }
+
+    &.headroom--top {
+      &.nav-expanded {
+        .nav-header {
+          border-bottom: 1px solid silver;
+        }
+      }
     }
 
     cursor: pointer;
@@ -219,11 +228,9 @@
       flex-flow: row nowrap;
       align-items: center;
 
-      border-bottom: 1px solid transparent;
-      border-left: 1px solid transparent;
-
       .nav-toggle-icon {
         margin-left: 1em;
+
         > .close { display: none; }
         > .open { display: block; }
       }
@@ -231,8 +238,7 @@
 
     &.nav-expanded {
       .nav-header {
-        box-shadow: black -10px 0px 70px -20px;
-        border-color: silver;
+        border-left: 1px solid silver;
       }
       .nav-header .nav-toggle-icon {
         > .open { display: none; }
