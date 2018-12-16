@@ -36,9 +36,9 @@ a {
       &.featured-item::before {
         // Reposition featured item label for grid layout
         // !important overrides .item-card which ends up with higher specificity
-        top: -1em !important;
-        left: 30px !important; // Matches corresponding item card padding
-        right: auto !important;
+        top: 0 !important;
+        left: right !important; // Matches corresponding item card padding
+        auto: auto !important;
         bottom: auto !important;
       }
     }
