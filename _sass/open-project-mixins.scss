@@ -203,7 +203,6 @@
     left: 0;
     right: 0;
     z-index: 4;
-    box-shadow: white 0 20px 30px;
 
     transition: background .1s linear, border-bottom .1s linear, transform .1s linear;
 
@@ -215,10 +214,12 @@
 
       margin-left: 10px;
       margin-right: 10px;
-      overflow: hidden;
-      text-overflow: ellipsis;
       flex-grow: 1;
       transition: transform .2s ease-out;
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+      font-weight: bold;
     }
 
     .nav-header {
@@ -271,7 +272,8 @@
     }
 
     &.headroom--not-top {
-      background: white;
+      background: rgba(white, 0.9);
+      box-shadow: rbga(white, 0.9) 0 20px 30px;
     }
 
     &.headroom--top {
