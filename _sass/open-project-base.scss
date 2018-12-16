@@ -37,7 +37,7 @@ a {
         // Reposition featured item label for grid layout
         // !important overrides .item-card which ends up with higher specificity
         top: 0 !important;
-        left: right !important; // Matches corresponding item card padding
+        left: 0 !important; // Matches corresponding item card padding
         auto: auto !important;
         bottom: auto !important;
       }
