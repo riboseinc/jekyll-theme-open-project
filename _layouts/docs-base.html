@@ -1,0 +1,74 @@
+---
+layout: default
+---
+
+{% assign nav = page.navigation | default: layout.navigation %}
+{% assign num_nav_sections = nav.sections | size %}
+
+{% for item in nav.items %}
+  {% assign topmost_item = item %}
+
+  {% if page.url == item.path %}
+    {% assign selected_item = item %}
+    {% assign selected_section = item %}
+  {% endif %}
+
+  {% if item.items %}
+    {% for item in item.items %}
+        {% if page.url == item.path %}
+          {% assign selected_item = item %}
+          {% assign selected_section = topmost_item %}
+        {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+
+<header class="documentation-header">
+  {% if page.title %}
+  <span class="section-title">
+    {{ page.title|replace: " ", "&nbsp;" }}
+  </span>
+  {% endif %}
+
+  <div class="nav-header">
+    <h3 class="title">
+      <a href="javascript: void 0;">
+        {{ layout.docs_title }}{% if selected_section %}: {{ selected_section.title }}{% endif %}
+      </a>
+    </h3>
+
+    <span class="nav-toggle-icon">
+      <i class="open far fa-ellipsis-v"></i>
+      <i class="close far fa-times"></i>
+    </span>
+  </div>
+</header>
+
+
+<section class="documentation {{ page.html-class }}">
+  <nav class="docs-nav">
+    <ul class="nav-items">
+      {% for item in nav.items %}
+        {% include _nav-item.html selected_item=selected_item item=item %}
+      {% endfor %}
+    </ul>
+  </nav>
+
+  <article>
+    <header>
+      <div class="title">
+        <h1 class="text">{{ page.article_header_title | default: page.title }}</h1>
+      </div>
+
+      <div>
+        <h3 class="lead">{{ page.description }}</h3>
+      </div>
+    </header>
+
+    <div class="body">
+      {{ content }}
+    </div>
+
+  </article>
+</section>

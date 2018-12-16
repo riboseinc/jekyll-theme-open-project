@@ -76,11 +76,7 @@
 
     var headroom = new Headroom(headerEl, {
       onUnpin: function() {
-        if (hamburgerMenu.hasOpened() || (collapsibleDocsMenu && collapsibleDocsMenu.hasOpened())) {
-          this.pin();
-        } else {
-          isPinned = false;
-        }
+        isPinned = false;
       },
       onPin: function() {
         isPinned = true;
@@ -109,27 +105,28 @@
 
   /* Collapsible docs nav */
 
-  var initCollapsibleDocsNav = function(docsRoot, collapsibleHeader) {
+  var initCollapsibleDocsNav = function(mainRoot, collapsibleHeader) {
+    var docsRoot = mainRoot.querySelector('section.documentation');
     var article = docsRoot.querySelector('article');
-    var articleHeader = article.querySelector('header:first-child');
+    var articleHeader = docsRoot.querySelector('header:first-child');
     var docsNav = docsRoot.querySelector('.docs-nav');
-    var docsNavHeader = docsNav.querySelector('.sidebar-header');
-    var docsNavHeaderLink = docsNavHeader.querySelector('a');
-    var docsNavHeaderH = docsNavHeader.offsetHeight + 20; // 20px is padding, below
-    var docsNavH = docsNav.offsetHeight;
-    var docsNavSections = docsNav.querySelectorAll('section');
+    var docsNavItemsContainer = docsNav.querySelector('.nav-items');
 
-    // Used to offset expandable documentation menu from the topmost edge of viewport
+    var docsHeader = mainRoot.querySelector('header.documentation-header');
+    var docsHeaderLink = docsHeader.querySelector('a');
+    var docsHeaderH = docsHeader.offsetHeight - 1;   // 1px to compensate for border
+
+
+    // Used to offset things from the topmost edge of viewport
     // to account for top header height
     var topHeaderHeight = collapsibleHeader.getHeaderHeight();
 
     docsRoot.classList.add('with-expandable-toc');
     docsNav.classList.add('top-expandable');
 
-    docsNav.style.top = '' + topHeaderHeight + 'px';
-    docsNavSections.forEach(function (el) {
-      el.style.transition = 'opacity .2s cubic-bezier(0.23, 1, 0.32, 1)';
-    });
+    docsHeader.style.top = '' + topHeaderHeight + 'px';
+
+    docsNavItemsContainer.style.top = '' + (topHeaderHeight + docsHeaderH) + 'px';
 
     // Triggering opening via header link itself
 
@@ -140,56 +137,49 @@
       hasOpened = false;
 
       docsNav.classList.remove('expanded');
-
-      docsNavSections.forEach(function (el) {
-        el.style.opacity = '0';
-      });
+      docsHeader.classList.remove('nav-expanded');
+      docsRoot.classList.add('with-collapsed-toc');
 
       closingTransition = window.setTimeout(function () {
-        docsNav.style.height = '' + docsNavHeaderH + 'px';
-        docsNav.style.bottom = 'unset';
-        docsNav.scrollTop = 0;
       }, 2);
     };
+
     var open = function (docsNav) {
       hasOpened = true;
       window.clearTimeout(closingTransition);
 
       docsNav.classList.add('expanded');
-      docsNav.style.height = 'auto';
-      docsNav.style.bottom = '' + 100 + 'px';
-
-      docsNavSections.forEach(function (el) {
-        el.style.opacity = '1';
-      });
+      docsHeader.classList.add('nav-expanded');
+      docsRoot.classList.remove('with-collapsed-toc');
     };
+
     var toggle = function () {
       if (hasOpened) { collapse(docsNav); }
       else { open(docsNav); }
     };
-    docsNavHeader.addEventListener('click', toggle);
 
-    collapse(docsNav);
+    docsHeader.addEventListener('click', toggle);
+
+    open(docsNav);
+
 
     // Hiding docs nav
 
     // TODO: Replace with moving this to the top
     // in top header’s headroom hook?
-    var headroom = new Headroom(docsNavHeader, {
+    var headroom = new Headroom(docsHeader, {
       classes: {
         pinned: 'pinned',
         unpinned: 'unpinned',
       },
       onUnpin: function () {
-        if (hasOpened) {
-          this.pin();
-        } else {
-          docsNav.style.transform = 'translateY(-' + topHeaderHeight + 'px)';
-        }
+        docsHeader.style.transform = 'translateY(-' + topHeaderHeight + 'px)';
+        docsNavItemsContainer.style.top = '' + (docsHeaderH) + 'px';
       },
       onPin: function () {
-        docsNav.style.top = '' + topHeaderHeight + 'px';
-        docsNav.style.transform = 'translateY(0)';
+        docsHeader.style.top = '' + topHeaderHeight + 'px';
+        docsHeader.style.transform = 'translateY(0)';
+        docsNavItemsContainer.style.top = '' + (topHeaderHeight + docsHeaderH) + 'px';
       },
     });
 
@@ -243,13 +233,13 @@
 
   var collapsibleHeader;
 
-  if (document.querySelector('body.layout--docs .documentation, body.layout--product .documentation:not(.docs-landing), body.layout--spec .documentation:not(.docs-landing)') != null) {
+  if (document.querySelector('body.docs-page > main') != null) {
     collapsibleHeader = initCollapsibleHeader(
       document.querySelector('.underlay.header'),
       hamburgerMenu);
   }
 
-  var docsRoot = body.querySelector('body.layout--docs .documentation, body.layout--product .documentation:not(.docs-landing), body.layout--spec .documentation:not(.docs-landing)');
+  var docsRoot = body.querySelector('body.docs-page > main');
   var collapsibleDocsNav;
 
   if (docsRoot !== null) {
@@ -257,10 +247,7 @@
     collapsibleHeader.assignCollapsibleDocsNav(collapsibleDocsNav);
   }
 
-  var docArticleSelectorPrefixes = [
-    'body.layout--docs .documentation > article',
-    'body.layout--spec .documentation > article',
-    'body.layout--product .documentation:not(.docs-landing) > article '];
+  var docArticleSelectorPrefixes = ['body.docs-page .documentation > article'];
 
   for (var prefix of docArticleSelectorPrefixes) {
     var docArticleHeaderNavToggle = document.querySelector(prefix + '> header > nav > button.docs-nav-toggle');

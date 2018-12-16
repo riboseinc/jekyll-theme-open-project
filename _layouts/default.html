@@ -32,6 +32,7 @@
 
 {% assign num_projects = site.projects | size %}
 <body class="
+    {{ page.html-class }} {{ layout.html-class }}
     {% if num_projects > 0 %}site--hub{% else %}site--project{% endif %}
     {% if page.layout %}layout--{{ page.layout }}{% endif %}">
   <div class="underlay header">

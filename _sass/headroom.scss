@@ -1,6 +1,6 @@
 .headroom {
     will-change: transform;
-    transition: transform 200ms linear;
+    transition: transform .1s linear;
 }
 .headroom--pinned {
     transform: translateY(0%);
@@ -10,7 +10,7 @@
 }
 
 body.with-headroom {
-  &.layout--docs, &.layout--product, &.layout--spec {
+  &.docs-page {
     .underlay.header {
       position: fixed;
       top: 0;

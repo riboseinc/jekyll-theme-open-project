@@ -665,11 +665,7 @@ main {
   &.layout--spec > main > article {
     @extend .main-article;
   }
-  &.layout--spec > main,
-  &.layout--product > main,
-  &.layout--docs > main {
-    > .documentation:only-child {
-      @include docs-page($primary-dark-color);
-    }
+  &.docs-page > main {
+    @include docs-page($primary-dark-color);
   }
 }

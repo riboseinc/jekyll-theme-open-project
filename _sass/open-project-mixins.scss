@@ -188,140 +188,143 @@
 }
 
 @mixin docs-page($primary-dark-color) {
-  $side-margin: 16px;  // for external links
-
-  flex: 1;
-  display: flex;
-  flex-flow: column nowrap;
-
-  .external-links {
-    margin-left: -$side-margin;
-
-    ul.section-items {
-      @include reset-list();
-    }
-
-    > .section-items > .item {
-      margin-bottom: 10px;
-      margin-right: -$side-margin;
-
-      > a {
-        @include static-link-color(#444);
-        background-color: #F7F7F7;
-
-        display: block;
-        font-weight: bold;
-        padding: 4px $side-margin 4px $side-margin;
-        border-radius: 10px;
-
-        display: flex;
-        flex-flow: row nowrap;
-
-        .lbl {
-          flex: 1;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          overflow: hidden;
-        }
-        .ico {
-          flex-shrink: 0;
-          text-align: right;
-          width: 32px;
-          padding-right: 10px;
-        }
-        .ico-ext {
-          flex-shrink: 0;
-          text-align: right;
-          width: 32px;
-          padding-left: 10px;
-          padding-right: 10px;
-        }
-      }
-    }
+  > header.documentation-header,
+  > section.documentation {
+    align-self: stretch;
+    width: auto;
   }
 
-  > .docs-nav {
-    padding-top: 50px;
-    background: transparent;
+  > header.documentation-header {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 0 0 0 2em;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    box-shadow: white 0 20px 30px;
 
-    > .sidebar-header, > section {
-      margin-bottom: 15px;
+    transition: background .1s linear, border-bottom .1s linear, transform .1s linear;
+
+    &.headroom--not-top {
+      background: white;
     }
 
-    > .sidebar-header {
+    cursor: pointer;
+
+    .nav-header {
+      padding: 10px 2em 10px 2em;
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
 
-      .title {
-        flex: 1;
-        white-space: nowrap;
-        line-height: 1;
-        font-weight: normal;
-        font-size: 15px;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
+      border-bottom: 1px solid transparent;
+      border-left: 1px solid transparent;
 
-        a { @include static-link-color(#444); }
-      }
-      .logo-container {
-        margin-right: 10px;
-
-        .logo > :only-child {
-          width: 32px;
-          height: 32px;
-        }
+      .nav-toggle-icon {
+        margin-left: 1em;
+        > .close { display: none; }
+        > .open { display: block; }
       }
     }
 
-    // New style: Nav with nested items
-    > ul.nav-items {
-      @include reset-list;
-
-      li.item {
-        font-size: 15px;
-        font-weight: normal;
-        &.selected {
-          span {
-            font-weight: bold;
-            color: $primary-dark-color;
-          }
-        }
-        a { @include static-link-color(#444); }
+    &.nav-expanded {
+      .nav-header {
+        box-shadow: black -10px 0px 70px -20px;
+        border-color: silver;
       }
-
-      > li.item {
-        > .item-title {
-          font-size: 20px;
-          font-weight: bold;
-          margin: 0;
-          line-height: 1.8;
-        }
-        > ul {
-          @include reset-list;
-          line-height: 2;
-        }
+      .nav-header .nav-toggle-icon {
+        > .open { display: none; }
+        > .close { display: block; }
       }
     }
 
-    // Deprecated: software nav with sections & items without nesting
-    > section {
-      > .section-title {
-        font-size: 20px;
-        font-weight: bold;
-        margin: 0;
-        line-height: 1.8;
+    .title {
+      white-space: nowrap;
+      line-height: 1;
+      font-weight: normal;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+
+      a { @include static-link-color(#444); }
+    }
+
+    .logo-container {
+      margin-right: 10px;
+
+      .logo > :only-child {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    .item-type {
+      display: none;
+      margin-right: 10px;
+    }
+
+    .section-title {
+      flex: 1;
+      flex-grow: 0;
+
+      margin-left: 10px;
+      margin-right: 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-grow: 1;
+      transition: transform .2s ease-out;
+    }
+
+    &.headroom--top {
+      .section-title {
+        transform: translateY(-5em);
+        transition: none;
+      }
+    }
+
+    &.unpinned {
+      .item-type, .subsection {
+        display: inline-block;
+      }
+    }
+  }
+
+  > section.documentation {
+    $external-links-side-margin: 16px;  // for external links
+
+    flex: 1;
+    display: flex;
+    flex-flow: column nowrap;
+
+    .docs-nav {
+      background: transparent;
+      flex-basis: 10%;
+
+      > section {
+        margin-bottom: 15px;
       }
 
-      > .section-items {
+      // New style: Nav with nested items
+      > ul.nav-items {
         @include reset-list;
 
-        line-height: 2;
+        position: fixed;
+        overflow-y: auto;
+        bottom: 0;
+        right: 0;
+        transition: top .1s linear;
 
-        > .item {
+        padding: 0 2em;
+        z-index: 5;
+        background: white;
+        box-shadow: black -24px 10px 50px -40px;
+        border-left: 1px solid silver;
+
+        li.item {
           font-size: 15px;
           font-weight: normal;
-
           &.selected {
             span {
               font-weight: bold;
@@ -330,266 +333,255 @@
           }
           a { @include static-link-color(#444); }
         }
-      }
-    }
-  }
 
-  > article {
-    @extend .main-article;
-    flex: 1;
-
-    background: white;
-    z-index: 1;
-
-    > header > nav,
-    > footer > nav {
-      line-height: 1;
-
-      button, a {
-        border: 0;
-        padding: 0;
-        margin-right: 1em;
-
-        font-family: inherit;
-        font-size: 80%;
-        font-weight: bold;
-
-        background: white;
-        color: $primary-dark-color;
-        cursor: pointer;
-
-        text-decoration: none;
-
-        &:last-child {
-          margin-right: 0;
-        }
-
-        .ico-ext {
-          margin-left: .5em;
-        }
-      }
-    }
-
-    > header > nav {
-      margin-top: -2em;
-      margin-bottom: 4em;
-    }
-
-    > footer > nav {
-      margin-top: 2em;
-      @media screen and (min-width: $bigscreen-breakpoint) {
-        margin-left: 2em;
-      }
-    }
-
-    > header {
-      > .title {
-        @media screen and (min-width: $bigscreen-breakpoint) {
-          display: flex;
-          flex-flow: row nowrap;
-        }
-
-        border-bottom: 2px solid $primary-dark-color;
-        padding-top: 70px;
-        padding-bottom: 20px;
-
-        > .logo-container {
-          margin-right: 22px;
-
-          > :only-child {
-            width: 58px;
-            height: 58px;
+        > li.item {
+          > .item-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+            line-height: 1.8;
+          }
+          > ul {
+            @include reset-list;
+            line-height: 2;
           }
         }
+      }
 
-        .text {
-          flex: 1;
-          font-size: 36px;
+      > section.external-links {
+        margin-left: -$external-links-side-margin;
 
-          margin: 0;
-          font-weight: 500;
+        ul.section-items {
+          @include reset-list();
+        }
+
+        > .section-items > .item {
+          margin-bottom: 10px;
+          margin-right: -$external-links-side-margin;
+
+          > a {
+            @include static-link-color(#444);
+            background-color: #F7F7F7;
+
+            display: block;
+            font-weight: bold;
+            padding: 4px $external-links-side-margin 4px $external-links-side-margin;
+            border-radius: 10px;
+
+            display: flex;
+            flex-flow: row nowrap;
+
+            .lbl {
+              flex: 1;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+            }
+            .ico {
+              flex-shrink: 0;
+              text-align: right;
+              width: 32px;
+              padding-right: 10px;
+            }
+            .ico-ext {
+              flex-shrink: 0;
+              text-align: right;
+              width: 32px;
+              padding-left: 10px;
+              padding-right: 10px;
+            }
+          }
         }
       }
-      .lead {
-        font-weight: normal;
-        font-size: 20px;
-      }
-    }
-
-    > .body {
-      @include asciidoc-markup($primary-dark-color);
-    }
-  }
-
-  &.docs-landing {
-    flex-direction: column-reverse;
-
-    .external-links > .section-items > .item {
-      margin: 0 $side-margin $side-margin $side-margin;
-
-      > a {
-        @include static-link-color(#fff);
-        background-color: $primary-dark-color;
-      }
-    }
-
-    > .docs-nav {
-      padding-top: 0;
     }
 
     > article {
-      max-width: none;  // Overrides .main-article base style
+      @extend .main-article;
 
-      > header > .title {
-        border-bottom-width: 0;
-        padding-bottom: 0;
-      }
-    }
-  }
-
-  &.specs {
-    > article {
-      max-width: none;
-    }
-  }
-
-  @media screen and (min-width: $bigscreen-breakpoint) {
-    flex-flow: row nowrap;
-
-    > .docs-nav {
+      margin: 0 auto;
       flex: 1;
-      flex-grow: 1;
-      padding-top: 70px;
 
-      > section > .section-items {
-        padding-right: 40px;
+      background: white;
+      z-index: 1;
+
+      > header, > footer {
+        nav {
+          line-height: 1;
+
+          button, a {
+            border: 0;
+            padding: 0;
+            margin-right: 1em;
+
+            font-family: inherit;
+            font-size: 80%;
+            font-weight: bold;
+
+            background: white;
+            color: $primary-dark-color;
+            cursor: pointer;
+
+            text-decoration: none;
+
+            &:last-child {
+              margin-right: 0;
+            }
+
+            .ico-ext {
+              margin-left: .5em;
+            }
+          }
+        }
       }
-    }
 
-    > article {
-      flex: 2;
-      border-left: #F7F7F7 2px solid;
+      > header {
+        > nav {
+          margin-top: -2em;
+          margin-bottom: 4em;
+        }
+        > .title {
+          @media screen and (min-width: $bigscreen-breakpoint) {
+            display: flex;
+            flex-flow: row nowrap;
+          }
 
-      > header,
+          border-bottom: 2px solid $primary-dark-color;
+          padding-top: 70px;
+          padding-bottom: 20px;
+
+          > .logo-container {
+            margin-right: 22px;
+
+            > :only-child {
+              width: 58px;
+              height: 58px;
+            }
+          }
+
+          .text {
+            flex: 1;
+            font-size: 36px;
+
+            margin: 0;
+            font-weight: 500;
+          }
+        }
+        .lead {
+          font-weight: normal;
+          font-size: 20px;
+        }
+      }
+
       > .body {
-        margin-left: 60px;
+        @include asciidoc-markup($primary-dark-color);
+      }
+
+      > footer > nav {
+        margin-top: 2em;
+        @media screen and (min-width: $bigscreen-breakpoint) {
+          margin-left: 2em;
+        }
       }
     }
 
     &.docs-landing {
+      // Front page for software package docs
+
       flex-direction: column-reverse;
 
-      > article {
-        border-left-width: 0;
+      .external-links > .section-items > .item {
+        margin: 0 $external-links-side-margin $external-links-side-margin $external-links-side-margin;
 
-        .external-links {
-          > .section-items {
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: space-between;
-
-            > * {
-              flex: 1;
-            }
-          }
-        }
-
-        > header,
-        > .body {
-          margin-left: 0;
-        }
-
-        @media screen and (min-width: $bigscreen-breakpoint) {
-          > .body {
-            padding-top: 70px;
-          }
+        > a {
+          @include static-link-color(#fff);
+          background-color: $primary-dark-color;
         }
       }
-    }
-  }
 
-  &.with-expandable-toc {
-    // Is enabled by a script.
-
-    position: relative;
-
-    > article {
-      border-left-width: 0;
-      padding-top: 2em;
-
-      > header, > .body {
-        margin-left: 0;
-      }
-    }
-
-    > .docs-nav {
-      z-index: 4;
-
-      &.top-expandable {
-        border-bottom: 1px solid silver;
-        z-index: 4;
-
-        position: fixed;
-        left: 0;
-        right: 0;
-
+      > .docs-nav {
         padding-top: 0;
-        padding-left: 2em;
-        padding-right: 2em;
+      }
 
-        transition:
-          background 200ms cubic-bezier(0.23, 1, 0.32, 1),
-          transform 200ms linear;
+      > article {
+        max-width: none;  // Overrides .main-article base style
 
-        overflow: hidden;
+        > header > .title {
+          border-bottom-width: 0;
+          padding-bottom: 0;
+        }
+      }
+    }
 
-        .sidebar-header {
-          background: white;
-          cursor: pointer;
-          padding-top: 10px;
-          padding-bottom: 10px;
+    &.specs {
+      > article {
+        max-width: none;  // Overrides .main-article base style
+      }
+    }
 
-          &:after {
-            content: "▼";
-          }
+    @media screen and (min-width: $bigscreen-breakpoint) {
+      flex-flow: row nowrap;
+      flex-direction: row-reverse;
 
-          .item-type {
-            display: none;
-            margin-right: 10px;
-          }
-          .title {
-            flex-grow: 0;
-          }
-          .section-title {
-            margin-left: 10px;
-            margin-right: 10px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            flex-grow: 1;
-            transition: transform .2s ease-out;
-          }
+      > article {
+        flex: 2;
+      }
 
-          &.headroom--top {
-            .section-title {
-              transform: translateY(-5em);
-              transition: none;
+      > .docs-nav {
+        padding: 70px 1em 0 2em;
+
+        > section > .section-items {
+          padding-left: 40px;
+        }
+      }
+
+      &.docs-landing {
+        flex-direction: column-reverse;
+
+        > article {
+          border-left-width: 0;
+
+          .external-links {
+            > .section-items {
+              display: flex;
+              flex-flow: row nowrap;
+              justify-content: space-between;
+
+              > * {
+                flex: 1;
+              }
             }
           }
 
-          &.unpinned {
-            .item-type, .subsection {
-              display: inline-block;
+          > header,
+          > .body {
+            margin-left: 0;
+          }
+
+          @media screen and (min-width: $bigscreen-breakpoint) {
+            > .body {
+              padding-top: 70px;
             }
           }
         }
+      }
 
-        &.expanded {
-          box-shadow: 0px -5px 20px 0 rgba(black, 0.4);
-          z-index: 6;
-          overflow-y: scroll;
-          background: white;
-          border-bottom: none;
+      &.with-collapsed-toc {
+        > article {
+          > header, > .body {
+            margin-right: 0;
+          }
         }
+      }
+    }
+
+    &.with-collapsed-toc {
+      position: relative;
+
+      > article {
+      }
+
+      > .docs-nav {
+        display: none;
       }
     }
   }
