@@ -32,7 +32,6 @@ a {
 
     > .item {
       margin-right: $gutter;
-      flex: 1;
 
       &.featured-item::before {
         // Reposition featured item label for grid layout
