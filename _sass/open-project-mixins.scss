@@ -197,7 +197,7 @@
   > header.documentation-header {
     display: flex;
     flex-flow: row nowrap;
-    align-items: center;
+    align-items: stretch;
     padding: 0 0 0 2em;
     position: fixed;
     left: 0;
@@ -207,69 +207,7 @@
 
     transition: background .1s linear, border-bottom .1s linear, transform .1s linear;
 
-    &.headroom--not-top {
-      background: white;
-      border-bottom: 1px solid silver;
-    }
-
-    &.headroom--top {
-      &.nav-expanded {
-        .nav-header {
-          border-bottom: 1px solid silver;
-        }
-      }
-    }
-
     cursor: pointer;
-
-    .nav-header {
-      padding: 10px 2em 10px 2em;
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-
-      .nav-toggle-icon {
-        margin-left: 1em;
-
-        > .close { display: none; }
-        > .open { display: block; }
-      }
-    }
-
-    &.nav-expanded {
-      .nav-header {
-        border-left: 1px solid silver;
-      }
-      .nav-header .nav-toggle-icon {
-        > .open { display: none; }
-        > .close { display: block; }
-      }
-    }
-
-    .title {
-      white-space: nowrap;
-      line-height: 1;
-      font-weight: normal;
-      font-size: 15px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-
-      a { @include static-link-color(#444); }
-    }
-
-    .logo-container {
-      margin-right: 10px;
-
-      .logo > :only-child {
-        width: 32px;
-        height: 32px;
-      }
-    }
-
-    .item-type {
-      display: none;
-      margin-right: 10px;
-    }
 
     .section-title {
       flex: 1;
@@ -281,6 +219,59 @@
       text-overflow: ellipsis;
       flex-grow: 1;
       transition: transform .2s ease-out;
+    }
+
+    .nav-header {
+      padding: 10px 2em 10px 2em;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+
+      .title {
+        white-space: nowrap;
+        line-height: 1;
+        font-weight: normal;
+        font-size: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+
+        a { @include static-link-color(#444); }
+      }
+
+      .logo-container {
+        margin-right: 10px;
+
+        .logo > :only-child {
+          width: 32px;
+          height: 32px;
+        }
+      }
+
+      .nav-toggle-icon {
+        margin-left: 1em;
+
+        > .close { display: none; }
+        > .open { display: block; }
+      }
+    }
+
+    &.nav-expanded {
+      .nav-header {
+        background-color: #f7f7f7;
+      }
+      .nav-header .nav-toggle-icon {
+        > .open { display: none; }
+        > .close { display: block; }
+      }
+    }
+
+    .item-type {
+      display: none;
+      margin-right: 10px;
+    }
+
+    &.headroom--not-top {
+      background: white;
     }
 
     &.headroom--top {
@@ -324,9 +315,8 @@
 
         padding: 0 2em;
         z-index: 5;
-        background: white;
-        box-shadow: black -24px 10px 50px -40px;
-        border-left: 1px solid silver;
+        background: #f7f7f7;
+        box-shadow: black -20px 0px 60px -45px;
 
         li.item {
           font-size: 15px;
