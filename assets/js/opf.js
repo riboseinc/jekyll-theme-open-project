@@ -131,7 +131,6 @@
     // Triggering opening via header link itself
 
     var hasOpened = false;
-    var closingTransition;
 
     var collapse = function (docsNav) {
       hasOpened = false;
@@ -139,14 +138,10 @@
       docsNav.classList.remove('expanded');
       docsHeader.classList.remove('nav-expanded');
       docsRoot.classList.add('with-collapsed-toc');
-
-      closingTransition = window.setTimeout(function () {
-      }, 2);
     };
 
     var open = function (docsNav) {
       hasOpened = true;
-      window.clearTimeout(closingTransition);
 
       docsNav.classList.add('expanded');
       docsHeader.classList.add('nav-expanded');
