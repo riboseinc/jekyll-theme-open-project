@@ -212,8 +212,6 @@
       flex: 1;
       flex-grow: 0;
 
-      margin-left: 10px;
-      margin-right: 10px;
       flex-grow: 1;
       transition: transform .2s ease-out;
       overflow: hidden;
@@ -227,6 +225,7 @@
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
+      transition: background .6s $easeOutCirc;
 
       .title {
         white-space: nowrap;
@@ -297,9 +296,15 @@
     display: flex;
     flex-flow: column nowrap;
 
+    overflow-x: auto; // on narrow screens, code snippets & tables may overflow width
+
     .docs-nav {
+      $navFlexShare: 20%;
+
       background: transparent;
-      flex-basis: 10%;
+      flex-basis: 20%;
+
+      transition: flex-basis .6s $easeOutCirc;
 
       > section {
         margin-bottom: 15px;
@@ -307,22 +312,31 @@
 
       // New style: Nav with nested items
       > ul.nav-items {
+        $sidePadding: 2em;
+
         @include reset-list;
 
         position: fixed;
         overflow-y: auto;
         bottom: 0;
         right: 0;
-        transition: top .1s linear;
 
-        padding: 0 2em;
+        padding: 0 $sidePadding;
+
         z-index: 5;
         background: #f7f7f7;
         box-shadow: black -20px 0px 60px -45px;
 
+        transition: transform .6s $easeOutCirc, opacity .6s $easeOutCirc, box-shadow .6s $easeOutCirc;
+
+        @media screen and (min-width: $bigscreen-breakpoint) {
+          max-width: calc(#{$navFlexShare} - #{$sidePadding});
+        }
+
         li.item {
           font-size: 15px;
           font-weight: normal;
+
           &.selected {
             span {
               font-weight: bold;
@@ -525,7 +539,7 @@
       }
 
       > .docs-nav {
-        padding: 70px 1em 0 2em;
+        padding: 70px 0 0 0;
 
         > section > .section-items {
           padding-left: 40px;
@@ -575,11 +589,13 @@
     &.with-collapsed-toc {
       position: relative;
 
-      > article {
-      }
-
       > .docs-nav {
-        display: none;
+        flex-basis: 0;
+
+        .nav-items {
+          transform: translateX(100%);
+          opacity: 0;
+        }
       }
     }
   }

@@ -1,5 +1,7 @@
 @import 'open-project-mixins';
 
+$easeOutCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
+
 body {
   font-family: $font-family;
   font-size: 15px;
