@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1
+
+A couple of bugfixes to new documentation navigation widget’s behavior.
+
 ## 1.2
 
 This update features a major update to documentation UX.
