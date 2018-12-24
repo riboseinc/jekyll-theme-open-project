@@ -461,32 +461,6 @@
       }
     }
 
-    &.docs-landing {
-      // Front page for software package docs
-
-      flex-direction: column-reverse;
-
-      .external-links > .nav-items > .item {
-        > a {
-          @include static-link-color(#fff);
-          background-color: $primary-dark-color;
-        }
-      }
-
-      > .docs-nav {
-        padding-top: 0;
-      }
-
-      > article {
-        max-width: none;  // Overrides .main-article base style
-
-        > header > .title {
-          border-bottom-width: 0;
-          padding-bottom: 0;
-        }
-      }
-    }
-
     .docs-nav,
     &.docs-landing > article > header {
       .external-links {
@@ -536,10 +510,41 @@
       }
     }
 
-    &.specs {
-      > article {
-        max-width: none;  // Overrides .main-article base style
+    &.docs-landing > article {
+      max-width: none;  // Overrides .main-article base style
+
+      > header {
+        .external-links > .nav-items > .item  > a {
+          @include static-link-color(#fff);
+          background-color: $primary-dark-color;
+        }
+
+        > .title {
+          border-bottom-width: 0;
+          padding-bottom: 0;
+        }
       }
+
+      ul.nav-items {
+        @include reset-list;
+        font-size: 15px;
+      }
+
+      > ul.nav-items > li {
+        > .item-title {
+          font-size: 20px;
+          font-weight: bold;
+          margin: 0;
+          line-height: 1.8;
+        }
+        ul {
+          line-height: 2;
+        }
+      }
+    }
+
+    &.specs > article {
+      max-width: none;  // Overrides .main-article base style
     }
 
     @media screen and (min-width: $bigscreen-breakpoint) {

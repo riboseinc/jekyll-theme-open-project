@@ -93,7 +93,6 @@
 
     {% assign nav_size = nav.items | size %}
     {% if is_docs_landing and nav_size > 0 %}
-      <h3>Documentation</h3>
       <ul class="nav-items">
         {% for item in nav.items %}
           {% include _nav-item.html item=item base_url=docs_base_url %}
