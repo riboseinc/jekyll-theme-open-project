@@ -457,11 +457,11 @@ only frontmatter, following this sample:
 
 ```yaml
 items:
-- name: Introduction
+- title: Introduction
   items:
     - { title: Overview, path: overview/ }
     - { title: Installation, path: installation/ }
-- name: Usage
+- title: Usage
   items:
     - { title: Basic, path: basic-usage/ }
 ```
