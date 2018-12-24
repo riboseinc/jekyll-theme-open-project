@@ -113,6 +113,9 @@
     var docsNavItemsContainer = docsNav.querySelector('.nav-items');
 
     var docsHeader = mainRoot.querySelector('header.documentation-header');
+
+    if (!docsHeader) { return; }  // Must be docs landing page
+
     var docsHeaderLink = docsHeader.querySelector('a');
     var docsHeaderH = docsHeader.offsetHeight - 1;   // 1px to compensate for border
 
