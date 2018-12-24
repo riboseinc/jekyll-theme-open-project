@@ -19,6 +19,8 @@ Bugfixes:
 
 - Items in a grid now are of consistent width even when last row contains fewer items
 
+- Fixed clipped “Featured” labels on software/spec cards on hub site
+
 ## 1.1.27
 
 - Fixed broken project navigation links
