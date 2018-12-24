@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.2
+
+This update features a major update to documentation UX.
+
+- Enabled project-wide documentation via `docs-base` layout (see Metanorma’s example),
+  integrated with the same navigation UX as software docs
+
+Major update to docs navigation UX:
+
+- Now an expandable side panel that can stay on screen while reading
+
+- Now reusable across other docs in addition to software docs
+
+Bugfixes:
+
+- Blog entries are now sorted by timestamp descending, as expected
+
+- Items in a grid now are of consistent width even when last row contains fewer items
+
 ## 1.1.27
 
 - Fixed broken project navigation links
