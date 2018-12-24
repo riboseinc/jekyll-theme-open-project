@@ -1,11 +1,23 @@
-<li class="item {% if include.item == include.selected_item %}selected{% endif %}">
+{% assign base_url = include.base_url | default: "" %}
+{% assign link = base_url | append: include.item.path %}
+
+{% if include.item == include.selected_item %}
+  {% assign selected = true %}
+{% elsif include.selected_item == null and page.url == link %}
+  {% assign selected = true %}
+{% else %}
+  {% assign selected = false %}
+  {% comment %} Otherwise in Liquid selected value falls through to next include instance {% endcomment %}
+{% endif %}
+
+<li class="item {% if selected %}selected{% endif %}">
   <div class="item-title">
-    {% if include.item.path == null or include.item == include.selected_item %}
+    {% if include.item.path == null or selected == true %}
       <span>
         {{ include.item.title }}
       </span>
     {% else %}
-      <a href="{{ include.item.path }}">
+      <a href="{{ link }}">
         {{ include.item.title }}
       </a>
     {% endif %}
@@ -14,7 +26,7 @@
   {% if include.item.items %}
     <ul class="nav-items subitmes">
       {% for item in include.item.items %}
-        {% include _nav-item.html item=item selected_item=include.selected_item %}
+        {% include _nav-item.html item=item base_url=include.base_url selected_item=include.selected_item %}
       {% endfor %}
     </ul>
   {% endif %}

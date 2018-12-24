@@ -214,6 +214,7 @@
 
       flex-grow: 1;
       transition: transform .2s ease-out;
+      opacity: 1;
       overflow: hidden;
 
       text-overflow: ellipsis;
@@ -239,11 +240,15 @@
       }
 
       .logo-container {
+        $logoSize: 32px;
+
         margin-right: 10px;
+        height: $logoSize;
+        width: $logoSize;
 
         .logo > :only-child {
-          width: 32px;
-          height: 32px;
+          width: $logoSize;
+          height: $logoSize;
         }
       }
 
@@ -278,7 +283,7 @@
     &.headroom--top {
       .section-title {
         transform: translateY(-5em);
-        transition: none;
+        transition: none; // To avoid flashing on initial page open
       }
     }
 
@@ -327,7 +332,13 @@
         background: #f7f7f7;
         box-shadow: black -20px 0px 60px -45px;
 
-        transition: transform .6s $easeOutCirc, opacity .6s $easeOutCirc, box-shadow .6s $easeOutCirc;
+        transition:
+          // Collapsing of header when scrolling (w/headroom):
+          top .1s linear,
+          // Toggling sidebar open/closed
+          transform .6s $easeOutCirc,
+          opacity .6s $easeOutCirc,
+          box-shadow .6s $easeOutCirc;
 
         @media screen and (min-width: $bigscreen-breakpoint) {
           max-width: calc(#{$navFlexShare} - #{$sidePadding});
@@ -356,52 +367,6 @@
           > ul {
             @include reset-list;
             line-height: 2;
-          }
-        }
-      }
-
-      > section.external-links {
-        margin-left: -$external-links-side-margin;
-
-        ul.section-items {
-          @include reset-list();
-        }
-
-        > .section-items > .item {
-          margin-bottom: 10px;
-          margin-right: -$external-links-side-margin;
-
-          > a {
-            @include static-link-color(#444);
-            background-color: #F7F7F7;
-
-            display: block;
-            font-weight: bold;
-            padding: 4px $external-links-side-margin 4px $external-links-side-margin;
-            border-radius: 10px;
-
-            display: flex;
-            flex-flow: row nowrap;
-
-            .lbl {
-              flex: 1;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              overflow: hidden;
-            }
-            .ico {
-              flex-shrink: 0;
-              text-align: right;
-              width: 32px;
-              padding-right: 10px;
-            }
-            .ico-ext {
-              flex-shrink: 0;
-              text-align: right;
-              width: 32px;
-              padding-left: 10px;
-              padding-right: 10px;
-            }
           }
         }
       }
@@ -501,9 +466,7 @@
 
       flex-direction: column-reverse;
 
-      .external-links > .section-items > .item {
-        margin: 0 $external-links-side-margin $external-links-side-margin $external-links-side-margin;
-
+      .external-links > .nav-items > .item {
         > a {
           @include static-link-color(#fff);
           background-color: $primary-dark-color;
@@ -524,6 +487,55 @@
       }
     }
 
+    .docs-nav,
+    &.docs-landing > article > header {
+      .external-links {
+        margin-left: -$external-links-side-margin;
+
+        ul.nav-items {
+          @include reset-list();
+        }
+
+        > .nav-items > .item {
+          margin-bottom: 10px;
+          margin-right: -$external-links-side-margin;
+
+          > a {
+            @include static-link-color(#444);
+            background-color: #F7F7F7;
+
+            display: block;
+            font-weight: bold;
+            padding: 4px 0 4px 0;
+            border-radius: 10px;
+
+            display: flex;
+            flex-flow: row nowrap;
+
+            .lbl {
+              flex: 1;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+            }
+            .ico {
+              flex-shrink: 0;
+              text-align: right;
+              width: 32px;
+              padding-right: 10px;
+            }
+            .ico-ext {
+              flex-shrink: 0;
+              text-align: right;
+              width: 32px;
+              padding-left: 10px;
+              padding-right: 10px;
+            }
+          }
+        }
+      }
+    }
+
     &.specs {
       > article {
         max-width: none;  // Overrides .main-article base style
@@ -540,10 +552,6 @@
 
       > .docs-nav {
         padding: 70px 0 0 0;
-
-        > section > .section-items {
-          padding-left: 40px;
-        }
       }
 
       &.docs-landing {
@@ -553,7 +561,7 @@
           border-left-width: 0;
 
           .external-links {
-            > .section-items {
+            > .nav-items {
               display: flex;
               flex-flow: row nowrap;
               justify-content: space-between;

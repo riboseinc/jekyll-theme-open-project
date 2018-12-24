@@ -456,18 +456,18 @@ in above sample, place a file called `navigation.md` containing
 only frontmatter, following this sample:
 
 ```yaml
-sections:
+items:
 - name: Introduction
   items:
-    - overview
-    - installation
+    - { title: Overview, path: overview/ }
+    - { title: Installation, path: installation/ }
 - name: Usage
   items:
-    - basic
+    - { title: Basic, path: basic-usage/ }
 ```
 
 In the same directory, place the required document pages—in this case, `overview.md`,
-`installation.md`, and `basic.md`. Each document page is required to contain
+`installation.md`, and `basic-usage.md`. Each file must contain
 standard YAML frontmatter with at least `title` specified.
 
 During project site build, Jekyll pulls docs for software that’s part of the
