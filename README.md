@@ -452,10 +452,11 @@ docs_url: https://docs.rs/proj/ver/…/
 #### Displaying software docs
 
 Inside the repository and optionally subtree specified under `docs`
-in above sample, place a file called `navigation.md` containing
+in above sample, place a file `navigation.adoc` (or `navigation.md`) containing
 only frontmatter, following this sample:
 
 ```yaml
+---
 items:
 - title: Introduction
   items:
@@ -464,6 +465,9 @@ items:
 - title: Usage
   items:
     - { title: Basic, path: basic-usage/ }
+---
+
+= Navigation
 ```
 
 In the same directory, place the required document pages—in this case, `overview.md`,
