@@ -365,12 +365,12 @@ Following data structure is used for project sites:
       - assets/
         - symbol.svg     # Required — project logo
       - _software/
-        - <name>.md
+        - <name>.adoc
         - <name>/
           - assets/
             - symbol.svg
       - _specs/
-        - <name>.md
+        - <name>.adoc
       - _pages/
         - blog.html
         - software.html  # Software index
@@ -446,7 +446,7 @@ Your main docs page goes here.
 An open project serves as an umbrella for related
 software products and/or specifications.
 
-Each product or spec is described by its own <name>.md file with frontmatter,
+Each product or spec is described by its own <name>.adoc file with frontmatter,
 placed under _software/ or _specs/ subdirectory (respectively)
 of your open project’s Jekyll site.
 
@@ -524,8 +524,8 @@ items:
 = Navigation
 ```
 
-In the same directory, place the required document pages—in this case, `overview.md`,
-`installation.md`, and `basic-usage.md`. Each file must contain
+In the same directory, place the required document pages—in this case, `overview.adoc`,
+`installation.adoc`, and `basic-usage.adoc`. Each file must contain
 standard YAML frontmatter with at least `title` specified.
 
 During project site build, Jekyll pulls docs for software that’s part of the
