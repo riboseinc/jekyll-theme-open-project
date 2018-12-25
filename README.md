@@ -371,7 +371,7 @@ Following data structure is used for project sites:
             - symbol.svg
       - _specs/
         - <name>.md
-      _ _pages/
+      - _pages/
         - blog.html
         - software.html  # Software index
         - specs.html     # Spec index
