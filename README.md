@@ -340,7 +340,7 @@ hero_include: index-page-hero.html
 
 ## Project site
 
-When project is set up as a standalone site, _config.yml should include
+For standalone sites of each of your projects, _config.yml should include
 site-wide `title` that is the same as project name.
 
 Additional items allowed/expected in _config.yml:
@@ -365,24 +365,17 @@ algolia_search:
 # Only add this if you want to use Algolia’s search on your project site.
 ```
 
-File layout is the same as described in the section
-about shared project data structure, with _software, _specs, _posts, assets
-subdirectories found in the root of your Jekyll site.
-
-
-## Describing a project: shared data structure
+## Project site file structure
 
 Each project is expected to have a machine-readable and unique name, a title,
-a description, a symbol, and one or more software products and/or specs.
+a description, a symbol, one or more software products and/or specs.
+Blog, docs, and other pages are optional.
 
-Following data structure is shared and used to describe projects,
-whether on hub home site or each individual project site:
+Following data structure is used for project sites:
 
-    - <project-name>/
-      - _posts/
-        - 2038-02-31-blog-post-title.markdown
+    - <project-name>/    # Jekyll site root containing _config.yml
       - assets/
-        - symbol.svg
+        - symbol.svg     # Required — project logo
       - _software/
         - <name>.md
         - <name>/
@@ -390,10 +383,75 @@ whether on hub home site or each individual project site:
             - symbol.svg
       - _specs/
         - <name>.md
+      _ _pages/
+        - blog.html
+        - software.html  # Software index
+        - specs.html     # Spec index
+        - docs.html
+      - docs/            # Project-wide documentation
+        - getting-started.adoc
+        - <some-page.adoc>
+      - _posts/          # Blog
+        - 2038-02-31-blog-post-title.markdown
+      - _layouts/
+        - docs.html
 
 ### Blog
 
 Author project site blog posts as described in the general site setup section.
+
+### Project docs
+
+Two kinds of docs can coexist on a given open project site:
+
+- Project-wide documentation. It’s well-suited for describing the idea behind the project,
+  the “whys”, for tutorials and similar.
+- Documentation specific to a piece of software (of which there can be more than one
+  for any given open project). This may go in detail about that piece of software,
+  and things like implementation specifics, extended installation instructions,
+  development guidelines may go here.
+
+This section is about project-wide docs, for software docs see software and specs section.
+
+The suggested convention is to create
+_pages/docs.adoc for the main documentation page, put other pages under docs/,
+and create custom layout `docs.html` that inherits from `docs-base`, specifies
+`html-class: docs-page` and provides `navigation` structure linking to all docs pages
+in a hierarchy.
+
+Example _layouts/docs.html:
+
+```
+---
+layout: docs-base
+html-class: docs-page
+docs_title: <Project name>
+navigation:
+  items:
+  - title: Introduction
+    items:
+      - title: "Overview"
+        path: /docs/
+      - title: "Get started"
+        path: /docs/getting-started/
+---
+
+{{ content }}
+```
+
+Example _pages/docs.adoc:
+
+```
+---
+layout: docs
+title: Overview
+html-class: overview
+default-nav-state: collapsed
+---
+:page-liquid:
+
+Your main docs page goes here.
+```
 
 ### Software and specs
 
