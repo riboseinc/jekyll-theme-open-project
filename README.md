@@ -16,10 +16,7 @@ to AWS S3.
 
   * [General site setup](#general-setup)
   * [Hub site setup](#hub-site)
-  * [Project site setup](#project-site)
-
-* Describing open projects:
-  [Project data structure](#describing-a-project-shared-data-structure)
+  * [Project site setup](#project-site) and describing your software and specs
 
 * Customizing site looks:
 
@@ -365,7 +362,7 @@ algolia_search:
 # Only add this if you want to use Algolia’s search on your project site.
 ```
 
-## Project site file structure
+### File structure
 
 Each project is expected to have a machine-readable and unique name, a title,
 a description, a symbol, one or more software products and/or specs.
