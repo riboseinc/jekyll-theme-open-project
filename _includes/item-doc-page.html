@@ -1,3 +1,8 @@
+{% comment %}
+This page conforms to the structure introduced by docs-base layout,
+supporting expandable navigation widget.
+{% endcomment %}
+
 {% assign product_base_url = page.url | split: "/" | slice: 0, 3 | join: "/" | append: "/" %}
 {% assign docs_base_url = product_base_url | append: "docs/" %}
 
