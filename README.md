@@ -434,7 +434,6 @@ Example _pages/docs.adoc:
 layout: docs
 title: Overview
 html-class: overview
-default-nav-state: collapsed
 ---
 :page-liquid:
 
