@@ -378,7 +378,7 @@ Following data structure is used for project sites:
         - docs.html
       - docs/            # Project-wide documentation
         - getting-started.adoc
-        - <some-page.adoc>
+        - <some-page>.adoc
       - _posts/          # Blog
         - 2038-02-31-blog-post-title.markdown
       - _layouts/
