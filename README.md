@@ -216,7 +216,7 @@ author:
 For hub-wide posts, put posts under _posts/ in site root and name files e.g.
 `2018-04-20-welcome-to-jekyll.markdown` (no change from the usual Jekyll setup).
 
-For project posts, see below about shared project data structure.
+For project posts, see below the project site section.
 
 
 ## Hub site
@@ -245,9 +245,7 @@ tag_namespaces:
 
 ### Project, spec and software data
 
-See the section about project data structure.
-
-_When used within hub site_ (only), each project subdirectory
+Each project subdirectory
 must contain a file "index.md" with frontmatter like this:
 
 ```yaml
@@ -261,26 +259,10 @@ featured: true | false
 
 site:
   git_repo_url: <Git URL to standalone project site source repo>
+
 home_url: <URL to standalone project site>
 
-# Note: Avoid whitespaces and other characters that may make Jekyll
-# percent-encode the tag in URLs. Replace " " (a regular space)
-# with "_" (underline); underlines will be rewritten as spaces when tags
-# are presented to site users.
-# Tag can be prepended with a namespace to signify the type,
-# e.g. chosen programming language or target viewer audience
-# (see hub site configuration for tag namespace setup).
-# Avoid long namespace/tag combos as they can overflow item’s card widget.
-tags: [Ruby, Python, RFC, "<some_namespace_id>:<appropriate_tag>"]
-
-# NOTE: Must match corresponding hub site’s configuration entry.
-tag_namespaces:
-  software:
-    namespace_id: "Human-readable namespace name"
-    # E.g.:
-    # writtenin: "Written in"
-  specs:
-    namespace_id: "Human-readable namespace name"
+tags: [some, tags]
 ```
 
 ### Project index page
@@ -360,6 +342,15 @@ algolia_search:
   api_key: '<your Algolia API key>'
   index_name: '<your Algolia index name>'
 # Only add this if you want to use Algolia’s search on your project site.
+
+# NOTE: Must match corresponding hub site’s configuration entry.
+tag_namespaces:
+  software:
+    namespace_id: "Human-readable namespace name"
+    # E.g.:
+    # writtenin: "Written in"
+  specs:
+    namespace_id: "Human-readable namespace name"
 ```
 
 ### File structure
@@ -473,7 +464,15 @@ description: A sentence.
 # Not necessarily shown to the user,
 # but used for HTML metadata if jekyll-seo-tag is enabled
 
-tags: [Python, Ruby]
+# Note: Avoid whitespaces and other characters that may make Jekyll
+# percent-encode the tag in URLs. Replace " " (a regular space)
+# with "_" (underline); underlines will be rewritten as spaces when tags
+# are presented to site users.
+# Tag can be prepended with a namespace to signify the type,
+# e.g. chosen programming language or target viewer audience
+# (see hub site configuration for tag namespace setup).
+# Avoid long namespace/tag combos as they can overflow item’s card widget.
+tags: [Ruby, Python, RFC, "<some_namespace_id>:<appropriate_tag>"]
 
 feature_with_priority: 1
 # With this key, software or spec will be featured on home
