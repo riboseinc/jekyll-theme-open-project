@@ -459,7 +459,7 @@ An open project serves as an umbrella for related
 software products and/or specifications.
 
 Each product or spec is described by its own <name>.md file with frontmatter,
-placed under _software/ or _specs/ subdirectory, respectively,
+placed under _software/ or _specs/ subdirectory (respectively)
 of your open project’s Jekyll site.
 
 A software product additionally is required to have a symbol in SVG format,
