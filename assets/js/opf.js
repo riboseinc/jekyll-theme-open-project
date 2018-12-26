@@ -2,6 +2,9 @@
   'use strict';
 
 
+  var bigscreenBreakpoint = 900;
+  // Conforms to CSS @media rules
+
   var body = document.querySelector('body');
 
   // TODO: Best way (preferably w/o Node) to split these across files 
@@ -158,7 +161,12 @@
 
     if (hasNav) {
       docsHeader.addEventListener('click', toggle);
-      open(docsNav);
+      var viewportW = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+      if (viewportW > bigscreenBreakpoint) {
+        open(docsNav);
+      } else {
+        collapse(docsNav);
+      }
     } else {
       collapse(docsNav);
     }
