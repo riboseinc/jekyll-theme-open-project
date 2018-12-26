@@ -115,7 +115,8 @@
 
     var docsNavItemsContainer = docsNav.querySelector('.nav-items');
     var docsHeader = mainRoot.querySelector('header.documentation-header');
-    var docsHeaderLink = docsHeader.querySelector('a');
+
+    var hasNav = docsHeader.classList.contains('has-nav');
     var docsHeaderH = docsHeader.offsetHeight - 1;   // 1px to compensate for border
 
 
@@ -155,9 +156,12 @@
       else { open(docsNav); }
     };
 
-    docsHeader.addEventListener('click', toggle);
-
-    open(docsNav);
+    if (hasNav) {
+      docsHeader.addEventListener('click', toggle);
+      open(docsNav);
+    } else {
+      collapse(docsNav);
+    }
 
 
     // Hiding docs nav

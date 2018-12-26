@@ -3,7 +3,7 @@ layout: default
 ---
 
 {% assign nav = page.navigation | default: layout.navigation %}
-{% assign num_nav_sections = nav.sections | size %}
+{% assign num_top_nav_items = nav.items | size %}
 
 {% for item in nav.items %}
   {% assign topmost_item = item %}
@@ -24,29 +24,37 @@ layout: default
 {% endfor %}
 
 
-<header class="documentation-header">
+<header class="documentation-header {% if num_top_nav_items > 0 %} has-nav {% endif %}">
   {% if page.title %}
-  <span class="section-title">
-    {{ page.title|replace: " ", "&nbsp;" }}
-  </span>
+    <span class="section-title">
+      {{ page.title|replace: " ", "&nbsp;" }}
+    </span>
   {% endif %}
 
   <div class="nav-header">
     <h3 class="title">
-      <a href="javascript: void 0;">
+      {% capture docs_nav_title %}
         {{ layout.docs_title }}{% if selected_section %}: {{ selected_section.title }}{% endif %}
-      </a>
+      {% endcapture %}
+
+      {% if num_top_nav_items > 0 %}
+        <a href="javascript: void 0;">{{ docs_nav_title }}</a>
+      {% else %}
+        <span>{{ docs_nav_title }}</span>
+      {% endif %}
     </h3>
 
-    <span class="nav-toggle-icon">
-      <i class="open far fa-ellipsis-v"></i>
-      <i class="close far fa-times"></i>
-    </span>
+    {% if num_top_nav_items > 0 %}
+      <span class="nav-toggle-icon">
+        <i class="open far fa-ellipsis-v"></i>
+        <i class="close far fa-times"></i>
+      </span>
+    {% endif %}
   </div>
 </header>
 
 
-<section class="documentation {{ page.html-class }}">
+<section class="documentation {% if num_top_nav_items > 0 %}has-nav{% endif %}">
   <nav class="docs-nav">
     <ul class="nav-items">
       {% for item in nav.items %}
