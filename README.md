@@ -653,7 +653,7 @@ Commonly used layouts are:
 - blog-index: Blog index page. Pages using this layout are recommended
   to supply hero_include.
 
-- post: Blog post
+- post: Blog post.
 
 - project-index: Open project index page (hub site only).
   Suggested to supply hero_include.
@@ -667,9 +667,9 @@ Commonly used layouts are:
   Suggested to supply hero_include.
   Will show a list of specs across projects within the hub.
 
-- product: Software product (project site only)
+- product: Software product (project site only).
 
-- spec: Open specification (project site only)
+- spec: Open specification (project site only).
 
 - default: Main layout; among other things adds `html-class` specified in frontmatter
   of last inheriting layout and the concrete page frontmatter to the `<body>` element.
