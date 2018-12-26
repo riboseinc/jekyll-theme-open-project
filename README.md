@@ -433,7 +433,9 @@ Example _pages/docs.adoc:
 ---
 layout: docs
 title: Overview
-html-class: overview
+html-class: >-
+  overview
+  # ^^ classes you can use to style the page in your custom CSS rules
 ---
 :page-liquid:
 
@@ -668,6 +670,9 @@ Commonly used layouts are:
 - product: Software product (project site only)
 
 - spec: Open specification (project site only)
+
+- default: Main layout; among other things adds `html-class` specified in frontmatter
+  of last inheriting layout and the concrete page frontmatter to the `<body>` element.
 
 ### Page frontmatter
 
