@@ -206,8 +206,6 @@
 
     transition: background .1s linear, border-bottom .1s linear, transform .1s linear;
 
-    cursor: pointer;
-
     .section-title {
       flex: 1;
       flex-grow: 0;
@@ -236,7 +234,13 @@
         text-transform: uppercase;
         letter-spacing: 0.08em;
 
-        a { @include static-link-color(#444); }
+        a {
+          @include static-link-color(#444);
+        }
+
+        .nav-toggle-icon {
+          cursor: pointer;
+        }
       }
 
       .logo-container {
