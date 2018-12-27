@@ -80,6 +80,8 @@
   font-size: 18px;
   padding: 12px 32px;
   display: inline-block;
+  margin-right: 10px;
+  transition: box-shadow .2s ease-out;
 
   .icon {
     margin-right: 10px;
@@ -89,14 +91,10 @@
     font-size: 120%;
   }
 
-  margin-right: 10px;
-
   &, &:link, &:visited {
     color: $color;
     background-color: $bgcolor;
   }
-
-  transition: box-shadow .2s ease-out;
 
   &:hover {
     box-shadow: 0 0 0 4px rgba(black, 0.2);
