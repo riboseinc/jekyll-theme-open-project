@@ -11,7 +11,7 @@
         {% assign namespace = "" %}
       {% endif %}
 
-      <li>{% if namespace != "" %}<span class="namespace">{{ namespace }}:</span> {% endif %}{{ tag_human }}</li>
+      <li title="{{ tag_human }}">{% if namespace != "" %}<span class="namespace">{{ namespace }}:</span> {% endif %}{{ tag_human }}</li>
     {% endfor %}
   </ul>
 {% endif %}
