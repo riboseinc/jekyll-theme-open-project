@@ -474,7 +474,7 @@
 
         > .nav-items > .item {
           margin-bottom: 10px;
-          margin-right: -$external-links-side-margin;
+          margin-right: 16px;
 
           > a {
             @include static-link-color(#444);
@@ -486,13 +486,16 @@
             border-radius: 10px;
 
             display: flex;
-            flex-flow: row nowrap;
+            flex-flow: row wrap;
 
             .lbl {
-              flex: 1;
               white-space: nowrap;
               text-overflow: ellipsis;
               overflow: hidden;
+            }
+            .lbl:first-child {
+              // First child means no icon present
+              margin-left: 16px;
             }
             .ico {
               flex-shrink: 0;
@@ -519,6 +522,7 @@
 
         > .nav-items > .item {
           margin-bottom: 0;
+          margin-right: -$external-links-side-margin;
         }
       }
     }
@@ -581,12 +585,7 @@
           .external-links {
             > .nav-items {
               display: flex;
-              flex-flow: row nowrap;
-              justify-content: space-between;
-
-              > * {
-                flex: 1;
-              }
+              flex-flow: row wrap;
             }
           }
 
