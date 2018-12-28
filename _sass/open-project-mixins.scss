@@ -512,6 +512,17 @@
       }
     }
 
+    .docs-nav {
+      .external-links {
+        margin-top: 1em;
+        margin-bottom: .5em;
+
+        > .nav-items > .item {
+          margin-bottom: 0;
+        }
+      }
+    }
+
     &.docs-landing > article {
       max-width: none;  // Overrides .main-article base style
 

@@ -36,7 +36,7 @@ supporting expandable navigation widget.
       {% endif %}
 
       <h3 class="title">
-        <a href="{{ product_base_url | relative_url }}">{{ item_data.title }}</a>
+        <a href="javascript: void 0;">{{ item_data.title }}</a>
       </h3>
 
       {% if num_top_nav_items > 0 %}
@@ -54,13 +54,27 @@ supporting expandable navigation widget.
   {% if is_docs_landing == false %}
     <nav class="docs-nav">
       <ul class="nav-items">
+
         <li class="item external-links">
-          {% include item-external-links.html item_type=include.item_type item_data=item_data %}
+          <ul class="nav-items">
+            <li class="item home-link" title="Documentation index">
+              <a href="{{ product_base_url | relative_url }}">
+                <span class="ico">
+                  <i class="far fa-home"></i>
+                </span>
+                <span class="lbl">
+                  Home
+                </span>
+              </a>
+            </li>
+            {% include item-external-links.html item_type=include.item_type item_data=item_data %}
+          </ul>
         </li>
 
         {% for item in nav.items %}
           {% include _nav-item.html item=item base_url=docs_base_url %}
         {% endfor %}
+
       </ul>
     </nav>
   {% endif %}
@@ -90,7 +104,9 @@ supporting expandable navigation widget.
 
       {% if is_docs_landing %}
         <div class="external-links">
-          {% include item-external-links.html item_type=include.item_type item_data=item_data %}
+          <ul class="nav-items">
+            {% include item-external-links.html item_type=include.item_type item_data=item_data %}
+          </ul>
         </div>
       {% endif %}
     </header>
