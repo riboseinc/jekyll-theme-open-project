@@ -528,8 +528,6 @@
     }
 
     &.docs-landing > article {
-      max-width: none;  // Overrides .main-article base style
-
       > header {
         .external-links > .nav-items > .item  > a {
           @include static-link-color(#fff);
@@ -558,10 +556,6 @@
           line-height: 2;
         }
       }
-    }
-
-    &.specs > article {
-      max-width: none;  // Overrides .main-article base style
     }
 
     @media screen and (min-width: $bigscreen-breakpoint) {
