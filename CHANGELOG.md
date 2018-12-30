@@ -1,5 +1,35 @@
 # Changelog
 
+## 1.2.3
+
+- In tag lists on software & spec cards, now showing full tag name in tooltip.
+  Useful for longer tag names that get clipped due to card width
+
+Continued work on documentation navigation:
+
+- Improved appearance of documentation home pages
+
+- In documentation navigation for software and specs, added an explicit link to item’s
+  documentation home and made the navigation sidebar easier to toggle directly
+  by clicking on item title
+
+- Better navigation sidebar shadow appearance on Firefox
+
+- Fixed a regression introduced by new navigation that broke specification page styling
+  and caused PNG diagram pages to not display at all
+
+- Fixed software docs not displaying properly if their source location
+  is different than docs/ subtree within the Git repository
+
+## 1.2.2
+
+Documentation navigation display improvements:
+
+- Make sure documentation pages work even if navigation structure is not specified
+
+- On narrower viewports, initialize navigation sidebar in collapsed state
+  to avoid covering the content
+
 ## 1.2.1
 
 A couple of bugfixes to new documentation navigation widget’s behavior.
