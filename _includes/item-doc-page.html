@@ -4,7 +4,6 @@ supporting expandable navigation widget.
 {% endcomment %}
 
 {% assign product_base_url = page.url | split: "/" | slice: 0, 3 | join: "/" | append: "/" %}
-{% assign docs_base_url = product_base_url | append: "docs/" %}
 
 {% if page.url == product_base_url %}
   {% assign is_docs_landing = true %}
@@ -12,14 +11,19 @@ supporting expandable navigation widget.
   {% assign is_docs_landing = false %}
 {% endif %}
 
-{% assign docs_base_url = product_base_url | append: "docs/" %} 
-{% assign item_docs = include.items | where_exp: "item", "item.url contains docs_base_url" %}
+{% assign item_docs = include.items | where_exp: "item", "item.url contains product_base_url" %}
 {% assign nav = item_docs | where_exp: "item", "item.path contains 'docs/navigation'" | first %}
+{% if nav == nil %}
+  {% assign nav = page.navigation || layout.navigation %}
+{% endif %}
+
 {% assign num_top_nav_items = nav.items | size %}
 {% assign item_data = include.items | where_exp: "item", "item.url == product_base_url" | first %}
 
-{% if nav == nil %}
-  {% assign nav = page.navigation || layout.navigation %}
+{% if item_data['docs']['git_repo_subtree'] %}
+  {% assign docs_base_url = product_base_url | append: item_data['docs']['git_repo_subtree'] | append: "/" %}
+{% else %}
+  {% assign docs_base_url = product_base_url %}
 {% endif %}
 
 {% if is_docs_landing != true %}
