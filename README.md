@@ -1,7 +1,8 @@
 # Open Project theme by Ribose
 
-Open Project is a theme for Jekyll oriented towards presenting open efforts
-such as open-source software and specifications in a navigable and elegant way.
+Open Project is a Jekyll theme (with the accompanying plugin)
+aiming to help organizations and individuals present
+open-source software and specifications in a navigable and elegant way.
 
 Open Project fits two types of sites:
 that describe one individual project, and that combine projects into sort of an open hub.
