@@ -43,6 +43,3 @@ defaults:
       type: specs
     values:
       layout: spec
-
-plugins:
-  - jekyll-seo-tag
