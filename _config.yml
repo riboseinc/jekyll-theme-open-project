@@ -15,6 +15,7 @@ exclude:
   - /_projects/**/_*_repo/*
   - /_projects/*/assets/css/*
   - /_projects/**/docs/*
+  - .sass-cache/
 
 collections:
   projects:
