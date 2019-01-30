@@ -58,7 +58,7 @@ layout: default
   <nav class="docs-nav">
     <ul class="nav-items">
       {% for item in nav.items %}
-        {% include _nav-item.html selected_item=selected_item item=item %}
+        {% include _nav-item.html selected_item=selected_item item=item base_url=nav.base_url %}
       {% endfor %}
     </ul>
   </nav>
