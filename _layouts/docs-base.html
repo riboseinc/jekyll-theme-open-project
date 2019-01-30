@@ -2,7 +2,10 @@
 layout: default
 ---
 
+{% assign title = page.title | default: layout.title %}
+{% assign prominent_title = page.article_header_title | default: layout.article_header_title %}
 {% assign nav = page.navigation | default: layout.navigation %}
+{% assign base_url = nav.base_url | default: page.base_url | default: layout.base_url %}
 {% assign num_top_nav_items = nav.items | size %}
 
 {% for item in nav.items %}
@@ -25,9 +28,9 @@ layout: default
 
 
 <header class="documentation-header {% if num_top_nav_items > 0 %} has-nav {% endif %}">
-  {% if page.title %}
+  {% if title %}
     <span class="section-title">
-      {{ page.title|replace: " ", "&nbsp;" }}
+      {{ title|replace: " ", "&nbsp;" }}
     </span>
   {% endif %}
 
@@ -58,7 +61,7 @@ layout: default
   <nav class="docs-nav">
     <ul class="nav-items">
       {% for item in nav.items %}
-        {% include _nav-item.html selected_item=selected_item item=item base_url=nav.base_url %}
+        {% include _nav-item.html selected_item=selected_item item=item base_url=base_url %}
       {% endfor %}
     </ul>
   </nav>
@@ -66,7 +69,7 @@ layout: default
   <article>
     <header>
       <div class="title">
-        <h1 class="text">{{ page.article_header_title | default: page.title }}</h1>
+        <h1 class="text">{{ prominent_title | default: title }}</h1>
       </div>
 
       <div>
