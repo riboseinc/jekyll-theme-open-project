@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.2.5
+
+- Now recognizing Facebook & LinkedIn social links (with appropriate icons)
+
+- Added more ways of specifying blog post author photo
+
+- Added support for navigation.base_url to simplify navigation configuration
+  in docs frontmatter
+
+- Added support for title / article_header_title specified on layouts,
+  in addition to concrete pages
+
+Hid external icon markers appearing on social link icons & ruining blog post
+page appearance.
+
+## 1.2.4
+
+- Enabled Algolia search on hub sites
+
+- Avoiding building spec contents on hub site build
+
 ## 1.2.3
 
 - In tag lists on software & spec cards, now showing full tag name in tooltip.
