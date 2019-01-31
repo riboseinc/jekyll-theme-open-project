@@ -292,6 +292,10 @@ main {
         top: -10px;
         margin-bottom: 14px;
 
+        .ico-ext {
+          display: none;
+        }
+
         @media screen and (min-width: $bigscreen-breakpoint) {
           // "Remove" from the flow, and offset to the left
           $height: 100px;
