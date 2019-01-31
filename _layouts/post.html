@@ -8,11 +8,7 @@ layout: default
 
     <div class="meta">
       {% if page.author.name %}
-        {% if page.author.email %}
-          <span class="author-avatar">
-            <img src="https://gravatar.com/avatar/{{ page.author.email }}?s=32">
-          </span>
-        {% endif %}
+        {% include post-author-pic.html author=page.author %}
         <span class="author-name">
           {{ page.author.name }}
         </span>

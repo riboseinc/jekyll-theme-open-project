@@ -35,11 +35,7 @@
 
   <footer class="meta">
     {% if include.post.author.name %}
-      {% if include.post.author.email %}
-        <span class="author-avatar">
-          <img src="https://gravatar.com/avatar/{{ include.post.author.email }}?s=32">
-        </span>
-      {% endif %}
+      {% include post-author-pic.html author=include.post.author %}
       <span class="author-name">
         {{ include.post.author.name }}
       </span>

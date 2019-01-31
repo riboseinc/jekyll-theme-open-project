@@ -1,0 +1,13 @@
+{% if include.author.email and include.author.use_picture != false %}
+  {% assign use_picture = include.author.use_picture | default: "gravatar" %}
+  <span class="author-avatar">
+    {% if use_picture == "gravatar" %}
+      {% assign author_pic_url = "https://gravatar.com/avatar/" | append: include.author.email | append: "?s=64" %}
+    {% elsif use_picture == "assets" %}
+      {% assign author_pic_url = "/assets/blog/authors/" | append: include.author.plaintext_email | append: ".jpg" %}
+    {% else %}
+      {% assign author_pic_url = "/assets" | append: use_picture %}
+    {% endif %}
+    <img src="{{ author_pic_url | relative_url }}">
+  </span>
+{% endif %}
