@@ -11,7 +11,8 @@
 {% endif %}
 
 <li class="item {% if selected %}selected{% endif %}">
-  <div class="item-title">
+  <div class="item-title"
+      title="{{ include.item.title }}{% if include.item.description %} ({{ include.item.description }}){% endif %}">
     {% if include.item.path == null or selected == true %}
       <span>
         {{ include.item.title }}

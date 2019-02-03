@@ -350,6 +350,12 @@
           font-size: 15px;
           font-weight: normal;
 
+          > .item-title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
           &.selected {
             span {
               font-weight: bold;
