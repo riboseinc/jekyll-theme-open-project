@@ -375,17 +375,22 @@
           > ul {
             @include reset-list;
             line-height: 2;
+          }
 
-            li ul {
+          ul.in-page-toc {
+            padding: .5em;
+            background-color: #f0f0f0;
+            border-radius: .5em;
+
+            &, ul {
               list-style: none;
-              padding-left: 1em;
-
-              &.in-page-toc {
-                li.item {
-                  font-size: 13px;
-                  line-height: 1.5;
-                }
-              }
+            }
+            ul {
+              padding: 0 0 0 1em;
+            }
+            li.item {
+              font-size: 13px;
+              line-height: 1.5;
             }
           }
         }

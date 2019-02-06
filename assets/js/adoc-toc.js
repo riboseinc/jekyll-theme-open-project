@@ -50,7 +50,6 @@
   function formatSubItems(tocItems) {
     const subItemContainer = document.createElement('ul');
 
-    subItemContainer.classList.add('in-page-toc');
     subItemContainer.classList.add('nav-items');
     subItemContainer.classList.add('subitems');
 
@@ -86,7 +85,14 @@
   if (articleBody && selectedItem) {
     const items = getAdocTocItems(articleBody);
     const ulEl = formatSubItems(items);
-    selectedItem.appendChild(ulEl);
+    ulEl.classList.add('in-page-toc');
+
+    const existingSubItems = selectedItem.querySelector('ul.nav-items');
+    if (existingSubItems) {
+      selectedItem.insertBefore(ulEl, existingSubItems);
+    } else {
+      selectedItem.appendChild(ulEl);
+    }
   }
 
 }());
