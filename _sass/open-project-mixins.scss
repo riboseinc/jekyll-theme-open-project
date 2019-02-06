@@ -375,6 +375,18 @@
           > ul {
             @include reset-list;
             line-height: 2;
+
+            li ul {
+              list-style: none;
+              padding-left: 1em;
+
+              &.in-page-toc {
+                li.item {
+                  font-size: 13px;
+                  line-height: 1.5;
+                }
+              }
+            }
           }
         }
       }
