@@ -367,7 +367,7 @@
 
         > li.item {
           > .item-title {
-            font-size: 20px;
+            font-size: 16px;
             font-weight: bold;
             margin: 0;
             line-height: 1.8;
@@ -375,6 +375,7 @@
           > ul {
             @include reset-list;
             line-height: 2;
+            margin-bottom: .5em;
           }
 
           ul.in-page-toc {
@@ -540,9 +541,6 @@
 
     .docs-nav {
       .external-links {
-        margin-top: 1em;
-        margin-bottom: .5em;
-
         > .nav-items > .item {
           margin-bottom: 0;
           margin-right: -$external-links-side-margin;
