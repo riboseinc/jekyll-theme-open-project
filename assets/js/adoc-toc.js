@@ -26,12 +26,12 @@
         return false;
       })[0];
 
-      let subItems;
+      var subItems = [];
       const sectionBody = sectionEl.querySelector('div.sectionbody');
       if (sectionBody) {
         subItems = getAdocTocItems(sectionBody, sectLvl + 1);
       } else {
-        subItems = [];
+        subItems = getAdocTocItems(sectionEl, sectLvl + 1);
       }
 
       items.push({
