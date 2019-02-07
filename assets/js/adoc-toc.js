@@ -36,6 +36,7 @@
 
       items.push({
         title: headerEl.innerText,
+        description: headerEl.innerText,
         path: `./#${headerEl.getAttribute('id')}`,
         items: subItems,
       });
@@ -64,6 +65,7 @@
 
       itemLinkEl = document.createElement('a');
       itemLinkEl.setAttribute('href', item.path);
+      itemLinkEl.setAttribute('title', item.title);
       itemLinkEl.innerText = item.title;
 
       itemTitleEl.appendChild(itemLinkEl);
