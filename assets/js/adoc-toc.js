@@ -1,13 +1,13 @@
 (function () {
 
   const HEADER_TAGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+  const IN_PAGE_NAV_HTML_CLASS = 'in-page-toc';
 
   /* Given a container of AsciiDoc .sectN elementss,
    * returns an object containing navigation structure like this:
    * { items: [ { title: "Some title", path: "./#some-title", items: [ ...subitems ] }, ... }
    * Works recursively through nested sections.
    */
-
   function getAdocTocItems(containerEl, sectLvl) {
     sectLvl = sectLvl || 1;
     var items = [];
@@ -36,16 +36,25 @@
       items.push({
         title: headerEl.innerText,
         description: headerEl.innerText,
-        id: headerId,
         path: `./#${headerId}`,
         items: subItems,
+
+        id: headerId,
       });
     }
 
     return items;
   }
 
-  function highlightAnchorHeader(headerId) {
+  function highlightSelected(headerId, itemPath) {
+    for (const itemEl of document.querySelectorAll(`.${IN_PAGE_NAV_HTML_CLASS} li`)) {
+      const link = (itemEl.firstChild || {}).firstChild;
+      if (link && link.getAttribute('href') == itemPath) {
+        itemEl.classList.add('highlighted');
+      } else {
+        itemEl.classList.remove('highlighted');
+      }
+    }
     for (const hTag of HEADER_TAGS) {
       for (const headerEl of document.querySelectorAll(hTag)) {
         headerEl.classList.remove('highlighted');
@@ -85,7 +94,7 @@
         itemEl.appendChild(formatSubItems(item.items));
       }
 
-      itemLinkEl.addEventListener('click', () => highlightAnchorHeader(item.id));
+      itemLinkEl.addEventListener('click', () => highlightSelected(item.id, item.path));
 
       subItemContainer.appendChild(itemEl);
     }
@@ -99,7 +108,7 @@
   if (articleBody && selectedItem) {
     const items = getAdocTocItems(articleBody);
     const ulEl = formatSubItems(items);
-    ulEl.classList.add('in-page-toc');
+    ulEl.classList.add(IN_PAGE_NAV_HTML_CLASS);
 
     const existingSubItems = selectedItem.querySelector('ul.nav-items');
     if (existingSubItems) {

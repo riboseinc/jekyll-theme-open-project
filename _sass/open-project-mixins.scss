@@ -406,6 +406,13 @@
             li.item {
               font-size: 13px;
               line-height: 1.5;
+
+              &.highlighted > .item-title {
+                a:link, a:visited {
+                  color: $primary-dark-color;
+                  font-weight: bold;
+                }
+              }
             }
           }
         }
