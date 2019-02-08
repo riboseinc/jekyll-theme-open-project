@@ -145,6 +145,15 @@
     padding: .3em .6em;
   }
 
+  h1, h2, h3, h4, h5, h6 {
+    &.highlighted {
+      &:before {
+        content: "→";
+        margin-right: .5em;
+      }
+    }
+  }
+
   // Used for tip block labels
   .admonitionblock {
     overflow-x: scroll;
@@ -357,6 +366,13 @@
           }
 
           &.selected {
+            margin-left: -.5em;
+
+            > .item-title {
+              padding-left: .5em;
+              background-color: #f0f0f0;
+            }
+
             span {
               font-weight: bold;
               color: $primary-dark-color;
@@ -367,8 +383,7 @@
 
         > li.item {
           > .item-title {
-            font-size: 16px;
-            font-weight: bold;
+            font-size: 20px;
             margin: 0;
             line-height: 1.8;
           }
@@ -379,9 +394,8 @@
           }
 
           ul.in-page-toc {
-            padding: .5em;
+            padding: .25em .25em .25em .75em;
             background-color: #f0f0f0;
-            border-radius: .5em;
 
             &, ul {
               list-style: none;

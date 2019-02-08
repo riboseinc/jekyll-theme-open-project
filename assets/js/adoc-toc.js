@@ -19,12 +19,11 @@
     for (let sectionEl of topLevelSections) {
       const headerEl = Array.from(sectionEl.children).filter((el) => {
         for (let hTagName of HEADER_TAGS) {
-          if (el.matches(hTagName)) {
-            return true;
-          }
+          if (el.matches(hTagName)) { return true; }
         }
         return false;
       })[0];
+      const headerId = headerEl.getAttribute('id');
 
       var subItems = [];
       const sectionBody = sectionEl.querySelector('div.sectionbody');
@@ -37,12 +36,23 @@
       items.push({
         title: headerEl.innerText,
         description: headerEl.innerText,
-        path: `./#${headerEl.getAttribute('id')}`,
+        id: headerId,
+        path: `./#${headerId}`,
         items: subItems,
       });
     }
 
     return items;
+  }
+
+  function highlightAnchorHeader(headerId) {
+    for (const hTag of HEADER_TAGS) {
+      for (const headerEl of document.querySelectorAll(hTag)) {
+        headerEl.classList.remove('highlighted');
+      }
+    }
+    const selectedHeaderEl = document.getElementById(headerId);
+    selectedHeaderEl.classList.add('highlighted');
   }
 
   /* Given a list of navigation items, returns an <ul> containing items recursively
@@ -74,6 +84,8 @@
       if (item.items.length > 0) {
         itemEl.appendChild(formatSubItems(item.items));
       }
+
+      itemLinkEl.addEventListener('click', () => highlightAnchorHeader(item.id));
 
       subItemContainer.appendChild(itemEl);
     }
