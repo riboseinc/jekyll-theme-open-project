@@ -107,14 +107,17 @@
 
   if (articleBody && selectedItem) {
     const items = getAdocTocItems(articleBody);
-    const ulEl = formatSubItems(items);
-    ulEl.classList.add(IN_PAGE_NAV_HTML_CLASS);
 
-    const existingSubItems = selectedItem.querySelector('ul.nav-items');
-    if (existingSubItems) {
-      selectedItem.insertBefore(ulEl, existingSubItems);
-    } else {
-      selectedItem.appendChild(ulEl);
+    if (items.length > 0) {
+      const ulEl = formatSubItems(items);
+      ulEl.classList.add(IN_PAGE_NAV_HTML_CLASS);
+
+      const existingSubItems = selectedItem.querySelector('ul.nav-items');
+      if (existingSubItems) {
+        selectedItem.insertBefore(ulEl, existingSubItems);
+      } else {
+        selectedItem.appendChild(ulEl);
+      }
     }
   }
 
