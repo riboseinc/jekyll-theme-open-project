@@ -328,7 +328,7 @@
 
       // New style: Nav with nested items
       > ul.nav-items {
-        $sidePadding: 2em;
+        $sidePadding: 1em;
 
         @include reset-list;
 
@@ -337,7 +337,7 @@
         bottom: 0;
         right: 0;
 
-        padding: 1em $sidePadding;
+        padding: .75em $sidePadding;
 
         z-index: 5;
         background: #f7f7f7;
@@ -366,11 +366,10 @@
           }
 
           &.selected {
-            margin-left: -.5em;
-
             > .item-title {
-              padding-left: .5em;
               background-color: #f0f0f0;
+              margin-left: -.5em;
+              padding-left: .5em;
             }
 
             span {
@@ -389,13 +388,23 @@
           }
           > ul {
             @include reset-list;
+
+            margin-left: .75em;
+            padding-left: 0;
             line-height: 2;
             margin-bottom: .5em;
           }
 
+          ul {
+            margin-left: 1.25em;
+            padding-left: 0;
+          }
+
           ul.in-page-toc {
-            padding: .25em .25em .25em .75em;
+            padding: .25em .25em .25em 1em;
             background-color: #f0f0f0;
+
+            margin-left: .75em;
 
             &, ul {
               list-style: none;
