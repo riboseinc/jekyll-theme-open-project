@@ -154,6 +154,47 @@
     }
   }
 
+  .conum {
+    color: $primary-dark-color;
+  }
+
+  .colist {
+    ol {
+      list-style: none;
+      counter-reset: item;
+      padding-left: 1.5em;
+
+      li {
+        counter-increment: item;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-start;
+
+        &:before {
+          margin-left: -1.5em;
+          flex-shrink: 0;
+          width: 1.75em;
+          height: 1.75em;
+          margin-right: .25em;
+          margin-top: -.1em;
+
+          border-radius: 100%;
+          padding: .1em;
+          line-height: 1.8;
+
+          content: counter(item);
+          font-size: 100%;
+          font-weight: bold;
+          text-align: center;
+          background-color: $primary-dark-color;
+          font-family: monospace;
+          color: white;
+          transform: scale(0.8);
+        }
+      }
+    }
+  }
+
   // Used for tip block labels
   .admonitionblock {
     overflow-x: scroll;
