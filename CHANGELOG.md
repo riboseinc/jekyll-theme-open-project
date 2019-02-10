@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3
+
+- Documentation on open project sites now adds navigation across in-page
+  header hierarchy below currently selected item in the sidebar.
+
 ## 1.2.5
 
 - Now recognizing Facebook & LinkedIn social links (with appropriate icons)
