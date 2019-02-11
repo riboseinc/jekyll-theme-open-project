@@ -474,7 +474,7 @@
       z-index: 1;
 
       > header, > footer {
-        nav {
+        [role=toolbar] {
           line-height: 1;
 
           button, a {
@@ -504,7 +504,7 @@
       }
 
       > header {
-        > nav {
+        > [role=toolbar] {
           margin-top: -2em;
           margin-bottom: 4em;
         }

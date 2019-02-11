@@ -96,7 +96,7 @@ supporting expandable navigation widget.
       </div>
 
       {% if is_docs_landing == false and item_data.docs.git_repo_url %}
-        <nav>
+        <nav role="toolbar">
           <button class="docs-nav-toggle">Toggle table of contents</button>
           <a href="{{ item_data.docs.git_repo_url }}/edit/master/docs/{{ page.path | split: "/" | last }}" class="docs-suggest-edits">Suggest edits to this page</a>
         </nav>
