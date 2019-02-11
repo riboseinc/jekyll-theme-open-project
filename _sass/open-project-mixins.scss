@@ -409,13 +409,12 @@
           &.selected {
             > .item-title {
               background-color: #f0f0f0;
-              margin-left: -.5em;
-              padding-left: .5em;
+              margin-left: -2em;
+              padding-left: 2em;
             }
 
             span {
               font-weight: bold;
-              color: $primary-dark-color;
             }
           }
           a { @include static-link-color(#444); }
@@ -428,8 +427,6 @@
             line-height: 1.8;
           }
           > ul {
-            @include reset-list;
-
             margin-left: .75em;
             padding-left: 0;
             line-height: 2;
@@ -442,10 +439,9 @@
           }
 
           ul.in-page-toc {
-            padding: .25em .25em .25em 1em;
-            background-color: #f0f0f0;
-
-            margin-left: .75em;
+            padding: .25em .25em .25em0;
+            margin-left: 0;
+            border-radius: 0 0 0 1em;
 
             &, ul {
               list-style: none;
@@ -459,7 +455,6 @@
 
               &.highlighted > .item-title {
                 a:link, a:visited {
-                  color: $primary-dark-color;
                   font-weight: bold;
                 }
               }
