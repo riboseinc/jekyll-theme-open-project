@@ -544,13 +544,6 @@
       > .body {
         @include asciidoc-markup($primary-dark-color);
       }
-
-      > footer > nav {
-        margin-top: 2em;
-        @media screen and (min-width: $bigscreen-breakpoint) {
-          margin-left: 2em;
-        }
-      }
     }
 
     .docs-nav,
