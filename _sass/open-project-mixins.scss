@@ -162,6 +162,13 @@
 
   .conum {
     color: $primary-dark-color;
+    font-family: $font-family;
+    opacity: 0.7;
+    transition: opacity .4s ease-out;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 
   .colist {
