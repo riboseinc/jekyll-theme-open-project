@@ -467,6 +467,11 @@
     > article {
       @extend .main-article;
 
+      .body {
+        font-size: 17px;
+        line-height: 1.6;
+      }
+
       margin: 0 auto;
       flex: 1;
 
