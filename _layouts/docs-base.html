@@ -75,6 +75,18 @@ layout: default
       <div>
         <h3 class="lead">{{ page.description }}</h3>
       </div>
+
+      {% if selected_item.items %}
+        <nav class="subitems">
+          <h2>Contents</h2>
+
+          <ul>
+            {% for item in selected_item.items %}
+              {% include _nav-item.html item=item base_url=base_url %}
+            {% endfor %}
+          </ul>
+        </nav>
+      {% endif %}
     </header>
 
     <div class="body">
