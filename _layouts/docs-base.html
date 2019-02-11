@@ -5,27 +5,8 @@ layout: default
 {% assign title = page.title | default: layout.title %}
 {% assign prominent_title = page.article_header_title | default: layout.article_header_title %}
 {% assign nav = page.navigation | default: layout.navigation %}
-{% assign base_url = nav.base_url | default: page.base_url | default: layout.base_url %}
+{% assign base_url = nav.base_url | default: page.base_url | default: layout.base_url | default: "" %}
 {% assign num_top_nav_items = nav.items | size %}
-
-{% for item in nav.items %}
-  {% assign topmost_item = item %}
-
-  {% if page.url == item.path %}
-    {% assign selected_item = item %}
-    {% assign selected_section = item %}
-  {% endif %}
-
-  {% if item.items %}
-    {% for item in item.items %}
-        {% if page.url == item.path %}
-          {% assign selected_item = item %}
-          {% assign selected_section = topmost_item %}
-        {% endif %}
-    {% endfor %}
-  {% endif %}
-{% endfor %}
-
 
 <header class="documentation-header {% if num_top_nav_items > 0 %} has-nav {% endif %}">
   {% if title %}
@@ -61,7 +42,7 @@ layout: default
   <nav class="docs-nav">
     <ul class="nav-items">
       {% for item in nav.items %}
-        {% include _nav-item.html selected_item=selected_item item=item base_url=base_url %}
+        {% include _nav-item.html item=item base_url=base_url %}
       {% endfor %}
     </ul>
   </nav>
