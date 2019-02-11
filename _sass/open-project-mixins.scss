@@ -204,6 +204,8 @@
   // Used for tip block labels
   .admonitionblock {
     overflow-x: scroll;
+    padding-left: .5em;
+    background-color: rgba(black, 0.03);
 
     table:first-child {
       margin-top: 0;
@@ -216,8 +218,9 @@
       vertical-align: top;
       padding-left: 0;
     }
+
     .content {
-      font-size: 80%;
+      font-size: 90%;
 
       .listingblock pre {
         font-size: 100%;
