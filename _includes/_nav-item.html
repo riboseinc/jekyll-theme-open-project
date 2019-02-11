@@ -3,8 +3,10 @@
 
 {% if include.item == include.selected_item %}
   {% assign selected = true %}
+  {% assign selected_item = include.item %}
 {% elsif include.selected_item == null and page.url == link %}
   {% assign selected = true %}
+  {% assign selected_item = include.item %}
 {% else %}
   {% assign selected = false %}
   {% comment %} Otherwise in Liquid selected value falls through to next include instance {% endcomment %}
