@@ -363,8 +363,11 @@
     $external-links-side-margin: 16px;  // for external links
 
     flex: 1;
-    display: flex;
-    flex-flow: column nowrap;
+
+    @media screen and (min-width: $bigscreen-breakpoint) {
+      display: flex;
+      flex-flow: column nowrap;
+    }
 
     overflow-x: auto; // on narrow screens, code snippets & tables may overflow width
 
