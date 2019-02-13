@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.3.1
+
+- Added “Further in this section” on project documentation pages, when
+  navigation item corresponding to the currently open page has nested items
+
+- Improved issues with page layout on narrower screens
+
+Adjusted typography in general and improved formatting of some AsciiDoc features, such as:
+
+- Source listings
+
+- Callout numbers (particularly in source listings)
+
+- Admonition blocks
+
 ## 1.3
 
 - Documentation on open project sites now adds navigation across in-page
