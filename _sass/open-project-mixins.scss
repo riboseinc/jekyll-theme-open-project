@@ -224,10 +224,17 @@
     td.icon {
       vertical-align: top;
       padding-left: 0;
+      font-size: 90%;
     }
 
     .content {
       font-size: 90%;
+
+      .title {
+        background: transparent;
+        color: $main-font-color;
+        padding-left: 0;
+      }
 
       .listingblock pre {
         font-size: 100%;
