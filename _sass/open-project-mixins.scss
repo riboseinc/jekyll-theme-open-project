@@ -140,18 +140,9 @@
 }
 
 @mixin asciidoc-markup($highlight-color) {
-  // Used for e.g. code listing headings and tip block labels
-  .title {
-    text-transform: uppercase;
-    font-size: 12px;
-    border-radius: .25em;
-    background-color: $highlight-color;
-    color: white;
-    font-weight: bold;
-    padding: .3em .6em;
-  }
 
   h1, h2, h3, h4, h5, h6 {
+    // Header highlight when in-page navigation links are used
     &.highlighted {
       &:before {
         content: "→";
@@ -160,6 +151,7 @@
     }
   }
 
+  // Callouts
   .conum {
     color: $primary-dark-color;
     font-family: $font-family;
@@ -170,7 +162,6 @@
       opacity: 1;
     }
   }
-
   .colist {
     ol {
       list-style: none;
@@ -208,7 +199,19 @@
     }
   }
 
-  // Used for tip block labels
+  // Generic title
+  // Used for e.g. code listing headings and tip block labels
+  .title {
+    text-transform: uppercase;
+    font-size: 12px;
+    border-radius: .25em;
+    background-color: $highlight-color;
+    color: white;
+    font-weight: bold;
+    padding: .3em .6em;
+  }
+
+  // Blocks
   .admonitionblock {
     overflow-x: scroll;
     padding-left: .5em;
