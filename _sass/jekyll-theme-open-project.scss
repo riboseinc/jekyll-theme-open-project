@@ -2,6 +2,9 @@ $font-family: Helvetica, Arial, sans-serif !default;
 
 $main-font-color: #000;
 
+$code-listing-background-color: rgba($main-font-color, 0.03);
+$code-listing-border-color: lighten($main-font-color, 70);
+
 $primary-color: lightblue !default;
 $primary-dark-color: navy !default;
 $accent-color: red !default;

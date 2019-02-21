@@ -27,9 +27,9 @@
 @mixin padded-code-snippet() {
   padding: 0 .75em;
   margin: 0 .2em;
-  background: rgba($main-font-color, 0.03);
+  background: $code-listing-background-color;
 
-  border: 1px dashed lighten($main-font-color, 70);
+  border: 1px dashed $code-listing-border-color;
   border-radius: .25em;
 
   font-size: 15px;
@@ -205,7 +205,7 @@
     text-transform: uppercase;
     font-size: 12px;
     border-radius: .25em;
-    background-color: $highlight-color;
+    background-color: $main-font-color;
     color: white;
     font-weight: bold;
     padding: .3em .6em;
@@ -217,6 +217,30 @@
       background-color: $accent-color;
       color: white;
     }
+  }
+
+  .listingblock {
+    display: flex;
+    flex-flow: column nowrap;
+
+    .title {
+      align-self: flex-start;
+      background-color: $code-listing-border-color;
+      color: white;
+      border-radius: 0;
+    }
+
+    .content {
+      align-self: stretch;
+
+      pre {
+        margin: 0;
+      }
+    }
+  }
+
+  .admonitionblock {
+    margin: 1em 0;
   }
 
   .admonitionblock {
@@ -235,6 +259,11 @@
       vertical-align: top;
       padding-left: 0;
       font-size: 90%;
+    }
+
+    .title {
+      background-color: $primary-dark-color;
+      color: white;
     }
 
     .content {
