@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.2
+
+A few updates to how some blocks in AsciiDoc-generated markup appear visually
+(admonition blocks, listing blocks and figure titles).
+
+This means blog posts, documentation pages and other content authored in .adoc
+will appear neater.
+
 ## 1.3.1
 
 - Added “Further in this section” on project documentation pages, when
