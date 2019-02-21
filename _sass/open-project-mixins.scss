@@ -212,6 +212,13 @@
   }
 
   // Blocks
+  .imageblock {
+    .title {
+      background-color: $accent-color;
+      color: white;
+    }
+  }
+
   .admonitionblock {
     overflow-x: scroll;
     padding-left: .5em;
