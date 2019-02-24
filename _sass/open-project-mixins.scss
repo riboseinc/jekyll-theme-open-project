@@ -218,6 +218,17 @@
     margin: 1em 0;
   }
 
+  .admonitionblock.warning {
+    td.icon .title {
+      background-color: $warning-color;
+    }
+  }
+  .admonitionblock.important {
+    td.icon .title {
+      background-color: $important-color;
+    }
+  }
+
   .imageblock {
     .title {
       background-color: $accent-color;
