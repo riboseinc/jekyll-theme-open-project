@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.3
+
+A few updates to how some blocks in AsciiDoc-generated markup appear visually,
+including marking warning and important admonition block with colour.
+
 ## 1.3.2
 
 A few updates to how some blocks in AsciiDoc-generated markup appear visually
