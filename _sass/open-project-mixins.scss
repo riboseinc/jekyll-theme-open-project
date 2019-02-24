@@ -212,6 +212,12 @@
   }
 
   // Blocks
+
+  .admonitionblock,
+  .listingblock {
+    margin: 1em 0;
+  }
+
   .imageblock {
     .title {
       background-color: $accent-color;
@@ -237,10 +243,6 @@
         margin: 0;
       }
     }
-  }
-
-  .admonitionblock {
-    margin: 1em 0;
   }
 
   .admonitionblock {

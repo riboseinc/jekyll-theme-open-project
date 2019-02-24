@@ -368,9 +368,25 @@ a {
     ul, ol {
       padding-left: 1.25em;
 
-      li > p:only-child {
-        // Keep list items visually together
-        margin: 0;
+      li {
+        margin: .25em 0;
+
+        > p:first-child {
+          margin-top: 0;
+        }
+        > p:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    dl {
+      dd {
+        table,
+        p {
+          margin-top: .5em;
+          margin-bottom: .5em;
+          font-size: 90%;
+        }
       }
     }
     blockquote {
