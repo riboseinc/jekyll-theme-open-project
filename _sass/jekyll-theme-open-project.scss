@@ -43,6 +43,9 @@ main {
   /* Generic */
 
   .layout--home > & {
+    > section {
+      z-index: 1;
+    }
     > .underlay {
       > svg {
         display: none;
@@ -73,7 +76,7 @@ main {
       }
     }
 
-    > .underlay > .featured-posts {
+    > .featured-posts {
       @extend .main-section;
 
       .items {
@@ -129,12 +132,19 @@ main {
   .layout--post > &,
   .layout--spec > &,
   .layout--project-index > &,
-  .layout--home > &,
   .docs-page > & {
     padding-bottom: 50px;
 
     @media screen and (min-width: $bigscreen-breakpoint) {
       padding-bottom: 100px;
+    }
+  }
+
+  .layout--home > & {
+    padding-bottom: 50px;
+
+    @media screen and (min-width: $bigscreen-breakpoint) {
+      padding-bottom: 0;
     }
   }
 
@@ -569,7 +579,7 @@ main {
   }
 
   &.layout--home > main > .underlay > .software,
-  &.layout--home > main > .specs,
+  &.layout--home > main > .underlay > .specs,
   &.layout--software-index > main,
   &.layout--spec-index > main {
     > .items {
@@ -629,7 +639,7 @@ main {
   }
 
   &.layout--home > main > .underlay > .software,
-  &.layout--home > main > .specs {
+  &.layout--home > main > .underlay > .specs {
     @extend .main-section;
 
     .items {
