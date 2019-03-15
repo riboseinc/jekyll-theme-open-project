@@ -269,6 +269,11 @@ main {
 
         @media screen and (min-width: $bigscreen-breakpoint) {
           box-sizing: border-box;
+          flex-basis: calc( 100%/#{$featured-cols-narrow} - #{$gutter} );
+          margin-bottom: $gutter;
+        }
+        @media screen and (min-width: $widescreen-breakpoint) {
+          box-sizing: border-box;
           flex-basis: calc( 100%/#{$featured-cols} - #{$gutter} );
           margin-bottom: $gutter;
         }
