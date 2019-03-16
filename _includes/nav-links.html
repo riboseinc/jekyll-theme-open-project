@@ -22,9 +22,14 @@
 
 {% else %}
 
-  {% if site.num_all_software > 0 %}
-    {% include nav-page-link.html url="/software/" title="Software ecosystem" active_for_nested=true %}
+  {% if site.one_software %}
+    {% include nav-page-link.html url=site.one_software.url title="Docs" active_for_nested=true %}
+  {% else %}
+    {% if site.num_all_software > 0 %}
+      {% include nav-page-link.html url="/software/" title="Software ecosystem" active_for_nested=true %}
+    {% endif %}
   {% endif %}
+
   {% if site.num_all_specs > 0 %}
     {% include nav-page-link.html url="/specs/" title="Specifications" active_for_nested=true %}
   {% endif %}
