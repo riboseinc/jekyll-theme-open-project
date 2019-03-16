@@ -1,0 +1,43 @@
+{% assign specs = site.all_specs %}
+{% assign featured_specs = site.featured_specs %}
+{% assign num_featured_specs = site.num_featured_specs %}
+{% if num_featured_specs > 0 %}
+  {% assign specs = featured_specs %}
+{% endif %}
+
+<section class="specs">
+  <h2 class="title">
+    {% if num_featured_specs >= num_specs or num_specs <= site.max_featured_specs %}
+      Open Specifications
+    {% else %}
+      Featured Specifications
+      <a class="more-link"
+        href="/specs/" title="See all {{ site.title }} specs">(see&nbsp;all)</a>
+    {% endif %}
+  </h2>
+
+  <div class="items">
+    {% for item in specs | limit: site.max_featured_specs %}
+      <a class="item" href="{{ item.url }}" role="article">
+        <header>
+          <h3 class="title">{{ item.title }}</h3>
+        </header>
+
+        <p class="body">
+          {{ item.description }}
+        </p>
+
+        <footer class="meta">
+          {% include tag-list.html tags=item.tags item_type="specs" %}
+
+          {% if item.last_update %}
+            <section class="last-update">
+              Last update: {{ item.last_update | date: "%d/%m/%Y" }}
+            </section>
+          {% endif %}
+        </footer>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+

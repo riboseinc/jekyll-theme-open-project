@@ -1,0 +1,11 @@
+{% assign posts = site.posts_combined %}
+
+<section class="featured-posts">
+  <h2 class="title">From the <a href="/blog/">Blog</a></h2>
+
+  <div class="items">
+    {% for item in posts | limit: site.max_featured_posts %}
+      {% include post-card.html post=item %}
+    {% endfor %}
+  </div>
+</section>

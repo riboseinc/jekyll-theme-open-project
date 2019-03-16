@@ -1,117 +1,25 @@
-{% assign software = site.all_software %}
-{% assign featured_software = site.featured_software %}
 {% assign num_software = site.num_all_software %}
-{% assign num_featured_software = site.num_featured_software %}
-{% if num_featured_software > 0 %}
-  {% assign software = featured_software %}
-{% endif %}
-
-{% assign specs = site.all_specs %}
-{% assign featured_specs = site.featured_specs %}
 {% assign num_specs = site.num_all_specs %}
-{% assign num_featured_specs = site.num_featured_specs %}
-{% if num_featured_specs > 0 %}
-  {% assign specs = featured_specs %}
-{% endif %}
-
-{% assign posts = site.posts_combined %}
 {% assign num_posts = site.num_posts_combined %}
 
-{% assign num_top_items = num_software + num_posts %}
+{% assign num_software_specs = num_software + num_specs %}
 
 {% if num_posts > 0 %}
-  <section class="featured-posts">
-    <h2 class="title">From the <a href="/blog/">Blog</a></h2>
-
-    <div class="items">
-      {% for item in posts | limit: site.max_featured_posts %}
-        {% include post-card.html post=item %}
-      {% endfor %}
-    </div>
-  </section>
+  {% include featured_posts.html %}
 {% endif %}
 
-<div class="underlay top-background">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-    <polygon fill="white" points="0,0 100,0 100,60 0,100"/>
-  </svg>
+{% if num_software_specs > 0 %}
+  <div class="underlay top-background">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <polygon fill="white" points="0,0 100,0 100,60 0,100"/>
+    </svg>
 
-  {% if num_software > 0 %}
-    <section class="software">
-      {% if num_featured_software >= num_software or num_software <= site.max_featured_software %}
-        <h2 class="title">Open-source Software</h2>
-      {% else %}
-        <h2 class="title">
-          Featured Software
-          <a class="more-link" href="/software/" title="See all {{ site.title }} software">(see&nbsp;all)</a>
-        </h2>
-      {% endif %}
+    {% if num_software > 0 %}
+      {% include featured_software.html %}
+    {% endif %}
 
-      <div class="items">
-        {% for item in software | limit: site.max_featured_software %}
-          <a class="item" href="{{ item.url }}" role="article">
-            <div class="logo-container">
-              {% include software-symbol.html item_id=item.id %}
-            </div>
-
-            <header>
-              <h3 class="title">{{ item.title }}</h3>
-            </header>
-
-            <p class="body">
-              {{ item.description }}
-            </p>
-
-            <footer class="meta">
-              {% include tag-list.html tags=item.tags item_type="software" %}
-
-              {% if item.last_update %}
-                <section class="last-update">
-                  Last update: {{ item.last_update | date: "%d/%m/%Y" }}
-                </section>
-              {% endif %}
-            </footer>
-          </a>
-        {% endfor %}
-      </div>
-    </section>
-  {% endif %}
-
-  {% if num_specs > 0 %}
-    <section class="specs">
-      <h2 class="title">
-        {% if num_featured_specs >= num_specs or num_specs <= site.max_featured_specs %}
-          Open Specifications
-        {% else %}
-          Featured Specifications
-          <a class="more-link"
-            href="/specs/" title="See all {{ site.title }} specs">(see&nbsp;all)</a>
-        {% endif %}
-      </h2>
-
-      <div class="items">
-        {% for item in specs | limit: site.max_featured_specs %}
-          <a class="item" href="{{ item.url }}" role="article">
-            <header>
-              <h3 class="title">{{ item.title }}</h3>
-            </header>
-
-            <p class="body">
-              {{ item.description }}
-            </p>
-
-            <footer class="meta">
-              {% include tag-list.html tags=item.tags item_type="specs" %}
-
-              {% if item.last_update %}
-                <section class="last-update">
-                  Last update: {{ item.last_update | date: "%d/%m/%Y" }}
-                </section>
-              {% endif %}
-            </footer>
-          </a>
-        {% endfor %}
-      </div>
-    </section>
-  {% endif %}
-</div>
+    {% if num_specs > 0 %}
+      {% include featured_specs.html %}
+    {% endif %}
+  </div>
+{% endif %}

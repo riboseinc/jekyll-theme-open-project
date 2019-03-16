@@ -1,0 +1,46 @@
+{% assign software = site.all_software %}
+{% assign featured_software = site.featured_software %}
+{% assign num_featured_software = site.num_featured_software %}
+{% if num_featured_software > 0 %}
+  {% assign software = featured_software %}
+{% endif %}
+
+<section class="software">
+  {% if num_featured_software >= num_software or num_software <= site.max_featured_software %}
+    <h2 class="title">Open-source Software</h2>
+  {% else %}
+    <h2 class="title">
+      Featured Software
+      <a class="more-link" href="/software/" title="See all {{ site.title }} software">(see&nbsp;all)</a>
+    </h2>
+  {% endif %}
+
+  <div class="items">
+    {% for item in software | limit: site.max_featured_software %}
+      <a class="item" href="{{ item.url }}" role="article">
+        <div class="logo-container">
+          {% include software-symbol.html item_id=item.id %}
+        </div>
+
+        <header>
+          <h3 class="title">{{ item.title }}</h3>
+        </header>
+
+        <p class="body">
+          {{ item.description }}
+        </p>
+
+        <footer class="meta">
+          {% include tag-list.html tags=item.tags item_type="software" %}
+
+          {% if item.last_update %}
+            <section class="last-update">
+              Last update: {{ item.last_update | date: "%d/%m/%Y" }}
+            </section>
+          {% endif %}
+        </footer>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
