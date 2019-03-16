@@ -1,6 +1,7 @@
 {% if include.active_for_nested %}
-  {% assign first_component = page.url | split: '/' | slice: 0, 2 | join: '/' | append: '/' %}
-  {% if first_component == include.url %}
+  {% assign first_component_of_current_url = page.url | split: '/' | slice: 0, 2 | join: '/' | append: '/' %}
+  {% assign first_component_of_link_url = include.url | split: '/' | slice: 0, 2 | join: '/' | append: '/' %}
+  {% if first_component_of_current_url == first_component_of_link_url %}
     {% assign active_nested = true %}
   {% else %}
     {% assign active_nested = false %}
