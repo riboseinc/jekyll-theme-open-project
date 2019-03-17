@@ -525,6 +525,28 @@ main {
 /* Project */
 
 .site--project {
+  &.site--project--one-software.layout--home > main {
+    .docs-nav {
+
+      ul.nav-items {
+        @include reset-list;
+        font-size: 15px;
+      }
+
+      > ul.nav-items > li {
+        > .item-title {
+          font-size: 20px;
+          font-weight: bold;
+          margin: 0;
+          line-height: 1.8;
+        }
+        ul {
+          line-height: 2;
+        }
+      }
+    }
+  }
+
   &.layout--home > main > .underlay.summary-background {
     padding-top: 20px;
 

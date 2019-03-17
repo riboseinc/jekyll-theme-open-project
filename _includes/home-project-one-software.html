@@ -1,0 +1,35 @@
+<div class="cta">
+  {% assign ctas = site.home_calls_to_action | slice: 0, 2 %}
+
+  {% for link in ctas %}
+    <a class="button" href="{{ link.url | relative_url }}">
+      {{ link.title }}
+    </a>
+  {% endfor %}
+</div>
+
+{% assign software_docs_base_url = site.one_software.url | append: "docs/"  %}
+{% assign docs_nav = site.software | where_exp: "item", "item.path contains 'docs/navigation'" | first %}
+
+{% if docs_nav and docs_nav.items %}
+  <section class="docs-nav">
+    <h3>Jump to documentation</h3>
+
+    <ul class="nav-items">
+      {% for item in docs_nav.items %}
+        {% include _nav-item.html item=item base_url=software_docs_base_url %}
+      {% endfor %}
+    </ul>
+  </section>
+{% endif %}
+
+{% assign num_posts = site.num_posts_combined %}
+{% assign num_specs = site.num_all_specs %}
+
+{% if num_posts > 0 %}
+  {% include featured_posts.html %}
+{% endif %}
+
+{% if num_specs > 0 %}
+  {% include featured_specs.html %}
+{% endif %}

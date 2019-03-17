@@ -1,6 +1,9 @@
 <div class="text">
   <h1 class="title">{{ site.tagline }}</h1>
-  <p class="desc">{{ site.pitch | safe }}</p>
+
+  {% if site.pitch %}
+    <p class="desc">{{ site.pitch | safe }}</p>
+  {% endif %}
 
   <div class="cta">
     {% if site.is_hub %}
@@ -17,10 +20,5 @@
         </a>
       {% endfor %}
     {% endif %}
-  </div>
-</div>
-<div class="illustration">
-  <div role="presentation" class="logo">
-    {% include assets/symbol.svg %}
   </div>
 </div>

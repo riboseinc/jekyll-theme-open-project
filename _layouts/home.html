@@ -5,5 +5,10 @@ layout: default
 {% if num_projects > 0 %}
   {% include home-hub.html %}
 {% else %}
-  {% include home-project.html %}
+  {% assign num_software = site.all_software | size %}
+  {% if num_software == 1 %}
+    {% include home-project-one-software.html %}
+  {% else %}
+    {% include home-project.html %}
+  {% endif %}
 {% endif %}
