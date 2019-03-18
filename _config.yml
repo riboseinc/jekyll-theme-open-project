@@ -17,6 +17,12 @@ exclude:
   - /_projects/**/docs/*
   - .sass-cache/
 
+unmarked_external_link_selectors:
+  - .layout--home a
+  - a[href*=travis]
+  - a[href*=coverity]
+  - a[href*=codecov]
+
 collections:
   projects:
     output: false
