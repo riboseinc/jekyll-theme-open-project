@@ -35,6 +35,10 @@ a {
     > .item {
       margin-right: $gutter;
 
+      &:only-child {
+        flex: 1;
+      }
+
       &.featured-item::before {
         // Reposition featured item label for grid layout
         // !important overrides .item-card which ends up with higher specificity
