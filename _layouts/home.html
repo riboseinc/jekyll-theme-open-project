@@ -8,8 +8,7 @@ layout: default
 {% if num_projects > 0 %}
   {% include home-hub.html %}
 {% else %}
-  {% assign num_software = site.all_software | size %}
-  {% if num_software == 1 %}
+  {% if site.one_software %}
     {% include home-project-one-software.html %}
   {% else %}
     {% include home-project.html %}
