@@ -26,11 +26,13 @@
     {% endif %}
   </div>
 
-  {% if include.item.items %}
-    <ul class="nav-items subitmes">
-      {% for item in include.item.items %}
-        {% include _nav-item.html item=item base_url=include.base_url selected_item=include.selected_item %}
-      {% endfor %}
-    </ul>
+  {% if include.top_level_only != true %}
+    {% if include.item.items %}
+      <ul class="nav-items subitmes">
+        {% for item in include.item.items %}
+          {% include _nav-item.html item=item base_url=include.base_url selected_item=include.selected_item %}
+        {% endfor %}
+      </ul>
+    {% endif %}
   {% endif %}
 </li>
