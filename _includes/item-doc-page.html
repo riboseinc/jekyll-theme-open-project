@@ -29,15 +29,21 @@ supporting expandable navigation widget.
 {% if is_docs_landing != true %}
   <header class="documentation-header {% if num_top_nav_items > 0 %} has-nav {% endif %}">
     <div class="nav-header">
-      {% if include.item_type == 'software' %}
-        <div class="logo-container">
-          {% include software-symbol.html item_id=page.id %}
-        </div>
-      {% endif %}
+      {% if site.one_software %}
+        <h3 class="title">
+          Docs
+        </h3>
+      {% else %}
+        {% if include.item_type == 'software' %}
+          <div class="logo-container">
+            {% include software-symbol.html item_id=page.id %}
+          </div>
+        {% endif %}
 
-      <h3 class="title">
-        <a href="javascript: void 0;">{{ item_data.title }}</a>
-      </h3>
+        <h3 class="title">
+          <a href="javascript: void 0;">{{ item_data.title }}</a>
+        </h3>
+      {% endif %}
 
       {% if num_top_nav_items > 0 %}
         <span class="nav-toggle-icon">
