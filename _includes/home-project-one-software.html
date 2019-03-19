@@ -17,7 +17,7 @@
 
     <ul class="nav-items">
       {% for item in docs_nav.items %}
-        {% include _nav-item.html item=item base_url=software_docs_base_url %}
+        {% include _nav-item.html item=item base_url=software_docs_base_url top_level_only=true %}
       {% endfor %}
     </ul>
   </section>
