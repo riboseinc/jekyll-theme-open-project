@@ -9,12 +9,6 @@ layout: default
 {% assign num_top_nav_items = nav.items | size %}
 
 <header class="documentation-header {% if num_top_nav_items > 0 %} has-nav {% endif %}">
-  {% if title %}
-    <span class="section-title">
-      {{ title|replace: " ", "&nbsp;" }}
-    </span>
-  {% endif %}
-
   <div class="nav-header">
     <h3 class="title">
       {% capture docs_nav_title %}

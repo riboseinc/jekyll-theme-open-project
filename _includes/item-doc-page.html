@@ -28,10 +28,6 @@ supporting expandable navigation widget.
 
 {% if is_docs_landing != true %}
   <header class="documentation-header {% if num_top_nav_items > 0 %} has-nav {% endif %}">
-    <span class="section-title">
-      {{ page.title|replace: " ", "&nbsp;" }}
-    </span>
-
     <div class="nav-header">
       {% if include.item_type == 'software' %}
         <div class="logo-container">
