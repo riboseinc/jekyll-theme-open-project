@@ -78,7 +78,7 @@ main {
       }
     }
 
-    > .featured-posts {
+    > .underlay > .featured-posts {
       @extend .main-section;
 
       .items {
@@ -602,7 +602,7 @@ main {
     }
   }
 
-  &.layout--home > main > .underlay > .software,
+  &.layout--home > main > .software,
   &.layout--home > main > .underlay > .specs,
   &.layout--software-index > main,
   &.layout--spec-index > main {
@@ -636,7 +636,7 @@ main {
     }
   }
 
-  &.layout--home > main > .underlay > .software,
+  &.layout--home > main > .software,
   &.layout--software-index > main {
     > .items {
       .item {
@@ -662,7 +662,7 @@ main {
     }
   }
 
-  &.layout--home > main > .underlay > .software,
+  &.layout--home > main > .software,
   &.layout--home > main > .underlay > .specs {
     @extend .main-section;
 
