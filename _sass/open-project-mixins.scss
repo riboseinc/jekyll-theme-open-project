@@ -361,6 +361,28 @@
   }
 }
 
+@mixin item-nav-toc() {
+  // Used for ToC on software item’s landing and elsewhere,
+  // (though not in docs sidebar)
+
+  ul.nav-items {
+    @include reset-list;
+    font-size: 15px;
+  }
+
+  > ul.nav-items > li {
+    > .item-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+      line-height: 1.8;
+    }
+    ul {
+      line-height: 2;
+    }
+  }
+}
+
 @mixin docs-page($primary-dark-color) {
   > header.documentation-header,
   > section.documentation {
@@ -688,22 +710,7 @@
         }
       }
 
-      ul.nav-items {
-        @include reset-list;
-        font-size: 15px;
-      }
-
-      > ul.nav-items > li {
-        > .item-title {
-          font-size: 20px;
-          font-weight: bold;
-          margin: 0;
-          line-height: 1.8;
-        }
-        ul {
-          line-height: 2;
-        }
-      }
+      @include item-nav-toc();
     }
 
     @media screen and (min-width: $bigscreen-breakpoint) {
