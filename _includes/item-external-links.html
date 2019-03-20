@@ -1,6 +1,6 @@
 {% if include.item_type == 'software' and item_data.repo_url or item_data.docs_url %}
   {% if item_data.repo_url %}
-    <li class="item">
+    <li>
       <a href="{{ item_data.repo_url }}">
         {% if item_data.repo_url contains "github.com" %}
           <span class="ico">
@@ -19,7 +19,7 @@
         {% endif %}
       </a> {% endif %}
   {% if item_data.docs_url %}
-    <li class="item">
+    <li>
       <a href="{{ item_data.docs_url }}">
         {% if item_data.docs_url contains "rubydoc" %}
           <span class="ico">
@@ -46,21 +46,21 @@
       </a> {% endif %}
 {% else if include.item_type == 'specs' and item_data.rfc_id or item_data.ietf_datatracker_id or item_data.source_url %}
   {% if item_data.rfc_id %}
-    <li class="item">
+    <li>
       <a href="http://ietf.org/html/rfc{{ item_data.rfc_id }}">
         <span class="lbl">
           IETF RFC {{ item_data.rfc_id }}
         </span>
       </a> {% endif %}
   {% if item_data.ietf_datatracker_id %}
-    <li class="item">
+    <li>
       <a href="https://datatracker.ietf.org/doc/{{ item_data.ietf_datatracker_id }}{% if page.ietf_datatracker_ver %}-{{ page.ietf_datatracker_ver }}{% endif %}">
         <span class="lbl">
           IETF document
         </span>
       </a> {% endif %}
   {% if item_data.source_url %}
-    <li class="item">
+    <li>
       <a href="{{ item_data.source_url }}">
         {% if item_data.source_url contains "github" %}
           <span class="ico">

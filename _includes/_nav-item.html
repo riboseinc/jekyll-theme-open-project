@@ -12,7 +12,7 @@
   {% comment %} Otherwise in Liquid selected value falls through to next include instance {% endcomment %}
 {% endif %}
 
-<li class="item {% if selected %}selected{% endif %}">
+<li class="{% if selected %}selected{% endif %}">
   <div class="item-title"
       title="{{ include.item.title }}{% if include.item.description %} ({{ include.item.description }}){% endif %}">
     {% if include.item.path == null or selected == true %}

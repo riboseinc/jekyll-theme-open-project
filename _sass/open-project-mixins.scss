@@ -525,7 +525,7 @@
           max-width: calc(#{$navFlexShare} - #{$sidePadding});
         }
 
-        li.item {
+        li {
           font-size: 15px;
           font-weight: normal;
 
@@ -549,7 +549,7 @@
           a { @include static-link-color(#444); }
         }
 
-        > li.item {
+        > li {
           > .item-title {
             font-size: 20px;
             margin: 0;
@@ -579,7 +579,7 @@
             ul {
               padding: 0;
             }
-            li.item {
+            li {
               font-size: 13px;
               line-height: 1.5;
 
@@ -690,7 +690,7 @@
 
     .docs-nav {
       .external-links {
-        > .nav-items > .item {
+        > .nav-items > li {
           margin-bottom: 0;
           margin-right: -$external-links-side-margin;
         }
@@ -699,7 +699,7 @@
 
     &.docs-landing > article {
       > header {
-        .external-links > .nav-items > .item  > a {
+        .external-links > .nav-items > li > a {
           @include static-link-color(#fff);
           background-color: $primary-dark-color;
         }
