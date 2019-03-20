@@ -32,6 +32,8 @@ $grid-cols: 4;
 $widescreen-breakpoint: 1140px + $gutter * 2;
 $bigscreen-breakpoint: 900px + $gutter * 2;
 
+$external-links-side-margin: 16px;  // for external links
+
 
 @import "open-project-base";
 @import "open-project-header-footer";
