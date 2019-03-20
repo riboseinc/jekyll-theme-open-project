@@ -103,7 +103,7 @@
   }
 
   const articleBody = document.querySelector('main section article .body');
-  const selectedItem = document.querySelector('main .docs-nav .nav-items .item.selected');
+  const selectedItem = document.querySelector('main .docs-nav .nav-items li.selected');
 
   if (articleBody && selectedItem) {
     const items = getAdocTocItems(articleBody);
