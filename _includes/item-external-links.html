@@ -17,7 +17,9 @@
             Source Code
           </span>
         {% endif %}
-      </a> {% endif %}
+      </a>
+    </li>
+  {% endif %}
   {% if item_data.docs_url %}
     <li>
       <a href="{{ item_data.docs_url }}">
@@ -43,7 +45,9 @@
             Docs
           </span>
         {% endif %}
-      </a> {% endif %}
+      </a>
+    </li>
+  {% endif %}
 {% else if include.item_type == 'specs' and item_data.rfc_id or item_data.ietf_datatracker_id or item_data.source_url %}
   {% if item_data.rfc_id %}
     <li>
@@ -51,14 +55,18 @@
         <span class="lbl">
           IETF RFC {{ item_data.rfc_id }}
         </span>
-      </a> {% endif %}
+      </a>
+    </li>
+  {% endif %}
   {% if item_data.ietf_datatracker_id %}
     <li>
       <a href="https://datatracker.ietf.org/doc/{{ item_data.ietf_datatracker_id }}{% if page.ietf_datatracker_ver %}-{{ page.ietf_datatracker_ver }}{% endif %}">
         <span class="lbl">
           IETF document
         </span>
-      </a> {% endif %}
+      </a>
+    </li>
+  {% endif %}
   {% if item_data.source_url %}
     <li>
       <a href="{{ item_data.source_url }}">
@@ -77,5 +85,7 @@
             Source
           </span>
         {% endif %}
-      </a> {% endif %}
+      </a>
+    </li>
+  {% endif %}
 {% endif %}
