@@ -617,8 +617,6 @@
     .docs-nav,
     &.docs-landing > article > header {
       .external-links {
-        margin-left: -$external-links-side-margin;
-
         ul.nav-items {
           @include reset-list();
         }
