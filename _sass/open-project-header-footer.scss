@@ -36,29 +36,6 @@ body > .underlay > footer {
   }
 }
 
-.parent-hub-plug {
-  .logo {
-    display: block;
-  }
-  body > .underlay.footer & {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    white-space: nowrap;
-    line-height: .5;
-    opacity: 0.8;
-    color: white;
-
-    @media screen and (min-width: $bigscreen-breakpoint) {
-      margin-right: 50px;
-    }
-
-    .label {
-      margin-right: 20px;
-      font-weight: 500;
-    }
-  }
-}
 
 .underlay.header {
   body > & {
@@ -329,13 +306,36 @@ body > .underlay > footer {
   padding-top: 50px;
   padding-bottom: 50px;
 
-  align-items: center;
+  align-items: flex-start;
   flex-flow: column nowrap;
 
   color: white;
 
   a:link, a:visited, a:hover {
     color: white;
+  }
+
+  .parent-hub-plug {
+    .logo {
+      display: block;
+    }
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    white-space: nowrap;
+    line-height: .5;
+    opacity: 0.8;
+    color: white;
+
+    @media screen and (min-width: $bigscreen-breakpoint) {
+      margin-right: 50px;
+    }
+
+    .label {
+      margin-right: 20px;
+      font-weight: 500;
+    }
   }
 
   .legal {
@@ -350,8 +350,6 @@ body > .underlay > footer {
     margin-bottom: 1em;
 
     .copyright {
-      text-align: center;
-
       .copyright-head, .copyright-tail {
         white-space: nowrap;
       }
@@ -360,12 +358,7 @@ body > .underlay > footer {
     nav {
       display: flex;
       flex-flow: row wrap;
-      justify-content: space-around;
-    }
-
-    @media screen and (min-width: $bigscreen-breakpoint) {
-      margin-top: 0;
-      margin-bottom: 0;
+      justify-content: space-between;
     }
 
     @media screen and (min-width: $widescreen-breakpoint) {
@@ -381,9 +374,5 @@ body > .underlay > footer {
         margin-right: 40px;
       }
     }
-  }
-
-  @media screen and (min-width: $bigscreen-breakpoint) {
-    flex-flow: row nowrap;
   }
 }
