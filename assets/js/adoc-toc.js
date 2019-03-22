@@ -2,6 +2,7 @@
 
   const HEADER_TAGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
   const IN_PAGE_NAV_HTML_CLASS = 'in-page-toc';
+  const SCROLLABLE_NAV_CONTAINER_SELECTOR = 'ul.nav-items';
 
   /* Given a container of AsciiDoc .sectN elementss,
    * returns an object containing navigation structure like this:
@@ -47,10 +48,13 @@
   }
 
   function highlightSelected(headerId, itemPath) {
+    let selectedItemEl;
+
     for (const itemEl of document.querySelectorAll(`.${IN_PAGE_NAV_HTML_CLASS} li`)) {
       const link = (itemEl.firstChild || {}).firstChild;
       if (link && link.getAttribute('href') == itemPath) {
         itemEl.classList.add('highlighted');
+        selectedItemEl = itemEl;
       } else {
         itemEl.classList.remove('highlighted');
       }
@@ -62,6 +66,8 @@
     }
     const selectedHeaderEl = document.getElementById(headerId);
     selectedHeaderEl.classList.add('highlighted');
+
+    return selectedItemEl;
   }
 
   /* Given a list of navigation items, returns an <ul> containing items recursively
@@ -119,6 +125,51 @@
         selectedItem.appendChild(ulEl);
       }
     }
+  }
+
+  if (articleBody && window.location.hash) {
+    // Do things that need to be done if the page was opened
+    // with hash component in address bar.
+    // - After initial scroll to anchor, scroll up a bit
+    //   to ensure header is in view accounting for top bar.
+    // - Select in-page doc nav item corresponding to the hash.
+
+    const SCROLL_COMPENSATION_AMOUNT_PX = 0 - document.querySelector('body > .underlay.header > header').offsetHeight - 10;
+
+    function _scrollUp(evt) {
+      window.scrollBy(0, SCROLL_COMPENSATION_AMOUNT_PX);
+      window.removeEventListener('scroll', _scrollUp);
+    };
+
+    function _selectInitialItem() {
+      const hash = window.location.hash.substring(1);
+      const anchorEl = document.getElementById(hash);
+
+      var selectedLinkId;
+
+      if (anchorEl.tagName === 'A') {
+        // We were selected by <a> anchor, not by <hX[id]>.
+        // We want to highlight selected item in the nav
+        // according to the nearest header upwards from anchor.
+        var curEl = anchorEl;
+        while (true) {
+          var curEl = curEl.parentNode;
+          var nearestHeaderEl = curEl.querySelector('h2');
+          if (nearestHeaderEl && nearestHeaderEl.hasAttribute('id')) {
+            selectedLinkId = nearestHeaderEl.getAttribute('id');
+            break;
+          }
+        }
+      } else {
+        selectedLinkId = hash;
+      }
+
+      const selectedItemEl = highlightSelected(selectedLinkId, `./#${selectedLinkId}`);
+      window.setTimeout(function () { selectedItemEl.scrollIntoView(); }, 200);
+    };
+
+    _selectInitialItem();
+    window.addEventListener('scroll', _scrollUp);
   }
 
 }());
