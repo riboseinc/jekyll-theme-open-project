@@ -2,7 +2,7 @@
 {% assign num_specs = site.num_all_specs %}
 {% assign num_posts = site.num_posts_combined %}
 
-{% assign num_software_specs = num_software + num_specs %}
+{% assign num_posts_specs = num_posts | plus: num_featured_specs %}
 
 {% if num_posts > 0 %}
   {% include featured_posts.html %}
