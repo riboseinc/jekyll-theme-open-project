@@ -358,6 +358,13 @@
         padding-right: 10px;
       }
     }
+
+    &.featured {
+      > a {
+        background-color: $primary-dark-color;
+        @include static-link-color(white);
+      }
+    }
   }
 }
 

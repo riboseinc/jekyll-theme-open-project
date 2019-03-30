@@ -73,7 +73,7 @@ supporting expandable navigation widget.
                 </span>
               </a>
             </li>
-            {% include item-external-links.html item_type=include.item_type item_data=item_data %}
+            {% include item-external-links.html item_data=item_data %}
           </ul>
         </li>
 
@@ -111,7 +111,7 @@ supporting expandable navigation widget.
       {% if is_docs_landing %}
         <div class="external-links">
           <ul class="nav-items">
-            {% include item-external-links.html item_type=include.item_type item_data=item_data %}
+            {% include item-external-links.html item_data=item_data %}
           </ul>
         </div>
       {% endif %}

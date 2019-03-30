@@ -480,6 +480,23 @@ description: A sentence.
 # Avoid long namespace/tag combos as they can overflow item’s card widget.
 tags: [Ruby, Python, RFC, "<some_namespace_id>:<appropriate_tag>"]
 
+external_links:
+  - url: https://github.com/riboseinc/asciidoctor-rfc
+  - url: https://docs.rs/proj/ver/…/
+  - { url: https://example.com/, title: "Custom title" }
+# External links.
+# For software, typically points to docs sites or source code repository.
+# For specs, this usually contains RFC, IETF links, spec source code.
+# * Link label can be specified with the title key.
+#   Select URLs are recognized and an appropriate label
+#   (possibly icon) is shown by default,
+#   otherwise you **should** specify the title.
+#   Currently, recognized URLs include
+#   GitHub, Docs.rs, RubyDoc,
+#   ietf.org/html/rfcN, datatracker.ietf.org/doc/…
+# * Order links according to importance for project site visitors.
+#   The first link will be highlighted as primary. 
+
 feature_with_priority: 1
 # With this key, software or spec will be featured on home
 # page of project site. Lower number means higher priority
@@ -503,10 +520,6 @@ docs:
   git_repo_subtree: docs
 # Docs that would be made part of open project site.
 # See the nearby section about documentation.
-
-docs_url: https://docs.rs/proj/ver/…/
-# External docs. For some links
-# like docs.rs and rubydoc, special icon and/or label will be shown.
 ```
 
 #### Displaying software docs
@@ -544,17 +557,6 @@ the navigation.
 YAML frontmatter specific to specs:
 
 ```yaml
-rfc_id: XXXX
-# IETF RFC URL would be in the form 
-# http://ietf.org/html/rfc<id>
-
-ietf_datatracker_id: some-string-identifier-here
-ietf_datatracker_ver: "01"
-# IETF datatracker URL would be in the form
-# https://datatracker.ietf.org/doc/<id>[-<version>]
-
-source_url: https://example.com/spec-source-markup
-# Required.
 
 
 # For displaying spec contents, see below:
