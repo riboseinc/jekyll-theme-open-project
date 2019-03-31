@@ -181,6 +181,11 @@ a {
         height: 32px;
         vertical-align: middle;
         margin-right: 10px;
+
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
       }
       .project-title {
         font-size: 14px;
