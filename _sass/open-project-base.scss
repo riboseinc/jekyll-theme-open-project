@@ -71,6 +71,7 @@ a {
   flex-flow: column nowrap;
 
   > .puny-label {
+    // DEPRECATED: Used only on hub site, old design
     align-self: center;
 
     text-align: center;
