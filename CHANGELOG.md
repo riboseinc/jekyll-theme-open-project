@@ -21,6 +21,88 @@ in source repository link being shown anymore.
 You must have repository URL in external_links if you want the link to appear.
 (This might seem as redundant, but it also allows to not hide the repository link if desired.)
 
+### Project site landing page overhaul (BREAKING)
+
+In addition to purely looks (e.g., using full-height background),
+landing pages for project sites were made more convenient.
+
+There was a change in design approach—from landing pages focused
+on one single call-to-action, to landing pages with more actions
+and higher information density.
+
+#### Simplified landing page layout for single-software projects
+
+If an open project consists of only one software package (which is somewhat typical),
+its site’s landing page will be simplified.
+
+#### Customizable landing page section order
+
+Introduced site-wide configuration key landing_priority.
+
+Project sites can use it to change section order for the landing (home) page,
+and specify a custom intro include. For an example, see Metanorma and Cryptode sites
+in Ribose Open network.
+
+#### More useful actions exposed
+
+- Visitors can now quickly jump into software’s documentation:
+  if software has docs (and top-level navigation items are clickable),
+  links to up to three first documentation sections are displayed.
+
+- Software & spec cards now show external links, allowing visitors to quickly
+  download software or view specification on SDO site or elsewhere.
+
+### Improved documentation page UX
+
+When navigating to a path with an anchor (hash) in URL:
+
+- The anchor itself should not be obscured by site header anymore
+  (the page will immediately scroll up a bit, readers shouldn’t notice that).
+
+- The link corresponding to appropriate section is highlighted in the navigation sidebar.
+
+Page header and navigation sidebar were made a bit cleaner.
+
+### Miscellaneous UI updates & styling refactoring (BREAKING)
+
+- HTML structure on landing has simplified. If you rely on it for styling purposes
+  in your sites’ style.scss, you may want to check
+  that your styling rules keep working as intended.
+
+- SASS rules across the board were updated, and a couple variables changed names.
+
+  * The $superhero-background variable is now called $main-background.
+    * By default, it is now a gradient based on primary and accent colors.
+
+  * $hero-background variable has been removed.
+
+  * `.item` selector on `<li>` elements in navigation blocks is no longer used.
+
+- Removed “tagline” after main title from stock spec & software index pages hero include.
+  It didn’t add much and required extra copywriting effort.
+
+- Removed redundant Home link in top site navigation.
+
+- Made sure that there is spacing between site content & viewport edge,
+  which used to be uncomfortably tight on particular viewport widths
+  around responsive media query breakpoints.
+
+- Footer layout was updated.
+
+- “Featured” indicator on software & spec cards no longer features a thumbs-up emoji.
+
+- Many smaller changes across the board.
+
+### Bug fixes
+
+- Stopped adding external link marker & bottom border to certain links (e.g., OSS badges).
+
+- Fixed layout issue in top menu, which used to slightly break layout when very long.
+
+- On hub site software & spec indexes, fixed vertical alignment of project icon on item cards.
+
+- Relaxed constraint where spec build’s PNG diagrams engine required specific navigation.
+
 ## 1.3.3
 
 A few updates to how some blocks in AsciiDoc-generated markup appear visually,

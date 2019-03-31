@@ -119,7 +119,7 @@ These settings apply to both site types (hub and project).
 
   tagline: Site tagline
   pitch: Site pitch
-  # The above two are used on home hero unit.
+  # The above two are used in home hero unit.
 
   social:
     links:
@@ -348,7 +348,6 @@ algolia_search:
   index_name: '<your Algolia index name>'
 # Only add this if you want to use Algolia’s search on your project site.
 
-# NOTE: Must match corresponding hub site’s configuration entry.
 tag_namespaces:
   software:
     namespace_id: "Human-readable namespace name"
@@ -356,6 +355,20 @@ tag_namespaces:
     # writtenin: "Written in"
   specs:
     namespace_id: "Human-readable namespace name"
+# NOTE: Tag namespaces must match corresponding hub site’s configuration entry.
+
+landing_priority: [custom_intro, blog, specs, software]
+# Which order should sections be displayed on landing.
+#
+# Default order: [software, specs, blog]
+# Depending on your project’s focus & pace of development you may want to change that.
+# Supported sections: featured_posts, featured_software, featured_specs, custom_intro.
+#
+# If you use custom_intro, project site must define an include "custom-intro.html".
+# The contents of that include will be wrapper in section.custom-intro tag.
+# Inside the include you’d likely want to have introductory summary wrapped
+# in section.summary, and possibly custom call-to-action buttons
+# (see Metanorma.com site for an example).
 ```
 
 ### File structure
@@ -470,6 +483,7 @@ description: A sentence.
 # Not necessarily shown to the user,
 # but used for HTML metadata if jekyll-seo-tag is enabled
 
+tags: [Ruby, Python, RFC, "<some_namespace_id>:<appropriate_tag>"]
 # Note: Avoid whitespaces and other characters that may make Jekyll
 # percent-encode the tag in URLs. Replace " " (a regular space)
 # with "_" (underline); underlines will be rewritten as spaces when tags
@@ -478,7 +492,6 @@ description: A sentence.
 # e.g. chosen programming language or target viewer audience
 # (see hub site configuration for tag namespace setup).
 # Avoid long namespace/tag combos as they can overflow item’s card widget.
-tags: [Ruby, Python, RFC, "<some_namespace_id>:<appropriate_tag>"]
 
 external_links:
   - url: https://github.com/riboseinc/asciidoctor-rfc
@@ -514,11 +527,13 @@ YAML frontmatter required for software:
 ```yaml
 repo_url: https://github.com/riboseinc/asciidoctor-rfc
 # Required.
+# Used for things like showing how long ago
+# the was project updated last.
 
-docs:
+docs_source:
   git_repo_url: git@example.com:path/to-repo.git
   git_repo_subtree: docs
-# Docs that would be made part of open project site.
+# Documentation, the contents of which will be made part of the project site.
 # See the nearby section about documentation.
 ```
 
@@ -532,12 +547,11 @@ only frontmatter, following this sample:
 ---
 items:
 - title: Introduction
+  path: intro/
   items:
-    - { title: Overview, path: overview/ }
-    - { title: Installation, path: installation/ }
-- title: Usage
-  items:
-    - { title: Basic, path: basic-usage/ }
+    - { title: Overview, path: intro/overview/ }
+    - { title: Installation, path: intro/installation/ }
+- { title: Usage, path: usage/ }
 ---
 
 = Navigation
@@ -557,15 +571,13 @@ the navigation.
 YAML frontmatter specific to specs:
 
 ```yaml
-
-
-# For displaying spec contents, see below:
-
 spec_source:
   git_repo_url: https://github.com/<user>/<repo>
   git_repo_subtree: images
   build:
     engine: png_diagrams
+# See below about building the spec from its source
+# to be displayed on the site.
 
 navigation:
   sections:
@@ -729,33 +741,36 @@ The rule would look like this:
 
 ### SASS variables
 
-Following are the variables along with their defaults:
+Following are principal variables that define the appearance of a site
+built with this theme, along with their defaults.
+
+For a project site, wisely choosing primary and accent colors should be enough
+as a minimum.
 
 ```scss
 $font-family: Helvetica, Arial, sans-serif !default;
+$main-font-color: black !default;
 
-# Primary color—should be bright but dark enough to be readable,
-# since some text elements are set using this color:
+# Primary color & accent colors are used throughout site’s UI.
+# Make sure to use shades dark enough that white text is readable on top,
+# especially with the primary color.
+# Make sure these colors go well with each other.
 $primary-color: lightblue !default;
-
-# Darker variation of primary color used for background on elements where
-# text is set in white:
-$primary-dark-color: navy !default;
-
-# Bright color for accent elements, such as buttons (not yet in use).
-# Text on those elements is set in bold and white, so this color
-# should be dark enough:
 $accent-color: red !default;
 
-# Below are used for `background` CSS rule for top header, and for
-# hero unit respectively. Gradients can be supplied.
-$header-background: $primary-dark-color !default;
-$hero-background: $primary-dark-color !default;
+# These colors are used for warning/info blocks within body text.
+$important-color: orange !default;
+$warning-color: red !default;
 
-# This is for the big big hero unit on home page.
-$superhero-background: $primary-dark-color !default;
+# Background used on home page body & other pages’ hero unit backgrounds.
+$main-background: linear-gradient(315deg, $accent-color 0%, $primary-color 74%) !default;
 
-# Below customize colors for different sections of the site.
+# This background defaults to $main-background value.
+$header-background: $main-background !default;
+
+
+# Below does not apply to project sites (only the hub site):
+
 $hub-software--primary-color: lightsalmon !default;
 $hub-software--primary-dark-color: tomato !default;
 $hub-software--hero-background: $hub-software--primary-dark-color !default;
@@ -764,6 +779,10 @@ $hub-specs--primary-color: lightpink !default;
 $hub-specs--primary-dark-color: palevioletred !default;
 $hub-specs--hero-background: $hub-specs--primary-dark-color !default;
 ```
+
+TIP: A good way to find a good match for primary-color and accent-color
+may be the eggradients.com website. Find a suitable, dark enough gradient and pick
+one color as primary, and the other as accent.
 
 
 ## Extra .gitignore rules
