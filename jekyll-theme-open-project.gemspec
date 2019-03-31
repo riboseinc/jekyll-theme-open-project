@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'git', '~> 1.4'
   s.add_runtime_dependency 'jekyll-theme-open-project-helpers', '= 2.0'
 
-  s.add_development_dependency 'bundler', '~> 1.16'
+  s.add_development_dependency 'bundler', '~> 2.0'
   s.add_development_dependency 'rake', '~> 12.0'
 
   s.add_development_dependency 'html-proofer', '~> 3.0'
