@@ -92,6 +92,7 @@ body > .underlay > footer {
     background: $hub-specs--hero-background;
   }
   .site--hub.layout--home > & {
+    padding-bottom: 2em;
     background: $main-background;
   }
   .site--project.layout--software-index > &,
