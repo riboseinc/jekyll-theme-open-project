@@ -9,7 +9,7 @@
 * Update software & spec entry point frontmatter according to new external link support
   (some YAML keys are now obsolete).
 * If you customize styling:
-** Rename SASS variable $superhero-background
+** Rename SASS variable $superhero-background.
    Details below & in the styling customization part of theme’s README.
 ** Beware of changes in project & hub site landing pages’ HTML markup structure.
 ** Beware of minor styling refactoring across the board.
