@@ -18,6 +18,10 @@ abbr {
   cursor: help;
 }
 
+.svg-inline--fa {
+  vertical-align: -.15em;
+}
+
 a {
   &:link, &:hover, &:visited {
     color: $primary-dark-color;
