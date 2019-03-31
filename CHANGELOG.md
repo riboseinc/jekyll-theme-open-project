@@ -2,12 +2,14 @@
 
 ## 1.4
 
-### External links overhaul
+### Software & specs external links overhaul (BREAKING)
 
 Software and spec entry points now support external_links key in YAML frontmatter.
-This covers any links displayed to third-party sites, like documentation, source code
-repositories, or standardization bodies. External links are now specified as one array
+External links are specified as one array
 of objects, each with a required `url` and an optional `title` property.
+
+This is a more natural any to configure any third-party site links
+such as source repositories, documentation (for software), specification views (for specs).
 
 Frontmatter keys previously used to achieve the same purpose are now obsolete:
 
@@ -15,9 +17,9 @@ Frontmatter keys previously used to achieve the same purpose are now obsolete:
 - Spec’s ietf_datatracker_*, rfc_id, source_url
 
 NOTE: For software, now specifying the mandatory repo_url does not automatically result
-in source repository link being shown.
-You must specify external_links with repository URL separately.
-This might seem as redundant, but it also allows to not hide the repository link if desired.
+in source repository link being shown anymore.
+You must have repository URL in external_links if you want the link to appear.
+(This might seem as redundant, but it also allows to not hide the repository link if desired.)
 
 ## 1.3.3
 
