@@ -124,7 +124,7 @@ body > .underlay > header {
   z-index: 5;
   // Higher than hero, otherwise Algolia search pop-up might have stuff over it
 
-  align-items: flex-start;
+  align-items: center;
   flex-flow: row nowrap;
   justify-content: space-between;
 
