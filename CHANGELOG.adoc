@@ -17,7 +17,7 @@
 
 === Software & specs external links overhaul (BREAKING)
 
-Software and spec entry points now support external_links key in YAML frontmatter.
+Software and spec entry points now support `external_links` key in YAML frontmatter.
 External links are specified as one array
 of objects, each with a required `url` and an optional `title` property.
 
@@ -26,8 +26,8 @@ such as source repositories, documentation (for software), specification views (
 
 Frontmatter keys previously used to achieve the same purpose are now obsolete:
 
-- Software’s docs_url
-- Spec’s ietf_datatracker_*, rfc_id, source_url
+* Software’s `docs_url`
+* Spec’s `ietf_datatracker_*`, `rfc_id`, `source_url`
 
 NOTE: For software, now specifying the mandatory repo_url does not automatically result
 in source repository link being shown anymore.
@@ -58,64 +58,64 @@ in Ribose Open network.
 
 ==== More useful actions exposed
 
-- Visitors can now quickly jump into software’s documentation:
+* Visitors can now quickly jump into software’s documentation:
   if software has docs (and top-level navigation items are clickable),
   links to up to three first documentation sections are displayed.
 
-- Software & spec cards now show external links, allowing visitors to quickly
+* Software & spec cards now show external links, allowing visitors to quickly
   download software or view specification on SDO site or elsewhere.
+
+=== Miscellaneous UI updates & styling refactoring (BREAKING)
+
+* HTML structure on landing has simplified. If you rely on it for styling purposes
+  in your sites’ style.scss, you may want to check
+  that your styling rules keep working as intended.
+
+* SASS rules across the board were updated, and a couple variables changed names.
+
+** The $superhero-background variable is now called $main-background.
+
+*** By default, it is now a gradient based on primary and accent colors.
+
+** $hero-background variable has been removed.
+
+** `.item` selector on `<li>` elements in navigation blocks is no longer used.
+
+* Removed “tagline” after main title from stock spec & software index pages hero include.
+  It didn’t add much and required extra copywriting effort.
+
+* Removed redundant Home link in top site navigation.
+
+* Made sure that there is spacing between site content & viewport edge,
+  which used to be uncomfortably tight on particular viewport widths
+  around responsive media query breakpoints.
+
+* Footer layout was updated.
+
+* “Featured” indicator on software & spec cards no longer features a thumbs-up emoji.
+
+* Many smaller changes across the board.
 
 === Improved documentation page UX
 
 When navigating to a path with an anchor (hash) in URL:
 
-- The anchor itself should not be obscured by site header anymore
+* The anchor itself should not be obscured by site header anymore
   (the page will immediately scroll up a bit, readers shouldn’t notice that).
 
-- The link corresponding to appropriate section is highlighted in the navigation sidebar.
+* The link corresponding to appropriate section is highlighted in the navigation sidebar.
 
 Page header and navigation sidebar were made a bit cleaner.
 
-=== Miscellaneous UI updates & styling refactoring (BREAKING)
-
-- HTML structure on landing has simplified. If you rely on it for styling purposes
-  in your sites’ style.scss, you may want to check
-  that your styling rules keep working as intended.
-
-- SASS rules across the board were updated, and a couple variables changed names.
-
--- The $superhero-background variable is now called $main-background.
-
---- By default, it is now a gradient based on primary and accent colors.
-
--- $hero-background variable has been removed.
-
--- `.item` selector on `<li>` elements in navigation blocks is no longer used.
-
-- Removed “tagline” after main title from stock spec & software index pages hero include.
-  It didn’t add much and required extra copywriting effort.
-
-- Removed redundant Home link in top site navigation.
-
-- Made sure that there is spacing between site content & viewport edge,
-  which used to be uncomfortably tight on particular viewport widths
-  around responsive media query breakpoints.
-
-- Footer layout was updated.
-
-- “Featured” indicator on software & spec cards no longer features a thumbs-up emoji.
-
-- Many smaller changes across the board.
-
 === Bug fixes
 
-- Stopped adding external link marker & bottom border to certain links (e.g., OSS badges).
+* Stopped adding external link marker & bottom border to certain links (e.g., OSS badges).
 
-- Fixed layout issue in top menu, which used to slightly break layout when very long.
+* Fixed layout issue in top menu, which used to slightly break layout when very long.
 
-- On hub site software & spec indexes, fixed vertical alignment of project icon on item cards.
+* On hub site software & spec indexes, fixed vertical alignment of project icon on item cards.
 
-- Relaxed constraint where spec build’s PNG diagrams engine required specific navigation.
+* Relaxed constraint where spec build’s PNG diagrams engine required specific navigation.
 
 == 1.3.3
 
