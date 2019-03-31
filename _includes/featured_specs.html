@@ -1,43 +1,31 @@
-{% assign specs = site.all_specs %}
-{% assign featured_specs = site.featured_specs %}
-{% assign num_featured_specs = site.num_featured_specs %}
-{% if num_featured_specs > 0 %}
-  {% assign specs = featured_specs %}
-{% endif %}
-
 <section class="specs">
   <h2 class="title">
-    {% if num_featured_specs >= num_specs or num_specs <= site.max_featured_specs %}
-      Open Specifications
-    {% else %}
-      Featured Specifications
-      <a class="more-link"
-        href="/specs/" title="See all {{ site.title }} specs">(see&nbsp;all)</a>
+    Specification{% if site.num_all_specs > 1 %}s{% endif %}
+    {% if site.num_all_specs > site.num_featured_specs %}
+      — <a href="/specs/">see all</a>
     {% endif %}
   </h2>
-
   <div class="items">
+    {% assign specs = site.featured_specs %}
     {% for item in specs | limit: site.max_featured_specs %}
-      <a class="item" href="{{ item.url }}" role="article">
+      {% assign url = item.url %}
+      {% assign item_data = site.specs | where_exp: "item", "item.url == url" | first %}
+
+      <div class="item" role="article">
         <header>
-          <h3 class="title">{{ item.title }}</h3>
+          <h3 class="title"><a href="{{ item.url }}">{{ item.title }}</a></h3>
         </header>
 
         <p class="body">
           {{ item.description }}
         </p>
 
-        <footer class="meta">
-          {% include tag-list.html tags=item.tags item_type="specs" %}
-
-          {% if item.last_update %}
-            <section class="last-update">
-              Last update: {{ item.last_update | date: "%d/%m/%Y" }}
-            </section>
-          {% endif %}
-        </footer>
-      </a>
+        <div class="external-links">
+          <ul class="nav-items">
+            {% include item-external-links.html item_data=item_data %}
+          </ul>
+        </div>
+      </div>
     {% endfor %}
   </div>
 </section>
-

@@ -46,7 +46,6 @@ body > .underlay > footer {
       color: white;
 
       > .text {
-        padding-bottom: 50px;
         position: relative;
 
         > .title {
@@ -57,7 +56,7 @@ body > .underlay > footer {
         }
         > .desc {
           font-size: 20px;
-          margin: 0;
+          margin: 0 0 20px 0;
         }
         > .cta {  // Call to action.
           margin-top: 40px;
@@ -81,63 +80,35 @@ body > .underlay > footer {
     }
   }
   .site--hub.layout--software-index > & {
+    padding-bottom: 2em;
     background: $hub-software--hero-background;
   }
+  .site--hub.layout--blog-index > &,
+  .site--hub.layout--project-index > & {
+    padding-bottom: 2em;
+  }
   .site--hub.layout--spec-index > & {
+    padding-bottom: 2em;
     background: $hub-specs--hero-background;
   }
-  .layout--home > & {
-    background: $superhero-background;
+  .site--hub.layout--home > & {
+    background: $main-background;
   }
-
-  .site--hub > & {
-    > .hero { text-align: center; }
+  .site--project.layout--software-index > &,
+  .site--project.layout--spec-index > &,
+  .site--project.layout--blog-index > & {
+    padding-bottom: 2em;
+  }
+  .site--project.layout--home > & {
+    background: none;
   }
 
   .site--hub.layout--home > & {
     > .hero {
       text-align: left;
+
       @media screen and (min-width: $bigscreen-breakpoint) {
         padding-bottom: 50px;
-      }
-    }
-  }
-  .layout--home > & {
-    > .hero {
-      .illustration {
-        display: none;
-      }
-      @media screen and (min-width: $bigscreen-breakpoint) {
-        display: flex;
-        flex-flow: row nowrap;
-        position: relative;
-        .text {
-          z-index: 4;
-        }
-        .illustration {
-          display: block;
-          position: absolute;
-        }
-      }
-    }
-  }
-  @media screen and (min-width: $bigscreen-breakpoint) {
-    .site--hub.layout--home > & > .hero {
-      .illustration {
-        bottom: 100px;
-        right: -15%;
-        svg {
-          width: 700px;
-        }
-      }
-    }
-    .site--project.layout--home > & > .hero {
-      .illustration {
-        bottom: 40px;
-        right: 0;
-        svg {
-          width: 200px;
-        }
       }
     }
   }
@@ -281,6 +252,7 @@ body > .underlay > header {
   > .social-links {
     color: white;
     display: none;
+    white-space: nowrap;
 
     .active {
       background-color: rgba(black, 0.1);
@@ -358,7 +330,10 @@ body > .underlay > footer {
     nav {
       display: flex;
       flex-flow: row wrap;
-      justify-content: space-between;
+
+      > * {
+        margin-right: 40px;
+      }
     }
 
     @media screen and (min-width: $widescreen-breakpoint) {
@@ -366,9 +341,6 @@ body > .underlay > footer {
 
       nav {
         display: block;
-      }
-      nav > * {
-        margin-right: 40px;
       }
       .copyright {
         margin-right: 40px;

@@ -2,56 +2,50 @@
 {% assign posts = site.posts_combined %}
 {% assign num_posts = site.num_posts_combined %}
 
-<div class="underlay top-background">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-    <polygon fill="white" points="0,0 100,0 100,60 0,100"/>
-  </svg>
+{% assign featured_projects = projects | where: "featured", true %}
+{% assign num_featured_projects = featured_projects | size %}
+{% if num_featured_projects > 0 %}
+  <section class="featured-projects">
+    <h2 class="title">Featured Projects</h2>
 
-  {% assign featured_projects = projects | where: "featured", true %}
-  {% assign num_featured_projects = featured_projects | size %}
-  {% if num_featured_projects > 0 %}
-    <section class="featured-projects">
-      <h2 class="title">Featured Projects</h2>
+    <div class="items">
 
-      <div class="items">
-
-        {% for item in featured_projects limit:3 %}
-          <a class="item" href="{{ item.home_url }}" role="article">
-            <header>
-              <div class="logo-container">
-                {% assign symbol_path = item.path | split: "/" | slice: 1, 1 | join: "/" | append: "/assets/symbol.svg" %}
-                {% assign relative_symbol_path = "/projects/" | append: symbol_path %}
-                <div class="logo"><img src="{{ relative_symbol_path }}"></div>
-              </div>
-              <h3 class="title">{{ item.title }}</h3>
-            </header>
-
-            <p class="body">
-              {{ item.description }}
-            </p>
-
-            <div class="cta-view-project">
-              <div class="button">View Project</div>
+      {% for item in featured_projects limit:3 %}
+        <a class="item" href="{{ item.home_url }}" role="article">
+          <header>
+            <div class="logo-container">
+              {% assign symbol_path = item.path | split: "/" | slice: 1, 1 | join: "/" | append: "/assets/symbol.svg" %}
+              {% assign relative_symbol_path = "/projects/" | append: symbol_path %}
+              <div class="logo"><img src="{{ relative_symbol_path }}"></div>
             </div>
-          </a>
-        {% endfor %}
-      </div>
-    </section>
-  {% endif %}
+            <h3 class="title">{{ item.title }}</h3>
+          </header>
 
-  {% if num_posts > 0 %}
-    <section class="featured-posts">
-      <div class="puny-label">Latest news</div>
-      <h2 class="title">From the Blog</h2>
+          <p class="body">
+            {{ item.description }}
+          </p>
 
-      <div class="items">
-        {% for item in posts limit:3 %}
-          {% include post-card.html post=item %}
-        {% endfor %}
-      </div>
-    </section>
-  {% endif %}
-</div>
+          <div class="cta-view-project">
+            <div class="button">View Project</div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% if num_posts > 0 %}
+  <section class="featured-posts">
+    <div class="puny-label">Latest news</div>
+    <h2 class="title">From the Blog</h2>
+
+    <div class="items">
+      {% for item in posts limit:3 %}
+        {% include post-card.html post=item %}
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
 
 {% assign other_projects = projects | where: "featured", false %}
 {% assign num_other_projects = other_projects | size %}

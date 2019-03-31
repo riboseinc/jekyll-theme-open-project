@@ -9,9 +9,5 @@ layout: default
 {% if num_projects > 0 %}
   {% include home-hub.html %}
 {% else %}
-  {% if site.one_software %}
-    {% include home-project-one-software.html %}
-  {% else %}
-    {% include home-project.html %}
-  {% endif %}
+  {% include home-project.html %}
 {% endif %}

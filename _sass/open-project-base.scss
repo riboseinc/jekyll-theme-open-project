@@ -65,7 +65,8 @@ a {
 }
 
 .main-section {
-  margin-top: 50px;
+  margin-top: 1em;
+  margin-bottom: 1em;
 
   display: flex;
   flex-flow: column nowrap;
@@ -91,6 +92,12 @@ a {
     margin-bottom: 1em;
 
     position: relative;
+
+    color: white;
+
+    a {
+      @include static-link-color(white);
+    }
 
     .more-link {
       margin-left: .5em;

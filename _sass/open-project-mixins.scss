@@ -16,11 +16,11 @@
 
 @mixin wide-container() {
   @media screen and (min-width: $bigscreen-breakpoint) {
-    padding: 0;
-    width: $bigscreen-breakpoint - $gutter * 2;
+    padding: 0 2em;
+    width: $bigscreen-breakpoint - $gutter * 8;
   }
   @media screen and (min-width: $widescreen-breakpoint) {
-    width: $widescreen-breakpoint - $gutter * 2;
+    width: $widescreen-breakpoint - $gutter * 8;
   }
 }
 
@@ -314,23 +314,36 @@
   }
 }
 
-@mixin item-external-links() {
+@mixin item-external-links($onDark: false) {
   ul.nav-items {
     @include reset-list();
   }
 
   > .nav-items > li {
-    margin-bottom: 10px;
-    margin-right: 16px;
+    flex-basis: 50%;
+    width: 50%;
+    max-width: 200px;
+
+    &:first-child {
+      a {
+        margin-left: 1px;
+      }
+    }
 
     > a {
-      @include static-link-color(#444);
-      background-color: #F7F7F7;
+      @if $onDark == true {
+        @include static-link-color(white);
+        background-color: rgba(black, 0.7);
+      } @else {
+        @include static-link-color(#444);
+        background-color: rgba(black, 0.08);
+      }
 
       display: block;
       font-weight: bold;
-      padding: 4px 0 4px 0;
-      border-radius: 10px;
+      padding: .5em 1em .5em 1.5em;
+
+      margin: 1px 1px 1px 0;
 
       display: flex;
       flex-flow: row nowrap;
@@ -339,30 +352,28 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
-      }
-      .lbl:first-child {
-        // First child means no icon present
-        margin-left: 16px;
+        flex: 1;
       }
       .ico {
         flex-shrink: 0;
-        text-align: right;
         width: 32px;
-        padding-right: 10px;
       }
       .ico-ext {
         flex-shrink: 0;
         text-align: right;
         width: 32px;
-        padding-left: 10px;
-        padding-right: 10px;
       }
     }
 
     &.featured {
       > a {
-        background-color: $primary-dark-color;
-        @include static-link-color(white);
+        @if $onDark == true {
+          @include static-link-color($primary-color);
+          background-color: white;
+        } @else {
+          @include static-link-color(white);
+          background-color: $primary-dark-color;
+        }
       }
     }
   }
@@ -694,9 +705,21 @@
 
     .docs-nav {
       .external-links {
+        margin-bottom: .5em;
+
         > .nav-items > li {
-          margin-bottom: 0;
-          margin-right: -$external-links-side-margin;
+          flex-basis: unset;
+          width: 100%;
+          a {
+            padding: 0;
+            background: none;
+          }
+          &.featured {
+            a {
+              background: none;
+              @include static-link-color($main-font-color);
+            }
+          }
         }
       }
     }

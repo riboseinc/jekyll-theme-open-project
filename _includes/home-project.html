@@ -1,25 +1,19 @@
-{% assign num_software = site.num_all_software %}
-{% assign num_specs = site.num_all_specs %}
+{% assign num_featured_software = site.featured_software | size %}
+{% assign num_featured_specs = site.featured_specs | size %}
 {% assign num_posts = site.num_posts_combined %}
 
 {% assign num_posts_specs = num_posts | plus: num_featured_specs %}
 
-{% if num_posts > 0 %}
-  {% include featured_posts.html %}
-{% endif %}
-
-{% if num_software_specs > 0 %}
-  <div class="underlay top-background">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-      <polygon fill="white" points="0,0 100,0 100,60 0,100"/>
-    </svg>
-
-    {% if num_software > 0 %}
-      {% include featured_software.html %}
-    {% endif %}
-
-    {% if num_specs > 0 %}
-      {% include featured_specs.html %}
-    {% endif %}
-  </div>
-{% endif %}
+{% for section_name in site.landing_priority %}
+  {% if section_name == "specs" and num_featured_specs > 0 %}
+    {% include featured_specs.html %}
+  {% elsif section_name == "software" and num_featured_software > 0 %}
+    {% include featured_software.html %}
+  {% elsif section_name == "blog" and num_posts > 0 %}
+    {% include featured_posts.html %}
+  {% elsif section_name == "custom_intro" %}
+    <section class="custom-intro">
+      {% include custom-intro.html %}
+    </section>
+  {% endif %}
+{% endfor %}

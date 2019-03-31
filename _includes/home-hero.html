@@ -5,13 +5,16 @@
     <p class="desc">{{ site.pitch | safe }}</p>
   {% endif %}
 
-  <div class="cta">
-    {% if site.is_hub %}
+  {% if site.is_hub %}
+    <div class="cta">
       <a class="button" href="{{ "/projects/" | relative_url }}">
         <i class="icon far fa-search"></i>
         Explore Projects
       </a>
-    {% else if %}
+    </div>
+  {% else if site.one_software %}
+  {% else %}
+    <div class="cta">
       {% assign ctas = site.home_calls_to_action | slice: 0, 2 %}
 
       {% for link in ctas %}
@@ -19,6 +22,6 @@
           {{ link.title }}
         </a>
       {% endfor %}
-    {% endif %}
-  </div>
+    </div>
+  {% endif %}
 </div>

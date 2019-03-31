@@ -23,6 +23,8 @@ unmarked_external_link_selectors:
   - a[href*=coverity]
   - a[href*=codecov]
 
+landing_priority: [software, specs, blog]
+
 collections:
   projects:
     output: false

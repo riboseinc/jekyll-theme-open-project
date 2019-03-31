@@ -6,15 +6,14 @@ $code-listing-background-color: rgba($main-font-color, 0.03);
 $code-listing-border-color: lighten($main-font-color, 70);
 
 $primary-color: lightblue !default;
-$primary-dark-color: navy !default;
+$primary-dark-color: $primary-color !default;
 $accent-color: red !default;
 
 $warning-color: red !default;
 $important-color: orange !default;
 
-$header-background: $primary-dark-color !default;
-$hero-background: $primary-dark-color !default;
-$superhero-background: $primary-dark-color !default;
+$main-background: linear-gradient(315deg, $accent-color 0%, $primary-color 74%) !default;
+$header-background: $main-background !default;
 
 $hub-software--primary-color: lightsalmon !default;
 $hub-software--primary-dark-color: tomato !default;
@@ -24,10 +23,10 @@ $hub-specs--primary-color: lightpink !default;
 $hub-specs--primary-dark-color: palevioletred !default;
 $hub-specs--hero-background: $hub-specs--primary-dark-color !default;
 
-$gutter: 30px;
+$gutter: 15px;
 $featured-cols: 3;
 $featured-cols-narrow: 2;
-$grid-cols: 4;
+$grid-cols: 3;
 
 $widescreen-breakpoint: 1140px + $gutter * 2;
 $bigscreen-breakpoint: 900px + $gutter * 2;
@@ -45,40 +44,9 @@ main {
   /* Generic */
 
   .layout--home > & {
-    > section {
-      z-index: 1;
-    }
-    > .underlay {
-      > svg {
-        display: none;
-      }
-      @media screen and (min-width: $bigscreen-breakpoint) {
-        position: relative;
+    padding-bottom: 2em;
 
-        > * {
-          z-index: 1;
-        }
-        > svg {
-          display: block;
-          z-index: 0;
-          position: absolute;
-        }
-
-        // Top section(s) background
-        &.top-background {
-          padding-bottom: 80px;
-          background-color: #F7F7F7;
-
-          > svg {
-            top: 0;
-            width: 100%;
-            height: 35vw;
-          }
-        }
-      }
-    }
-
-    > .underlay > .featured-posts {
+    > .featured-posts {
       @extend .main-section;
 
       .items {
@@ -144,10 +112,6 @@ main {
 
   .layout--home > & {
     padding-bottom: 50px;
-
-    @media screen and (min-width: $bigscreen-breakpoint) {
-      padding-bottom: 0;
-    }
   }
 
   .layout--spec-index > &,
@@ -364,7 +328,7 @@ main {
 .site--hub {
 
   &.layout--home > main {
-    > .underlay > .featured-projects {
+    > .featured-projects {
       @extend .main-section;
 
       > .title:after {
@@ -526,84 +490,119 @@ main {
 
 /* Project */
 
-.site--project {
-  &.site--project--one-software.layout--home > main {
-    .docs-nav {
+body.site--project {
+  &.layout--home {
+    background: $main-background;
+  }
 
-      ul.nav-items {
-        @include reset-list;
-        font-size: 15px;
+  &.layout--home > main {
+    .item {
+      background: linear-gradient(110deg, white 20%, rgba(white, 0.85) 100%);
+
+      display: flex;
+      flex-flow: column nowrap;
+      padding: 1em 1.5em;
+
+      .body {
+        flex: 1;
       }
 
-      > ul.nav-items > li {
-        > .item-title {
-          font-size: 20px;
-          font-weight: bold;
-          margin: 0;
-          line-height: 1.8;
+      .title {
+        font-size: 24px;
+        font-weight: normal;
+      }
+
+      .docs-nav {
+        flex-basis: 100%;
+        margin-bottom: 1em;
+        @include item-nav-toc();
+      }
+
+      .external-links {
+        @include item-external-links();
+        margin-left: -1.5em;
+        margin-right: -1.5em;
+
+        .nav-items {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap-reverse;
+
+          a {
+            white-space: nowrap;
+          }
         }
-        ul {
-          line-height: 2;
+      }
+    }
+
+    > .custom-intro {
+      .summary {
+        font-size: 20px;
+        color: #fefefe;
+
+        .cta {
+          margin-top: 30px;
+          .button {
+            @include cta-button($primary-dark-color, white);
+            border-radius: 25px;
+            border: 1px solid $primary-color;
+          }
+        }
+        p:first-child:first-letter {
+          color: $accent-color;
+          float: left;
+          font-size: 75px;
+          line-height: 60px;
+          padding-right: 8px;
+          margin-left: -5px;
+        }
+        @media screen and (min-width: $bigscreen-breakpoint) {
+          p:first-child {
+            padding-right: 20vw;
+          }
         }
       }
     }
   }
 
-  &.layout--home > main > .underlay.summary-background {
-    padding-top: 20px;
+  &.site--project--one-software.layout--home > main {
+    // On single-software project sites, the only software item on landing
+    // is made part of the page rather than being constrained to a card widget.
+    // No own background means it’ll appear on landing page’s overall dark background.
 
-    > svg {
-      > polygon {
-        fill: #F7F7F7;
+    .custom-intro {
+      .summary {
+        a {
+          @include static-link-color(white);
+        }
       }
-      bottom: 0;
-      width: 100%;
-      height: 35vw;
     }
 
-    .summary {
-      font-size: 18px;
+    .item {
+      background: none;
+      padding: 0;
 
-      ul.you-can {
-        padding: 0;
-        display: flex;
-        flex-flow: column nowrap;
-        li {
-          flex: 1 1 auto;
-          &:first-child {
-            margin-right: 40px;
+      .docs-nav {
+        ul.nav-items > li {
+          > .item-title {
+            font-size: 24px;
+
+            a {
+              @include static-link-color(white);
+            }
           }
         }
       }
-      .cta {
-        margin-top: 30px;
-        .button {
-          @include cta-button($primary-dark-color, white);
-          border-radius: 25px;
-          border: 1px solid $primary-color;
-        }
-      }
-      p:first-child:first-letter {
-        color: $accent-color;
-        float: left;
-        font-size: 75px;
-        line-height: 60px;
-        padding-right: 8px;
-        margin-left: -5px;
-      }
-      @media screen and (min-width: $bigscreen-breakpoint) {
-        p:first-child {
-          padding-right: 20vw;
-        }
-        ul.you-can {
-          flex-flow: row nowrap;
-        }
+      .external-links {
+        @include item-external-links(true);
+        margin-left: 0;
+        margin-right: 0;
       }
     }
   }
 
   &.layout--home > main > .software,
-  &.layout--home > main > .underlay > .specs,
+  &.layout--home > main > .specs,
   &.layout--software-index > main,
   &.layout--spec-index > main {
     > .items {
@@ -619,15 +618,11 @@ main {
       }
 
       .item {
-        @extend .item-card;
-        @include hoverable-card(2px, 10px, rgba(desaturate($primary-color, 50), 0.08));
-
-        padding: 30px 32px;
+        flex: 1;
         text-align: left;
 
         header > .title {
           margin: 0;
-          font-size: 20px;
         }
         .body {
           font-size: 16px;
@@ -636,12 +631,53 @@ main {
     }
   }
 
-  &.layout--home > main > .software,
+  &.layout--software-index > main,
+  &.layout--spec-index > main {
+    > .items .item {
+      @extend .item-card;
+      @include hoverable-card(2px, 10px, rgba(desaturate($primary-color, 50), 0.08));
+
+      padding: 30px 32px;
+      flex: unset;
+    }
+  }
+
+  &.layout--home > main > .software {
+    > .items {
+      .item {
+        $logo-space: 64px;
+        $logo-side: 32px;
+
+        header {
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
+
+          .title {
+            flex: 1;
+          }
+          .logo-container {
+            width: $logo-space;
+            flex: 0;
+            padding: 4px ($logo-space - $logo-side) 4px 0;
+
+            .logo > :only-child {
+              width: $logo-side;
+              height: $logo-side;
+              vertical-align: middle;
+            }
+          }
+        }
+      }
+    }
+  }
+
   &.layout--software-index > main {
     > .items {
       .item {
         $logo-space: 132px;
         $logo-side: 48px;
+
         .logo-container {
           .logo > :only-child {
             width: $logo-side;
@@ -663,8 +699,22 @@ main {
   }
 
   &.layout--home > main > .software,
-  &.layout--home > main > .underlay > .specs {
+  &.layout--home > main > .specs {
     @extend .main-section;
+
+    > .title {
+      padding: .4em 1.5em;
+      background: rgba(white, 0.9);
+      font-size: 110%;
+      font-weight: normal;
+      align-self: flex-start;
+      color: lighten($main-font-color, 20);
+      margin-bottom: $gutter;
+
+      a {
+        @include static-link-color($primary-dark-color);
+      }
+    }
 
     .items {
       @extend .item-grid;
@@ -689,7 +739,7 @@ main {
           // Show third element
           &:nth-child(3) {
             opacity: 1;
-            display: block;
+            display: flex;
           }
         }
       }
