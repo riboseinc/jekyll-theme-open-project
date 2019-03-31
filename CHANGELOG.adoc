@@ -1,6 +1,16 @@
 = Changelog
 
 
+== 2.0.1
+
+Fixed a couple of issues:
+
+* External link displayed on software / spec landing page
+  were broken on narrower screens.
+
+* Featued items on landing did not get sorted correctly
+  by specified priority.
+
 == 2.0
 
 [IMPORTANT]
