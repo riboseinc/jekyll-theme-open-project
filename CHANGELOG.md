@@ -1,8 +1,9 @@
-# Changelog
+= Changelog
 
-## 1.4
 
-### Software & specs external links overhaul (BREAKING)
+== 1.4
+
+=== Software & specs external links overhaul (BREAKING)
 
 Software and spec entry points now support external_links key in YAML frontmatter.
 External links are specified as one array
@@ -21,7 +22,7 @@ in source repository link being shown anymore.
 You must have repository URL in external_links if you want the link to appear.
 (This might seem as redundant, but it also allows to not hide the repository link if desired.)
 
-### Project site landing page overhaul (BREAKING)
+=== Project site landing page overhaul (BREAKING)
 
 In addition to purely looks (e.g., using full-height background),
 landing pages for project sites were made more convenient.
@@ -30,12 +31,12 @@ There was a change in design approach—from landing pages focused
 on one single call-to-action, to landing pages with more actions
 and higher information density.
 
-#### Simplified landing page layout for single-software projects
+==== Simplified landing page layout for single-software projects
 
 If an open project consists of only one software package (which is somewhat typical),
 its site’s landing page will be simplified.
 
-#### Customizable landing page section order
+==== Customizable landing page section order
 
 Introduced site-wide configuration key landing_priority.
 
@@ -43,7 +44,7 @@ Project sites can use it to change section order for the landing (home) page,
 and specify a custom intro include. For an example, see Metanorma and Cryptode sites
 in Ribose Open network.
 
-#### More useful actions exposed
+==== More useful actions exposed
 
 - Visitors can now quickly jump into software’s documentation:
   if software has docs (and top-level navigation items are clickable),
@@ -52,7 +53,7 @@ in Ribose Open network.
 - Software & spec cards now show external links, allowing visitors to quickly
   download software or view specification on SDO site or elsewhere.
 
-### Improved documentation page UX
+=== Improved documentation page UX
 
 When navigating to a path with an anchor (hash) in URL:
 
@@ -63,7 +64,7 @@ When navigating to a path with an anchor (hash) in URL:
 
 Page header and navigation sidebar were made a bit cleaner.
 
-### Miscellaneous UI updates & styling refactoring (BREAKING)
+=== Miscellaneous UI updates & styling refactoring (BREAKING)
 
 - HTML structure on landing has simplified. If you rely on it for styling purposes
   in your sites’ style.scss, you may want to check
@@ -71,12 +72,13 @@ Page header and navigation sidebar were made a bit cleaner.
 
 - SASS rules across the board were updated, and a couple variables changed names.
 
-  * The $superhero-background variable is now called $main-background.
-    * By default, it is now a gradient based on primary and accent colors.
+-- The $superhero-background variable is now called $main-background.
 
-  * $hero-background variable has been removed.
+--- By default, it is now a gradient based on primary and accent colors.
 
-  * `.item` selector on `<li>` elements in navigation blocks is no longer used.
+-- $hero-background variable has been removed.
+
+-- `.item` selector on `<li>` elements in navigation blocks is no longer used.
 
 - Removed “tagline” after main title from stock spec & software index pages hero include.
   It didn’t add much and required extra copywriting effort.
@@ -93,7 +95,7 @@ Page header and navigation sidebar were made a bit cleaner.
 
 - Many smaller changes across the board.
 
-### Bug fixes
+=== Bug fixes
 
 - Stopped adding external link marker & bottom border to certain links (e.g., OSS badges).
 
@@ -103,12 +105,12 @@ Page header and navigation sidebar were made a bit cleaner.
 
 - Relaxed constraint where spec build’s PNG diagrams engine required specific navigation.
 
-## 1.3.3
+== 1.3.3
 
 A few updates to how some blocks in AsciiDoc-generated markup appear visually,
 including marking warning and important admonition block with colour.
 
-## 1.3.2
+== 1.3.2
 
 A few updates to how some blocks in AsciiDoc-generated markup appear visually
 (admonition blocks, listing blocks and figure titles).
@@ -116,7 +118,7 @@ A few updates to how some blocks in AsciiDoc-generated markup appear visually
 This means blog posts, documentation pages and other content authored in .adoc
 will appear neater.
 
-## 1.3.1
+== 1.3.1
 
 - Added “Further in this section” on project documentation pages, when
   navigation item corresponding to the currently open page has nested items
@@ -131,12 +133,12 @@ Adjusted typography in general and improved formatting of some AsciiDoc features
 
 - Admonition blocks
 
-## 1.3
+== 1.3
 
 - Documentation on open project sites now adds navigation across in-page
   header hierarchy below currently selected item in the sidebar.
 
-## 1.2.5
+== 1.2.5
 
 - Now recognizing Facebook & LinkedIn social links (with appropriate icons)
 
@@ -151,13 +153,13 @@ Adjusted typography in general and improved formatting of some AsciiDoc features
 Hid external icon markers appearing on social link icons & ruining blog post
 page appearance.
 
-## 1.2.4
+== 1.2.4
 
 - Enabled Algolia search on hub sites
 
 - Avoiding building spec contents on hub site build
 
-## 1.2.3
+== 1.2.3
 
 - In tag lists on software & spec cards, now showing full tag name in tooltip.
   Useful for longer tag names that get clipped due to card width
@@ -178,7 +180,7 @@ Continued work on documentation navigation:
 - Fixed software docs not displaying properly if their source location
   is different than docs/ subtree within the Git repository
 
-## 1.2.2
+== 1.2.2
 
 Documentation navigation display improvements:
 
@@ -187,11 +189,11 @@ Documentation navigation display improvements:
 - On narrower viewports, initialize navigation sidebar in collapsed state
   to avoid covering the content
 
-## 1.2.1
+== 1.2.1
 
 A couple of bugfixes to new documentation navigation widget’s behavior.
 
-## 1.2
+== 1.2
 
 This update features a major update to documentation UX.
 
@@ -212,11 +214,11 @@ Bugfixes:
 
 - Fixed clipped “Featured” labels on software/spec cards on hub site
 
-## 1.1.27
+== 1.1.27
 
 - Fixed broken project navigation links
 
-## 1.1.26
+== 1.1.26
 
 - Added support for project-wide documentation in the same style
   as in software package docs
@@ -230,7 +232,7 @@ Bugfixes:
 - Fixed an issue where html-proofer gem recommended by
   CI_OPS docs caused build failure due to breaking change in a recent version
 
-## 1.1.25
+== 1.1.25
 
 - Added support for displaying specification contents as part of
   project sites. In this first iteration, only PNG diagrams
@@ -245,7 +247,7 @@ Bugfixes:
 
 - Layout improvements & fixes
 
-## 1.1.24
+== 1.1.24
 
 - Improved tag filtering experience
 
@@ -254,7 +256,7 @@ Bugfixes:
 - Fixed a bug where search widget would attempt to be initialized
   in absence of search input
 
-## 1.1.23
+== 1.1.23
 
 - Algolia search can now be easily enabled on project sites
   by adding a key to Jekyll’s _config.yml
@@ -266,7 +268,7 @@ Bugfixes:
 - Simplified deployment by bundling Rakefile and .travis.yml
   and documenting the corresponding GitHub -> AWS S3 setup in CI_OPS
 
-## 1.1.22
+== 1.1.22
 
 - Fixed an issue with software documentation landing page layout
   not displaying correctly depending on viewport height & the amount
@@ -274,7 +276,7 @@ Bugfixes:
 
 - Started marking external links within main site contents
 
-## 1.1.21
+== 1.1.21
 
 - Better styling support for AsciiDoc-rendered HTML in site contents
 
@@ -283,13 +285,13 @@ Bugfixes:
 - Fixed an issue where ordering of software by last modification timestamp
   was messed up when timestamp was not present on some packages
 
-## 1.1.20
+== 1.1.20
 
 - Fixed a regression introduced in previous version
   that caused cards from hub site software & spec indexes to not link
   to their pages on corresponding project sites, 404’ing instead.
 
-## 1.1.19
+== 1.1.19
 
 Improved software and spec indexes on both hub and project sites:
 
@@ -299,7 +301,7 @@ Improved software and spec indexes on both hub and project sites:
 
 - Show featured software/specs first in corresponding index listing on project sites
 
-## 1.1.18
+== 1.1.18
 
 Updated layout of landing pages for both project and hub sites.
 
@@ -309,7 +311,7 @@ Updated layout of landing pages for both project and hub sites.
 
 - Now showing featured items as a grid
 
-## 1.1.17
+== 1.1.17
 
 Fixed an issue with code listings not always being horizontally scrollable,
 in those cases causing layout of documentation pages to exceed screen width.
@@ -320,16 +322,20 @@ Added favicon to base page meta (sites are expected to provide
 Made top header collapse on scroll for better readability on smaller screens.
 Made documentation ToC collapsible as well.
 
-**BREAKING**: Navigation block on documentation pages has changed its
-selector from .nav-sidebar to .docs-nav; sites customizing that have to
+[IMPORTANT]
+.Breaking change
+====
+Navigation block on documentation pages has changed its
+selector from `.nav-sidebar` to `.docs-nav`; sites customizing that have to
 update the selector in HTML/CSS.
+====
 
 
-## 1.1.16
+== 1.1.16
 
 Improved formatting of code snippets, lists, tables and admonition blocks.
 
-## 1.1.14-15
+== 1.1.14-15
 
 Incremental improvements to content presentation & formatting:
 
@@ -341,19 +347,19 @@ Incremental improvements to content presentation & formatting:
 
 - Better formatting of TBD labels
 
-## 1.1.13
+== 1.1.13
 
 - More consistent formatting of code snippets in docs and elsewhere on the site
 
 - Fixed a problem with fetched software documentation not always being rendered
   as part of project site
 
-## 1.1.12
+== 1.1.12
 
 - Some changes in SASS structure aimed to improve customizability
   of Open Project framework-based site UIs
 
-## 1.1.11
+== 1.1.11
 
 - Even faster processing when `refresh_remote_data` is set to 'skip'
 
@@ -363,16 +369,16 @@ Incremental improvements to content presentation & formatting:
 
 - Minor documentation page layout & content formatting improvements
 
-## 1.1.10
+== 1.1.10
 
-### Synchronized versions & centralized change log
+=== Synchronized versions & centralized change log
 
 - Each theme version will require (in its gemspec) the exact helpers library version
 
 - Theme’s CHANGELOG will reflect the development of Open Project framework
   regardless of whether the actual changes belong to theme or helpers gem
 
-### Fixes to multi-site data integration
+=== Fixes to multi-site data integration
 
 - A few issues in data-fetching logic were fixed, now certain edge cases (such as missing
   software docs) are handled better and (re)generation of sites,
@@ -382,19 +388,19 @@ Incremental improvements to content presentation & formatting:
 - Site’s `_config.yml` now supports optional string flag `refresh_remote_data`
   with three possible values: 'always', 'last-resort' (default), and 'skip'.
 
-  - The default 'last-resort' choice means site build will attempt to fetch remote data
+-- The default 'last-resort' choice means site build will attempt to fetch remote data
     (such as last software update timestamp, software docs, hub logos, etc.)
     when there is no local copy.
   
-  - 'always' may be helpful during development if you have a local copy from previous build,
+-- 'always' may be helpful during development if you have a local copy from previous build,
     but the remote data has changed and you want your local sites to reflect that.
   
-  - 'skip' will always leave local data intact and not attempt to contact remote repositories,
+-- 'skip' will always leave local data intact and not attempt to contact remote repositories,
     which would speed up regeneration during debugging or development
     where you know you have a local copy alreay fetched as needed
     (otherwise it’s likely going to break your build).
 
-## 1.1.9
+== 1.1.9
 
 Build-related fix:
 
@@ -416,14 +422,14 @@ Various fixes and improvements:
 
 - Remove redundant ARIA role definition from presentational divs
 
-## 1.1.8
+== 1.1.8
 
 - Minor improvements to layout & default copy phrasing here and there
 
 - Correct ``excludes`` in default ``_config.yml`` definition in the theme
   to prevent Jekyll from trying to build what shouldn’t be built
 
-## 1.1.7
+== 1.1.7
 
 Improved documentation layout:
 
@@ -438,7 +444,7 @@ Bugfixes:
   on software & spec cards
 
 
-## 1.1.6
+== 1.1.6
 
 Much improved documentation layout:
 
@@ -450,33 +456,33 @@ Much improved documentation layout:
 
 - Fixed documentation page layout issues on narrower screens
 
-## 1.1.5
+== 1.1.5
 
 A couple of layout tweaks:
 
 - Preserve clickability of active item in top menu
 - Make software documentation/spec page layout fit narrow screens
 
-## 1.1.4
+== 1.1.4
 
 - A few improvements to sites’ layout on narrow screens
 
-## 1.1.3
+== 1.1.3
 
 - A few appearance updates, including more elegant layout
   and hamburger menu on narrower screens.
 
-## 1.1.2
+== 1.1.2
 
 - Fixed an issue preventing hub site build if child project sites’
   SCSS imported files from outside the assets directory
 
-## 1.1.1
+== 1.1.1
 
 - Fixed an issue breaking Jekyll build on sites which do not have
   a scripts.html include
 
-## 1.1.0
+== 1.1.0
 
 Minor features:
 
@@ -495,7 +501,7 @@ Other changes:
   Corresponding new selectors would be
   `body.layout--layoutname`, `body.site--hub`, `body.site--project`.
 
-## 1.0.10
+== 1.0.10
 
 - Implemented optional key `feature_with_priority` for software and specs (#28)
 - Added CHANGELOG
