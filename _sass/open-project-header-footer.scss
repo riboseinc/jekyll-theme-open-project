@@ -104,6 +104,15 @@ body > .underlay > footer {
     background: none;
   }
 
+  .site--project.layout--home > & {
+    > .hero {
+      .text {
+        margin-top: 1.5em;
+        margin-bottom: 2em;
+      }
+    }
+  }
+  
   .site--hub.layout--home > & {
     > .hero {
       text-align: left;
