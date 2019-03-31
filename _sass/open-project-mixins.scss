@@ -731,11 +731,13 @@
 
     &.docs-landing > article {
       > header {
-        .external-links > .nav-items > li > a {
-          @include static-link-color(#fff);
-          background-color: $primary-dark-color;
-        }
+        .external-links {
+          margin-bottom: 2em;
 
+          > .nav-items > li {
+            width: unset;
+          }
+        }
         > .title {
           border-bottom-width: 0;
           padding-bottom: 0;
@@ -777,7 +779,7 @@
 
           @media screen and (min-width: $bigscreen-breakpoint) {
             > .body {
-              padding-top: 70px;
+              padding-top: 20px;
             }
           }
         }
