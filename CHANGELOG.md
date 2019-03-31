@@ -3,6 +3,18 @@
 
 == 1.4
 
+[IMPORTANT]
+.Breaking changes
+====
+* Update software & spec entry point frontmatter according to new external link support
+  (some YAML keys are now obsolete).
+* If you customize styling:
+** Rename SASS variable $superhero-background
+   Details below & in the styling customization part of theme’s README.
+** Beware of changes in project & hub site landing pages’ HTML markup structure.
+** Beware of minor styling refactoring across the board.
+====
+
 === Software & specs external links overhaul (BREAKING)
 
 Software and spec entry points now support external_links key in YAML frontmatter.
