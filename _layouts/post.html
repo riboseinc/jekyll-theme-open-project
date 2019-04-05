@@ -26,7 +26,7 @@ layout: default
       {% for link in page.author.social_links %}
         <a href="{{ link }}" class="ico">
           <span class="fa-layers fa-2x">
-            <i class="fas fa-circle"></i>
+            <i class="{{ site.icon_font.icon_class }} fa-circle"></i>
             <i
               {% if link contains "twitter.com" %}
                 class="fab fa-twitter"

@@ -154,10 +154,10 @@ and name as word(s).
   Drop a file called `title.html` in the root of your site.
   In its contents you can go as simple as `{{ site.name }}`
   and as complex as a custom SVG shape.
-  
+
   Note that it must look good when placed inside ~30px tall container.
   In case of SVG, SVG guidelines apply.
-  
+
 Do not create custom CSS rules for .site-logo descendants:
 this may cause issues when one site’s logo is used in context of another site
 of the same hub. You can use inline styling, though.
@@ -346,6 +346,13 @@ parent_hub:
 algolia_search:
   api_key: '<your Algolia API key>'
   index_name: '<your Algolia index name>'
+
+# Add this if you want to use Font Awesome Pro (the paid version).
+icon_font:
+  icon_class: 'far'
+  fa_integrity: 'sha384-E5SpgaZcbSJx0Iabb3Jr2AfTRiFnrdOw1mhO19DzzrT9L+wCpDyHUG2q07aQdO6E'
+  fa_src: https://pro.fontawesome.com/releases/v5.1.0/js/all.js
+
 # Only add this if you want to use Algolia’s search on your project site.
 
 tag_namespaces:
@@ -508,7 +515,7 @@ external_links:
 #   GitHub, Docs.rs, RubyDoc,
 #   ietf.org/html/rfcN, datatracker.ietf.org/doc/…
 # * Order links according to importance for project site visitors.
-#   The first link will be highlighted as primary. 
+#   The first link will be highlighted as primary.
 
 feature_with_priority: 1
 # With this key, software or spec will be featured on home
@@ -695,7 +702,7 @@ Commonly used layouts are:
 
 ### Page frontmatter
 
-Typical expected page frontmatter is `title` and `description`. Those are 
+Typical expected page frontmatter is `title` and `description`. Those are
 also used by jekyll-seo-tag plugin to add the appropriate meta tags.
 
 Commonly supported in page frontmatter is the hero_include option,
@@ -817,7 +824,7 @@ run `bundle install`.
 
 To experiment with this code, add content (projects, software, specs)
 and run `bundle exec jekyll serve`. This starts a Jekyll server
-using this theme at `http://localhost:4000`. 
+using this theme at `http://localhost:4000`.
 
 Put your layouts in `_layouts`, your includes in `_includes`,
 your sass files in `_sass` and any other assets in `assets`.

@@ -41,6 +41,11 @@ collections:
     output: true
     permalink: /:name/
 
+icon_font:
+  icon_class: 'fas'
+  fa_integrity: 'sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ'
+  fa_src: https://use.fontawesome.com/releases/v5.8.1/js/all.js
+
 defaults:
   - scope:
       path: ""

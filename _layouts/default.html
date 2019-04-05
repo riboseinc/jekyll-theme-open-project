@@ -10,11 +10,7 @@
 
   <link id="themeCSS" rel="stylesheet" href="{{ "assets/css/style.css" | relative_url }}">
 
-  {% if site.use_fa_pro %}
-  <script defer src="https://pro.fontawesome.com/releases/{{ site.fa_pro_version }}/js/all.js" integrity="{{ site.fa_pro_hash }}" crossorigin="anonymous"></script>
-  {% else %}
-  <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
-  {% endif %}
+  <script defer src="{{ site.icon_font.fa_src }}" integrity="{{ site.icon_font.fa_integrity }}" crossorigin="anonymous"></script>
 
   {% if site.algolia_search %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
@@ -104,14 +100,14 @@
     {% endcomment %}
     <script>
       window.initAlgolia = function () {
-        docsearch({ 
-          apiKey: '{{ site.algolia_search.api_key }}', 
-          indexName: '{{ site.algolia_search.index_name }}', 
-          inputSelector: 'input[type=search]', 
+        docsearch({
+          apiKey: '{{ site.algolia_search.api_key }}',
+          indexName: '{{ site.algolia_search.index_name }}',
+          inputSelector: 'input[type=search]',
           debug: false,
-        }); 
+        });
       };
-    </script> 
+    </script>
   {% endif %}
 
   <script src="{{ "assets/js/headroom.min.js" | relative_url }}"></script>
