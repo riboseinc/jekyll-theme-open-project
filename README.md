@@ -131,8 +131,7 @@ These settings apply to both site types (hub and project).
     tos_link: https://www.example.com/tos
     privacy_policy_link: https://www.example.com/privacy
 
-  # These are required for the theme to work:
-  # disable_fontawesome_cdn: yes
+  # no_auto_fontawesome: yes
   # Specify this only if you want to disable free Font Awesome CDN.
   # IMPORTANT: In this case your site MUST specify include head.html with appropriate scripts.
   # Theme design relies on Font Awesome “solid” and “brands” icon styles

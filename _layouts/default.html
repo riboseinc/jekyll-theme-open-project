@@ -10,7 +10,7 @@
 
   <link id="themeCSS" rel="stylesheet" href="{{ "assets/css/style.css" | relative_url }}">
 
-  {% unless site.disable_fontawesome_cdn %}
+  {% unless site.no_auto_fontawesome %}
     <script
       defer
       src="https://use.fontawesome.com/releases/{{ site.fontawesome_cdn.version }}/js/all.js"
