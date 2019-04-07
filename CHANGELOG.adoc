@@ -1,6 +1,16 @@
 = Changelog
 
 
+== 2.0.2
+
+Fixed the issue where icons did not work out of the box:
+
+* Ensured only free icons from Font Awesome 5 are used.
+
+* Added configuration option to disable default Font Awesome CDN if the user
+
+* wants to supply a custom distribution (different version or different hosting/CDN).
+
 == 2.0.1
 
 Fixed a couple of issues:
