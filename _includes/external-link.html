@@ -10,7 +10,7 @@
 
   {% elsif include.url contains "rubygems.org" %}
     <span class="ico">
-      <i class="far fa-gem"></i>
+      <i class="fas fa-gem"></i>
     </span>
     <span class="lbl">
       {{ include.title | default: "Gem" }}
@@ -18,7 +18,7 @@
 
   {% elsif include.url contains "crates.io/crates" %}
     <span class="ico">
-      <i class="far fa-cubes"></i>
+      <i class="fas fa-cubes"></i>
     </span>
     <span class="lbl">
       {{ include.title | default: "Crate" }}
@@ -26,7 +26,7 @@
 
   {% elsif include.url contains "rubydoc" %}
     <span class="ico">
-      <i class="far fa-gem"></i>
+      <i class="fas fa-gem"></i>
     </span>
     <span class="lbl">
       {{ include.title | default: "RubyDoc" }}
@@ -34,7 +34,7 @@
 
   {% elsif include.url contains "docs.rs" %}
     <span class="ico">
-      <i class="far fa-book"></i>
+      <i class="fas fa-book"></i>
     </span>
     <span class="lbl">
       {{ include.title | default: "Docs.rs" }}
