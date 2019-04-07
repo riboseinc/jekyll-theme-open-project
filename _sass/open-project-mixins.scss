@@ -74,6 +74,8 @@
   margin-top: -1px;
   margin-bottom: -1px;
 
+  font-family: $font-family-source;
+
   code {
     // Avoid bad formatting in case of <code> elements nested
     // into each other (possible with adoc output)
