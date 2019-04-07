@@ -10,7 +10,13 @@
 
   <link id="themeCSS" rel="stylesheet" href="{{ "assets/css/style.css" | relative_url }}">
 
-  <script defer src="{{ site.icon_font.fa_src }}" integrity="{{ site.icon_font.fa_integrity }}" crossorigin="anonymous"></script>
+  {% unless site.disable_fontawesome_cdn %}
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/{{ site.fontawesome_cdn.version }}/js/all.js"
+      integrity="{{ site.fontawesome_cdn.integrity }}"
+      crossorigin="anonymous"></script>
+  {% endunless %}
 
   {% if site.algolia_search %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
@@ -29,6 +35,8 @@
   {% endif %}
 
   {% seo %}
+
+  {% include head.html %}
 </head>
 
 {% assign num_projects = site.projects | size %}

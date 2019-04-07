@@ -132,6 +132,12 @@ These settings apply to both site types (hub and project).
     privacy_policy_link: https://www.example.com/privacy
 
   # These are required for the theme to work:
+  # disable_fontawesome_cdn: yes
+  # Specify this only if you want to disable free Font Awesome CDN.
+  # IMPORTANT: In this case your site MUST specify include head.html with appropriate scripts.
+  # Theme design relies on Font Awesome “solid” and “brands” icon styles
+  # and expects them to be included in SVG mode.
+  # Without this setting, one-file FA distribution, all.js, is included from free FA CDN.
 
   theme: jekyll-theme-open-project
   permalink: /blog/:month-:day-:year/:title/
@@ -346,12 +352,6 @@ parent_hub:
 algolia_search:
   api_key: '<your Algolia API key>'
   index_name: '<your Algolia index name>'
-
-# Add this if you want to use Font Awesome Pro (the paid version).
-icon_font:
-  icon_class: 'far'
-  fa_integrity: 'sha384-E5SpgaZcbSJx0Iabb3Jr2AfTRiFnrdOw1mhO19DzzrT9L+wCpDyHUG2q07aQdO6E'
-  fa_src: https://pro.fontawesome.com/releases/v5.1.0/js/all.js
 
 # Only add this if you want to use Algolia’s search on your project site.
 
