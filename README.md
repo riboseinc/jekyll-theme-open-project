@@ -112,14 +112,13 @@ These settings apply to both site types (hub and project).
   # Site’s URL with protocol and without optional www. prefix.
   # Used e.g. for marking external links in docs and blog posts.
 
-  title: Site title
-  description: Site description
+  title: Example
+  description: The example of examples
   # The above two are used by jekyll-seo-tag for things such as
   # `<title>` and `<meta>` tags, as well as elsewhere by the theme.
 
-  tagline: Site tagline
-  pitch: Site pitch
-  # The above two are used in home hero unit.
+  tagline: Because examples are very important
+  # Used in hero unit on main page.
 
   social:
     links:
@@ -260,9 +259,8 @@ must contain a file "index.md" with frontmatter like this:
 
 ```yaml
 title: Sample Awesome Project
-
-description: >-
-  A sentence or two go here.
+description: A sentence or two about what the project is for.
+tagline: Because awesomeness is underrated
 
 # Whether the project is included in featured three projects on hub home page
 featured: true | false
