@@ -8,8 +8,7 @@ Fixed the issue where icons did not work out of the box:
 * Ensured only free icons from Font Awesome 5 are used.
 
 * Added configuration option to disable default Font Awesome CDN if the user
-
-* wants to supply a custom distribution (different version or different hosting/CDN).
+  wants to supply a custom distribution (different version or different hosting/CDN).
 
 Fixed a minor layout issue with item card headers on project landing page.
 
