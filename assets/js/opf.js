@@ -160,8 +160,13 @@
     };
 
     if (hasNav) {
-      // Open by default
-      open(docsNav);
+      docsHeader.addEventListener('click', toggle);
+      var viewportW = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+      if (viewportW > bigscreenBreakpoint) {
+        open(docsNav);
+      } else {
+        collapse(docsNav);
+      }
     } else {
       collapse(docsNav);
     }
