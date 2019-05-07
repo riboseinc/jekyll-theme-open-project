@@ -656,6 +656,7 @@ body.site--project {
           display: flex;
           flex-flow: row nowrap;
           align-items: center;
+          flex-shrink: 0;
 
           .title {
             flex: 1;
