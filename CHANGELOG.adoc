@@ -11,6 +11,8 @@ Fixed the issue where icons did not work out of the box:
 
 * wants to supply a custom distribution (different version or different hosting/CDN).
 
+Fixed a minor layout issue with item card headers on project landing page.
+
 == 2.0.1
 
 Fixed a couple of issues:
