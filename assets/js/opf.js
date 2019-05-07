@@ -160,13 +160,8 @@
     };
 
     if (hasNav) {
-      docsHeader.addEventListener('click', toggle);
-      var viewportW = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-      if (viewportW > bigscreenBreakpoint) {
-        open(docsNav);
-      } else {
-        collapse(docsNav);
-      }
+      // Open by default
+      open(docsNav);
     } else {
       collapse(docsNav);
     }
