@@ -159,6 +159,9 @@
       else { open(docsNav); }
     };
 
+
+    // Open sidebar if (A) navigation is present and (B) viewport is wide enough.
+
     if (hasNav) {
       docsHeader.addEventListener('click', toggle);
       var viewportW = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
