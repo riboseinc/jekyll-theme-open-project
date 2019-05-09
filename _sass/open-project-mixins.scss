@@ -416,6 +416,10 @@
     // To ensure leaflet does not obscure navigation sidebar
     z-index: 3;
   }
+  .leaflet-top, .leaflet-bottom {
+    // To ensure leaflet buttons get covered by expandable top menu
+    z-index: 5;
+  }
 
   > header.documentation-header,
   > section.documentation {
