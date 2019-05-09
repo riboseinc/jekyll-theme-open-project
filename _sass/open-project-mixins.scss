@@ -413,6 +413,7 @@
 
 @mixin docs-page($primary-dark-color) {
   .leaflet-pane {
+    // To ensure leaflet does not obscure navigation sidebar
     z-index: 3;
   }
 
