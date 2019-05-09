@@ -412,6 +412,10 @@
 }
 
 @mixin docs-page($primary-dark-color) {
+  .leaflet-pane {
+    z-index: 3;
+  }
+
   > header.documentation-header,
   > section.documentation {
     align-self: stretch;
