@@ -30,6 +30,7 @@ $gutter: 15px;
 $featured-cols: 3;
 $featured-cols-narrow: 2;
 $grid-cols: 3;
+$grid-cols-narrow: 2;
 
 $widescreen-breakpoint: 1140px + $gutter * 2;
 $bigscreen-breakpoint: 800px + $gutter * 2;
@@ -430,6 +431,12 @@ main {
         }
 
         @media screen and (min-width: $bigscreen-breakpoint) {
+          box-sizing: border-box;
+          flex-basis: calc( 100%/#{$grid-cols-narrow} - #{$gutter} );
+          margin-bottom: $gutter;
+        }
+
+        @media screen and (min-width: $widescreen-breakpoint) {
           box-sizing: border-box;
           flex-basis: calc( 100%/#{$grid-cols} - #{$gutter} );
           margin-bottom: $gutter;

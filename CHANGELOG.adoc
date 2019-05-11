@@ -2,6 +2,8 @@
 
 == 2.0.3
 
+UI responsiveness: reduced “big screen” breakpoint to 800px wide viewports.
+
 Fixed an issue with software/spec card layout on hub site index & landing pages.
 
 Fixed an issue where parts of specification rendered on project site spec pages
