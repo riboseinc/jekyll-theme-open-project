@@ -2,7 +2,7 @@
   'use strict';
 
 
-  var bigscreenBreakpoint = 900;
+  var bigscreenBreakpoint = 800;
   // Conforms to CSS @media rules
 
   var body = document.querySelector('body');
