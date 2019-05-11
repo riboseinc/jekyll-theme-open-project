@@ -1,5 +1,9 @@
 = Changelog
 
+== 2.0.4
+
+Fixed an issue where screen width breakpoint differed in CSS media query & JS.
+
 == 2.0.3
 
 UI responsiveness: reduced “big screen” breakpoint to 800px wide viewports.
