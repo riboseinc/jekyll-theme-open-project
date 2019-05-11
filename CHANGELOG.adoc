@@ -1,5 +1,11 @@
 = Changelog
 
+== 2.0.3
+
+Fixed an issue with software/spec card layout on hub site index & landing pages.
+
+Fixed an issue where parts of specification rendered on project site spec pages
+obscured navigation sidebar and expandable header menu on certain viewport widths.
 
 == 2.0.2
 
