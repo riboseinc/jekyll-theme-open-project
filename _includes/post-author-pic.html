@@ -8,6 +8,6 @@
     {% else %}
       {% assign author_pic_url = "/assets" | append: use_picture %}
     {% endif %}
-    <img src="{{ author_pic_url | relative_url }}">
+    <img src="{{ author_pic_url | relative_url }}" alt="Author’s picture">
   </span>
 {% endif %}
