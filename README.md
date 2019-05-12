@@ -165,9 +165,9 @@ and name as word(s).
   Note that it must look good when placed inside ~30px tall container.
   In case of SVG, SVG guidelines apply.
 
-Do not create custom CSS rules for .site-logo descendants:
-this may cause issues when one site’s logo is used in context of another site
-of the same hub. You can use inline styling, though.
+If you want to style SVG with CSS specifying rules for .site-logo descendants:
+take care, as this may cause issues when hub site’s logo is used in context
+of a project site. (You can use inline styling within the SVG.)
 
 ### Blog
 
