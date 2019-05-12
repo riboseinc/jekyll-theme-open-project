@@ -94,11 +94,12 @@
   <div class="underlay footer">
     <footer>
       {% if site.is_hub %}
-        <div class="site-logo">{% include logo.html %}</div>
+        <div class="site-logo" aria-label="logo">{% include logo.html %}</div>
       {% else %}
         <div class="parent-hub-plug">
           <span class="label">{{ site.title }} is</span>
-          <a class="logo" role="presentation" href="{{ site.parent_hub.home_url }}">
+          <a class="logo" role="presentation" href="{{ site.parent_hub.home_url }}"
+            aria-label="parent project logo">
             {% include parent-hub/assets/symbol.svg %}&nbsp;<span class="title">{% include parent-hub/title.html %}</span>
           </a>
         </div>
