@@ -351,6 +351,12 @@ main {
         padding: 40px 32px;
         text-align: center;
 
+        box-sizing: border-box;
+
+        @media screen and (min-width: $bigscreen-breakpoint) {
+          flex-basis: calc( 100%/#{$featured-cols} - #{$gutter} );
+        }
+
         .logo {
           display: inline-block;
           height: 80px;
@@ -390,13 +396,9 @@ main {
             background-color: $accent-color;
           }
         }
-
-        @media screen and (min-width: $bigscreen-breakpoint) {
-          box-sizing: border-box;
-          flex-basis: calc( 100%/#{$featured-cols} - #{$gutter} );
-        }
       }
     }
+
     > .other-projects {
       @extend .main-section;
       @extend .with-symbol-background;
