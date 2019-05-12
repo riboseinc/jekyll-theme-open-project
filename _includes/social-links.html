@@ -1,17 +1,23 @@
 {% if site.social.links %}
   <aside class="social-links">
     {% for link in site.social.links %}
-      <a href="{{ link }}">
-        {% if link contains "twitter.com" %}
+      {% if link contains "twitter.com" %}
+        <a href="{{ link }}" aria-label="Twitter link">
           <i class="fab fa-twitter"></i>
-        {% elsif link contains "github.com" %}
+        </a>
+      {% elsif link contains "github.com" %}
+        <a href="{{ link }}" aria-label="Github link">
           <i class="fab fa-github"></i>
-        {% elsif link contains "facebook.com" %}
+        </a>
+      {% elsif link contains "facebook.com" %}
+        <a href="{{ link }}" aria-label="Facebook link">
           <i class="fab fa-facebook"></i>
-        {% elsif link contains "linkedin.com" %}
+        </a>
+      {% elsif link contains "linkedin.com" %}
+        <a href="{{ link }}" aria-label="LinkedIn link">
           <i class="fab fa-linkedin"></i>
-        {% endif %}
-      </a>
+        </a>
+      {% endif %}
     {% endfor %}
   </aside>
 {% endif %}
