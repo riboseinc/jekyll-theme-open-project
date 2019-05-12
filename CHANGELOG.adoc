@@ -1,5 +1,17 @@
 = Changelog
 
+== 2.0.7
+
+Improved featured project card layout on hub site landing page, so that it is not
+cramped on insufficiently large viewports.
+
+Improved & documented favicon/touch icon support.
+
+== 2.0.5/2.0.6
+
+Fixed an issue that could cause hub site to require a preliminary build
+in order to pull all the required data from project sites correctly.
+
 == 2.0.4
 
 Fixed an issue where screen width breakpoint differed in CSS media query & JS.
