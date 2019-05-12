@@ -150,7 +150,10 @@ and name as word(s).
   Should look OK in dimensions of 30x30px, and fit inside a square.
   Should be in SVG format (see also the SVG guidelines section).
 
-  Drop your site-wide symbol in <site root>/assets/symbol.svg.
+  - Drop your site-wide symbol in <site root>/assets/symbol.svg.
+
+  - Drop PNG renders of the symbol as favicon.png and favicon-192x192.png
+    under <site root>/assets/; use transparent background.
 
 - **Site name** displayed to the right of the symbol.
   Limit the name to 1-3 words.
