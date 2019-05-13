@@ -64,9 +64,12 @@ Also in the `Gemfile`, add two important plugins to the `:jekyll_plugins` group.
 ```ruby
 group :jekyll_plugins do
   gem "jekyll-seo-tag"
+  gem "jekyll-sitemap"
   gem "jekyll-data"
   gem "jekyll-asciidoc"
+
   gem "jekyll-theme-open-project-helpers"
+
   # ...other plugins, if you use any
 end
 ```

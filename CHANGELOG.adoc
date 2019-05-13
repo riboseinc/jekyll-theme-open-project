@@ -1,5 +1,11 @@
 = Changelog
 
+== 2.0.11
+
+Work around an issue where robots.txt and sitemap.xml output by jekyll-sitemap
+would contain wrapping HTML with old doctype, as if rendered with some layout,
+and would thus be treated as invalid.
+
 == 2.0.10
 
 Fixed an issue where overrided includes, placed in site root as required,
