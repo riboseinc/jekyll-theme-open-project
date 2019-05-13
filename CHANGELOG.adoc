@@ -1,5 +1,10 @@
 = Changelog
 
+== 2.0.10
+
+Fixed an issue where overrided includes, placed in site root as required,
+were included in the output unnecessarily.
+
 == 2.0.8/2.0.9
 
 Corrected a couple of accessibility blunders.

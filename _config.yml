@@ -11,6 +11,11 @@ permalink: /blog/:month-:day-:year/:title/
 # It’s free for open-source projects.
 
 exclude:
+  - home-hero.html
+  - title.html
+  - nav-links.html
+  - flavor-sample-summary.html
+  - project-nav.html
   - /**/.git/*
   - /_projects/**/_*_repo/*
   - /_projects/*/assets/css/*
