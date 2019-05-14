@@ -102,7 +102,9 @@ supporting expandable navigation widget.
           <button class="docs-nav-toggle">Toggle table of contents</button>
 
           {% assign suggest_edits_base_url = item_data.docs.git_repo_url | default: item_data.repo_url %}
-          <a href="{{ suggest_edits_base_url }}/edit/master/{{ item_data.docs.git_repo_subtree | default: "docs" }}/{{ page.path | split: "/" | last }}" class="docs-suggest-edits">Suggest edits to this page</a>
+          {% if suggest_edits_base_url %}
+            <a href="{{ suggest_edits_base_url }}/edit/master/{{ item_data.docs.git_repo_subtree | default: "docs" }}/{{ page.path | split: "/" | last }}" class="docs-suggest-edits">Suggest edits to this page</a>
+          {% endif %}
         </nav>
       {% endif %}
 
