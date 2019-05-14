@@ -7,6 +7,8 @@ Added “suggest edits” and “toggle ToC” buttons to all project site docum
 Fixed an issue where on some software documentation pages the “suggest edits”
 button would not have correct URL to Github edit page.
 
+Improve robustness of external link detection.
+
 == 2.0.13
 
 Fixed an issue with item card layout on project site software/spec index pages.
