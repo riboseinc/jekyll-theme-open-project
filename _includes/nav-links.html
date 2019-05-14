@@ -7,36 +7,36 @@
 {% endif %}
 
 {% if site.is_hub %}
-  {% include nav-page-link.html url="/projects/" title="Projects" %}
+  {% include nav-page-link.html htmlclass="projects" url="/projects/" title="Projects" %}
 
   {% if site.num_all_software > 0 %}
-    {% include nav-page-link.html url="/software/" title="All Software" active_for_nested=true %}
+    {% include nav-page-link.html htmlclass="software" url="/software/" title="Software" active_for_nested=true %}
   {% endif %}
   {% if site.num_all_specs > 0 %}
-    {% include nav-page-link.html url="/specs/" title="All Specifications" active_for_nested=true %}
+    {% include nav-page-link.html htmlclass="specs" url="/specs/" title="Specifications" active_for_nested=true %}
   {% endif %}
   {% if site.num_posts_combined > 0 %}
-    {% include nav-page-link.html url="/blog/" title="Blog" active_for_nested=true %}
+    {% include nav-page-link.html htmlclass="blog" url="/blog/" title="Blog" active_for_nested=true %}
   {% endif %}
 
 {% else %}
 
   {% if site.one_software %}
-    {% include nav-page-link.html url=site.one_software.url title="Docs" active_for_nested=true %}
+    {% include nav-page-link.html htmlclass="docs" url=site.one_software.url title="Docs" active_for_nested=true %}
   {% else %}
     {% if site.num_all_software > 0 %}
-      {% include nav-page-link.html url="/software/" title="Software" active_for_nested=true %}
+      {% include nav-page-link.html htmlclass="software" url="/software/" title="Software" active_for_nested=true %}
     {% endif %}
   {% endif %}
 
   {% if site.num_all_specs > 0 %}
-    {% include nav-page-link.html url="/specs/" title="Specifications" active_for_nested=true %}
+    {% include nav-page-link.html htmlclass="specs" url="/specs/" title="Specifications" active_for_nested=true %}
   {% endif %}
 
   {% include project-nav.html %}
 
   {% if site.num_posts_combined > 0 %}
-    {% include nav-page-link.html url="/blog/" title="Blog" active_for_nested=true %}
+    {% include nav-page-link.html htmlclass="blog" url="/blog/" title="Blog" active_for_nested=true %}
   {% endif %}
 {% endif %}
 
