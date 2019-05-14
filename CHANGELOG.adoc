@@ -1,5 +1,9 @@
 = Changelog
 
+== 2.0.14
+
+Added “suggest edits” and “toggle ToC” buttons to all project site documentation pages.
+
 == 2.0.13
 
 Fixed an issue with item card layout on project site software/spec index pages.
