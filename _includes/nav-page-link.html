@@ -9,9 +9,9 @@
 {% endif %}
 
 {% if active_nested or page.url == include.url %}
-  <a class="active" href="{{ include.url }}">{{ include.title }}</a>
+  <a class="active {{ include.htmlclass }}" href="{{ include.url }}">{{ include.title }}</a>
 {% else %}
-  <a href="{{ include.url }}">{{ include.title }}</a>
+  <a class="{{ include.htmlclass }}" href="{{ include.url }}">{{ include.title }}</a>
 {% endif %}
 
 {% assign active_nested = false %}
