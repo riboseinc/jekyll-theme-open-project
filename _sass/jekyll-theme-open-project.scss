@@ -651,6 +651,13 @@ body.site--project {
   &.layout--software-index > main,
   &.layout--spec-index > main {
     > .items .item {
+      display: block;
+    }
+  }
+
+  &.layout--software-index > main,
+  &.layout--spec-index > main {
+    > .items .item {
       @extend .item-card;
       @include hoverable-card(2px, 10px, rgba(desaturate($primary-color, 50), 0.08));
 
