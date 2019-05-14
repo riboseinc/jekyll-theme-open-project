@@ -97,7 +97,7 @@ supporting expandable navigation widget.
         <h1 class="text">{{ page.article_header_title | default: page.title }}</h1>
       </div>
 
-      {% if is_docs_landing == false and item_data.docs.git_repo_url %}
+      {% if is_docs_landing == false %}
         <nav role="toolbar">
           <button class="docs-nav-toggle">Toggle table of contents</button>
           <a href="{{ item_data.docs.git_repo_url }}/edit/master/docs/{{ page.path | split: "/" | last }}" class="docs-suggest-edits">Suggest edits to this page</a>
