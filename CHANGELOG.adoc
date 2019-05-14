@@ -1,5 +1,14 @@
 = Changelog
 
+== 2.0.12
+
+Fixed an issue where extraneous items were included in software/spec indexes
+on open project hub sites.
+
+Slightly improved layout of software, spec and blog post cards across the sites.
+
+Added software & spec index links in site footer.
+
 == 2.0.11
 
 Work around an issue where robots.txt and sitemap.xml output by jekyll-sitemap
