@@ -1,5 +1,9 @@
 = Changelog
 
+== 2.0.13
+
+Fixed an issue with item card layout on project site software/spec index pages.
+
 == 2.0.12
 
 Fixed an issue where extraneous items were included in software/spec indexes
