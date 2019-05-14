@@ -116,6 +116,11 @@ These settings apply to both site types (hub and project).
   # and without trailing slash.
   # Used e.g. for marking external links in docs and blog posts.
 
+  github_repo_url: https://github.com/example-org/example.com
+  # URL to GitHub repo for the site.
+  # Using GitHub & specifying this setting is currently required
+  # for “suggest edits” buttons to show on documentation pages.
+
   title: Example
   description: The example of examples
   # The above two are used by jekyll-seo-tag for things such as
