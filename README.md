@@ -111,8 +111,9 @@ These settings apply to both site types (hub and project).
   (and don’t forget to remove default theme requirement there):
 
   ```yaml
-  url: https://example.com/
-  # Site’s URL with protocol and without optional www. prefix.
+  url: https://example.com
+  # Site’s URL with protocol, without optional www. prefix
+  # and without trailing slash.
   # Used e.g. for marking external links in docs and blog posts.
 
   title: Example
