@@ -92,7 +92,7 @@ main {
           // Show third element
           &:nth-child(3) {
             opacity: 1;
-            display: block;
+            display: flex;
           }
         }
       }
@@ -238,9 +238,6 @@ main {
         @extend .post-card;
         @include hoverable-card(4px, 12px, rgba(0, 0, 0, 0.08));
 
-        display: flex;
-        flex-flow: column nowrap;
-
         padding: 32px 30px 16px 30px;
 
         .header {
@@ -248,7 +245,6 @@ main {
         }
         .body {
           font-size: 15px;
-          flex: 1;
         }
 
         @media screen and (min-width: $bigscreen-breakpoint) {
@@ -355,6 +351,9 @@ main {
         padding: 40px 32px;
         text-align: center;
 
+        display: flex;
+        flex-flow: column nowrap;
+
         box-sizing: border-box;
 
         @media screen and (min-width: $bigscreen-breakpoint) {
@@ -376,6 +375,7 @@ main {
         }
 
         .body {
+          flex: 1;
           font-size: 16px;
           margin-bottom: 1em;
           overflow: hidden;

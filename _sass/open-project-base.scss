@@ -147,9 +147,16 @@ a {
 
 .item-card {
   background: white;
-  display: block;
+
+  display: flex;
+  flex-flow: column nowrap;
+
   position: relative;
   overflow: hidden;
+
+  .body {
+    flex: 1;
+  }
 
   &:link, &:hover, &:visited {
     color: inherit;
