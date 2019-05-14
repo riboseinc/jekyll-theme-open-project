@@ -93,6 +93,17 @@
 
   <div class="underlay footer">
     <footer>
+      {% if site.num_all_specs > 0 or site.num_all_software > 0 %}
+      <nav class="links" aria-label="site links">
+        {% if site.num_all_software > 0 %}
+          <a href="/software/">All {{ site.title }} software</a>
+        {% endif %}
+        {% if site.num_all_specs > 0 %}
+          <a href="/specs/">All specifications</a>
+        {% endif %}
+      </nav>
+      {% endif %}
+
       {% if site.is_hub %}
         <div class="site-logo" aria-label="logo">{% include logo.html %}</div>
       {% else %}
