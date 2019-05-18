@@ -260,6 +260,20 @@
     .content {
       align-self: stretch;
 
+      position: relative;
+      button.listing-clipboard-button {
+        position: absolute;
+        right: 0;
+        top: .25em;
+        padding: .3em .3em;
+        font-size: 80%;
+        transform: translateX(100%);
+        color: $code-listing-border-color;
+        background: $code-listing-background-color;
+        border: 0;
+        cursor: pointer;
+      }
+
       pre {
         margin: 0;
       }
