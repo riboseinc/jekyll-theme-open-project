@@ -128,6 +128,7 @@
     {% comment %}
     This would break a strict CSP, but Jekyll refuses to Liquid-process JS files
     without also adding HTML wrapping. Eek.
+    TODO: Move this to data attributes on <body>.
     {% endcomment %}
     <script>
       window.initAlgolia = function () {
