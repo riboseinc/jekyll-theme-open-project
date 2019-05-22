@@ -1,6 +1,6 @@
 (function () {
 
-  const listings = document.querySelectorAll('main .listingblock pre');
+  const listings = document.querySelectorAll('main .listingblock:not(.nocopy) pre');
   const buttonHint = 'Copy code to clipboard';
 
   for (let el of listings) {
