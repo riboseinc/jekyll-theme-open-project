@@ -1,5 +1,10 @@
 = Changelog
 
+== 2.0.15
+
+Code listings now include copy button.
+Copy button can be hidden by prepending code listing with a `++[.nocopy]++`.
+
 == 2.0.14
 
 Added “suggest edits” and “toggle ToC” buttons to all project site documentation pages.

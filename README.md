@@ -25,8 +25,12 @@ to AWS S3.
   * [SVG guidelines](#svg-guidelines)
   * [Content guidelines](#content-guidelines)
 
-* [Layouts](#theme-layouts)
-* [Includes](#theme-includes)
+* [Authoring content](#authoring-content)
+
+* References:
+
+  * [Layouts](#theme-layouts)
+  * [Includes](#theme-includes)
 
 
 ## Starting a site with this theme
@@ -654,6 +658,36 @@ Place the symbol in assets/symbol.svg within project directory.
 - Blog post title: 3–7 words
 - Blog post excerpt: about 20–24 words, no markup
 
+
+## Authoring content
+
+Content is expected to be authored in AsciiDoc.
+Some features, such as in-page navigation in software/project documentation
+and code listing copy buttons,
+require HTML structure to match the one generated from AsciiDoc by jekyll-asciidoc
+and won’t work with content is authored in Markdown, for example.
+
+### Disabling copy button on code listings
+
+By default, each code listing widget, like below, will have a copy button
+next to the `<pre>` element.
+
+```
+[source,sh]
+----
+docker pull ribose/metanorma
+----
+```
+
+To disable that button for a particular listing, add `.nocopy` class to it:
+
+```
+[.nocopy]
+[source,sh]
+----
+docker pull ribose/metanorma
+----
+```
 
 ## Theme includes
 
