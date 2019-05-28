@@ -7,16 +7,7 @@ layout: default
     <h1 class="title">{{ page.title }}</h1>
 
     <div class="meta">
-      {% if page.author.name %}
-        {% include post-author-pic.html author=page.author %}
-        <span class="author-name">
-          {{ page.author.name }}
-        </span>
-      {% endif %}
-      <span class="date">
-        {% if page.author.name %}on {% endif %}
-        {{ page.date | date_to_string }}
-      </span>
+      {% include _post-meta.html post=page %}
     </div>
   </header>
 

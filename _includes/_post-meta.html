@@ -1,0 +1,23 @@
+{% assign authors = "" | split: "," %}
+{% if include.post.author %}
+  {% assign authors = authors | push: include.post.author %}
+{% endif %}
+{% if include.post.authors %}
+  {% assign authors = authors | concat: include.post.authors %}
+{% endif %}
+
+<span class="authors">
+  {% for author in authors %}
+    <span class="author">
+      {% if author.name %}
+        {% include post-author-pic.html author=author %}
+        <span class="author-name">{{ author.name }}</span>
+      {% endif %}
+    </span>
+  {% endfor %}
+</span>
+
+<span class="date">
+  {% if authors %}on {% endif %}
+  {{ include.post.date | date_to_string }}
+</span>

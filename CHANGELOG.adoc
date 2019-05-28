@@ -1,5 +1,11 @@
 = Changelog
 
+== 2.0.16
+
+Made it possible to specify multiple post authors via `authors` YAML frontmatter key.
+Each author object in array uses the same structure as the original `author` key,
+and singular `author` is still supported.
+
 == 2.0.15
 
 Code listings now include copy button.

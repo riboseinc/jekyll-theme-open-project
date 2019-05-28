@@ -3,7 +3,22 @@
 {% else %}
   {% capture href %}{{ include.post.url }}{% endcapture %}
 {% endif %}
-<a class="item {% if include.post.parent_project %}has-parent-project{% endif %}"
+
+{% capture cover_image_src %}{% endcapture %}
+{% if include.post.card_image %}
+  {% if include.post.parent_project %}
+    {% capture cover_image_src %}{{ include.post.parent_project.home_url }}{{ include.post.card_image }}{% endcapture %}
+  {% else %}
+    {% capture cover_image_src %}{{ include.post.card_image | relative_url }}{% endcapture %}
+  {% endif %}
+{% endif %}
+
+<a class="item
+    {% if include.post.parent_project %}has-parent-project{% endif %}
+    {% if cover_image_src %}has-cover-image{% endif %}"
+  {% if cover_image_src %}
+    data-card-image-src="{{ cover_image_src }}"
+  {% endif %}
   href="{{ href }}" role="article">
 
   {% if include.post.parent_project == nil and site.is_hub == true %}
@@ -34,16 +49,6 @@
   </p>
 
   <footer class="meta">
-    {% if include.post.author.name %}
-      {% include post-author-pic.html author=include.post.author %}
-      <span class="author-name">
-        {{ include.post.author.name }}
-      </span>
-    {% endif %}
-    <span class="date">
-      {% if include.post.author.name %}on {% endif %}
-      {{ include.post.date | date_to_string }}
-    </span>
+    {% include _post-meta.html post=include.post %}
   </footer>
-
 </a>
