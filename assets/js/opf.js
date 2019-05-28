@@ -243,6 +243,9 @@
 
 
   // Initializing stuff
+  // The order is significant in many cases, since it involves
+  // UI components that depend on each other.
+
   var hamburgerMenu = initCollapsibleMenu(
     document.querySelector('header nav.top-menu'),
     document.getElementById('hamburgerButton'),
