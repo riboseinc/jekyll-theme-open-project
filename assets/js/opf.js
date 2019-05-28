@@ -1,6 +1,11 @@
 (function () {
   'use strict';
 
+  // NOTE: This contains various JS helpers for Open Project theme,
+  // moving forward the functionality will be refactored into smaller modules
+  // (potentially native reusable web components) which would written in ES6
+  // and compiled, minified and combined at front-end build step.
+
 
   var bigscreenBreakpoint = 800;
   // Conforms to CSS @media rules
