@@ -132,12 +132,14 @@
     {% endcomment %}
     <script>
       window.initAlgolia = function () {
-        docsearch({
-          apiKey: '{{ site.algolia_search.api_key }}',
-          indexName: '{{ site.algolia_search.index_name }}',
-          inputSelector: 'input[type=search]',
-          debug: false,
-        });
+        if (window.docsearch) {
+          docsearch({
+            apiKey: '{{ site.algolia_search.api_key }}',
+            indexName: '{{ site.algolia_search.index_name }}',
+            inputSelector: 'input[type=search]',
+            debug: false,
+          });
+        }
       };
     </script>
   {% endif %}
