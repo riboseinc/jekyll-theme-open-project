@@ -221,17 +221,24 @@ already required by Jekyll) looks like:
 
 ```yaml
 ---
-excerpt: >-
-  Post excerpt goes here, and supports inline formatting only.
+# Required
+authors:
+  - email: <author’s email, required>
+    use_picture: <`gravatar` (default), `assets`, an image path relative to assets/, or `no`>
+    name: <author’s full name>
+    social_links:
+      - https://twitter.com/username
+      - https://facebook.com/username
+      - https://linkedin.com/in/username
 
-author:
-  email: <author’s email, required>
-  use_picture: <`gravatar` (default), `assets`, an image path relative to assets/, or `no`>
-  name: <author’s full name>
-  social_links:
-    - https://twitter.com/username
-    - https://facebook.com/username
-    - https://linkedin.com/in/username
+# Recommended
+excerpt: >-
+  Post excerpt goes here, and supports inline HTML formatting only.
+
+# Optional. Cover image. Would normally refer to an illustration from within the post.
+# First post, if it has card_image specified, will be displayed with bigger layout
+# featuring the image.
+card_image: <path, starting with /assets/>
 ---
 ```
 
