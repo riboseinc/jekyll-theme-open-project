@@ -8,6 +8,12 @@ layout: default
   {% endif %}
 
   {% for item in site.posts_combined %}
-    {% include post-card.html post=item %}
+    {% if forloop.first %}
+      {% assign can_be_featured = true %}
+    {% else %}
+      {% assign can_be_featured = false %}
+    {% endif %}
+
+    {% include post-card.html post=item can_be_featured=can_be_featured %}
   {% endfor %}
 </section>

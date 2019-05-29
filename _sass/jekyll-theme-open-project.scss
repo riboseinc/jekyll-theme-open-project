@@ -238,7 +238,7 @@ main {
         @extend .post-card;
         @include hoverable-card(4px, 12px, rgba(0, 0, 0, 0.08));
 
-        padding: 32px 30px 16px 30px;
+        padding: 30px 30px 16px 30px;
 
         .header {
           font-size: 22px;
@@ -251,11 +251,19 @@ main {
           box-sizing: border-box;
           flex-basis: calc( 100%/#{$featured-cols-narrow} - #{$gutter} );
           margin-bottom: $gutter;
+
+          &.has-cover-image {
+            flex-basis: 100%;
+          }
         }
         @media screen and (min-width: $widescreen-breakpoint) {
           box-sizing: border-box;
           flex-basis: calc( 100%/#{$featured-cols} - #{$gutter} );
           margin-bottom: $gutter;
+
+          &.has-cover-image {
+            flex-basis: calc( 100%/#{$featured-cols} * 2 - #{$gutter} );
+          }
         }
       }
     }

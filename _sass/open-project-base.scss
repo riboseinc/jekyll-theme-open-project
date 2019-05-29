@@ -154,6 +154,12 @@ a {
   position: relative;
   overflow: hidden;
 
+  .card-body {
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
   .body {
     flex: 1;
   }
@@ -277,6 +283,10 @@ a {
   color: grey;
   font-size: 14px;
 
+  .date {
+    white-space: nowrap;
+  }
+
   .authors {
     .author {
       white-space: nowrap;
@@ -318,6 +328,34 @@ a {
 
   &.has-parent-project {
     padding-top: 20px;
+  }
+  &.has-cover-image {
+    .cover-image {
+      display: none;
+    }
+    @media screen and (min-width: $bigscreen-breakpoint) {
+      position: relative;
+
+      .card-body {
+        margin-left: calc(50% + #{$gutter} / 2 + 30px);
+      }
+      .cover-image {
+        display: block;
+        margin: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 50%;
+
+        img {
+          display: block;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+    }
   }
   .hub-symbol {
     position: absolute;

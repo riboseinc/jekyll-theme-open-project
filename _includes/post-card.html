@@ -15,40 +15,45 @@
 
 <a class="item
     {% if include.post.parent_project %}has-parent-project{% endif %}
-    {% if cover_image_src %}has-cover-image{% endif %}"
-  {% if cover_image_src %}
-    data-card-image-src="{{ cover_image_src }}"
-  {% endif %}
+    {% if cover_image_src != "" and include.can_be_featured %}has-cover-image{% endif %}"
   href="{{ href }}" role="article">
 
-  {% if include.post.parent_project == nil and site.is_hub == true %}
-    <div class="hub-symbol">
-      {% include assets/symbol.svg %}
+  {% if cover_image_src != "" and include.can_be_featured %}
+    <div class="cover-image">
+      <img src="{{ cover_image_src }}" alt="Cover image">
     </div>
   {% endif %}
 
-  <header>
-    {% if include.post.parent_project %}
-      {% assign project_symbol_path = include.post.parent_project.name | append: "/assets/symbol.svg" %}
-      {% assign relative_symbol_path = "/projects/" | append: project_symbol_path %}
-      <div class="parent-project">
-        <div class="project-logo">
-          <img src="{{ relative_symbol_path }}">
-        </div>
-        <h4 class="project-title">{{ include.post.parent_project.title }}</h4>
-        <div class="external-link-icon">
-          <img src="{{ "assets/img/external-link.svg" | relative_url }}">
-        </div>
+  <div class="card-body">
+    {% if include.post.parent_project == nil and site.is_hub == true %}
+      <div class="hub-symbol">
+        {% include assets/symbol.svg %}
       </div>
     {% endif %}
-    <h3 class="title">{{ include.post.title }}</h3>
-  </header>
 
-  <p class="body">
-    {{ include.post.excerpt | remove: '<p>' | remove: '</p>' | remove: '<div class="presentation">' | remove: '</div>' }}
-  </p>
+    <header>
+      {% if include.post.parent_project %}
+        {% assign project_symbol_path = include.post.parent_project.name | append: "/assets/symbol.svg" %}
+        {% assign relative_symbol_path = "/projects/" | append: project_symbol_path %}
+        <div class="parent-project">
+          <div class="project-logo">
+            <img src="{{ relative_symbol_path }}">
+          </div>
+          <h4 class="project-title">{{ include.post.parent_project.title }}</h4>
+          <div class="external-link-icon">
+            <img src="{{ "assets/img/external-link.svg" | relative_url }}">
+          </div>
+        </div>
+      {% endif %}
+      <h3 class="title">{{ include.post.title }}</h3>
+    </header>
 
-  <footer class="meta">
-    {% include _post-meta.html post=include.post %}
-  </footer>
+    <p class="body">
+      {{ include.post.excerpt | remove: '<p>' | remove: '</p>' | remove: '<div class="presentation">' | remove: '</div>' }}
+    </p>
+
+    <footer class="meta">
+      {% include _post-meta.html post=include.post %}
+    </footer>
+  </div>
 </a>
