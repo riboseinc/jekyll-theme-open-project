@@ -223,6 +223,31 @@
 
   // Blocks
 
+  .admonitionblock {
+    > table {
+      display: flex;
+      flex-flow: column nowrap;
+
+      tbody {
+        display: flex;
+        flex-flow: column nowrap;
+
+        tr {
+          display: flex;
+          flex-flow: column nowrap;
+
+          @media screen and (min-width: $bigscreen-breakpoint) {
+            flex-flow: row nowrap;
+          }
+
+          td.content {
+            overflow-x: hidden;
+          }
+        }
+      }
+    }
+  }
+
   .admonitionblock,
   .listingblock {
     margin: 1em 0;
@@ -281,14 +306,17 @@
   }
 
   .admonitionblock {
-    overflow-x: scroll;
     padding-left: .5em;
     background-color: rgba(black, 0.03);
 
-    table:first-child {
+    @media screen and (min-width: $bigscreen-breakpoint) {
+      overflow-x: scroll;
+    }
+
+    > table:first-child {
       margin-top: 0;
     }
-    table:last-child {
+    > table:last-child {
       margin-bottom: 0;
     }
 
