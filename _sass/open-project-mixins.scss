@@ -556,6 +556,11 @@
         overflow-y: auto;
         bottom: 0;
         right: 0;
+        left: 0;
+
+        @media screen and (min-width: $bigscreen-breakpoint) {
+          left: unset;
+        }
 
         padding: .75em $sidePadding;
 
