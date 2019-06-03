@@ -19,6 +19,12 @@ redirect_from:
 --
 ====
 
+* Fixed inappropriate scrolling of admonition blocks that could manifest itself
+  on narrow viewports in some circumstances.
+
+* Prevented documentation navigation sidebar from clipping on narrow viewports
+  when some navigation items are too long.
+
 == 2.0.16
 
 Made it possible to specify multiple post authors via `authors` YAML frontmatter key.
