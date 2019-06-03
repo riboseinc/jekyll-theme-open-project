@@ -1,5 +1,5 @@
 {% if include.post.parent_project %}
-  {% capture href %}{{ include.post.parent_project.home_url }}blog/{{ include.post.date | date: "%m-%d-%Y" }}/{{ include.post.slug }}/{% endcapture %}
+  {% capture href %}{{ include.post.parent_project.home_url }}blog/{{ include.post.date | date: "%Y-%m-%d" }}-{{ include.post.slug }}/{% endcapture %}
 {% else %}
   {% capture href %}{{ include.post.url }}{% endcapture %}
 {% endif %}

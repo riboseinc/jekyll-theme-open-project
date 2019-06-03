@@ -1,5 +1,24 @@
 = Changelog
 
+== 2.0.17
+
+[IMPORTANT]
+.Breaking change
+====
+Blog post permalinks were changed to be in the form of `YYYY-MM-DD-<post title>`.
+
+It’s recommended to specify redirects for posts
+(using jekyll-redirect-from plugin and `redirect_from` frontmatter key).
+For example, this would ensure that a blog post named `2025-12-31-hello-world.adoc`
+will still work under the pre-2.0.17 URL scheme, redirecting to the new path:
+
+[source,yaml]
+--
+redirect_from:
+  - /blog/12-31-2025/hello-world/
+--
+====
+
 == 2.0.16
 
 Made it possible to specify multiple post authors via `authors` YAML frontmatter key.

@@ -2,7 +2,7 @@ markdown: kramdown
 
 includes_dir: .
 
-permalink: /blog/:month-:day-:year/:title/
+permalink: /blog/:year-:month-:day-:title/
 
 # algolia_search:
 #   api_key: ''
