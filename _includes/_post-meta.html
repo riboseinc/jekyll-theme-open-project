@@ -5,6 +5,7 @@
 {% if include.post.authors %}
   {% assign authors = authors | concat: include.post.authors %}
 {% endif %}
+{% assign num_authors = authors | size %}
 
 <span class="authors">
   {% for author in authors %}
@@ -18,6 +19,6 @@
 </span>
 
 <span class="date">
-  {% if authors %}on {% endif %}
+  {% if num_authors > 0 %}on {% endif %}
   {{ include.post.date | date_to_string }}
 </span>
