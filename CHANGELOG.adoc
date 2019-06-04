@@ -1,5 +1,11 @@
 = Changelog
 
+== 2.0.18
+
+Fixed an issue where project hub site can fail to build
+when some project blog post contents contain a string that interprets
+as invalid Liquid markup.
+
 == 2.0.17
 
 [IMPORTANT]
