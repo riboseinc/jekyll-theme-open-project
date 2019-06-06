@@ -1,5 +1,10 @@
 = Changelog
 
+== 2.0.19
+
+External link marking functionality was split out of the helpers gem
+into jekyll-external-links plugin.
+
 == 2.0.18
 
 Fixed an issue where project hub site can fail to build

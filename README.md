@@ -73,6 +73,7 @@ group :jekyll_plugins do
   gem "jekyll-asciidoc"
 
   gem "jekyll-theme-open-project-helpers"
+  gem "jekyll-external-links"
 
   # ...other plugins, if you use any
 end

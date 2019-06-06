@@ -22,11 +22,13 @@ exclude:
   - /_projects/**/docs/*
   - .sass-cache/
 
-unmarked_external_link_selectors:
-  - .layout--home a
-  - a[href*=travis]
-  - a[href*=coverity]
-  - a[href*=codecov]
+external_links:
+  selector: 'body.site--project main a, body.site--hub.layout--post main a'
+  ignored_selectors:
+    - .layout--home a
+    - a[href*=travis]
+    - a[href*=coverity]
+    - a[href*=codecov]
 
 landing_priority: [software, specs, blog]
 
