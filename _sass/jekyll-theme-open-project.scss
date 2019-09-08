@@ -565,12 +565,15 @@ body.site--project {
         font-size: 20px;
         color: #fefefe;
 
+        a {
+          @include static-link-color($accent-color);
+        }
         .cta {
           margin-top: 30px;
+          margin-bottom: 30px;
           .button {
-            @include cta-button($primary-dark-color, white);
-            border-radius: 25px;
-            border: 1px solid $primary-color;
+            @include cta-button($primary-color, white);
+            border: 1px solid $accent-color;
           }
         }
         p:first-child:first-letter {
