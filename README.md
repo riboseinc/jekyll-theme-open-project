@@ -7,9 +7,14 @@ open-source software and specifications in a navigable and elegant way.
 Open Project fits two types of sites:
 that describe one individual project, and that combine projects into sort of an open hub.
 
-See also: CI_OPS for how to set up automated build and deployment of the site
-to AWS S3.
+**Demo**: See [Ribose Open](https://open.ribose.com/) project sites—for example,
+[Metanorma](https://www.metanorma.com),
+[RNP](https://www.rnpgp.com),
+[Cryptode](https://www.cryptode.com),
+[Relaton](https://www.relaton.com).
 
+See also: CI_OPS for how to set up automated build and deployment of sites
+to AWS S3.
 
 ## Contents
 
