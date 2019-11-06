@@ -948,6 +948,7 @@ so use good judgement and thorough manual testing.
    to the one we are releasing.
 
 4. Run `bundle --full-index`, ensure it pulls the newly released plugin gem.
+   (It may take a couple minutes after releasing helpers plugin for gem index to update.)
 
 5. Make a commit for the new release (“chore: Release vX.X.X”).
 
