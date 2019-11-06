@@ -934,9 +934,24 @@ of this repo and have a Jekyll site using this theme:
 Make sure theme works: build script is under construction,
 so use good judgement and thorough manual testing.
 
-1. First, update version number in .gemspec within this repo’s root.
+1. Pick the next version number (think whether it’s a patch, minor or major increment).
 
-2. Then, execute `./develop/release`. This does the following:
+2. Release the chosen version of `jekyll-theme-open-project-helpers` gem:
+   see [https://github.com/riboseinc/jekyll-theme-open-project-helpers](gem’s docs).
+
+   (Theme and plugin are coupled tightly at this time,
+   and to simplify mental overhead of dependency management
+   we go with one version number for the whole suite.)
+
+3. Inside .gemspec within this repo’s root, update main gem version,
+   and also the version for `jekyll-theme-open-project-helpers` runtime dependency,
+   to the one we are releasing.
+
+4. Run `bundle --full-index`, ensure it pulls the newly released plugin gem.
+
+5. Make a commit for the new release (“chore: Release vX.X.X”).
+
+6. Execute `./develop/release`. This does the following:
 
    * Builds new gem version
    * Pushes gem to rubygems.org
