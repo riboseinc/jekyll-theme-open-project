@@ -42,12 +42,14 @@ to AWS S3.
 
 ### Getting started with Ruby and Jekyll
 
-The currently recommended Ruby version is 2.6, it’s known to not work under 2.3
-and it hasn’t been tested on newer versions.
+The currently recommended Ruby version is 2.6.
 (In case you aren’t using Ruby often, the easiest way to install one may be with RVM.)
 
 The currently recommended Jekyll version is 3 or newer
 (read about [Jekyll installation](https://jekyllrb.com/docs/#instructions)).
+
+Note: this theme is known to not work with Ruby older than 2.3,
+and hasn’t been tested on newer versions.
 
 ### Start new Jekyll site
 
