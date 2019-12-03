@@ -47,7 +47,7 @@ and it hasn’t been tested on newer versions.
 (In case you aren’t using Ruby often, the easiest way to install one may be with RVM.)
 
 The currently recommended Jekyll version is 3 or newer
-(read about [Jekyll installation](https://jekyllrb.com/docs/#instructions).
+(read about [Jekyll installation](https://jekyllrb.com/docs/#instructions)).
 
 ### Start new Jekyll site
 
