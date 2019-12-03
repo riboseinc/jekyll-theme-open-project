@@ -40,13 +40,14 @@ to AWS S3.
 
 ## Starting a site with this theme
 
-### Getting started with Ruby
+### Getting started with Ruby and Jekyll
 
-If you aren’t using Ruby often, the recommended way to install it is with RVM.
-Refer to RVM docs and use it to install a fresh Ruby version.
-
-The currently recommended version is 2.4.4, it’s known to not work under 2.3
+The currently recommended Ruby version is 2.6, it’s known to not work under 2.3
 and it hasn’t been tested on newer versions.
+(In case you aren’t using Ruby often, the easiest way to install one may be with RVM.)
+
+The currently recommended Jekyll version is 3 or newer
+(read about [Jekyll installation](https://jekyllrb.com/docs/#instructions).
 
 ### Start new Jekyll site
 
