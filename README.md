@@ -255,7 +255,7 @@ For hub-wide posts, put posts under _posts/ in site root and name files e.g.
 `2018-04-20-welcome-to-jekyll.markdown` (no change from the usual Jekyll setup).
 
 If ``use_picture`` is set to "assets", author photo would be expected to
-reside under assets/blog/authors/<author email>.jpg.
+reside under `assets/blog/authors/<author email>.jpg`.
 
 For project posts, see below the project site section.
 
