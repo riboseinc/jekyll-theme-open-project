@@ -40,13 +40,16 @@ to AWS S3.
 
 ## Starting a site with this theme
 
-### Getting started with Ruby
+### Getting started with Ruby and Jekyll
 
-If you aren’t using Ruby often, the recommended way to install it is with RVM.
-Refer to RVM docs and use it to install a fresh Ruby version.
+The currently recommended Ruby version is 2.6.
+(In case you aren’t using Ruby often, the easiest way to install one may be with RVM.)
 
-The currently recommended version is 2.4.4, it’s known to not work under 2.3
-and it hasn’t been tested on newer versions.
+The currently recommended Jekyll version is 3 or newer
+(read about [Jekyll installation](https://jekyllrb.com/docs/#instructions)).
+
+Note: this theme is known to not work with Ruby older than 2.3,
+and hasn’t been tested on newer versions.
 
 ### Start new Jekyll site
 
@@ -252,7 +255,7 @@ For hub-wide posts, put posts under _posts/ in site root and name files e.g.
 `2018-04-20-welcome-to-jekyll.markdown` (no change from the usual Jekyll setup).
 
 If ``use_picture`` is set to "assets", author photo would be expected to
-reside under assets/blog/authors/<author email>.jpg.
+reside under `assets/blog/authors/<author email>.jpg`.
 
 For project posts, see below the project site section.
 
