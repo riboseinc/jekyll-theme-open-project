@@ -1,3 +1,4 @@
 _site/*
 *.scssc
 Gemfile.lock
+jekyll-theme-open-project-*.gem
