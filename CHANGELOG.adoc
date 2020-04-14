@@ -1,5 +1,15 @@
 = Changelog
 
+
+== 2.0.22
+
+Fixed an issue where excerpts for posts written in AsciiDoc could break
+landing page blog roll layout, if those excerpts happened to contain certain formatting.
+
+== 2.0.20
+
+* Fix compatibility with jekyll-data gem (@ronaldtse)
+
 == 2.0.19
 
 External link marking functionality was split out of the helpers gem
