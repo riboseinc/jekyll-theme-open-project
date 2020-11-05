@@ -100,6 +100,18 @@ on the type of site you’re creating: hub or individual project site.
 Further sections explain core concepts of open project and hub, and go
 into detail about how to configure a project or hub site.
 
+[NOTE]
+====
+It may be required to copy the following properties from
+this theme’s `_config.yaml` to your site’s: `collections`, `includes_dir`.
+
+This may be caused by changed behavior of jekyll-data gem in recent versions,
+which is responsible for “inheritance” of `_config.yaml` between theme and site.
+
+You can add any custom collections for your site
+after collections copied from theme’s config.
+====
+
 ### Building site
 
 Execute to build the site locally and watch for changes:
