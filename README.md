@@ -5,9 +5,11 @@ aiming to help organizations and individuals present
 open-source software and specifications in a navigable and elegant way.
 
 Open Project fits two types of sites:
-that describe one individual project, and that combine projects into sort of an open hub.
 
-**Demo**: See [Ribose Open](https://open.ribose.com/) project sites—for example,
+* a site that describes one individual project
+* a site that combine projects into sort of an open hub.
+
+**Demo**: See [Ribose Open](https://open.ribose.com/) project sites -- for example,
 [Metanorma](https://www.metanorma.com),
 [RNP](https://www.rnpgp.com),
 [Cryptode](https://www.cryptode.com),
@@ -38,9 +40,9 @@ to AWS S3.
   * [Includes](#theme-includes)
 
 
-## Starting a site with this theme
+## Getting started
 
-### Getting started with Ruby and Jekyll
+### Set up Ruby and Jekyll
 
 The currently recommended Ruby version is 2.6.
 (In case you aren’t using Ruby often, the easiest way to install one may be with RVM.)
@@ -48,10 +50,10 @@ The currently recommended Ruby version is 2.6.
 The currently recommended Jekyll version is 3 or newer
 (read about [Jekyll installation](https://jekyllrb.com/docs/#instructions)).
 
-Note: this theme is known to not work with Ruby older than 2.3,
+NOTE: this theme is known to not work with Ruby older than 2.3,
 and hasn’t been tested on newer versions.
 
-### Start new Jekyll site
+### Start a new Jekyll site
 
     jekyll new my-open-site
 
@@ -59,7 +61,7 @@ If you use Git for site source version management,
 see the “Extra .gitignore rules” section below
 for additional lines you should add to your `.gitignore`.
 
-### Installing theme
+### Install Open Site theme into the Jekyll site
 
 Add this line to your Jekyll site's `Gemfile`,
 replacing default theme requirement:
@@ -91,14 +93,21 @@ Execute the following to install dependencies:
 
     $ bundle
 
-### Configuring site
+### Configure your Open Site for the first time
 
-Edit _config.yml to add necessary site-wide configuration options,
+Edit `_config.yml` to add necessary site-wide configuration options,
 and add files and folders to site contents. This step depends
 on the type of site you’re creating: hub or individual project site.
 
 Further sections explain core concepts of open project and hub, and go
 into detail about how to configure a project or hub site.
+
+Before building the first time you must do this:
+
+1. Configure [common settings](#common-settings)
+2. Add your logo(s) according to [logo](#logo)
+
+Please see the [configuration section](#configuration) for more details.
 
 NOTE: It may be required to copy the following properties from
 this theme’s `_config.yaml` to your site’s: `collections`, `includes_dir`.
@@ -120,17 +129,30 @@ This assumes you have mysite.local mapped in your hosts file,
 otherwise omit --host and it’ll use “localhost” as domain name.
 
 
-## General setup
+## Configuration
+
+There are 3 areas to configure when you first create an Open Site, namely:
+
+* [Common setup](#common-setup), settings that apply to both Hub and Project sites;
+* [Hub site](#hub-site);
+* [Project site](#project-site)
+
+
+## Common setup
+
+### Common settings
+
+(mandatory)
 
 These settings apply to both site types (hub and project).
 
-- You may want to remove the default about.md page added by Jekyll,
+- You may want to remove the default `about.md` page added by Jekyll,
   as this theme does not account for its existence.
 
 - Add `hero_include: home-hero.html` to YAML frontmatter
   in your main `index.md`.
 
-- Add following items to site’s _config.yml
+- Add following items to site’s `_config.yml`
   (and don’t forget to remove default theme requirement there):
 
   ```yaml
@@ -175,6 +197,8 @@ These settings apply to both site types (hub and project).
 
 ### Logo
 
+(mandatory)
+
 By “logo” is meant the combination of site symbol as a graphic
 and name as word(s).
 
@@ -182,10 +206,10 @@ and name as word(s).
   Should look OK in dimensions of 30x30px, and fit inside a square.
   Should be in SVG format (see also the SVG guidelines section).
 
-  - Drop your site-wide symbol in <site root>/assets/symbol.svg.
+  - Provide your site-wide symbol in <site root>/assets/symbol.svg.
 
-  - Drop PNG renders of the symbol as favicon.png and favicon-192x192.png
-    under <site root>/assets/; use transparent background.
+  - Provide the symbol as PNG renders as `favicon.png` and `favicon-192x192.png`
+    under `<site root>/assets/`; use transparent background.
 
 - **Site name** displayed to the right of the symbol.
   Limit the name to 1-3 words.
@@ -232,7 +256,7 @@ hero_include: index-page-hero.html
 In general, posts are authored as per usual Jekyll setup.
 
 It is recommended that you provide explicit hand-crafted post excerpts,
-as automatically-generated excerpts may break post card markup.
+as automatically-generated excerpts may break the post card layout.
 
 Theme also anticipates author information within frontmatter.
 Together with excerpts, here’s how post frontmatter (in addition to anything
@@ -530,7 +554,7 @@ description: A sentence.
 # but used for HTML metadata if jekyll-seo-tag is enabled
 
 tags: [Ruby, Python, RFC, "<some_namespace_id>:<appropriate_tag>"]
-# Note: Avoid whitespaces and other characters that may make Jekyll
+# NOTE: Avoid whitespaces and other characters that may make Jekyll
 # percent-encode the tag in URLs. Replace " " (a regular space)
 # with "_" (underline); underlines will be rewritten as spaces when tags
 # are presented to site users.
