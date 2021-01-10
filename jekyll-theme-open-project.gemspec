@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name          = 'jekyll-theme-open-project'
-  s.version       = '2.1.4'
+  s.version       = '2.1.5'
   s.authors       = ['Ribose Inc.']
   s.email         = ['open.source@ribose.com']
 
@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
 
   s.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r{^((_data|_includes|_layouts|_sass|assets|_pages)/|(_config.yml|LICENSE|README)((\.(txt|md|markdown)|$)))}i) }
 
-  s.add_runtime_dependency 'jekyll', '~> 4.0'
+  s.add_runtime_dependency 'jekyll', '~> 4.1.1'
   s.add_runtime_dependency 'jekyll-seo-tag', '~> 2.0'
   s.add_runtime_dependency 'jekyll-data', '~> 1.0'
   s.add_runtime_dependency 'git', '~> 1.4'
