@@ -165,11 +165,20 @@ These settings apply to both site types (hub and project).
   # URL to GitHub repo for the site.
   # Using GitHub & specifying this setting is currently required
   # for “suggest edits” buttons to show on documentation pages.
+  github_repo_branch: main
+  # Optional, default is `main`.
 
   title: Example
   description: The example of examples
   # The above two are used by jekyll-seo-tag for things such as
   # `<title>` and `<meta>` tags, as well as elsewhere by the theme.
+
+  default_repo_branch: main
+  # Optional, default is `main`.
+  # Whenever a branch name isn’t specified for some repository
+  # (such as project docs or specs), this name will be used.
+  # For configuration options that contain repository settings,
+  # search `git_repo_branch`, `repo_branch`, `github_repo_branch`.
 
   tagline: Because examples are very important
   # Used in hero unit on main page.
@@ -333,6 +342,7 @@ featured: true | false
 
 site:
   git_repo_url: <Git URL to standalone project site source repo>
+  git_repo_branch: <branch name in the above repo>
 
 home_url: <URL to standalone project site>
 
@@ -410,6 +420,7 @@ author: "Company or Individual Name Goes Here"
 # reference the hub.
 parent_hub:
   git_repo_url: git@example.com:path/to-repo.git
+  git_repo_branch: somebranchname
   home_url: https://www.example.com/
 
 algolia_search:
@@ -600,9 +611,12 @@ repo_url: https://github.com/riboseinc/asciidoctor-rfc
 # Used for things like showing how long ago
 # the was project updated last.
 
+repo_branch: main
+
 docs_source:
   git_repo_url: git@example.com:path/to-repo.git
   git_repo_subtree: docs
+  git_repo_branch: main
 # Documentation, the contents of which will be made part of the project site.
 # See the nearby section about documentation.
 ```
@@ -644,6 +658,7 @@ YAML frontmatter specific to specs:
 spec_source:
   git_repo_url: https://github.com/<user>/<repo>
   git_repo_subtree: images
+  git_repo_branch: main
   build:
     engine: png_diagrams
 # See below about building the spec from its source

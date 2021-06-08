@@ -54,7 +54,7 @@ layout: default
           {% endif %}
 
           {% if site.github_repo_url %}
-            <a href="{{ site.github_repo_url }}/edit/master/{{ page.path }}" class="docs-suggest-edits">Suggest edits to this page</a>
+            <a href="{{ site.github_repo_url }}/edit/{{ item_data.docs.github_repo_branch | default: site.default_repo_branch | default: 'main' }}/{{ page.path }}" class="docs-suggest-edits">Suggest edits to this page</a>
           {% endif %}
         </nav>
       {% endif %}

@@ -1,13 +1,13 @@
 # Setting up the site with continuous delivery via Gitlab CI and AWS
 
 This summarizes a couple simple CD setup options
-with single repository branch (master) getting automatically
+with single main repository branch getting automatically
 built and deployed to a public AWS S3 bucket
 and served through your chosen domain name.
 
 ## Outcome
 
-After each push to master branch, the site will be built and deployed to S3,
+After each push to the main branch, the site will be built and deployed to S3,
 updating live site under corresponding domain.
 
 ## Option 1: GitHub + Rakefile + Travis CI + AWS S3
@@ -184,7 +184,7 @@ and you have an Route 53 hosted zone associated with your domain.
    - SSH_PRIVATE_KEY: private key of GitHub user who’s authorized to clone
      requisite source repositories
 
-8. Test by making a change and pushing it to master branch.
+8. Test by making a change and pushing it to the main branch.
 
 ### Troubleshooting
 
