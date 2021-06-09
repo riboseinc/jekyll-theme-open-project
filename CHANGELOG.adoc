@@ -27,7 +27,8 @@ Quick migration guide:
 * If your site contents (e.g., software, spec frontmatter) references
   repositories that use other main branch name than the one you specify in `default_repo_branch`
   (or, absent that setting, other than `main`), find those references and add sibling
-  properties in the form `*_repo_branch`. E.g., if your 
+  properties in the form `*_repo_branch`,
+  assigning the actual branch name used in each circumstance.
 
 If you experience site build failures after the update, the error that looks something like below
 would indicate that the build fails due to branch name issue:
