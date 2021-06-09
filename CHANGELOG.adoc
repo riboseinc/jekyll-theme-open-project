@@ -1,5 +1,20 @@
 = Changelog
 
+== 2.1.7
+
+Support added for customizable branch names.
+
+Site-wide default branch name can be set in `_config.yml` as `default_repo_branch`,
+which will be used as default for software/spec within the site.
+
+NOTE: If that setting is unspecified, the default is `main`.
+
+Any setting that accepts a Git repository URL,
+which are named following the `*_repo_url` convention
+(`git_repo_url`, `repo_url`, or `github_repo_url`),
+accepts a sibling setting `*_repo_branch` which will override
+the implied default and site-wide `default_repo_branch` value.
+
 == 2.1.0
 
 Bumped Jekyll dependency to 4.0.
