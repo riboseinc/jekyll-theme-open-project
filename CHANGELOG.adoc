@@ -5,7 +5,7 @@
 Support added for customizable branch names.
 
 Site-wide default branch name can be set in `_config.yml` as `default_repo_branch`,
-which will be used as default for software/spec within the site.
+which will be used as default for software/spec repositories within the site.
 
 Beyond that, the implied default is `main`.
 
