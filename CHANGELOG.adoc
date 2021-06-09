@@ -22,11 +22,14 @@ The default branch name is now `main`, which is a departure from the previously 
 
 Quick migration guide:
 
-* If you are using predominantly `master`,
+* If your site references (e.g., in software, spec frontmatter)
+  repositories using predominantly `master` as main branch name,
   set `default_repo_branch` in `_config.yml` to "master".
-* If your site contents (e.g., software, spec frontmatter) references
-  repositories that use other main branch name than the one you specify in `default_repo_branch`
-  (or, absent that setting, other than `main`), find those references and add sibling
+* If your site references repositories that
+  use another main branch name
+  than the one you specify in `default_repo_branch`
+  (or, absent that setting, other than `main`),
+  find those references and add sibling
   properties in the form `*_repo_branch`,
   assigning the actual branch name used in each circumstance.
 
