@@ -29,7 +29,8 @@ Quick migration guide:
   use another main branch name
   than the one you specify in `default_repo_branch`
   (or, absent that setting, other than `main`),
-  find those references and add sibling
+  locate those references in .adoc YAML frontmatter
+  and add sibling
   properties in the form `*_repo_branch`,
   assigning the actual branch name used in each circumstance.
 
