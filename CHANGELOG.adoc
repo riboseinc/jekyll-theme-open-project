@@ -40,11 +40,7 @@ would indicate that the build fails due to branch name issue:
 ```
 in `command': git
 '--git-dir=/site/path/some/repository/path/.git'
-'--work-tree=/site/path/some/repository/path/'
-'-c' 'color.ui=false'
-checkout
-'--force' 'origin/some_branch_name'
-2>&1:error:
+<...part removed for clarity>
 pathspec 'origin/some_branch_name' did not match any file(s) known to git
 (Git::GitExecuteError)
 ```
