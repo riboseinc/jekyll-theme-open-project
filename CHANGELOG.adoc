@@ -7,13 +7,40 @@ Support added for customizable branch names.
 Site-wide default branch name can be set in `_config.yml` as `default_repo_branch`,
 which will be used as default for software/spec within the site.
 
-NOTE: If that setting is unspecified, the default is `main`.
+Beyond that, the implied default is `main`.
 
 Any setting that accepts a Git repository URL,
 which are named following the `*_repo_url` convention
 (`git_repo_url`, `repo_url`, or `github_repo_url`),
 accepts a sibling setting `*_repo_branch` which will override
 the implied default and site-wide `default_repo_branch` value.
+
+[IMPORTANT]
+.Breaking change
+====
+The default branch name is now `main`, which is a departure from the previously hard-coded `master`.
+
+If you experience site build failures after the update, the error that looks something like below
+would indicate that the build fails due to branch name issue:
+
+```
+in `command': git '--git-dir=/site/path/some/repository/path/.git' '--work-tree=/site/path/some/repository/path/' '-c' 'color.ui=false' checkout '--force' 'origin/some_branch_name'  2>&1:error: pathspec 'origin/some_branch_name' did not match any file(s) known to git (Git::GitExecuteError)
+```
+
+* If you are using predominantly `master`,
+  set `default_repo_branch` in `_config.yml` to "master".
+* If your site contents (e.g., software, spec frontmatter) references
+  repositories that use other main branch name than the one you specify in `default_repo_branch`
+  (or, absent that setting, other than `main`), find those references and add sibling
+  properties in the form `*_repo_branch`. E.g., if your 
+
+In the above example, project site is trying to fetch a repository
+(e.g., for software documentation) using `some_branch_name` as the main branch,
+while that repository in fact uses a different one.
+You can use `/site/path/some/repository/path` to locate the relevant .adoc file with frontmatter YAML
+and override branch name there, or if all repositories use `some_branch_name` then you can
+set `default_repo_branch` in `_config.yml` to "some_branch_name".
+====
 
 == 2.1.0
 
