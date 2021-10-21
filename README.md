@@ -142,9 +142,10 @@ There are 3 areas to configure when you first create an Open Site, namely:
 
 ### Git repository branch behavior
 
-In many places, settings and frontmatter reference Git repository URLs.
+You’ll see many instances of document frontmatter
+referencing Git repository URLs.
 
-Wherever a `[*_]repo_url` property is encountered,
+Note that, wherever a `[*_]repo_url` property is encountered,
 a sibling property `[*_]repo_branch` is supported.
 
 If you reference repositories that don’t use branch name `main`,
