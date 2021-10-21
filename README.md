@@ -140,6 +140,27 @@ There are 3 areas to configure when you first create an Open Site, namely:
 
 ## Common setup
 
+### Git repository branch behavior
+
+In many places, settings and frontmatter reference Git repository URLs.
+
+Wherever a `[*_]repo_url` property is encountered,
+a sibling property `[*_]repo_branch` is supported.
+
+If you reference repositories that don’t use branch name `main`,
+you must either:
+
+- use a sibling `[*_]repo_branch` property to specify your custom branch name
+  (you can search for `git_repo_branch`, `repo_branch`, `github_repo_branch`
+  in this document for examples), or
+
+- specify `default_repo_branch` property in `config.yml`
+
+  (in this case, in scenarios with project sites being used in conjunction
+  with a hub site, `default_repo_branch` must be the same
+  across all project sites’ and their hub site’s `config.yml`—otherwise you’re advised
+  to use the previous option).
+
 ### Common settings
 
 (mandatory)
@@ -175,16 +196,10 @@ These settings apply to both site types (hub and project).
 
   default_repo_branch: main
   # Optional, default is `main`.
-  # Whenever a branch name isn’t specified for some repository
-  # (such as project docs or specs), this name will be used.
-  # For configuration options that contain repository settings,
-  # search `git_repo_branch`, `repo_branch`, `github_repo_branch`.
-  # Note that in scenarios with project sites being used in conjunction
-  # with a hub site, `default_repo_branch` must be the same
-  # across all project sites and their hub site—otherwise
-  # you’re advised to use individual `*_repo_branch` overrides
-  # for each software, spec, project, etc.
-  # (wherever `*_repo` properties are present).
+  # Whenever branch name isn’t specified for some repository
+  # (such as project docs or specs), this name will be used
+  # during site’s build.
+  # (See branch behavior section for details.)
 
   tagline: Because examples are very important
   # Used in hero unit on main page.
