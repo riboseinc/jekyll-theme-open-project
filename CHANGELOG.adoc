@@ -4,10 +4,7 @@
 
 Support added for customizable branch names.
 
-Site-wide default branch name can be set in `_config.yml` as `default_repo_branch`,
-which will be used as default for software/spec repositories within the site.
-
-Beyond that, the implied default is `main`.
+The implied default is `main`.
 
 Any setting that accepts a Git repository URL,
 which are named following the `*_repo_url` convention
@@ -22,17 +19,20 @@ The default branch name is now `main`, which is a departure from the previously 
 
 Quick migration guide:
 
-* If your site references (e.g., in software, spec frontmatter)
-  repositories using predominantly `master` as main branch name,
-  set `default_repo_branch` in `_config.yml` to "master".
-* If your site references repositories that
-  use another main branch name
-  than the one you specify in `default_repo_branch`
-  (or, absent that setting, other than `main`),
+* If your site references (using `*_repo` properties) repositories that
+  use other main branch name than `main`,
   locate those references in .adoc YAML frontmatter
   and add sibling
-  properties in the form `*_repo_branch`,
+  properties in the shape of `*_repo_branch` (basically, adding `_branch` suffix),
   assigning the actual branch name used in each circumstance.
+* If your sites all use another branch name than `main`,
+  you can edit all sites’ `_config.yml` files
+  and specify your custom branch name using `default_repo_branch` property.
+  **(If you opt to use this way of configuration,
+  and you unite multiple open project sites under a single hub site,
+  you must make sure `default_repo_branch` property in `_config.yml` files is the same
+  across all sites, as well as the hub site.
+  If that’s impossible, please use the previous option.)**
 
 If you experience site build failures after the update, the error that looks something like below
 would indicate that the build fails due to branch name issue:
@@ -48,9 +48,8 @@ pathspec 'origin/some_branch_name' did not match any file(s) known to git
 In the above example, project site is trying to fetch a repository
 (e.g., for software documentation) using `some_branch_name` as the main branch,
 while that repository in fact uses a different one.
-You can use `/site/path/some/repository/path` to locate the relevant .adoc file with frontmatter YAML
-and override branch name there, or if all repositories use `some_branch_name` then you can
-set `default_repo_branch` in `_config.yml` to "some_branch_name".
+You can use `/site/path/some/repository/path` to locate the relevant .adoc (or .md) file with frontmatter YAML
+and override branch name there.
 ====
 
 == 2.1.0
