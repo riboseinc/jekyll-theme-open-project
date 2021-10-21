@@ -182,7 +182,9 @@ These settings apply to both site types (hub and project).
   # Note that in scenarios with project sites being used in conjunction
   # with a hub site, `default_repo_branch` must be the same
   # across all project sites and their hub site—otherwise
-  # you’re advised to use specific `*_repo_branch` overrides.
+  # you’re advised to use individual `*_repo_branch` overrides
+  # for each software, spec, project, etc.
+  # (wherever `*_repo` properties are present).
 
   tagline: Because examples are very important
   # Used in hero unit on main page.
