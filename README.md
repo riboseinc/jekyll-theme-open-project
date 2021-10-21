@@ -147,8 +147,9 @@ referencing Git repository URLs.
 
 Note that, wherever a `[*_]repo_url` property is encountered,
 a sibling property `[*_]repo_branch` is supported.
+(This is new in 2.1.17, until that version branch “master” was used for all repositories.)
 
-If you reference repositories that don’t use branch name `main`,
+If you reference repositories that don’t use branch name “main”,
 you must either:
 
 - use a sibling `[*_]repo_branch` property to specify your custom branch name
@@ -227,7 +228,13 @@ These settings apply to both site types (hub and project).
   # Without this setting, one-file FA distribution, all.js, is included from free FA CDN.
 
   theme: jekyll-theme-open-project
-  permalink: /blog/:month-:day-:year/:title/
+
+  permalink: /blog/:month-:day-:year-:title/
+  # It’s important that dash-separated permalink is used for blog posts.
+  # There’re no daily or monthly blog archive pages generated.
+  # Hub sites reference posts using that method, and it’s currently non-customizable.
+  # If you use `collections` configuration property, specify permalink for posts
+  # correctly as well (for an example, see https://github.com/metanorma/metanorma.org/blob/d2b15f6d8c4cea73d45ad899374845ec38348ff1/_config.yml#L60).
   ```
 
 ### Logo
