@@ -179,6 +179,10 @@ These settings apply to both site types (hub and project).
   # (such as project docs or specs), this name will be used.
   # For configuration options that contain repository settings,
   # search `git_repo_branch`, `repo_branch`, `github_repo_branch`.
+  # Note that in scenarios with project sites being used in conjunction
+  # with a hub site, `default_repo_branch` must be the same
+  # across all project sites and their hub site—otherwise
+  # you’re advised to use specific `*_repo_branch` overrides.
 
   tagline: Because examples are very important
   # Used in hero unit on main page.
