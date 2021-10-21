@@ -160,7 +160,11 @@ you must either:
   (in this case, in scenarios with project sites being used in conjunction
   with a hub site, `default_repo_branch` must be the same
   across all project sites’ and their hub site’s `config.yml`—otherwise you’re advised
-  to use the previous option).
+  to use the previous option to avoid site build failure).
+
+Note that, when a referenced Git repository doesn’t contain the necessary branch
+(either explicitly specified custom branch, or `default_repo_branch`, or branch called “main”),
+this will cause build failure of that project site, or a hub site using that project site.
 
 ### Common settings
 
