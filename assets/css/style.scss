@@ -11,3 +11,22 @@ $main-background: linear-gradient(135deg, #0446CC 0%, #2864DD 100%);
 .site-logo svg path {
   fill: white;
 }
+
+// Button styling for _includes/next-lesson-button.html
+.button {
+	display: inline-block;
+	border-radius: 25px;
+	background-color: #6352adff;
+	border: none;
+	color: #FFFFFF;
+	text-align: center;
+	font-size: 20px;
+	padding: 20px;
+	width: 210px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+	&:hover {
+		background-color: #48409cff;
+	}
+}
