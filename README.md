@@ -233,7 +233,7 @@ These settings apply to both site types (hub and project).
   # It’s important that dash-separated permalink is used for blog posts.
   # There’re no daily or monthly blog archive pages generated.
   # Hub sites reference posts using that method, and it’s currently non-customizable.
-  # If you use `collections` configuration property, specify permalink for posts
+  # With `collections` configuration, specify permalink for posts
   # correctly as well (for an example, see https://github.com/metanorma/metanorma.org/blob/d2b15f6d8c4cea73d45ad899374845ec38348ff1/_config.yml#L60).
   ```
 
@@ -340,12 +340,13 @@ For project posts, see below the project site section.
 
 The hub represents your company or department, links to all projects
 and offers a software and specification index.
+ 
+Note that a hub site is expected to have at least one document
+in the `projects` collection (see below).
 
 Additional items allowed/expected in _config.yml:
 
 ```yaml
-is_hub: true
-
 # Since a hub would typically represent an organization as opposed
 # to individual, this would make sense:
 seo:
