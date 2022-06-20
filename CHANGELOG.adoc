@@ -1,5 +1,18 @@
 = Changelog
 
+== 2.1.11
+
+Support for ``extra_footer_links`` site configuration option.
+Links can be provided in the format:
+
+[source]
+--
+extra_footer_links:
+  - { url: "/about/", title: "About ELF" }
+--
+
+They are shown in footer alongside spec and software index links.
+
 == 2.1.7
 
 Support added for customizable branch names.
