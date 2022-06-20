@@ -93,8 +93,11 @@
 
   <div class="underlay footer">
     <footer>
-      {% if site.num_all_specs > 0 or site.num_all_software > 0 %}
+      {% if site.num_all_specs > 0 or site.num_all_software > 0 or site.extra_footer_links %}
       <nav class="links" aria-label="site links">
+        {% for link in site.extra_footer_links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
         {% if site.num_all_software > 0 %}
           <a href="/software/">All {{ site.title }} software</a>
         {% endif %}
