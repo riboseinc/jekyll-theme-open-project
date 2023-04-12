@@ -727,7 +727,7 @@ body.site--project {
           .logo-container {
             float: left;
             margin-left: -$logo-space;
-            padding: 8px (($logo-space - $logo-side) / 2);
+            padding: 8px calc(($logo-space - $logo-side) / 2);
           }
         }
       }
