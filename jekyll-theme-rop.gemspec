@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require_relative 'lib/rop/version'
+
 Gem::Specification.new do |spec|
   spec.name          = 'jekyll-theme-rop'
-  spec.version       = '2.1.15'
+  spec.version       = Rop::VERSION
   spec.authors       = ['Ribose Inc.']
   spec.email         = ['open.source@ribose.com']
 
@@ -25,8 +27,11 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'jekyll', '~> 4.3'
   spec.add_dependency 'jekyll-asciidoc'
   spec.add_dependency 'jekyll-data'
+  spec.add_dependency 'jekyll-redirect-from'
   spec.add_dependency 'jekyll-seo-tag'
   spec.add_dependency 'jekyll-sitemap'
+  spec.add_dependency 'kramdown-parser-gfm'
+  spec.add_dependency 'kramdown-syntax-coderay'
 
   spec.add_dependency 'w3c_validators'
 end
