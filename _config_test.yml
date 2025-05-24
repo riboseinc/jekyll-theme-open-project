@@ -1,11 +1,15 @@
 markdown: kramdown
 
-includes_dir: .
+plugins:
+  - jekyll-seo-tag
+
+includes_dir: _includes
 
 permalink: /blog/:month-:day-:year/:title/
 
 exclude:
   - /**/.git/*
+  - _posts
 
 collections:
   projects:

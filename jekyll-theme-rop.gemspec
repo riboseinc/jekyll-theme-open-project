@@ -1,0 +1,32 @@
+# frozen_string_literal: true
+
+Gem::Specification.new do |spec|
+  spec.name          = 'jekyll-theme-rop'
+  spec.version       = '2.1.15'
+  spec.authors       = ['Ribose Inc.']
+  spec.email         = ['open.source@ribose.com']
+
+  spec.summary       = 'Open Project Jekyll theme'
+  spec.homepage      = 'https://github.com/riboseinc/jekyll-theme-rop/'
+  spec.license       = 'MIT'
+
+  gemspec = File.basename(__FILE__)
+  spec.files = IO.popen(%w[git ls-files -z], chdir: __dir__,
+                                             err: IO::NULL) do |ls|
+    ls.readlines("\x0", chomp: true).reject do |f|
+      (f == gemspec) ||
+        !f.match(%r{^((_data|_includes|_layouts|_sass|assets|_pages|_plugins)/|(_config.yml|LICENSE|README)((\.(txt|md|markdown)|$)))}i)
+    end
+  end
+
+  spec.add_dependency 'fastimage'
+  spec.add_dependency 'git'
+  spec.add_dependency 'html-proofer'
+  spec.add_dependency 'jekyll', '~> 4.3'
+  spec.add_dependency 'jekyll-asciidoc'
+  spec.add_dependency 'jekyll-data'
+  spec.add_dependency 'jekyll-seo-tag'
+  spec.add_dependency 'jekyll-sitemap'
+
+  spec.add_dependency 'w3c_validators'
+end
