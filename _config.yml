@@ -32,6 +32,16 @@ external_links:
 
 landing_priority: [software, specs, blog]
 
+plugins:
+  - jekyll-theme-rop
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-data
+  - jekyll-asciidoc
+  - jekyll-redirect-from
+  - kramdown-parser-gfm
+  - kramdown-syntax-coderay
+
 collections:
   projects:
     output: false
@@ -50,13 +60,12 @@ collections:
 
 fontawesome_cdn:
   version: v5.8.1
-  integrity: "sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" 
+  integrity: "sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
 # Only applies if no_auto_fontawesome is not set.
 
 no_auto_fontawesome: false
 # If set to yes, site (with default design) must specify <script> elements
 # that make required FA styles available in SVG mode.
-
 
 defaults:
   - scope:

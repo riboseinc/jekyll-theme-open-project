@@ -1,0 +1,31 @@
+{% comment %}Page stub.{% endcomment %}
+
+<div id="diagramContainer" style="height: 400px"></div>
+
+<style>
+  .leaflet-container {
+    background-color: transparent;
+  }
+  .documentation.with-expandable-toc > article {
+    max-width: none;
+  }
+</style>
+
+<script>
+  (function () {
+    var map = L.map('diagramContainer', {
+      crs: L.CRS.Simple,
+      attributionControl: false,
+      scrollWheelZoom: false,
+      zoomControl: false,
+      minZoom: -10,
+    }).
+    setView([{{ page.image_height }}/2, {{ page.image_width }}/2]);
+
+    map.addControl(L.control.zoom({ position: 'bottomleft' }));
+
+    var bounds = [[0,0], [{{ page.image_height }}, {{ page.image_width }}]];
+    var image = L.imageOverlay('{{ page.image_path }}', bounds).addTo(map);
+    map.fitBounds(bounds);
+  }());
+</script>

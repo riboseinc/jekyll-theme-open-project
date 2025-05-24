@@ -1,15 +1,17 @@
-# Open Project theme by Ribose
+# The ROP Jekyll theme (Ribose Open Project theme)
 
-Open Project is a Jekyll theme (with the accompanying plugin)
-aiming to help organizations and individuals present
-open-source software and specifications in a navigable and elegant way.
+ROP is a Jekyll theme (with accompanying plugin code) aiming to help
+organizations and individuals present open-source software and specifications in
+a navigable and elegant way.
 
-Open Project fits two types of sites:
+The gem is released as `jekyll-theme-rop`.
 
-* a site that describes one individual project
-* a site that combine projects into sort of an open hub.
+ROP fits two types of sites:
 
-**Demo**: See [Ribose Open](https://open.ribose.com/) project sites -- for example,
+* a site that describes one individual project;
+* a site that combine multiple project sites into an open hub site.
+
+**Demo**: See [Ribose](https://www.ribose.com/) project sites -- for example,
 [Metanorma](https://www.metanorma.com),
 [RNP](https://www.rnpgp.com),
 [Cryptode](https://www.cryptode.com),
@@ -17,6 +19,42 @@ Open Project fits two types of sites:
 
 See also: CI_OPS for how to set up automated build and deployment of sites
 to AWS S3.
+
+NOTE: This theme was previously named `jekyll-theme-open-project` with a helper
+gem `jekyll-theme-open-project-helpers`.
+
+
+## Migrating from `jekyll-theme-open-project` to the new `jekyll-theme-rop`
+
+Follow these steps:
+
+1. Update your Open Project Gemfile to remove all previously used dependencies
+from `jekyll-theme-open-project` (including `git`), and replace it like this:
+```ruby
+# If you have any plugins, put them here!
+group :jekyll_plugins do
+  gem "jekyll-theme-rop"
+end
+```
+
+2. Update your `_config.yml` file to remove all previously used plugins from `jekyll-theme-open-project`, so it becomes:
+```yaml
+# plugins:
+  # - jekyll-seo-tag
+  # - jekyll-sitemap
+  # - jekyll-theme-rop
+```
+
+3. Replace in SCSS files all mention of import files with their renamed counterparts:
+  * `@import 'jekyll-theme-open-project'` => ``@import 'jekyll-theme-rop'`
+  * `'open-project-mixins'` => remove because it was already included.
+
+4. If you use the `png_diagrams` feature in any page layout, replace as follows:
+```diff
+-engine: png_diagrams
++engine: png_diagram_page
+```
+
 
 ## Contents
 
@@ -44,18 +82,22 @@ to AWS S3.
 
 ### Set up Ruby and Jekyll
 
-The currently recommended Ruby version is 2.6.
-(In case you aren’t using Ruby often, the easiest way to install one may be with RVM.)
+The currently recommended Ruby version is 3.3.
+
+NOTE: In case you don't use Ruby often, the easiest way to install one may be
+with RVM.
 
 The currently recommended Jekyll version is 3 or newer
 (read about [Jekyll installation](https://jekyllrb.com/docs/#instructions)).
 
-NOTE: this theme is known to not work with Ruby older than 2.3,
-and hasn’t been tested on newer versions.
+NOTE: This theme is known to not work with Ruby older than 2.3.
+It has not been tested on newer versions.
 
 ### Start a new Jekyll site
 
-    jekyll new my-open-site
+```sh
+jekyll new my-open-site
+```
 
 If you use Git for site source version management,
 see the “Extra .gitignore rules” section below
@@ -67,7 +109,7 @@ Add this line to your Jekyll site's `Gemfile`,
 replacing default theme requirement:
 
 ```ruby
-gem "jekyll-theme-open-project"
+gem "jekyll-theme-rop"
 ```
 
 (Jekyll’s default theme was “minima” at the time of this writing.)
@@ -77,13 +119,14 @@ Also in the `Gemfile`, add two important plugins to the `:jekyll_plugins` group.
 
 ```ruby
 group :jekyll_plugins do
-  gem "jekyll-seo-tag"
-  gem "jekyll-sitemap"
-  gem "jekyll-data"
-  gem "jekyll-asciidoc"
+  gem "jekyll-theme-rop"
 
-  gem "jekyll-theme-open-project-helpers"
-  gem "jekyll-external-links"
+  # The following gems are automatically included by jekyll-theme-rop
+  # gem "jekyll-seo-tag"
+  # gem "jekyll-sitemap"
+  # gem "jekyll-data"
+  # gem "jekyll-asciidoc"
+  # gem "jekyll-external-links"
 
   # ...other plugins, if you use any
 end
@@ -227,7 +270,7 @@ These settings apply to both site types (hub and project).
   # and expects them to be included in SVG mode.
   # Without this setting, one-file FA distribution, all.js, is included from free FA CDN.
 
-  theme: jekyll-theme-open-project
+  theme: jekyll-theme-rop
 
   permalink: /blog/:month-:day-:year-:title/
   # It’s important that dash-separated permalink is used for blog posts.
@@ -340,7 +383,7 @@ For project posts, see below the project site section.
 
 The hub represents your company or department, links to all projects
 and offers a software and specification index.
- 
+
 Note that a hub site is expected to have at least one document
 in the `projects` collection (see below).
 
@@ -609,7 +652,7 @@ tags: [Ruby, Python, RFC, "<some_namespace_id>:<appropriate_tag>"]
 # Avoid long namespace/tag combos as they can overflow item’s card widget.
 
 external_links:
-  - url: https://github.com/riboseinc/asciidoctor-rfc
+  - url: https://github.com/metanorma/metanorma
   - url: https://docs.rs/proj/ver/…/
   - { url: https://example.com/, title: "Custom title" }
 # External links.
@@ -865,7 +908,7 @@ under assets/css/style.scss with following exact contents:
 
 // Variable redefinitions can go here
 
-@import 'jekyll-theme-open-project';
+@import 'jekyll-theme-rop';
 
 // Custom rules can go here
 ```
@@ -952,7 +995,7 @@ parent-hub/*
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub
-at https://github.com/riboseinc/jekyll-theme-open-project.
+at https://github.com/riboseinc/jekyll-theme-rop.
 
 This project is intended to be a safe, welcoming space for collaboration,
 and contributors are expected to adhere
@@ -995,8 +1038,8 @@ of this repo and have a Jekyll site using this theme:
 1. For the Jekyll site, change Gemfile to point to local copy
    of the theme (the root of this repo) and run `bundle`.
 
-   For example, you’d change `gem "jekyll-theme-open-project", "~> 1.0.6"`
-   to `gem "jekyll-theme-open-project", :path => "../jekyll-theme-open-project"`.
+   For example, you’d change `gem "jekyll-theme-rop", "~> 1.0.6"`
+   to `gem "jekyll-theme-rop", :path => "../jekyll-theme-rop"`.
    The relative path assumes your site root and theme root are sibling directories.
 
 2. Run `bundle exec jekyll serve` to start Jekyll’s development server.
@@ -1020,30 +1063,10 @@ of this repo and have a Jekyll site using this theme:
 Make sure theme works: build script is under construction,
 so use good judgement and thorough manual testing.
 
-1. Pick the next version number (think whether it’s a patch, minor or major increment).
+1. Decide whether this is a patch, minor or major change.
 
-2. Release the chosen version of `jekyll-theme-open-project-helpers` gem:
-   see [https://github.com/riboseinc/jekyll-theme-open-project-helpers](gem’s docs).
+2. Run the automated "release" workflow to release the gem.
 
-   (Theme and plugin are coupled tightly at this time,
-   and to simplify mental overhead of dependency management
-   we go with one version number for the whole suite.)
-
-3. Inside .gemspec within this repo’s root, update main gem version,
-   and also the version for `jekyll-theme-open-project-helpers` runtime dependency,
-   to the one we are releasing.
-
-4. Run `bundle --full-index`, ensure it pulls the newly released plugin gem.
-   (It may take a couple minutes after releasing helpers plugin for gem index to update.)
-
-5. Make a commit for the new release (“chore: Release vX.X.X”).
-
-6. Execute `./develop/release`. This does the following:
-
-   * Builds new gem version
-   * Pushes gem to rubygems.org
-   * Creates new version tag in this repository
-   * Pushes changes to GitHub
 
 #### Testing with build script (TBD)
 
