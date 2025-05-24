@@ -7,6 +7,8 @@ module Jekyll
   end
 end
 
+require_relative 'jekyll/theme/rop/version'
+
 puts '[jekyll-theme-rop] Loaded.'
 
 require 'jekyll'

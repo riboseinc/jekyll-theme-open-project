@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'lib/rop/version'
+require_relative 'lib/jekyll/theme/rop/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'jekyll-theme-rop'
-  spec.version       = Rop::VERSION
+  spec.version       = Jekyll::Theme::Rop::VERSION
   spec.authors       = ['Ribose Inc.']
   spec.email         = ['open.source@ribose.com']
 
