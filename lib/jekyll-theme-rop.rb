@@ -1,14 +1,5 @@
 # frozen_string_literal: true
 
-module Jekyll
-  module Theme
-    module Rop
-    end
-  end
-end
-
-require_relative 'jekyll/theme/rop/version'
-
 puts '[jekyll-theme-rop] Loaded.'
 
 require 'jekyll'
