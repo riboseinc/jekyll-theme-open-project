@@ -17,9 +17,13 @@ Gem::Specification.new do |spec|
                                              err: IO::NULL) do |ls|
     ls.readlines("\x0", chomp: true).reject do |f|
       (f == gemspec) ||
-        !f.match(%r{^((_data|_includes|_layouts|_sass|assets|_pages|_plugins)/|(_config.yml|LICENSE|README)((\.(txt|md|markdown)|$)))}i)
+        !f.match(%r{^((lib|_data|_includes|_layouts|_sass|assets|_pages|_plugins)/|(_config.yml|LICENSE|README|Rakefile)((\.(txt|md|markdown)|$)))}i)
     end
   end
+
+  # spec.bindir = "exe"
+  # spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
+  spec.require_paths = ['lib']
 
   spec.add_dependency 'fastimage'
   spec.add_dependency 'git'
