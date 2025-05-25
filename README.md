@@ -37,12 +37,10 @@ group :jekyll_plugins do
 end
 ```
 
-2. Update your `_config.yml` file to remove all previously used plugins from `jekyll-theme-open-project`, so it becomes:
+2. Update your `_config.yml` file to remove all previously used plugins from `jekyll-theme-open-project` and only use `jekyll-theme-rop`, so it becomes:
 ```yaml
-# plugins:
-  # - jekyll-seo-tag
-  # - jekyll-sitemap
-  # - jekyll-theme-rop
+plugins:
+  - jekyll-theme-rop
 ```
 
 3. Replace in SCSS files all mention of import files with their renamed counterparts:
