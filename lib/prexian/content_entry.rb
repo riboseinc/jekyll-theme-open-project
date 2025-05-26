@@ -145,10 +145,19 @@ module Prexian
 
     def extract_config
       site_config = @index_doc.data['site']
-      {
-        repo_url: site_config['git_repo_url'],
-        branch: site_config['git_repo_branch'] || default_repo_branch
-      }
+
+      # Support both git_repo_url (for Git repositories) and local_path (for local directories)
+      if site_config['local_path']
+        {
+          repo_url: site_config['local_path'],
+          branch: nil  # Not applicable for local paths
+        }
+      else
+        {
+          repo_url: site_config['git_repo_url'],
+          branch: site_config['git_repo_branch'] || default_repo_branch
+        }
+      end
     end
 
     def checkout_destination

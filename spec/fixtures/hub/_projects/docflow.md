@@ -4,8 +4,7 @@ description: "Document processing and workflow automation platform"
 featured: true
 home_url: "https://docflow.example.com"
 site:
-  git_repo_url: "https://github.com/techhub/docflow.git"
-  git_repo_branch: "main"
+  local_path: "/Users/mulgogi/src/jekyll-theme-rop/spec/fixtures/docflow"
 ---
 
 # DocFlow

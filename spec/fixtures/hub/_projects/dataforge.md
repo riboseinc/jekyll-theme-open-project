@@ -4,8 +4,7 @@ description: "Advanced data processing and transformation toolkit"
 featured: true
 home_url: "https://dataforge.example.com"
 site:
-  git_repo_url: "/Users/mulgogi/src/jekyll-theme-rop/spec/fixtures/project"
-  git_repo_branch: "main"
+  local_path: "/Users/mulgogi/src/jekyll-theme-rop/spec/fixtures/project"
 ---
 
 # DataForge
