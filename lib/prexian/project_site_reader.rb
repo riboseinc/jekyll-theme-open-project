@@ -32,14 +32,20 @@ module Prexian
       parent_hub_repo_url = @config['prexian']['parent_hub']['git_repo_url']
       return unless parent_hub_repo_url
 
+      parent_hub_repo_branch = @config['prexian']['parent_hub']['git_repo_branch'] || @config['prexian']['default_repo_branch']
+
+      refresh_condition = @config['prexian']['refresh_remote_data'] || 'last-resort'
+      puts "Prexian ProjectSiteReader: Parent hub repository branch: #{parent_hub_repo_branch}"
+      Jekyll.logger.debug("Prexian ProjectSiteReader: Parent hub repository branch: #{parent_hub_repo_branch}")
+
       checkout_result = @git_service.shallow_checkout(
         parent_hub_repo_url,
-        branch: @config['prexian']['parent_hub']['git_repo_branch'],
-        refresh_condition: @config['prexian']['refresh_remote_data']
+        branch: parent_hub_repo_branch,
+        refresh_condition: refresh_condition
       )
       puts "Prexian ProjectSiteReader: Checkout result: #{checkout_result.inspect}"
 
-      return unless checkout_result[:success]
+      raise "Failed to checkout parent hub repository: #{checkout_result[:error]}, exiting." unless checkout_result[:success]
 
       # Copy entire hub site to _parent-hub directory
       hub_destination = File.join(@site.source, '_parent-hub')
