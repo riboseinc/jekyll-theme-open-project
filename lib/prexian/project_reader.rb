@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'jekyll'
-require_relative 'configuration'
 require_relative 'hub_site_reader'
 require_relative 'project_site_reader'
 
@@ -16,9 +15,11 @@ module Prexian
     def read
       super
 
-      puts "Prexian ProjectReader: Starting read, hub_site? = #{@config['prexian']['is_hub']}"
+      prexian_config = @config['prexian'] || {}
+      is_hub = prexian_config['site_type'] == 'hub'
+      puts "Prexian ProjectReader: Starting read, hub_site? = #{is_hub}"
 
-      if @config['prexian']['is_hub']
+      if is_hub
         puts 'Prexian ProjectReader: Creating HubSiteReader'
         hub_reader = HubSiteReader.new(@site)
         hub_reader.read_projects

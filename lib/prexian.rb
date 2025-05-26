@@ -6,7 +6,6 @@ require 'jekyll'
 
 require_relative 'prexian/version'
 require_relative 'prexian/git_service'
-require_relative 'prexian/configuration'
 require_relative 'prexian/cli'
 
 # Only require Jekyll-dependent modules if Jekyll is available

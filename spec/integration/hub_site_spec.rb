@@ -10,9 +10,8 @@ RSpec.describe 'Hub Site Integration', type: :integration do
     let(:site) { build_site(hub_fixture_path) }
 
     it 'identifies itself as a hub site' do
-      config = Prexian::Configuration.new(site.config)
-      expect(config.hub_site?).to be true
-      expect(config.project_site?).to be false
+      prexian_config = site.config['prexian'] || {}
+      expect(prexian_config['site_type']).to eq('hub')
     end
 
     it 'processes project repositories' do
@@ -124,22 +123,22 @@ RSpec.describe 'Hub Site Integration', type: :integration do
     let(:site) { build_site(hub_fixture_path) }
 
     it 'validates hub site configuration' do
-      config = Prexian::Configuration.new(site.config)
+      prexian_config = site.config['prexian'] || {}
 
-      expect(config.hub_site?).to be true
-      expect(config.has_parent_hub?).to be false
-      expect(config.tag_namespaces).to be_a(Hash)
-      expect(config.landing_priority).to be_an(Array)
+      expect(prexian_config['site_type']).to eq('hub')
+      expect(prexian_config['parent_hub']).to be_nil
+      expect(prexian_config['tag_namespaces']).to be_a(Hash)
+      expect(prexian_config['landing_priority']).to be_an(Array)
     end
 
     it 'processes tag namespaces correctly' do
-      config = Prexian::Configuration.new(site.config)
-      expect(config.tag_namespaces.keys).to include('software', 'specs')
+      prexian_config = site.config['prexian'] || {}
+      expect(prexian_config['tag_namespaces'].keys).to include('software', 'specs')
     end
 
     it 'handles landing priority configuration' do
-      config = Prexian::Configuration.new(site.config)
-      expect(config.landing_priority).to eq(%w[software specs blog])
+      prexian_config = site.config['prexian'] || {}
+      expect(prexian_config['landing_priority']).to eq(%w[software specs blog])
     end
   end
 end

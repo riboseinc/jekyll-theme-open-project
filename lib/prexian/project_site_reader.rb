@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative 'git_service'
-require_relative 'configuration'
 require_relative 'project_reader'
 require_relative 'spec_builder'
 
@@ -48,29 +47,31 @@ module Prexian
       puts "Prexian ProjectSiteReader: Parent hub repository branch: #{parent_hub_repo_branch}"
       Jekyll.logger.debug("Prexian ProjectSiteReader: Parent hub repository branch: #{parent_hub_repo_branch}")
 
-      checkout_result = @git_service.shallow_checkout(
-        parent_hub_repo_url,
-        branch: parent_hub_repo_branch,
-        refresh_condition: refresh_condition
-      )
-      puts "Prexian ProjectSiteReader: Checkout result: #{checkout_result.inspect}"
+      begin
+        checkout_result = @git_service.shallow_checkout(
+          parent_hub_repo_url,
+          branch: parent_hub_repo_branch,
+          refresh_condition: refresh_condition
+        )
+        puts "Prexian ProjectSiteReader: Checkout result: #{checkout_result.inspect}"
 
-      raise "Failed to checkout parent hub repository: #{checkout_result[:error]}, exiting." unless checkout_result[:success]
+        # Copy entire hub site to _parent-hub directory
+        hub_destination = File.join(@site.source, '_parent-hub')
+        parent_hub_includes = File.join(hub_destination, 'parent-hub')
+        @git_service.copy_cached_content(
+          checkout_result[:local_path],
+          parent_hub_includes
+        )
+        return unless File.directory?(parent_hub_includes)
 
-      # Copy entire hub site to _parent-hub directory
-      hub_destination = File.join(@site.source, '_parent-hub')
-      parent_hub_includes = File.join(hub_destination, 'parent-hub')
-      @git_service.copy_cached_content(
-        checkout_result[:local_path],
-        parent_hub_includes
-      )
-      return unless File.directory?(parent_hub_includes)
+        puts "Prexian ProjectSiteReader: Hub site copied to #{parent_hub_includes}"
 
-      puts "Prexian ProjectSiteReader: Hub site copied to #{parent_hub_includes}"
+        # puts @site.includes_load_paths.inspect
 
-      # puts @site.includes_load_paths.inspect
-
-      @site.includes_load_paths << hub_destination unless @site.includes_load_paths.include?(hub_destination)
+        @site.includes_load_paths << hub_destination unless @site.includes_load_paths.include?(hub_destination)
+      rescue Prexian::GitService::GitError => e
+        Jekyll.logger.warn("Prexian ProjectSiteReader: Failed to fetch hub logo: #{e.message}")
+      end
     end
 
     def fetch_and_read_software(collection_name)
@@ -104,26 +105,25 @@ module Prexian
         docs_config[:repo_url],
         sparse_subtrees: [docs_config[:subtree]],
         branch: docs_config[:branch],
-        refresh_condition: @config.refresh_remote_data
+        refresh_condition: @config['prexian']['refresh_remote_data']
       )
 
-      if docs_checkout[:success]
-        @git_service.copy_cached_content(
-          docs_checkout[:local_path],
-          docs_path,
-          subtrees: [docs_config[:subtree]]
-        )
-        @collection_reader.read(docs_path, @site.collections[collection_name])
-        index_doc.merge_data!({ 'last_update' => docs_checkout[:modified_at] })
-      else
-        # Fallback: get timestamp from main repository if docs checkout failed
-        main_checkout = @git_service.shallow_checkout(
-          index_doc.data['repo_url'],
-          branch: index_doc.data['repo_branch'] || @config.default_repo_branch,
-          refresh_condition: @config.refresh_remote_data
-        )
-        index_doc.merge_data!({ 'last_update' => main_checkout[:modified_at] }) if main_checkout[:success]
-      end
+      @git_service.copy_cached_content(
+        docs_checkout[:local_path],
+        docs_path,
+        subtrees: [docs_config[:subtree]]
+      )
+      @collection_reader.read(docs_path, @site.collections[collection_name])
+      index_doc.merge_data!({ 'last_update' => docs_checkout[:modified_at] })
+    rescue Prexian::GitService::GitError => e
+      # Fallback: get timestamp from main repository if docs checkout failed
+      Jekyll.logger.warn("Prexian ProjectSiteReader: Docs checkout failed for #{index_doc.id}, trying main repo: #{e.message}")
+      main_checkout = @git_service.shallow_checkout(
+        index_doc.data['repo_url'],
+        branch: index_doc.data['repo_branch'] || @config['prexian']['default_repo_branch'],
+        refresh_condition: @config['prexian']['refresh_remote_data']
+      )
+      index_doc.merge_data!({ 'last_update' => main_checkout[:modified_at] })
     end
 
     def fetch_and_read_specs(collection_name, build_pages: false)
@@ -154,10 +154,8 @@ module Prexian
         spec_config[:repo_url],
         sparse_subtrees: [spec_config[:repo_subtree]].compact,
         branch: spec_config[:repo_branch],
-        refresh_condition: @config.refresh_remote_data
+        refresh_condition: @config['prexian']['refresh_remote_data']
       )
-
-      return unless checkout_result[:success]
 
       @git_service.copy_cached_content(
         checkout_result[:local_path],
@@ -194,11 +192,13 @@ module Prexian
     def extract_docs_config(index_doc)
       docs = index_doc.data['docs']
       main_repo = index_doc.data['repo_url']
-      main_repo_branch = index_doc.data['repo_branch'] || @config.default_repo_branch
+      prexian_config = @config['prexian'] || {}
+      default_branch = prexian_config['default_repo_branch'] || 'main'
+      main_repo_branch = index_doc.data['repo_branch'] || default_branch
 
       {
         repo_url: (docs && docs['git_repo_url']) || main_repo,
-        subtree: (docs && docs['git_repo_subtree']) || Configuration::DEFAULT_DOCS_SUBTREE,
+        subtree: (docs && docs['git_repo_subtree']) || 'docs',
         branch: (docs && docs['git_repo_branch']) || main_repo_branch
       }
     end
@@ -215,7 +215,7 @@ module Prexian
         item_name: item_name,
         repo_url: src['git_repo_url'],
         repo_subtree: src['git_repo_subtree'],
-        repo_branch: src['git_repo_branch'] || @config.default_repo_branch,
+        repo_branch: src['git_repo_branch'] || @config['prexian']['default_repo_branch'],
         engine: build['engine'],
         engine_opts: build['options'] || {},
         checkout_path: spec_checkout_path,

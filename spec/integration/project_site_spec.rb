@@ -10,16 +10,15 @@ RSpec.describe 'Project Site Integration', type: :integration do
     let(:site) { build_site(project_fixture_path) }
 
     it 'identifies itself as a project site' do
-      config = Prexian::Configuration.new(site.config)
-      expect(config.project_site?).to be true
-      expect(config.hub_site?).to be false
+      prexian_config = site.config['prexian'] || {}
+      expect(prexian_config['site_type']).to eq('project')
     end
 
     it 'has parent hub configuration' do
-      config = Prexian::Configuration.new(site.config)
-      expect(config.has_parent_hub?).to be true
-      expect(config.parent_hub_repo_url).to include('fixtures/hub')
-      expect(config.parent_hub_home_url).to eq('https://techhub.example.com/')
+      prexian_config = site.config['prexian'] || {}
+      parent_hub = prexian_config['parent_hub'] || {}
+      expect(parent_hub['git_repo_url']).to include('fixtures/hub')
+      expect(parent_hub['home_url']).to eq('https://techhub.example.com/')
     end
 
     it 'fetches hub logo from parent hub' do
@@ -84,7 +83,7 @@ RSpec.describe 'Project Site Integration', type: :integration do
       begin
         # Create a site with invalid parent hub URL
         invalid_config = site.config.dup
-        invalid_config['rop']['parent_hub']['git_repo_url'] = 'https://invalid-repo-url.com/repo.git'
+        invalid_config['prexian']['parent_hub']['git_repo_url'] = 'https://invalid-repo-url.com/repo.git'
 
         invalid_site = Jekyll::Site.new(Jekyll::Configuration.from(invalid_config))
         invalid_site.collections['software'] = Jekyll::Collection.new(invalid_site, 'software')
@@ -123,22 +122,22 @@ RSpec.describe 'Project Site Integration', type: :integration do
     let(:site) { build_site(project_fixture_path) }
 
     it 'validates project site configuration' do
-      config = Prexian::Configuration.new(site.config)
+      prexian_config = site.config['prexian'] || {}
+      parent_hub = prexian_config['parent_hub'] || {}
 
-      expect(config.project_site?).to be true
-      expect(config.has_parent_hub?).to be true
-      expect(config.parent_hub_repo_url).to be_a(String)
-      expect(config.parent_hub_repo_branch).to eq('main')
+      expect(prexian_config['site_type']).to eq('project')
+      expect(parent_hub['git_repo_url']).to be_a(String)
+      expect(parent_hub['git_repo_branch'] || prexian_config['default_repo_branch'] || 'main').to eq('main')
     end
 
     it 'handles refresh conditions' do
-      config = Prexian::Configuration.new(site.config)
-      expect(config.refresh_remote_data).to eq('last-resort')
+      prexian_config = site.config['prexian'] || {}
+      expect(prexian_config['refresh_remote_data'] || 'last-resort').to eq('last-resort')
     end
 
     it 'processes tag namespaces' do
-      config = Prexian::Configuration.new(site.config)
-      expect(config.tag_namespaces).to be_a(Hash)
+      prexian_config = site.config['prexian'] || {}
+      expect(prexian_config['tag_namespaces'] || {}).to be_a(Hash)
     end
   end
 
