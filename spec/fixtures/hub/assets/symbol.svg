@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="hubGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#357ABD;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Hub center circle -->
+  <circle cx="50" cy="50" r="12" fill="url(#hubGradient)" stroke="#2C5282" stroke-width="2"/>
+  
+  <!-- Connected nodes -->
+  <circle cx="20" cy="20" r="8" fill="#E2E8F0" stroke="#4A90E2" stroke-width="2"/>
+  <circle cx="80" cy="20" r="8" fill="#E2E8F0" stroke="#4A90E2" stroke-width="2"/>
+  <circle cx="20" cy="80" r="8" fill="#E2E8F0" stroke="#4A90E2" stroke-width="2"/>
+  <circle cx="80" cy="80" r="8" fill="#E2E8F0" stroke="#4A90E2" stroke-width="2"/>
+  
+  <!-- Connection lines -->
+  <line x1="50" y1="50" x2="20" y2="20" stroke="#4A90E2" stroke-width="2" opacity="0.7"/>
+  <line x1="50" y1="50" x2="80" y2="20" stroke="#4A90E2" stroke-width="2" opacity="0.7"/>
+  <line x1="50" y1="50" x2="20" y2="80" stroke="#4A90E2" stroke-width="2" opacity="0.7"/>
+  <line x1="50" y1="50" x2="80" y2="80" stroke="#4A90E2" stroke-width="2" opacity="0.7"/>
+  
+  <!-- Text -->
+  <text x="50" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#2C5282">HUB</text>
+</svg>
