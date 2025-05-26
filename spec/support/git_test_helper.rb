@@ -88,7 +88,7 @@ module GitTestHelper
       # ROP-specific configuration
       prexian:
         # Hub site marker
-        is_hub: true
+        site_type: hub
 
         # Git repository settings
         default_repo_branch: main
@@ -189,7 +189,7 @@ module GitTestHelper
       # ROP-specific configuration
       prexian:
         # Project site marker (not a hub)
-        is_hub: false
+        site_type: project
 
         # Parent hub configuration
         parent_hub:

@@ -6,7 +6,7 @@
   </div>
 {% endif %}
 
-{% if site.prexian.is_hub %}
+{% if site.prexian.site_type == "hub" %}
   {% include nav-page-link.html htmlclass="projects" url="/projects/" title="Projects" %}
 
   {% if site.prexian.num_all_software > 0 %}

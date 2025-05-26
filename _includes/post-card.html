@@ -25,7 +25,7 @@
   {% endif %}
 
   <div class="card-body">
-    {% if include.post.parent_project == nil and site.prexian.is_hub == true %}
+    {% if include.post.parent_project == nil and site.prexian.site_type == "hub" %}
       <div class="hub-symbol">
         {% include assets/symbol.svg %}
       </div>

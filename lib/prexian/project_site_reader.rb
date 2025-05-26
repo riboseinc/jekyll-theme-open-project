@@ -15,7 +15,7 @@ module Prexian
     end
 
     def read_content
-      return if @config['prexian']['is_hub'] == true
+      return if @config['prexian']['site_type'] == 'hub'
 
       fetch_hub_logo
       fetch_and_read_software('software')

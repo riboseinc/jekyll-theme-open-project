@@ -5,7 +5,7 @@ layout: default
 {% include index-page-item-filter.html url_tag_prefix="/specs/" tag_namespaces="specs" items=site.prexian.all_specs tag=page.tag %}
 
 <section class="items">
-  {% if site.prexian.is_hub %}
+  {% if site.prexian.site_type == "hub" %}
     {% include assets/symbol.svg %}
   {% endif %}
 
@@ -13,7 +13,7 @@ layout: default
     {% for item in page.items %}
       {% include software-card-hub.html item=item item_type='specs' %}
     {% endfor %}
-  {% elsif site.prexian.is_hub %}
+  {% elsif site.prexian.site_type == "hub" %}
     {% for item in site.prexian.all_specs %}
       {% include software-card-hub.html item=item item_type='specs' %}
     {% endfor %}

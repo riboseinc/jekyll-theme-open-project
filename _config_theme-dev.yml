@@ -95,7 +95,7 @@ prexian:
       email: open.source@ribose.com
   contact_email: open.source@ribose.com
 
-  is_hub: false
+  site_type: project  # 'project' or 'hub'
   # Debug mode for development
   debug: true
 
@@ -176,4 +176,3 @@ defaults:
 # Development settings
 incremental: true
 livereload: true
-

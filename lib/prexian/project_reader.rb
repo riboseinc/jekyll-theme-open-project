@@ -15,15 +15,14 @@ module Prexian
     def read
       super
 
-      prexian_config = @config['prexian'] || {}
-      is_hub = prexian_config['site_type'] == 'hub'
-      puts "Prexian ProjectReader: Starting read, hub_site? = #{is_hub}"
+      prexian_config = @config['prexian'] || { 'site_type' => 'project' }
 
-      if is_hub
+      case prexian_config['site_type']
+      when 'hub'
         puts 'Prexian ProjectReader: Creating HubSiteReader'
         hub_reader = HubSiteReader.new(@site)
         hub_reader.read_projects
-      else
+      when 'project'
         puts 'Prexian ProjectReader: Creating ProjectSiteReader'
         project_reader = ProjectSiteReader.new(@site)
         project_reader.read_content

@@ -10,7 +10,7 @@
 
 prexian:
   ## TO CHANGE FOR HUB SITE
-  is_hub: false
+  site_type: project
 
   ## TO SET FOR PROJECT SITE
   # parent_hub:

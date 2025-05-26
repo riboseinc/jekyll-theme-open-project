@@ -29,7 +29,7 @@ module Prexian
       prexian_config['max_featured_posts'] = 3
 
       INDEXES.each do |index_name, params|
-        collection_name = if prexian_config['is_hub']
+        collection_name = if prexian_config['site_type'] == 'hub'
                             'projects'
                           else
                             index_name
@@ -77,7 +77,7 @@ module Prexian
       end
 
       prexian_config = site.config['prexian'] || {}
-      if prexian_config['is_hub']
+      if prexian_config['site_type'] == 'hub'
         items.map! do |item|
           project_name = item.url.split('/')[2]
           project_path = "_projects/#{project_name}/index.md"
@@ -122,7 +122,7 @@ module Prexian
     def generate(site)
       prexian_config = site.config['prexian'] || {}
       INDEXES.each do |index_name, params|
-        collection_name = if prexian_config['is_hub']
+        collection_name = if prexian_config['site_type'] == 'hub'
                             'projects'
                           else
                             index_name

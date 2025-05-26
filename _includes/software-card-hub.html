@@ -11,7 +11,7 @@
 
 <a class="item {% if include.item.feature_with_priority != nil %}featured-item{% endif %}"
     href="{{ product_home_url }}" role="article">
-  {% if include.item_type == 'software' and site.prexian.is_hub != true %}
+  {% if include.item_type == 'software' and site.prexian.site_type == "project" %}
     <div class="logo-container">
       {% include software-symbol.html item_id=include.item.id %}
     </div>
