@@ -10,6 +10,9 @@ require_relative 'prexian/cli'
 
 # Only require Jekyll-dependent modules if Jekyll is available
 if defined?(Jekyll)
+  require_relative 'prexian/configuration_helper'
+  require_relative 'prexian/collection_doc_reader'
+  require_relative 'prexian/site_reader'
   require_relative 'prexian/project_reader'
   require_relative 'prexian/hub_site_reader'
   require_relative 'prexian/project_site_reader'
@@ -27,8 +30,7 @@ end
 require 'fileutils'
 Jekyll::Hooks.register :pages, :post_write do |page|
   if (page.path == 'robots.txt') || (page.path == 'sitemap.xml')
-    File.write(page.site.in_dest_dir(page.path), page.content,
-               mode: 'wb')
+    File.write(page.site.in_dest_dir(page.path), page.content, mode: 'wb')
   end
 end
 

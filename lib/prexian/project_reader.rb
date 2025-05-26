@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'jekyll'
+require_relative 'site_reader'
 require_relative 'hub_site_reader'
 require_relative 'project_site_reader'
 

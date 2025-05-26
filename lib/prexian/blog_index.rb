@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'digest/md5'
+require_relative 'configuration_helper'
 
 module Prexian
   #
@@ -11,13 +12,15 @@ module Prexian
   # as required by the Open Project theme.
   #
   class CombinedPostArrayGenerator < ::Jekyll::Generator
+    include ConfigurationHelper
+
     safe true
 
     def generate(site)
+      @site = site
       site_posts = site.posts.docs
-      prexian_config = site.config['prexian'] || {}
 
-      if prexian_config['is_hub']
+      if is_hub?
         # Get documents representing projects
         projects = site.collections['projects'].docs.select do |item|
           pieces = item.url.split('/')
@@ -29,10 +32,10 @@ module Prexian
           project
         end
 
-        # Get documents representnig posts from each project’s blog
+        # Get documents representnig posts from each project's blog
         project_posts = site.collections['projects'].docs.select { |item| item.url.include? '_posts' }
 
-        # Add parent project’s data hash onto each
+        # Add parent project's data hash onto each
         project_posts = project_posts.map do |post|
           project_name = post.url.split('/')[2]
           post.data['parent_project'] = projects.detect { |p| p.data['name'] == project_name }
@@ -47,8 +50,8 @@ module Prexian
 
       end
 
-      # On each post, replace authors’ emails with corresponding md5 hashes
-      # suitable for hotlinking authors’ Gravatar profile pictures.
+      # On each post, replace authors' emails with corresponding md5 hashes
+      # suitable for hotlinking authors' Gravatar profile pictures.
       posts_combined = posts_combined.sort_by(&:date).reverse.map do |post|
         process_author(post.data['author']) if post.data.key? 'author'
 

@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
+require_relative 'configuration_helper'
+
 module Prexian
   # On an open hub site, Jekyll Open Project theme assumes the existence of two types
   # of item indexes: software and specs, where items are gathered
   # from across open projects in the hub.
   #
   # The need for :item_test arises from our data structure (see Jekyll Open Project theme docs)
-  # and the fact that Jekyll doesn’t intuitively handle nested collections.
+  # and the fact that Jekyll doesn't intuitively handle nested collections.
   INDEXES = {
     'software' => {
       item_test: ->(item) { item.path.include? '/_software' and !item.path.include? '/docs' }
@@ -20,20 +22,18 @@ module Prexian
   # index page layout.
 
   class IndexPageGenerator < ::Jekyll::Generator
+    include ConfigurationHelper
+
     safe true
 
     def generate(site)
-      prexian_config = site.config['prexian'] || {}
-      prexian_config['max_featured_software'] = 3
-      prexian_config['max_featured_specs'] = 3
-      prexian_config['max_featured_posts'] = 3
+      @site = site
+      prexian_config['max_featured_software'] = max_featured_items
+      prexian_config['max_featured_specs'] = max_featured_items
+      prexian_config['max_featured_posts'] = max_featured_items
 
       INDEXES.each do |index_name, params|
-        collection_name = if prexian_config['site_type'] == 'hub'
-                            'projects'
-                          else
-                            index_name
-                          end
+        collection_name = collection_name_for(index_name)
 
         next unless site.collections.key? collection_name
 
@@ -68,16 +68,13 @@ module Prexian
         filter_func.call(item)
       end
 
-      default_time = Time.new(1989, 12, 31, 0, 0, 0, '+00:00')
-
       items.sort! do |i1, i2|
         val1 = i1.data.fetch('last_update', default_time) || default_time
         val2 = i2.data.fetch('last_update', default_time) || default_time
         (val2 <=> val1) || 0
       end
 
-      prexian_config = site.config['prexian'] || {}
-      if prexian_config['site_type'] == 'hub'
+      if is_hub?
         items.map! do |item|
           project_name = item.url.split('/')[2]
           project_path = "_projects/#{project_name}/index.md"
@@ -120,13 +117,9 @@ module Prexian
     safe true
 
     def generate(site)
-      prexian_config = site.config['prexian'] || {}
+      @site = site
       INDEXES.each do |index_name, params|
-        collection_name = if prexian_config['site_type'] == 'hub'
-                            'projects'
-                          else
-                            index_name
-                          end
+        collection_name = collection_name_for(index_name)
 
         items = get_all_items(site, collection_name, params[:item_test])
 

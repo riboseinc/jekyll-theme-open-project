@@ -40,27 +40,10 @@ RSpec.describe Prexian::GitService do
 
   describe '#shallow_checkout' do
     let(:service) { described_class.new(cache_dir: temp_cache_dir) }
-    let(:repo_url) { 'https://github.com/nonexistent/repo.git' }
-
-    it 'returns success result for valid repository' do
-      result = service.shallow_checkout(repo_url)
-
-      expect(result).to be_a(Hash)
-      expect(result).to have_key(:success)
-      expect(result).to have_key(:local_path)
-    end
-
-    it 'handles sparse checkout subtrees' do
-      subtrees = %w[docs _posts]
-      result = service.shallow_checkout(repo_url, sparse_subtrees: subtrees)
-
-      expect(result).to be_a(Hash)
-      expect(result).to have_key(:success)
-      expect(result).to have_key(:local_path)
-    end
+    let(:repo_url) { 'https://github.com/octocat/Hello-World' }
 
     it 'uses specified branch' do
-      branch = 'develop'
+      branch = 'master'
       result = service.shallow_checkout(repo_url, branch: branch)
 
       expect(result).to be_a(Hash)
@@ -69,14 +52,21 @@ RSpec.describe Prexian::GitService do
       expect(result[:local_path]).to include(branch) if result[:success]
     end
 
-    it 'handles git errors gracefully' do
-      invalid_repo_url = 'https://invalid-domain-that-does-not-exist.com/repo.git'
-      result = service.shallow_checkout(invalid_repo_url)
+    it 'handles sparse checkout subtrees' do
+      subtrees = %w[docs _posts]
+      branch = 'master'
+      result = service.shallow_checkout(repo_url, branch: branch, sparse_subtrees: subtrees)
 
       expect(result).to be_a(Hash)
       expect(result).to have_key(:success)
-      # For invalid repos, we expect either success: false or an error key
-      expect(result).to have_key(:error) unless result[:success]
+      expect(result).to have_key(:local_path)
+    end
+
+    it 'handles git errors gracefully' do
+      invalid_repo_url = 'https://invalid-domain-that-does-not-exist.com/repo.git'
+      expect {
+        service.shallow_checkout(invalid_repo_url)
+      }.to raise_error(Prexian::GitService::GitError)
     end
   end
 
