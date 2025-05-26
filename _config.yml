@@ -1,55 +1,47 @@
-# Hub site configuration for testing
-url: "https://riboseinc.github.io/prexian"
+## Prexian site configuration to be filled
+## Default is a project site
 
-markdown: kramdown
+# url: # URL for the site, e.g. "https://prexian.example.com"
 
-exclude:
-  - home-hero.html
-  - title.html
-  - nav-links.html
-  - flavor-sample-summary.html
-  - project-nav.html
-  - /**/.git/*
-  - /_projects/**/_*_repo/*
-  - /_projects/*/assets/css/*
-  - /_projects/**/docs/*
-  - README.*
-  - lib*
-  - prexian.gemspec
-  - exe*
-  - develop
-  - bin
-  - .sass-cache/
-  - .jekyll-cache/
-  - gemfiles/
-  - Gemfile
-  - Gemfile.lock
-  - node_modules/
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
-  - '**/*.rb'
-  - script
-  - Rakefile
+## Development settings
 
+# incremental: true
+# livereload: true
 
-plugins:
-  - prexian
-  - jekyll-seo-tag
-  - jekyll-sitemap
-  - jekyll-data
-  - jekyll-asciidoc
-  - jekyll-redirect-from
-  - kramdown-parser-gfm
-  - kramdown-syntax-coderay
-
-# Prexian site configuration
 prexian:
-  title: Prexian
-  description: Managing a nexus of open-source software and specification projects.
-  # The above two are used by jekyll-seo-tag for things such as
-  # `<title>` and `<meta>` tags, as well as elsewhere by the theme.
+  ## TO CHANGE FOR HUB SITE
+  is_hub: false
+
+  ## TO SET FOR PROJECT SITE
+  # parent_hub:
+  #   git_repo_url: https://github.com/riboseinc/open.ribose.com
+  #   home_url: https://open.ribose.com/
+
+
+  ## TO SET
+  # title: Prexian
+  # description: Managing a nexus of open-source software and specification projects.
+  ## The above two are used by jekyll-seo-tag for things such as
+  ## `<title>` and `<meta>` tags, as well as elsewhere by the theme.
+
+  ## TO SET
+  # tagline: >-
+  #   Managing a nexus of open-source software and specification projects.
+
+  ## TO SET
+  # pitch: >-
+  #   Prexian provides a Jekyll theme (with accompanying plugin code) aiming to help
+  #   organizations and individuals present open-source software and specifications in
+  #   a navigable and elegant way.
+
+  ## TO SET
+  # author: "Ribose Inc."
+
+  ## TO SET
+  # authors:
+  #   - name: Ribose Inc.
+  #     email: open.source@ribose.com
+  # contact_email: open.source@ribose.com
 
   permalink: /blog/:year-:month-:day-:title/
 
@@ -59,7 +51,6 @@ prexian:
 
   landing_priority:
     - software
-    - custom_intro
     - specs
     - blog
 
@@ -80,61 +71,51 @@ prexian:
   # If set to yes, site (with default design) must specify <script> elements
   # that make required FA styles available in SVG mode.
 
-  tagline: >-
-    Managing a nexus of open-source software and specification projects.
-
-  pitch: >-
-    Prexian provides a Jekyll theme (with accompanying plugin code) aiming to help
-    organizations and individuals present open-source software and specifications in
-    a navigable and elegant way.
-
-  author: "Ribose Inc."
-
-  authors:
-    - name: Ribose Inc.
-      email: open.source@ribose.com
-  contact_email: open.source@ribose.com
-
-  is_hub: false
   # Debug mode for development
-  debug: true
+  # debug: true
 
-  parent_hub:
-    git_repo_url: https://github.com/riboseinc/open.ribose.com
-    home_url: https://open.ribose.com/
+  ## TO SET
+  # social:
+  #   links:
+  #     - {social link 1 URL}
+  #     - {social link 2 URL}
 
-  social:
-    links:
-      - {social link 1 URL}
-      - {social link 2 URL}
+  ## TO SET
+  # legal:
+  #   name: Ribose
+  #   tos_link: https://www.ribose.com/terms-of-service
+  #   privacy_policy_link: https://www.ribose.com/privacy-policy
 
-  legal:
-    name: Ribose
-    tos_link: https://www.ribose.com/terms-of-service
-    privacy_policy_link: https://www.ribose.com/privacy-policy
+  ## TO SET
+  # home_calls_to_action:
+  #   - { url: "/about", title: "About Prexian" }
 
-  home_calls_to_action:
-    - { url: "/about", title: "About Prexian" }
+  ## TO SET
+  # github_repo_url: https://github.com/riboseinc/prexian
 
-  github_repo_url: https://github.com/riboseinc/prexian
-
-tag_namespaces:
-  software:
-    writtenin: "Written in"
-    bindingsfor: "Bindings for"
-    user: "Target user"
-    interface: "Interface"
-  specs:
-    audience: "Audience"
-    completion_status: "Status"
+## CAN BE SET
+# tag_namespaces:
+#   software:
+#     writtenin: "Written in"
+#     bindingsfor: "Bindings for"
+#     user: "Target user"
+#     interface: "Interface"
+#   specs:
+#     audience: "Audience"
+#     completion_status: "Status"
 
 # Jekyll configuration
 # includes_dir: '_includes'
 
+## Prexian site configuration defaults
+
+# Default is a project site
 # Must be set for Prexian
 collections:
+  ## TO CHANGE FOR HUB SITE
   projects:
     output: false
+
   software:
     output: true
     permalink: /software/:path/
@@ -173,7 +154,40 @@ defaults:
     values:
       layout: spec
 
-# Development settings
-incremental: true
-livereload: true
+markdown: kramdown
+
+exclude:
+  - /**/.git/*
+  - /_projects/**/_*_repo/*
+  - /_projects/*/assets/css/*
+  - /_projects/**/docs/*
+  - README.*
+  - lib*
+  - prexian.gemspec
+  - exe*
+  - develop
+  - bin
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - '**/*.rb'
+  - script
+  - Rakefile
+
+plugins:
+  - prexian
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-data
+  - jekyll-asciidoc
+  - jekyll-redirect-from
+  - kramdown-parser-gfm
+  - kramdown-syntax-coderay
 
