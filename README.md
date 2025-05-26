@@ -355,6 +355,20 @@ hub site can also have its own software and specifications.
 
 
 
+## Fetching the hub site content in the project site
+
+The parent hub site content is fetched into the project site
+into the `_parent-hub` directory, which will contain a `parent-hub`
+(i.e. `_parent-hub/parent-hub`) directory with the hub site content
+which is cloned from the hub repository.
+
+This directory is added to the `include` path, so that the project site can
+use the hub site content in its own pages and posts through the `include` command such
+as `{% include parent-hub/title.html %}` or `{% include parent-hub/assets/symbol.svg %}`.
+
+If the configuration is not given for `parent_hub`, the project site will not
+fetch the hub site content, and the `_parent-hub` directory will not be created.
+
 
 
 ## Internal architecture
