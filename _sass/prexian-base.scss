@@ -1,3 +1,4 @@
+@use "sass:color";
 @import 'prexian-mixins';
 
 $easeOutCirc: cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -249,8 +250,10 @@ a {
 
         white-space: nowrap;
 
+        color: $primary-color;
+
         .namespace {
-          color: lighten($main-font-color, 50%);
+          color: color.adjust($main-font-color, $lightness: 50%);
           font-weight: normal;
         }
 
@@ -264,8 +267,6 @@ a {
           content: "";
           margin: 0;
         }
-
-        color: $primary-color;
 
         .site--hub.layout--software-index & {
           color: $hub-software--primary-color;
@@ -364,7 +365,7 @@ a {
     height: 28px;
 
     svg path {
-      fill: lighten(desaturate($primary-color, 30), 45);
+      fill: color.adjust(color.adjust($primary-color, $saturation: -30%), $lightness: 45%);
     }
   }
   header {
@@ -479,7 +480,7 @@ a {
     }
 
     table {
-      $border-color: lighten($main-font-color, 80);
+      $border-color: color.adjust($main-font-color, $lightness: 80%);
 
       border-collapse: collapse;
       width: 100%;

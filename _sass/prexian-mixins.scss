@@ -1,13 +1,15 @@
+@use "sass:color";
+
 @mixin tbd($color: red) {
   position: relative;
   padding: 0 .3em;
-  border: 1px dashed lighten($main-font-color, 70);
+  border: 1px dashed color.adjust($main-font-color, $lightness: 70%);
 
   &:after {
     position: absolute;
     left: 100%;
     content: "TBD";
-    color: lighten($main-font-color, 70);
+    color: color.adjust($main-font-color, $lightness: 70%);
     font-size: .6em;
     line-height: 1;
     padding: .05em .4em;
@@ -71,7 +73,7 @@
 }
 
 @mixin code-snippet() {
-  color: lighten($main-font-color, 24);
+  color: color.adjust($main-font-color, $lightness: 24%);
 
   @include padded-code-snippet();
   margin-top: -1px;
@@ -94,14 +96,6 @@
   margin-right: 10px;
   transition: box-shadow .2s ease-out;
 
-  .icon {
-    margin-right: 10px;
-    font-weight: 400;
-    position: relative;
-    top: 2px;
-    font-size: 120%;
-  }
-
   &, &:link, &:visited {
     color: $color;
     background-color: $bgcolor;
@@ -109,6 +103,14 @@
 
   &:hover {
     box-shadow: 0 0 0 4px rgba(black, 0.2);
+  }
+
+  .icon {
+    margin-right: 10px;
+    font-weight: 400;
+    position: relative;
+    top: 2px;
+    font-size: 120%;
   }
 }
 
@@ -554,13 +556,12 @@
 
   > section.documentation {
     flex: 1;
+    overflow-x: auto; // on narrow screens, code snippets & tables may overflow width
 
     @media screen and (min-width: $bigscreen-breakpoint) {
       display: flex;
       flex-flow: column nowrap;
     }
-
-    overflow-x: auto; // on narrow screens, code snippets & tables may overflow width
 
     .docs-nav {
       $navFlexShare: 20%;
@@ -586,12 +587,7 @@
         right: 0;
         left: 0;
 
-        @media screen and (min-width: $bigscreen-breakpoint) {
-          left: unset;
-        }
-
         padding: .75em $sidePadding;
-
         z-index: 5;
         background: #f7f7f7;
         box-shadow: rgba(black, 0.7) -30px 0px 60px -60px;
@@ -603,6 +599,10 @@
           transform .6s $easeOutCirc,
           opacity .6s $easeOutCirc,
           box-shadow .6s $easeOutCirc;
+
+        @media screen and (min-width: $bigscreen-breakpoint) {
+          left: unset;
+        }
 
         @media screen and (min-width: $bigscreen-breakpoint) {
           max-width: calc(#{$navFlexShare} - #{$sidePadding});
@@ -727,12 +727,12 @@
           margin-bottom: 4em;
         }
         > .title {
+          padding-top: 70px;
+
           @media screen and (min-width: $bigscreen-breakpoint) {
             display: flex;
             flex-flow: row nowrap;
           }
-
-          padding-top: 70px;
 
           > .logo-container {
             margin-right: 22px;

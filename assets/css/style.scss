@@ -1,7 +1,9 @@
 ---
 ---
 
-@import
-  "prexian/custom-variables",
-  "prexian",
-  "prexian/custom-styles";
+$primary-color: #05C7DF;
+$accent-color: #FF6357;
+$main-background: linear-gradient(135deg, #0446CC 0%, #2864DD 100%);
+
+@import "prexian";
+@import "prexian/custom-styles";
