@@ -32,8 +32,8 @@ RSpec.describe 'Project Site Integration', type: :integration do
         expect { project_reader.read_content }.not_to raise_error
 
         # Check that parent-hub directory structure is created
-        parent_hub_path = File.join(site.source, 'parent-hub')
-        expect(Dir.exist?(parent_hub_path) || File.exist?(File.join(parent_hub_path, 'assets'))).to be_truthy
+        parent_hub_path = File.join(site.source, '_parent-hub')
+        expect(Dir.exist?(parent_hub_path) || Dir.exist?(File.join(parent_hub_path, 'parent-hub'))).to be_truthy
       ensure
         FileUtils.rm_rf(cache_dir) if Dir.exist?(cache_dir)
         # Clean up parent-hub directory
