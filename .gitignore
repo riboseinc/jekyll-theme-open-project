@@ -1,5 +1,7 @@
-_site/*
+_site*/*
 *.scssc
 Gemfile.lock
 prexian-*.gem
 _parent-hub
+coverage
+pkg/
