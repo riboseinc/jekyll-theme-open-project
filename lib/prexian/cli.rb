@@ -6,7 +6,7 @@ require_relative 'git_service'
 module Prexian
   # Command-line interface for Prexian theme management
   class CLI < Thor
-    desc 'clean', 'Clean cached Git repositories'
+    desc 'clean', 'Clean cached Git repositories and test fixtures'
     method_option :project, aliases: '-p', type: :string, desc: 'Clean cache for specific project repository URL'
     method_option :all, aliases: '-a', type: :boolean, desc: 'Clean entire cache directory'
     def clean
@@ -22,6 +22,9 @@ module Prexian
         git_service.cleanup_cache
         say 'Cleaned entire cache directory', :green
       end
+
+      # Clean test fixture directories
+      cleanup_test_fixtures
     rescue StandardError => e
       say "Error cleaning cache: #{e.message}", :red
       exit 1
@@ -53,6 +56,25 @@ module Prexian
     end
 
     private
+
+    def cleanup_test_fixtures
+      require 'fileutils'
+
+      directories_to_clean = [
+        'spec/fixtures/hub/_project-sites',
+        'spec/fixtures/project/_parent-hub',
+        Dir.glob('spec/fixtures/*/_site')
+      ].flatten
+
+      directories_to_clean.each do |dir|
+        next unless Dir.exist?(dir)
+
+        FileUtils.rm_rf(dir)
+        say "Cleaned directory: #{dir}", :green
+      end
+
+      say 'Cleaned test fixture directories', :green if directories_to_clean.any? { |dir| Dir.exist?(dir) }
+    end
 
     def format_bytes(bytes)
       units = %w[B KB MB GB TB]

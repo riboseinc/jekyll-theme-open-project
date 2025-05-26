@@ -3,6 +3,7 @@
 require 'fileutils'
 require 'git'
 require 'digest'
+require 'jekyll'
 
 module Prexian
   # Service class for handling Git operations with external caching
@@ -16,7 +17,7 @@ module Prexian
 
     def initialize(cache_dir: nil, logger: nil)
       @cache_dir = cache_dir || ENV['ROP_CACHE_DIR'] || DEFAULT_CACHE_DIR
-      @logger = logger || Jekyll.logger
+      @logger = logger || default_logger
       ensure_cache_dir_exists
     end
 
@@ -106,6 +107,18 @@ module Prexian
     end
 
     private
+
+    def default_logger
+      # Try to use Jekyll logger if available, otherwise create a simple logger
+      if defined?(Jekyll)
+        Jekyll.logger
+      else
+        require 'logger'
+        Logger.new($stdout).tap do |logger|
+          logger.level = Logger::INFO
+        end
+      end
+    end
 
     def handle_file_path_checkout(file_path)
       # For file paths, we pretend it's a successful checkout
