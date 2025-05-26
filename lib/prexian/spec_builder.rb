@@ -6,6 +6,14 @@ require_relative 'png_diagram_page'
 
 module Prexian
   class SpecBuilder
+
+    class << self
+      def valid_engine?(engine)
+        # Check if the engine file exists and is a valid Ruby file
+        File.exist?(engine) && File.extname(engine) == '.rb'
+      end
+    end
+
     attr_reader :built_pages
 
     def initialize(site, spec_index_doc, spec_source_base, spec_out_base, engine, opts)

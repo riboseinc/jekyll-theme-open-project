@@ -26,7 +26,7 @@ RSpec.describe 'Project Site Integration', type: :integration do
       git_service = Prexian::GitService.new(cache_dir: cache_dir)
 
       begin
-        project_reader = Prexian::ProjectSiteReader.new(site, git_service: git_service)
+        project_reader = Prexian::ProjectSiteLoader.new(site, git_service: git_service)
 
         # This should attempt to fetch from the parent hub (our local fixture)
         expect { project_reader.read_content }.not_to raise_error
@@ -47,7 +47,7 @@ RSpec.describe 'Project Site Integration', type: :integration do
       git_service = Prexian::GitService.new(cache_dir: cache_dir)
 
       begin
-        project_reader = Prexian::ProjectSiteReader.new(site, git_service: git_service)
+        project_reader = Prexian::ProjectSiteLoader.new(site, git_service: git_service)
 
         # This should process the software defined in our fixture
         expect { project_reader.read_content }.not_to raise_error
@@ -64,7 +64,7 @@ RSpec.describe 'Project Site Integration', type: :integration do
       git_service = Prexian::GitService.new(cache_dir: cache_dir)
 
       begin
-        project_reader = Prexian::ProjectSiteReader.new(site, git_service: git_service)
+        project_reader = Prexian::ProjectSiteLoader.new(site, git_service: git_service)
 
         # This should process the specs defined in our fixture
         expect { project_reader.read_content }.not_to raise_error
@@ -90,7 +90,7 @@ RSpec.describe 'Project Site Integration', type: :integration do
         invalid_site.collections['specs'] = Jekyll::Collection.new(invalid_site, 'specs')
         invalid_site.collections['posts'] = Jekyll::Collection.new(invalid_site, 'posts')
 
-        project_reader = Prexian::ProjectSiteReader.new(invalid_site, git_service: git_service)
+        project_reader = Prexian::ProjectSiteLoader.new(invalid_site, git_service: git_service)
 
         # Should not raise error even with invalid repositories
         expect { project_reader.read_content }.not_to raise_error
@@ -104,7 +104,7 @@ RSpec.describe 'Project Site Integration', type: :integration do
       git_service = Prexian::GitService.new(cache_dir: cache_dir)
 
       begin
-        project_reader = Prexian::ProjectSiteReader.new(site, git_service: git_service)
+        project_reader = Prexian::ProjectSiteLoader.new(site, git_service: git_service)
 
         # Process content
         expect { project_reader.read_content }.not_to raise_error
@@ -149,7 +149,7 @@ RSpec.describe 'Project Site Integration', type: :integration do
       git_service = Prexian::GitService.new(cache_dir: cache_dir)
 
       begin
-        project_reader = Prexian::ProjectSiteReader.new(site, git_service: git_service)
+        project_reader = Prexian::ProjectSiteLoader.new(site, git_service: git_service)
 
         # This should process software from our fixture
         expect { project_reader.send(:fetch_and_read_software, 'software') }.not_to raise_error
@@ -163,7 +163,7 @@ RSpec.describe 'Project Site Integration', type: :integration do
       git_service = Prexian::GitService.new(cache_dir: cache_dir)
 
       begin
-        project_reader = Prexian::ProjectSiteReader.new(site, git_service: git_service)
+        project_reader = Prexian::ProjectSiteLoader.new(site, git_service: git_service)
 
         # This should process specs from our fixture
         expect { project_reader.send(:fetch_and_read_specs, 'specs', build_pages: true) }.not_to raise_error
@@ -181,7 +181,7 @@ RSpec.describe 'Project Site Integration', type: :integration do
         empty_site.collections['software'] = Jekyll::Collection.new(empty_site, 'software')
         empty_site.collections['specs'] = Jekyll::Collection.new(empty_site, 'specs')
 
-        project_reader = Prexian::ProjectSiteReader.new(empty_site, git_service: git_service)
+        project_reader = Prexian::ProjectSiteLoader.new(empty_site, git_service: git_service)
 
         expect { project_reader.read_content }.not_to raise_error
       ensure

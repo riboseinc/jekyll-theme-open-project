@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'configuration_helper'
+require_relative 'index_generator'
 
 module Prexian
   # On an open hub site, Jekyll Open Project theme assumes the existence of two types
@@ -9,30 +9,18 @@ module Prexian
   #
   # The need for :item_test arises from our data structure (see Jekyll Open Project theme docs)
   # and the fact that Jekyll doesn't intuitively handle nested collections.
-  INDEXES = {
-    'software' => {
-      item_test: ->(item) { item.path.include? '/_software' and !item.path.include? '/docs' }
-    },
-    'specs' => {
-      item_test: ->(item) { item.path.include? '/_specs' and !item.path.include? '/docs' }
-    }
-  }.freeze
 
   # Below passes the `items` variable to normal (unfiltered)
   # index page layout.
 
-  class IndexPageGenerator < ::Jekyll::Generator
-    include ConfigurationHelper
-
-    safe true
-
+  class IndexPageGenerator < BaseIndexGenerator
     def generate(site)
       @site = site
       prexian_config['max_featured_software'] = max_featured_items
       prexian_config['max_featured_specs'] = max_featured_items
       prexian_config['max_featured_posts'] = max_featured_items
 
-      INDEXES.each do |index_name, params|
+      IndexConfig.all_indexes.each do |index_name, params|
         collection_name = collection_name_for(index_name)
 
         next unless site.collections.key? collection_name
@@ -42,18 +30,8 @@ module Prexian
 
         items = get_all_items(site, collection_name, params[:item_test])
 
-        prexian_config["one_#{index_name}"] = items[0] if items.length == 1
-
-        prexian_config["all_#{index_name}"] = items
-        prexian_config["num_all_#{index_name}"] = items.size
-
-        featured_items = items.reject { |item| item.data['feature_with_priority'].nil? }
-        prexian_config["featured_#{index_name}"] = featured_items.sort_by { |item| item.data['feature_with_priority'] }
-        prexian_config["num_featured_#{index_name}"] = featured_items.size
-
-        non_featured_items = items.select { |item| item.data['feature_with_priority'].nil? }
-        prexian_config["non_featured_#{index_name}"] = non_featured_items
-        prexian_config["num_non_featured_#{index_name}"] = non_featured_items.size
+        set_index_config(items, index_name)
+        categorize_items(items, index_name)
       end
     end
 
@@ -68,29 +46,11 @@ module Prexian
         filter_func.call(item)
       end
 
-      items.sort! do |i1, i2|
-        val1 = i1.data.fetch('last_update', default_time) || default_time
-        val2 = i2.data.fetch('last_update', default_time) || default_time
-        (val2 <=> val1) || 0
-      end
-
-      if is_hub?
-        items.map! do |item|
-          project_name = item.url.split('/')[2]
-          project_path = "_projects/#{project_name}/index.md"
-
-          item.data['project_name'] = project_name
-          item.data['project_data'] = site.collections['projects'].docs.select do |proj|
-            proj.path.end_with? project_path
-          end [0]
-
-          item
-        end
-      end
-
-      items
+      sort_items_by_date(items)
+      add_project_data_to_items(site, items)
     end
   end
+
   # Each software or spec item can have its tags,
   # and the theme allows to filter each index by a tag.
   # The below generates an additional index page
@@ -99,26 +59,10 @@ module Prexian
   # Note: this expects "_pages/<index page>.html" to be present in site source,
   # so it would fail if theme setup instructions were not followed fully.
 
-  class FilteredIndexPage < ::Jekyll::Page
-    def initialize(site, base, dir, tag, items, index_page)
-      @site = site
-      @base = base
-      @dir = dir
-      @name = 'index.html'
-
-      process(@name)
-      read_yaml(File.join(base, '_pages'), "#{index_page}.html")
-      data['tag'] = tag
-      data['items'] = items
-    end
-  end
-
   class FilteredIndexPageGenerator < IndexPageGenerator
-    safe true
-
     def generate(site)
       @site = site
-      INDEXES.each do |index_name, params|
+      IndexConfig.all_indexes.each do |index_name, params|
         collection_name = collection_name_for(index_name)
 
         items = get_all_items(site, collection_name, params[:item_test])

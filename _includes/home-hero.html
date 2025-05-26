@@ -5,7 +5,7 @@
     <p class="desc">{{ site.prexian.pitch | safe }}</p>
   {% endif %}
 
-  {% if site.prexian.is_hub %}
+  {% if site.prexian.site_type == "hub" %}
     <div class="cta">
       <a class="button" href="{{ "/projects/" | relative_url }}">
         <i class="icon fas fa-search"></i>

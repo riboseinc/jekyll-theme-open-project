@@ -85,6 +85,36 @@ module Prexian
       end
     end
 
+    # High-level method that combines checkout and copy operations
+    # This consolidates the repetitive pattern used across site readers
+    def checkout_and_copy_content(repo_config, destination_path, options = {})
+      subtrees = options[:subtrees] || []
+      refresh_condition = options[:refresh_condition] || 'last-resort'
+
+      # Perform git checkout
+      checkout_result = shallow_checkout(
+        repo_config[:repo_url],
+        branch: repo_config[:branch],
+        refresh_condition: refresh_condition
+      )
+
+      # Copy content from cache to destination
+      copy_success = copy_cached_content(
+        checkout_result[:local_path],
+        destination_path,
+        subtrees: subtrees
+      )
+
+      unless copy_success
+        raise GitError, "Failed to copy content from #{checkout_result[:local_path]} to #{destination_path}"
+      end
+
+      checkout_result
+    rescue GitError => e
+      @logger.warn("GitService: checkout_and_copy_content failed: #{e.message}")
+      raise e
+    end
+
     # Get cache statistics
     def cache_stats
       return { total_repos: 0, total_size: 0 } unless File.exist?(@cache_dir)

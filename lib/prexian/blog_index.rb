@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'digest/md5'
-require_relative 'configuration_helper'
+require_relative 'index_generator'
 
 module Prexian
   #
@@ -11,43 +11,16 @@ module Prexian
   # It also does some processing on the posts
   # as required by the Open Project theme.
   #
-  class CombinedPostArrayGenerator < ::Jekyll::Generator
-    include ConfigurationHelper
-
-    safe true
-
+  class CombinedPostArrayGenerator < BaseIndexGenerator
     def generate(site)
       @site = site
       site_posts = site.posts.docs
 
-      if is_hub?
-        # Get documents representing projects
-        projects = site.collections['projects'].docs.select do |item|
-          pieces = item.url.split('/')
-          pieces.length == 4 && pieces[-1] == 'index' && pieces[1] == 'projects'
-        end
-        # Add project name (matches directory name, may differ from title)
-        projects = projects.map do |project|
-          project.data['name'] = project.url.split('/')[2]
-          project
-        end
-
-        # Get documents representnig posts from each project's blog
-        project_posts = site.collections['projects'].docs.select { |item| item.url.include? '_posts' }
-
-        # Add parent project's data hash onto each
-        project_posts = project_posts.map do |post|
-          project_name = post.url.split('/')[2]
-          post.data['parent_project'] = projects.detect { |p| p.data['name'] == project_name }
-          post.content = ''
-          post
-        end
-
-        posts_combined = (project_posts + site_posts)
-
+      posts_combined = if is_hub?
+        project_posts = get_project_posts(site)
+        (project_posts + site_posts)
       else
-        posts_combined = site_posts
-
+        site_posts
       end
 
       # On each post, replace authors' emails with corresponding md5 hashes
@@ -70,6 +43,21 @@ module Prexian
     end
 
     private
+
+    def get_project_posts(site)
+      projects = get_projects(site)
+
+      # Get documents representing posts from each project's blog
+      project_posts = site.collections['projects'].docs.select { |item| item.url.include? '_posts' }
+
+      # Add parent project's data hash onto each
+      project_posts.map do |post|
+        project_name = post.url.split('/')[2]
+        post.data['parent_project'] = projects.detect { |p| p.data['name'] == project_name }
+        post.content = ''
+        post
+      end
+    end
 
     def process_author(author)
       # Handle string authors (just return as-is)

@@ -190,7 +190,7 @@ Detailed project description...
   ---
   ---
 
-  @import "prexian/custom-variables";
+  ...
   @import "prexian";
   @import "prexian/custom-styles";
 
@@ -612,10 +612,10 @@ result = git_service.shallow_checkout(repo_url, branch: 'main')
 git_service.copy_cached_content(result[:local_path], destination)
 ```
 
-#### `Prexian::HubSiteReader`
+#### `Prexian::HubSiteLoader`
 Aggregates content from multiple project repositories for hub sites.
 
-#### `Prexian::ProjectSiteReader`
+#### `Prexian::ProjectSiteLoader`
 Handles individual project site content and parent hub integration.
 
 ### The `_parent-hub` Directory

@@ -8,18 +8,15 @@ require_relative 'prexian/version'
 require_relative 'prexian/git_service'
 require_relative 'prexian/cli'
 
-# Only require Jekyll-dependent modules if Jekyll is available
-if defined?(Jekyll)
-  require_relative 'prexian/configuration_helper'
-  require_relative 'prexian/collection_doc_reader'
-  require_relative 'prexian/site_reader'
-  require_relative 'prexian/project_reader'
-  require_relative 'prexian/hub_site_reader'
-  require_relative 'prexian/project_site_reader'
-  require_relative 'prexian/filterable_index'
-  require_relative 'prexian/blog_index'
-  require_relative 'prexian/spec_builder'
-end
+require_relative 'prexian/configuration_helper'
+require_relative 'prexian/collection_doc_reader'
+require_relative 'prexian/site_loader'
+require_relative 'prexian/project_reader'
+require_relative 'prexian/hub_site_loader'
+require_relative 'prexian/project_site_loader'
+require_relative 'prexian/filterable_index'
+require_relative 'prexian/blog_index'
+require_relative 'prexian/spec_builder'
 
 Jekyll::Hooks.register :site, :after_init do |site|
   puts "[prexian] Registering ProjectReader, theme: #{site.theme&.name || 'none'}"

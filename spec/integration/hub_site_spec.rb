@@ -20,7 +20,7 @@ RSpec.describe 'Hub Site Integration', type: :integration do
       git_service = Prexian::GitService.new(cache_dir: cache_dir)
 
       begin
-        hub_reader = Prexian::HubSiteReader.new(site, git_service: git_service)
+        hub_reader = Prexian::HubSiteLoader.new(site, git_service: git_service)
 
         # This should process the projects defined in our fixture
         expect { hub_reader.read_projects }.not_to raise_error
@@ -37,7 +37,7 @@ RSpec.describe 'Hub Site Integration', type: :integration do
       git_service = Prexian::GitService.new(cache_dir: cache_dir)
 
       begin
-        hub_reader = Prexian::HubSiteReader.new(site, git_service: git_service)
+        hub_reader = Prexian::HubSiteLoader.new(site, git_service: git_service)
 
         # Process projects
         hub_reader.read_projects
@@ -75,7 +75,7 @@ RSpec.describe 'Hub Site Integration', type: :integration do
         }
         invalid_site.collections['projects'].docs << project_doc
 
-        hub_reader = Prexian::HubSiteReader.new(invalid_site, git_service: git_service)
+        hub_reader = Prexian::HubSiteLoader.new(invalid_site, git_service: git_service)
 
         # Should not raise error even with invalid repositories
         expect { hub_reader.read_projects }.not_to raise_error
@@ -89,7 +89,7 @@ RSpec.describe 'Hub Site Integration', type: :integration do
       git_service = Prexian::GitService.new(cache_dir: cache_dir)
 
       begin
-        hub_reader = Prexian::HubSiteReader.new(site, git_service: git_service)
+        hub_reader = Prexian::HubSiteLoader.new(site, git_service: git_service)
 
         # Process projects - this will attempt to read from our local project fixture
         hub_reader.read_projects
@@ -106,7 +106,7 @@ RSpec.describe 'Hub Site Integration', type: :integration do
       git_service = Prexian::GitService.new(cache_dir: cache_dir)
 
       begin
-        hub_reader = Prexian::HubSiteReader.new(site, git_service: git_service)
+        hub_reader = Prexian::HubSiteLoader.new(site, git_service: git_service)
 
         # Process projects
         hub_reader.read_projects
