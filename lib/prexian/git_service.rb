@@ -23,6 +23,9 @@ module Prexian
     # Shallow clone or update a repository with optional sparse checkout
     # Returns hash with success status, timestamp, and local path
     def shallow_checkout(repo_url, sparse_subtrees: [], branch: nil, refresh_condition: 'last-resort')
+      # Check if repo_url is a file path
+      return handle_file_path_checkout(repo_url) if File.exist?(repo_url) && File.directory?(repo_url)
+
       repo_hash = generate_repo_hash(repo_url)
       branch_name = branch || DEFAULT_REPO_BRANCH
       repo_path = File.join(@cache_dir, repo_hash, branch_name)
@@ -34,12 +37,7 @@ module Prexian
       result
     rescue StandardError => e
       @logger.error("Prexian GitService: Failed to checkout #{repo_url}: #{e.message}")
-      {
-        success: false,
-        error: e.message,
-        local_path: repo_path,
-        modified_at: nil
-      }
+      raise GitError, "Git checkout failed for #{repo_url}: #{e.message}"
     end
 
     # Copy files from cached repository to destination
@@ -108,6 +106,17 @@ module Prexian
     end
 
     private
+
+    def handle_file_path_checkout(file_path)
+      # For file paths, we pretend it's a successful checkout
+      # and return the path as-is with current timestamp
+      {
+        success: true,
+        newly_initialized: false,
+        modified_at: File.mtime(file_path),
+        local_path: file_path
+      }
+    end
 
     def ensure_cache_dir_exists
       FileUtils.mkdir_p(@cache_dir) unless File.exist?(@cache_dir)
