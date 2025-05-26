@@ -1,23 +1,23 @@
 <section class="software">
-  {% unless site.one_software %}
+  {% unless site.prexian.one_software %}
     <h2 class="title">
       Software
-      {% if site.num_all_software > site.num_featured_software %}
+      {% if site.prexian.num_all_software > site.prexian.num_featured_software %}
         — <a href="/software/">see all</a>
       {% endif %}
     </h2>
   {% endunless %}
 
   <div class="items">
-    {% assign software = site.featured_software %}
-    {% for item in software | limit: site.max_featured_software %}
+    {% assign software = site.prexian.featured_software %}
+    {% for item in software | limit: site.prexian.max_featured_software %}
       {% assign url = item.url %}
-      {% assign item_docs = site.software | where_exp: "item", "item.url contains url" %}
-      {% assign item_data = site.software | where_exp: "item", "item.url == url" | first %}
+      {% assign item_docs = site.prexian.software | where_exp: "item", "item.url contains url" %}
+      {% assign item_data = site.prexian.software | where_exp: "item", "item.url == url" | first %}
       {% assign nav = item_docs | where_exp: "item", "item.path contains 'docs/navigation'" | first %}
 
       <div class="item" role="article">
-        {% unless site.one_software %}
+        {% unless site.prexian.one_software %}
           <header>
             <div class="logo-container">
               {% include software-symbol.html item_id=item.id %}

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Rop
+module Prexian
   class PngDiagramPage < ::Jekyll::Page
     EXTRA_STYLESHEETS = [{
       'href' => 'https://unpkg.com/leaflet@1.3.4/dist/leaflet.css',

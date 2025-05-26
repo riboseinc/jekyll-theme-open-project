@@ -4,7 +4,7 @@ require 'forwardable'
 require 'fastimage'
 require_relative 'png_diagram_page'
 
-module Rop
+module Prexian
   class SpecBuilder
     attr_reader :built_pages
 

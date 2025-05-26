@@ -1,4 +1,5 @@
 _site/*
 *.scssc
 Gemfile.lock
-jekyll-theme-rop-*.gem
+prexian-*.gem
+_parent-hub

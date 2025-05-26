@@ -1,6 +1,6 @@
-{% assign projects = site.projects | where_exp: "item", "item.home_url != nil" %}
-{% assign posts = site.posts_combined %}
-{% assign num_posts = site.num_posts_combined %}
+{% assign projects = site.prexian.projects | where_exp: "item", "item.home_url != nil" %}
+{% assign posts = site.prexian.posts_combined %}
+{% assign num_posts = site.prexian.num_posts_combined %}
 
 {% assign featured_projects = projects | where: "featured", true %}
 {% assign num_featured_projects = featured_projects | size %}

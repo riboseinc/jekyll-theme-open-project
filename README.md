@@ -1,50 +1,393 @@
-# The ROP Jekyll theme (Ribose Open Project theme)
+# The Prexian Jekyll theme (previously the "Ribose Open Project theme")
 
-ROP is a Jekyll theme (with accompanying plugin code) aiming to help
+## Purpose
+
+Prexian provides a Jekyll theme (with accompanying plugin code) aiming to help
 organizations and individuals present open-source software and specifications in
 a navigable and elegant way.
 
-The gem is released as `jekyll-theme-rop`.
+The gem is released as `prexian`.
 
-ROP fits two types of sites:
+Prexian fits two types of sites:
 
-* a site that describes one individual project;
-* a site that combine multiple project sites into an open hub site.
+* "project site": a site that describes one individual project;
+* "hub site": a site that combine multiple project sites into an open hub site.
 
-**Demo**: See [Ribose](https://www.ribose.com/) project sites -- for example,
+NOTE: A deployment using the theme is available at
+[Ribose](https://www.ribose.com/) project sites -- for example,
 [Metanorma](https://www.metanorma.com),
 [RNP](https://www.rnpgp.com),
 [Cryptode](https://www.cryptode.com),
 [Relaton](https://www.relaton.com).
 
-See also: CI_OPS for how to set up automated build and deployment of sites
-to AWS S3.
-
 NOTE: This theme was previously named `jekyll-theme-open-project` with a helper
 gem `jekyll-theme-open-project-helpers`.
 
 
-## Migrating from `jekyll-theme-open-project` to the new `jekyll-theme-rop`
+## Site configuration
+
+Every Prexian site is a Jekyll site, and as such, it has a `_config.yml` file
+that contains site-wide configuration options.
+
+Prexian adds the following configuration options to the Jekyll site under the `prexian` namespace:
+
+```yaml
+prexian:
+  # Hub site marker
+  is_hub: true | false
+
+  # Parent hub configuration (for project sites)
+  parent_hub:
+    git_repo_url: "<URL to the parent hub repository (HTTPS)>"
+    git_repo_branch: "<branch name in the parent hub repository>"
+```
+
+This is a basic Prexian project site configuration:
+
+```yaml
+# Prexian site configuration
+prexian:
+  title: RNP
+  description: Secure email with unrivaled performance. LibrePGP and RFC&nbsp;4880 compliant.
+  # The above two are used by jekyll-seo-tag for things such as
+  # `<title>` and `<meta>` tags, as well as elsewhere by the theme.
+
+  permalink: /blog/:year-:month-:day-:title/
+
+  algolia_search:
+    api_key: '0193b06d928ee52f653c6e5ea95d9f97'
+    index_name: 'rnpgp'
+
+  tagline: >-
+    Powering end-to-end email encryption in Mozilla Thunderbird. LibrePGP secure.
+
+  landing_priority:
+    - software
+    - custom_intro
+    - specs
+    - blog
+    - advisories
+    - man_pages
+
+  pitch: >-
+    <a href="https://www.librepgp.org"><img title="LibrePGP" src="/assets/librepgp-button.svg"/></a>
+    Secure email with unrivaled performance.
+    <a href="https://www.librepgp.org">LibrePGP</a> and RFC&nbsp;4880 compliant.
+
+  author: "Ribose Inc."
+
+  authors:
+    - name: Ribose Inc.
+      email: open.source@ribose.com
+  contact_email: open.source@ribose.com
+
+  # Project sites do not set parent_hub
+  parent_hub:
+    git_repo_url: https://github.com/riboseinc/open.ribose.com
+    home_url: https://open.ribose.com/
+
+  social:
+    links:
+      - {social link 1 URL}
+      - {social link 2 URL}
+
+  legal:
+    name: {Full Organization Name}
+    tos_link: {URL to terms of service, without trailing slash}
+    privacy_policy_link: {URL to privacy policy, without trailing slash}
+
+  home_calls_to_action:
+    - { url: "/{target URL path on this site}", title: "{title1}" }
+    - { url: "/{target URL path on this site}", title: "{title2}" }
+
+  github_repo_url: {link to GitHub repository URL, without trailing slash}
+
+tag_namespaces:
+  software:
+    writtenin: "Written in"
+    bindingsfor: "Bindings for"
+    user: "Target user"
+    interface: "Interface"
+  specs:
+    audience: "Audience"
+    completion_status: "Status"
+
+
+# Jekyll configuration
+includes_dir: '.'
+
+# Must be set for Prexian
+collections:
+  projects:
+    output: false
+  software:
+    output: true
+    permalink: /software/:path/
+  specs:
+    output: true
+    permalink: /specs/:path/
+  posts:
+    output: true
+    permalink: /blog/:year-:month-:day-:title/
+  pages:
+    output: true
+    permalink: /:name/
+
+# Must be set for Prexian
+defaults:
+  # Theme defaults.
+  # MUST be duplicated from theme’s _config.yml
+  # (does not get inherited, unlike the collections hash)
+  - scope:
+      path: ""
+    values:
+      layout: default
+  - scope:
+      path: _posts
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: _software
+      type: software
+    values:
+      layout: product
+  - scope:
+      path: _specs
+      type: specs
+    values:
+      layout: spec
+
+# Must be set for Prexian
+plugins:
+  - prexian
+
+url: {link to production site URL, without trailing slash}
+
+exclude:
+  - .git
+  - _software/**/.git
+  - parent-hub/.git
+  - Gemfile*
+  - README.adoc
+  - vendor # for deployment
+```
+
+
+## Site components
+
+### General
+
+A Prexian site can have the following components:
+
+* pages
+* blog posts
+* projects
+* software
+* specifications
+
+### Pages
+
+A page is a static page that can be used to present information.
+
+The page is a Markdown or AsciiDoc file in the `_pages` directory, with
+frontmatter specifying the title, permalink, layout, and other metadata.
+
+* `_pages/{name}.{md|adoc}` The main page file, with frontmatter containing the
+  page title, description, and other metadata.
+
+e.g.
+
+```adoc
+---
+title: About RNP
+description: What is RNP?
+permalink: /about/
+layout: docs-base
+html-class: docs-page
+---
+
+= About RNP
+
+== General
+
+RNP is a powerful open-source software library for working with LibrePGP and
+OpenPGP messages.
+...
+```
+
+NOTE: `docs-base` here is defined in the Prexian theme as a layout.
+
+
+### Blog posts
+
+Blog posts are authored as per usual Jekyll setup, with the following files:
+
+* `_posts/{year}-{month}-{day}-{slug}.{md|adoc}` The blog post file, with frontmatter
+  containing the post title, author, and other metadata.
+
+
+The format is as follows:
+
+```markdown
+---
+layout: post
+title:  {title of the post}
+date:   {2025-08-20 20:37:38 +0700}
+categories: {category1, category2}
+authors:
+  - name: {author's full name}
+    email: {author's email}
+    social_links:
+      - {author's one or more social links}
+excerpt: >-
+  {excerpt of the post goes here, and supports inline HTML formatting only.}
+redirect_from:
+  - {if you want to redirect from another URL, specify it here}
+---
+
+{# content}
+```
+
+### Projects
+
+A project points to a Prexian project site.
+
+For each project, the following files are needed:
+
+* `_projects/{name}.{md|adoc}` The main project description file, with
+  frontmatter containing the project name, description, and other metadata.
+* `_projects/{name}/assets/symbol.svg` The project logo file, in SVG
+  format, if any.
+
+The main project description file is expected to have the following
+frontmatter:
+
+```markdown
+---
+title: {name of the project}
+description: {description of the project}
+featured: {true|false}
+home_url: {URL to the project home page}
+tags: [{tags for the project in comma-separated format}]
+site:
+  git_repo_url: {URL to the Prexian project site repository (HTTPS)}
+  git_repo_branch: {branch name in the Prexian project site repository}
+---
+
+{# content of the project description, in Markdown or AsciiDoc format
+}
+```
+
+
+### Software components
+
+For each software component, the following files are needed:
+
+* `_software/{name}.{md|adoc}` The main software description file, with
+  frontmatter containing the software name, description, and other metadata.
+
+* `_software/{name}/assets/symbol.svg` The software logo file, in SVG
+  format, if any.
+
+The main software description file is expected to have the following
+frontmatter:
+
+```markdown
+---
+title: {name of the component}
+repo_url: {URL to the component repository (HTTPS)}
+external_links:
+  - url: {URL to the component repository (HTTPS)}
+description: {description of the component}
+tags: [{tags for the component}]
+---
+
+{# content of the component description, in Markdown or AsciiDoc format
+}
+
+```
+
+### Specifications
+
+Specifications are similar to software components, but with a different
+file structure and frontmatter.
+
+For each Specification, the following file are needed:
+
+* `_specs/{name}.{md|adoc}` The main spec description file, with
+  frontmatter containing the spec name, description, and other metadata.
+
+```markdown
+---
+title: {name of the specification}
+description: {description of the specification}
+feature_with_priority: {priority of the feature in number}
+
+external_links:
+  - url: {URL to the specification repository or published document, one or more}
+  # ...
+
+tags: [{tags for the specification}]
+---
+
+{# content of the specification description, in Markdown or AsciiDoc format
+}
+```
+
+
+## Site types
+
+A Prexian site can be either a "project site" or a "hub site".
+
+### Project site
+
+A Prexian project site is a site that describes one individual project and can
+have any of the site components. A project site does not have its own
+`_projects` collection (as configured in `_config.yml`).
+
+
+### Hub site
+
+A Prexian hub site is a site that aggregates multiple project sites. The hub site
+itself is also a project site, except that its `_projects` collection exists. A
+hub site can also have its own software and specifications.
+
+
+
+
+
+## Internal architecture
+
+The gem provides the following Ruby components:
+
+- **`Prexian::Configuration`**: Centralized configuration management with validation
+- **`Prexian::GitService`**: Repository operations, caching, and cleanup
+- **`Prexian::HubSiteReader`**: Hub site content aggregation and processing
+- **`Prexian::ProjectSiteReader`**: Project site functionality and parent hub integration
+- **`Prexian::CLI`**: Command-line interface for cache management
+- **`Prexian::Metanorma`**: Metanorma integration utilities
+
+## Migrating from `jekyll-theme-open-project` to the new `prexian`
 
 Follow these steps:
 
 1. Update your Open Project Gemfile to remove all previously used dependencies
 from `jekyll-theme-open-project` (including `git`), and replace it like this:
 ```ruby
-# If you have any plugins, put them here!
 group :jekyll_plugins do
-  gem "jekyll-theme-rop"
+  gem "prexian"
 end
 ```
 
-2. Update your `_config.yml` file to remove all previously used plugins from `jekyll-theme-open-project` and only use `jekyll-theme-rop`, so it becomes:
+2. Update your `_config.yml` file to remove all previously used plugins from `jekyll-theme-open-project` and only use `prexian`, so it becomes:
 ```yaml
 plugins:
-  - jekyll-theme-rop
+  - prexian
 ```
 
 3. Replace in SCSS files all mention of import files with their renamed counterparts:
-  * `@import 'jekyll-theme-open-project'` => ``@import 'jekyll-theme-rop'`
+  * `@import 'jekyll-theme-open-project'` => ``@import 'prexian'`
   * `'open-project-mixins'` => remove because it was already included.
 
 4. If you use the `png_diagrams` feature in any page layout, replace as follows:
@@ -52,7 +395,6 @@ plugins:
 -engine: png_diagrams
 +engine: png_diagram_page
 ```
-
 
 ## Contents
 
@@ -74,7 +416,6 @@ plugins:
 
   * [Layouts](#theme-layouts)
   * [Includes](#theme-includes)
-
 
 ## Getting started
 
@@ -98,7 +439,7 @@ jekyll new my-open-site
 ```
 
 If you use Git for site source version management,
-see the “Extra .gitignore rules” section below
+see the "Extra .gitignore rules" section below
 for additional lines you should add to your `.gitignore`.
 
 ### Install Open Site theme into the Jekyll site
@@ -107,19 +448,19 @@ Add this line to your Jekyll site's `Gemfile`,
 replacing default theme requirement:
 
 ```ruby
-gem "jekyll-theme-rop"
+gem "prexian"
 ```
 
-(Jekyll’s default theme was “minima” at the time of this writing.)
+(Jekyll's default theme was "minima" at the time of this writing.)
 
 Also in the `Gemfile`, add two important plugins to the `:jekyll_plugins` group.
 (The SEO tag plugin is not mandatory, but these docs assume you use it.)
 
 ```ruby
 group :jekyll_plugins do
-  gem "jekyll-theme-rop"
+  gem "prexian"
 
-  # The following gems are automatically included by jekyll-theme-rop
+  # The following gems are automatically included by prexian
   # gem "jekyll-seo-tag"
   # gem "jekyll-sitemap"
   # gem "jekyll-data"
@@ -132,13 +473,15 @@ end
 
 Execute the following to install dependencies:
 
-    $ bundle
+```sh
+$ bundle
+```
 
 ### Configure your Open Site for the first time
 
 Edit `_config.yml` to add necessary site-wide configuration options,
 and add files and folders to site contents. This step depends
-on the type of site you’re creating: hub or individual project site.
+on the type of site you're creating: hub or individual project site.
 
 Further sections explain core concepts of open project and hub, and go
 into detail about how to configure a project or hub site.
@@ -151,14 +494,13 @@ Before building the first time you must do this:
 Please see the [configuration section](#configuration) for more details.
 
 NOTE: It may be required to copy the following properties from
-this theme’s `_config.yaml` to your site’s: `collections`, `includes_dir`.
+this theme's `_config.yaml` to your site's: `collections`, `includes_dir`.
 
 This is likely caused by changed behavior of jekyll-data gem in recent versions,
-which is responsible for “inheritance” of `_config.yaml` between theme and site.
+which is responsible for "inheritance" of `_config.yaml` between theme and site.
 
 You can add any custom collections for your site
-after collections copied from theme’s config.
-
+after collections copied from theme's config.
 
 ### Building site
 
@@ -167,8 +509,7 @@ Execute to build the site locally and watch for changes:
     $ bundle exec jekyll serve --host mysite.local --port 4000
 
 This assumes you have mysite.local mapped in your hosts file,
-otherwise omit --host and it’ll use “localhost” as domain name.
-
+otherwise omit --host and it'll use "localhost" as domain name.
 
 ## Configuration
 
@@ -178,19 +519,18 @@ There are 3 areas to configure when you first create an Open Site, namely:
 * [Hub site](#hub-site);
 * [Project site](#project-site)
 
-
 ## Common setup
 
 ### Git repository branch behavior
 
-You’ll see many instances of document frontmatter
+You'll see many instances of document frontmatter
 referencing Git repository URLs.
 
 Note that, wherever a `[*_]repo_url` property is encountered,
 a sibling property `[*_]repo_branch` is supported.
-(This is new in 2.1.17, until that version branch “master” was used for all repositories.)
+(This is new in 2.1.17, until that version branch "master" was used for all repositories.)
 
-If you reference repositories that don’t use branch name “main”,
+If you reference repositories that don't use branch name "main",
 you must either:
 
 - use a sibling `[*_]repo_branch` property to specify your custom branch name
@@ -201,12 +541,36 @@ you must either:
 
   (in this case, in scenarios with project sites being used in conjunction
   with a hub site, `default_repo_branch` must be the same
-  across all project sites’ and their hub site’s `config.yml`—otherwise you’re advised
+  across all project sites' and their hub site's `config.yml`—otherwise you're advised
   to use the previous option to avoid site build failure).
 
-Note that, when a referenced Git repository doesn’t contain the necessary branch
-(either explicitly specified custom branch, or `default_repo_branch`, or branch called “main”),
+Note that, when a referenced Git repository doesn't contain the necessary branch
+(either explicitly specified custom branch, or `default_repo_branch`, or branch called "main"),
 this will cause build failure of that project site, or a hub site using that project site.
+
+### Repository Caching & Performance
+
+The theme includes intelligent repository caching to improve build performance:
+
+- **Automatic Caching**: Git repositories are cached locally to speed up subsequent builds
+- **Shallow Clones**: Only necessary files are downloaded using Git's shallow clone feature
+- **Sparse Checkout**: Only specified subdirectories are checked out when needed
+- **Cache Management**: Use the CLI tools to monitor and clean cache as needed
+
+### Refresh Control
+
+Control when remote repository data is refreshed:
+
+```yaml
+# In _config.yml
+refresh_remote_data: always | never | daily | weekly
+# Default: daily
+```
+
+- `always`: Fetch fresh data on every build (slower but always current)
+- `never`: Use cached data only (fastest, but may be stale)
+- `daily`: Refresh once per day
+- `weekly`: Refresh once per week
 
 ### Common settings
 
@@ -214,25 +578,25 @@ this will cause build failure of that project site, or a hub site using that pro
 
 These settings apply to both site types (hub and project).
 
-- You may want to remove the default `about.md` page added by Jekyll,
+- You may want to remove the default `about.{md|adoc}` page added by Jekyll,
   as this theme does not account for its existence.
 
 - Add `hero_include: home-hero.html` to YAML frontmatter
-  in your main `index.md`.
+  in your main `index.{md|adoc}`.
 
-- Add following items to site’s `_config.yml`
-  (and don’t forget to remove default theme requirement there):
+- Add following items to site's `_config.yml`
+  (and don't forget to remove default theme requirement there):
 
   ```yaml
   url: https://example.com
-  # Site’s URL with protocol, without optional www. prefix
+  # Site's URL with protocol, without optional www. prefix
   # and without trailing slash.
   # Used e.g. for marking external links in docs and blog posts.
 
   github_repo_url: https://github.com/example-org/example.com
   # URL to GitHub repo for the site.
   # Using GitHub & specifying this setting is currently required
-  # for “suggest edits” buttons to show on documentation pages.
+  # for "suggest edits" buttons to show on documentation pages.
   github_repo_branch: main
   # Optional, default is `main`.
 
@@ -243,9 +607,9 @@ These settings apply to both site types (hub and project).
 
   default_repo_branch: main
   # Optional, default is `main`.
-  # Whenever branch name isn’t specified for some repository
+  # Whenever branch name isn't specified for some repository
   # (such as project docs or specs), this name will be used
-  # during site’s build.
+  # during site's build.
   # (See branch behavior section for details.)
 
   tagline: Because examples are very important
@@ -264,25 +628,30 @@ These settings apply to both site types (hub and project).
   # no_auto_fontawesome: yes
   # Specify this only if you want to disable free Font Awesome CDN.
   # IMPORTANT: In this case your site MUST specify include head.html with appropriate scripts.
-  # Theme design relies on Font Awesome “solid” and “brands” icon styles
+  # Theme design relies on Font Awesome "solid" and "brands" icon styles
   # and expects them to be included in SVG mode.
   # Without this setting, one-file FA distribution, all.js, is included from free FA CDN.
 
-  theme: jekyll-theme-rop
+  theme: prexian
 
   permalink: /blog/:month-:day-:year-:title/
-  # It’s important that dash-separated permalink is used for blog posts.
-  # There’re no daily or monthly blog archive pages generated.
-  # Hub sites reference posts using that method, and it’s currently non-customizable.
+  # It's important that dash-separated permalink is used for blog posts.
+  # There're no daily or monthly blog archive pages generated.
+  # Hub sites reference posts using that method, and it's currently non-customizable.
   # With `collections` configuration, specify permalink for posts
   # correctly as well (for an example, see https://github.com/metanorma/metanorma.org/blob/d2b15f6d8c4cea73d45ad899374845ec38348ff1/_config.yml#L60).
+
+  refresh_remote_data: daily
+  # Optional. Controls when to refresh remote repository data.
+  # Options: always, never, daily, weekly
+  # Default: daily
   ```
 
 ### Logo
 
 (mandatory)
 
-By “logo” is meant the combination of site symbol as a graphic
+By "logo" is meant the combination of site symbol as a graphic
 and name as word(s).
 
 - **Symbol** is basically an icon for the site.
@@ -305,7 +674,7 @@ and name as word(s).
   In case of SVG, SVG guidelines apply.
 
 If you want to style SVG with CSS specifying rules for .site-logo descendants:
-take care, as this may cause issues when hub site’s logo is used in context
+take care, as this may cause issues when hub site's logo is used in context
 of a project site. (You can use inline styling within the SVG.)
 
 ### Blog
@@ -313,7 +682,7 @@ of a project site. (You can use inline styling within the SVG.)
 Project sites and hub site can have a blog.
 
 In case of the hub, blog index will show combined timeline
-from hub blog and projects’ blogs.
+from hub blog and projects' blogs.
 
 #### Index
 
@@ -327,7 +696,7 @@ Example:
 ---
 title: Blog
 description: >-
-  Get the latest announcements and technical how-to’s
+  Get the latest announcements and technical how-to's
   about our software and projects.
 layout: blog-index
 hero_include: index-page-hero.html
@@ -342,16 +711,16 @@ It is recommended that you provide explicit hand-crafted post excerpts,
 as automatically-generated excerpts may break the post card layout.
 
 Theme also anticipates author information within frontmatter.
-Together with excerpts, here’s how post frontmatter (in addition to anything
+Together with excerpts, here's how post frontmatter (in addition to anything
 already required by Jekyll) looks like:
 
 ```yaml
 ---
 # Required
 authors:
-  - email: <author’s email, required>
+  - email: <author's email, required>
     use_picture: <`gravatar` (default), `assets`, an image path relative to assets/, or `no`>
-    name: <author’s full name>
+    name: <author's full name>
     social_links:
       - https://twitter.com/username
       - https://facebook.com/username
@@ -376,7 +745,6 @@ reside under `assets/blog/authors/<author email>.jpg`.
 
 For project posts, see below the project site section.
 
-
 ## Hub site
 
 The hub represents your company or department, links to all projects
@@ -388,6 +756,9 @@ in the `projects` collection (see below).
 Additional items allowed/expected in _config.yml:
 
 ```yaml
+# Mark this as a hub site
+is_hub: true
+
 # Since a hub would typically represent an organization as opposed
 # to individual, this would make sense:
 seo:
@@ -400,12 +771,18 @@ tag_namespaces:
     # writtenin: "Written in"
   specs:
     namespace_id: "Human-readable namespace name"
+
+# Projects collection configuration
+collections:
+  projects:
+    output: false
+    permalink: /:collection/:name/
 ```
 
 ### Project, spec and software data
 
 Each project subdirectory
-must contain a file "index.md" with frontmatter like this:
+must contain a file "index.{md|adoc}" with frontmatter like this:
 
 ```yaml
 title: Sample Awesome Project
@@ -452,7 +829,7 @@ Example:
 ```yaml
 ---
 title: Software
-description: Open-source software developed with MyCompany’s cooperation.
+description: Open-source software developed with MyCompany's cooperation.
 layout: software-index
 hero_include: index-page-hero.html
 ---
@@ -474,7 +851,6 @@ layout: spec-index
 hero_include: index-page-hero.html
 ---
 ```
-
 
 ## Project site
 
@@ -502,7 +878,7 @@ algolia_search:
   api_key: '<your Algolia API key>'
   index_name: '<your Algolia index name>'
 
-# Only add this if you want to use Algolia’s search on your project site.
+# Only add this if you want to use Algolia's search on your project site.
 
 tag_namespaces:
   software:
@@ -511,18 +887,18 @@ tag_namespaces:
     # writtenin: "Written in"
   specs:
     namespace_id: "Human-readable namespace name"
-# NOTE: Tag namespaces must match corresponding hub site’s configuration entry.
+# NOTE: Tag namespaces must match corresponding hub site's configuration entry.
 
 landing_priority: [custom_intro, blog, specs, software]
 # Which order should sections be displayed on landing.
 #
 # Default order: [software, specs, blog]
-# Depending on your project’s focus & pace of development you may want to change that.
+# Depending on your project's focus & pace of development you may want to change that.
 # Supported sections: featured_posts, featured_software, featured_specs, custom_intro.
 #
 # If you use custom_intro, project site must define an include "custom-intro.html".
 # The contents of that include will be wrapper in section.custom-intro tag.
-# Inside the include you’d likely want to have introductory summary wrapped
+# Inside the include you'd likely want to have introductory summary wrapped
 # in section.summary, and possibly custom call-to-action buttons
 # (see Metanorma.com site for an example).
 ```
@@ -566,8 +942,8 @@ Author project site blog posts as described in the general site setup section.
 
 Two kinds of docs can coexist on a given open project site:
 
-- Project-wide documentation. It’s well-suited for describing the idea behind the project,
-  the “whys”, for tutorials and similar.
+- Project-wide documentation. It's well-suited for describing the idea behind the project,
+  the "whys", for tutorials and similar.
 - Documentation specific to a piece of software (of which there can be more than one
   for any given open project). This may go in detail about that piece of software,
   and things like implementation specifics, extended installation instructions,
@@ -623,7 +999,7 @@ software products and/or specifications.
 
 Each product or spec is described by its own <name>.adoc file with frontmatter,
 placed under _software/ or _specs/ subdirectory (respectively)
-of your open project’s Jekyll site.
+of your open project's Jekyll site.
 
 A software product additionally is required to have a symbol in SVG format,
 placed in <name>/assets/symbol.svg within _software/ directory.
@@ -647,7 +1023,7 @@ tags: [Ruby, Python, RFC, "<some_namespace_id>:<appropriate_tag>"]
 # Tag can be prepended with a namespace to signify the type,
 # e.g. chosen programming language or target viewer audience
 # (see hub site configuration for tag namespace setup).
-# Avoid long namespace/tag combos as they can overflow item’s card widget.
+# Avoid long namespace/tag combos as they can overflow item's card widget.
 
 external_links:
   - url: https://github.com/metanorma/metanorma
@@ -670,9 +1046,9 @@ feature_with_priority: 1
 # With this key, software or spec will be featured on home
 # page of project site. Lower number means higher priority
 # (as in, priority no. 1 means topmost item on home page,
-# as long as there aren’t others with the same value).
+# as long as there aren't others with the same value).
 # If no documents in the collection have this key,
-# items on home will be ordered according to Jekyll’s
+# items on home will be ordered according to Jekyll's
 # default behavior.
 ```
 
@@ -699,7 +1075,7 @@ docs_source:
 #### Displaying software docs
 
 Inside the repository and optionally subtree specified under `docs`
-in above sample, place a file `navigation.adoc` (or `navigation.md`) containing
+in above sample, place a file called `navigation.adoc` (or `navigation.{md|adoc}`) containing
 only frontmatter, following this sample:
 
 ```yaml
@@ -720,10 +1096,9 @@ In the same directory, place the required document pages—in this case, `overvi
 `installation.adoc`, and `basic-usage.adoc`. Each file must contain
 standard YAML frontmatter with at least `title` specified.
 
-During project site build, Jekyll pulls docs for software that’s part of the
+During project site build, Jekyll pulls docs for software that's part of the
 site and builds them, converting pages from Markdown/AsciiDoc to HTML and adding
 the navigation.
-
 
 ### Specification
 
@@ -735,7 +1110,7 @@ spec_source:
   git_repo_subtree: images
   git_repo_branch: main
   build:
-    engine: png_diagrams
+    engine: png_diagram_page
 # See below about building the spec from its source
 # to be displayed on the site.
 
@@ -761,10 +1136,10 @@ For specs to be built, provide build config and navigation
 in the YAML frontmatter of corresponding `_specs/<specname>.adoc` file
 as described in spec YAML frontmatter sample.
 
-For now, only the `png_diagrams` engine is supported, with Metanorma-based
+For now, only the `png_diagram_page` engine is supported, with Metanorma-based
 project build engine to come.
 
-During project site build, Jekyll pulls spec sources that’s part of the
+During project site build, Jekyll pulls spec sources that's part of the
 site and builds them, converting pages from source markup to HTML using
 the engine specified, and adding the navigation.
 
@@ -774,21 +1149,19 @@ Should look OK in dimensions of about 30x30, 60x60px. Must fit in a square.
 Should be in SVG format (see also the SVG guidelines section).
 Place the symbol in assets/symbol.svg within project directory.
 
-
 ## SVG guidelines
 
 - Ensure SVG markup does not use IDs. It may appear multiple times
   on the page hence IDs would fail markup validation.
 - Ensure root `<svg>` element specifies the `viewBox` attribute,
   and no `width` or `height` attributes.
-- You can style SVG shapes by adding custom rules to site’s assets/css/style.scss.
-- Project symbols only: the same SVG is used both in hub site’s project list
+- You can style SVG shapes by adding custom rules to site's assets/css/style.scss.
+- Project symbols only: the same SVG is used both in hub site's project list
   (where it appears on white, and is expected to be colored)
-  and in project site’s top header
+  and in project site's top header
   (where it appears on colored background, and is expected to be white).
-  It is recommended to use a normal color SVG, and style it in project site’s
+  It is recommended to use a normal color SVG, and style it in project site's
   custom CSS. The SVG must be created in a way that allows this to happen.
-
 
 ## Content guidelines
 
@@ -798,14 +1171,13 @@ Place the symbol in assets/symbol.svg within project directory.
 - Blog post title: 3–7 words
 - Blog post excerpt: about 20–24 words, no markup
 
-
 ## Authoring content
 
 Content is expected to be authored in AsciiDoc.
 Some features, such as in-page navigation in software/project documentation
 and code listing copy buttons,
 require HTML structure to match the one generated from AsciiDoc by jekyll-asciidoc
-and won’t work with content is authored in Markdown, for example.
+and won't work with content is authored in Markdown, for example.
 
 ### Disabling copy button on code listings
 
@@ -837,7 +1209,7 @@ Commonly used overridable includes are (paths relative to your site root):
   possibly as SVG.
 
 - project-nav.html (currently project sites only): Additional
-  links in project site’s top navigation, if needed.
+  links in project site's top navigation, if needed.
 
 - assets/symbol.svg: Site-wide symbol is used as an include
   to facilitate path fill color overrides via CSS rules.
@@ -851,10 +1223,9 @@ and then in `<theme root>/_includes/<include_name>`. Consequently,
 you put your include overrides directly in site root, **not** inside
 `_includes/` directory of your site.
 
-
 ## Theme layouts
 
-Normally you don’t need to specify layouts manually, except where
+Normally you don't need to specify layouts manually, except where
 instructed in site setup sections of this document.
 
 Commonly used layouts are:
@@ -890,193 +1261,4 @@ also used by jekyll-seo-tag plugin to add the appropriate meta tags.
 
 Commonly supported in page frontmatter is the hero_include option,
 which would show hero unit underneath top header.
-Currently, theme supports _includes/index-page-hero.html as the only value
-you can pass for hero_include (or you can leave hero_include out altogether).
-
-
-## Style customization
-
-To customize site appearance, create a file in your Jekyll site
-under assets/css/style.scss with following exact contents:
-
-```
----
----
-// Font imports can go here
-
-// Variable redefinitions can go here
-
-@import 'jekyll-theme-rop';
-
-// Custom rules can go here
-```
-
-There are two aspects to theme customization:
-
-* Cutomize SASS variables before the import (such as colors)
-* Define custom style rules after the import
-
-### Custom rules
-
-One suggested custom rule would be to change the fill color for SVG paths
-used for your custom site symbol to white, unless it’s white by default.
-
-The rule would look like this:
-
-```scss
-.site-logo svg path {
-  fill: white;
-}
-```
-
-### SASS variables
-
-Following are principal variables that define the appearance of a site
-built with this theme, along with their defaults.
-
-For a project site, wisely choosing primary and accent colors should be enough
-as a minimum.
-
-```scss
-$font-family: Helvetica, Arial, sans-serif !default;
-$main-font-color: black !default;
-
-# Primary color & accent colors are used throughout site’s UI.
-# Make sure to use shades dark enough that white text is readable on top,
-# especially with the primary color.
-# Make sure these colors go well with each other.
-$primary-color: lightblue !default;
-$accent-color: red !default;
-
-# These colors are used for warning/info blocks within body text.
-$important-color: orange !default;
-$warning-color: red !default;
-
-# Background used on home page body & other pages’ hero unit backgrounds.
-$main-background: linear-gradient(315deg, $accent-color 0%, $primary-color 74%) !default;
-
-# This background defaults to $main-background value.
-$header-background: $main-background !default;
-
-
-# Below does not apply to project sites (only the hub site):
-
-$hub-software--primary-color: lightsalmon !default;
-$hub-software--primary-dark-color: tomato !default;
-$hub-software--hero-background: $hub-software--primary-dark-color !default;
-
-$hub-specs--primary-color: lightpink !default;
-$hub-specs--primary-dark-color: palevioletred !default;
-$hub-specs--hero-background: $hub-specs--primary-dark-color !default;
-```
-
-TIP: A good way to find a good match for primary-color and accent-color
-may be the eggradients.com website. Find a suitable, dark enough gradient and pick
-one color as primary, and the other as accent.
-
-
-## Extra .gitignore rules
-
-Add these lines to your .gitignore to prevent
-theme-generated files and directories from adding chaos to your Git staging.
-
-```
-_software/*/.git
-_software/*/docs
-_software/_*_repo
-_specs/*/
-!_specs/*.*
-parent-hub/*
-```
-
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub
-at https://github.com/riboseinc/jekyll-theme-rop.
-
-This project is intended to be a safe, welcoming space for collaboration,
-and contributors are expected to adhere
-to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-
-## Theme development
-
-Generally, this directory is setup like a Jekyll site. To set it up,
-run `bundle install`.
-
-To experiment with this code, add content (projects, software, specs)
-and run `bundle exec jekyll serve`. This starts a Jekyll server
-using this theme at `http://localhost:4000`.
-
-Put your layouts in `_layouts`, your includes in `_includes`,
-your sass files in `_sass` and any other assets in `assets`.
-
-Add pages, documents, data, etc. like normal to test your theme's contents.
-
-As you make modifications to your theme and to your content, your site will
-regenerate and you should see the changes in the browser after a refresh,
-like normal.
-
-When your theme is released, only files specified with gemspec file
-will be included. If you modify theme to add more directories that
-need to be included in the gem, edit regexp in the gemspec.
-
-### Building and releasing
-
-#### Manual test during development
-
-When you’re working on visual aspects of the theme, it’s useful
-to see how it would affect the end result (a site *built with* this theme).
-
-Here’s how to develop the theme while simultaneously previewing the changes
-on a site. The sequence would be as follows, assuming you have a local copy
-of this repo and have a Jekyll site using this theme:
-
-1. For the Jekyll site, change Gemfile to point to local copy
-   of the theme (the root of this repo) and run `bundle`.
-
-   For example, you’d change `gem "jekyll-theme-rop", "~> 1.0.6"`
-   to `gem "jekyll-theme-rop", :path => "../jekyll-theme-rop"`.
-   The relative path assumes your site root and theme root are sibling directories.
-
-2. Run `bundle exec jekyll serve` to start Jekyll’s development server.
-
-3. Make changes to both theme and site directory contents.
-
-4. If needed, kill with Ctrl+C then relaunch the serve command
-   to apply the changes you made to the theme
-   (it may not reload automatically if changes only affect the theme and not the site
-   you’re serving).
-
-4. Once you’re satisfied, release a new version of the theme — see below.
-
-5. (To later bump the site to this latest version: revert the Gemfile change,
-   update theme dependency version to the one you’ve just released,
-   run `bundle --full-index` to update lockfile properly,
-   and your site is ready to go.)
-
-#### Releasing
-
-Make sure theme works: build script is under construction,
-so use good judgement and thorough manual testing.
-
-1. Decide whether this is a patch, minor or major change.
-
-2. Run the automated "release" workflow to release the gem.
-
-
-#### Testing with build script (TBD)
-
-May not work at the moment — see #26. Please use the other test option.
-
-To check your theme, run:
-
-    ./develop/build
-
-It’ll build Jekyll site and run some checks, like HTML markup validation.
-
-
-## License
-
-The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+Currently, theme

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Rop
+module Prexian
   #
   # Infers from available content whether the site is a hub
   # or individual project site, and adds site-wide config variable
@@ -8,7 +8,8 @@ module Rop
   #
   class SiteTypeVariableGenerator < Jekyll::Generator
     def generate(site)
-      site.config['is_hub'] = hub_site?(site)
+      prexian_config = site.config['prexian'] || {}
+      prexian_config['is_hub'] = hub_site?(site)
     end
 
     private

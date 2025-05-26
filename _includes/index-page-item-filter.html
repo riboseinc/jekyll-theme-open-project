@@ -36,7 +36,7 @@
     </ul>
 
     {% comment %}Namespaced tags{% endcomment %}
-    {% for namespace in site.tag_namespaces[include.tag_namespaces] %}
+    {% for namespace in site.prexian.tag_namespaces[include.tag_namespaces] %}
       {% assign namespace_human = namespace[1] %}
       {% assign namespace_id = namespace[0] %}
 
@@ -71,7 +71,7 @@
 {% if include.tag %}
   {% assign tag_human = include.tag | split: ":" | last | replace: "_", " " %}
   {% if tag_namespace != "" %}
-    {% assign namespace = site.tag_namespaces[include.tag_namespaces][tag_namespace] %}
+    {% assign namespace = site.prexian.tag_namespaces[include.tag_namespaces][tag_namespace] %}
   {% endif %}
   <header class="filter-header">
     <h3 class="title">

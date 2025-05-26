@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative 'lib/rop/version'
+require_relative 'lib/prexian/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'jekyll-theme-rop'
-  spec.version       = Rop::VERSION
+  spec.name          = 'prexian'
+  spec.version       = Prexian::VERSION
   spec.authors       = ['Ribose Inc.']
   spec.email         = ['open.source@ribose.com']
 
-  spec.summary       = 'Open Project Jekyll theme'
-  spec.homepage      = 'https://github.com/riboseinc/jekyll-theme-rop/'
+  spec.summary       = 'Prexian Jekyll theme'
+  spec.homepage      = 'https://github.com/riboseinc/prexian/'
   spec.license       = 'MIT'
 
   gemspec = File.basename(__FILE__)
@@ -21,8 +21,8 @@ Gem::Specification.new do |spec|
     end
   end
 
-  # spec.bindir = "exe"
-  # spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
+  spec.bindir = 'exe'
+  spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
   spec.add_dependency 'fastimage'
@@ -37,5 +37,11 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'kramdown-parser-gfm'
   spec.add_dependency 'kramdown-syntax-coderay'
 
+  spec.add_dependency 'thor', '~> 1.0'
   spec.add_dependency 'w3c_validators'
+
+  spec.add_development_dependency 'rspec', '~> 3.0'
+  spec.add_development_dependency 'simplecov', '~> 0.21'
+  spec.add_development_dependency 'vcr', '~> 6.0'
+  spec.add_development_dependency 'webmock', '~> 3.0'
 end

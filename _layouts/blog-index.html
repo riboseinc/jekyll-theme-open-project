@@ -3,11 +3,11 @@ layout: default
 ---
 
 <section class="items">
-  {% if site.is_hub %}
+  {% if site.prexian.is_hub %}
     {% include assets/symbol.svg %}
   {% endif %}
 
-  {% for item in site.posts_combined %}
+  {% for item in site.prexian.posts_combined %}
     {% if forloop.first %}
       {% assign can_be_featured = true %}
     {% else %}

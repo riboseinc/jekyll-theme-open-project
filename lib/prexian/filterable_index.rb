@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Rop
+module Prexian
   # On an open hub site, Jekyll Open Project theme assumes the existence of two types
   # of item indexes: software and specs, where items are gathered
   # from across open projects in the hub.
@@ -23,12 +23,13 @@ module Rop
     safe true
 
     def generate(site)
-      site.config['max_featured_software'] = 3
-      site.config['max_featured_specs'] = 3
-      site.config['max_featured_posts'] = 3
+      prexian_config = site.config['prexian'] || {}
+      prexian_config['max_featured_software'] = 3
+      prexian_config['max_featured_specs'] = 3
+      prexian_config['max_featured_posts'] = 3
 
       INDEXES.each do |index_name, params|
-        collection_name = if site.config['is_hub']
+        collection_name = if prexian_config['is_hub']
                             'projects'
                           else
                             index_name
@@ -41,18 +42,18 @@ module Rop
 
         items = get_all_items(site, collection_name, params[:item_test])
 
-        site.config["one_#{index_name}"] = items[0] if items.length == 1
+        prexian_config["one_#{index_name}"] = items[0] if items.length == 1
 
-        site.config["all_#{index_name}"] = items
-        site.config["num_all_#{index_name}"] = items.size
+        prexian_config["all_#{index_name}"] = items
+        prexian_config["num_all_#{index_name}"] = items.size
 
         featured_items = items.reject { |item| item.data['feature_with_priority'].nil? }
-        site.config["featured_#{index_name}"] = featured_items.sort_by { |item| item.data['feature_with_priority'] }
-        site.config["num_featured_#{index_name}"] = featured_items.size
+        prexian_config["featured_#{index_name}"] = featured_items.sort_by { |item| item.data['feature_with_priority'] }
+        prexian_config["num_featured_#{index_name}"] = featured_items.size
 
         non_featured_items = items.select { |item| item.data['feature_with_priority'].nil? }
-        site.config["non_featured_#{index_name}"] = non_featured_items
-        site.config["num_non_featured_#{index_name}"] = non_featured_items.size
+        prexian_config["non_featured_#{index_name}"] = non_featured_items
+        prexian_config["num_non_featured_#{index_name}"] = non_featured_items.size
       end
     end
 
@@ -75,7 +76,8 @@ module Rop
         (val2 <=> val1) || 0
       end
 
-      if site.config['is_hub']
+      prexian_config = site.config['prexian'] || {}
+      if prexian_config['is_hub']
         items.map! do |item|
           project_name = item.url.split('/')[2]
           project_path = "_projects/#{project_name}/index.md"
@@ -118,8 +120,9 @@ module Rop
     safe true
 
     def generate(site)
+      prexian_config = site.config['prexian'] || {}
       INDEXES.each do |index_name, params|
-        collection_name = if site.config['is_hub']
+        collection_name = if prexian_config['is_hub']
                             'projects'
                           else
                             index_name

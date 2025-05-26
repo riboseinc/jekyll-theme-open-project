@@ -2,7 +2,7 @@
 
 require 'digest/md5'
 
-module Rop
+module Prexian
   #
   # Adds a variable holding the array of posts of open hub blog
   # and from each individual project blog, combined and sorted by date.
@@ -15,8 +15,9 @@ module Rop
 
     def generate(site)
       site_posts = site.posts.docs
+      prexian_config = site.config['prexian'] || {}
 
-      if site.config['is_hub']
+      if prexian_config['is_hub']
         # Get documents representing projects
         projects = site.collections['projects'].docs.select do |item|
           pieces = item.url.split('/')
@@ -61,14 +62,20 @@ module Rop
       end
 
       # Make combined blog post array available site-wide
-      site.config['posts_combined'] = posts_combined
-      site.config['num_posts_combined'] = posts_combined.size
+      prexian_config['posts_combined'] = posts_combined
+      prexian_config['num_posts_combined'] = posts_combined.size
     end
 
     private
 
     def process_author(author)
+      # Handle string authors (just return as-is)
+      return author unless author.is_a?(Hash)
+
+      # Handle hash authors with email processing
       email = author['email']
+      return author if email.nil? || email.empty?
+
       hash = Digest::MD5.hexdigest(email)
       author['email'] = hash
       author['plaintext_email'] = email
