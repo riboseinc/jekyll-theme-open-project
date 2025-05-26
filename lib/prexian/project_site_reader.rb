@@ -29,8 +29,18 @@ module Prexian
       puts 'Prexian ProjectSiteReader: Fetching hub logo'
       Jekyll.logger.debug('Prexian ProjectSiteReader: Fetching hub logo')
 
-      parent_hub_repo_url = @config['prexian']['parent_hub']['git_repo_url']
-      return unless parent_hub_repo_url
+      # Check if parent_hub configuration exists
+      parent_hub_config = @config.dig('prexian', 'parent_hub')
+      unless parent_hub_config
+        Jekyll.logger.warn('[WARNING] prexian.parent_hub is required but not set, skipping hub logo fetch')
+        return
+      end
+
+      parent_hub_repo_url = parent_hub_config['git_repo_url']
+      unless parent_hub_repo_url
+        Jekyll.logger.warn('[WARNING] prexian.parent_hub.git_repo_url is required but not set, skipping hub logo fetch')
+        return
+      end
 
       parent_hub_repo_branch = @config['prexian']['parent_hub']['git_repo_branch'] || @config['prexian']['default_repo_branch']
 
