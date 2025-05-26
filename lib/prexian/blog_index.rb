@@ -11,7 +11,11 @@ module Prexian
   # It also does some processing on the posts
   # as required by the Open Project theme.
   #
-  class CombinedPostArrayGenerator < BaseIndexGenerator
+  class CombinedPostArrayGenerator < Jekyll::Generator
+    include ConfigurationHelper
+
+    safe true
+
     def generate(site)
       @site = site
       site_posts = site.posts.docs
@@ -71,6 +75,19 @@ module Prexian
       author['email'] = hash
       author['plaintext_email'] = email
       author
+    end
+
+    def get_projects(site)
+      projects = site.collections['projects'].docs.select do |item|
+        pieces = item.url.split('/')
+        pieces.length == 4 && pieces[-1] == 'index' && pieces[1] == 'projects'
+      end
+
+      # Add project name (matches directory name, may differ from title)
+      projects.map do |project|
+        project.data['name'] = project.url.split('/')[2]
+        project
+      end
     end
   end
 end

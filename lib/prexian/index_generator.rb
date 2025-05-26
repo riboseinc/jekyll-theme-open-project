@@ -5,10 +5,8 @@ require_relative 'configuration_helper'
 module Prexian
   # Base class for all index generators that provides common functionality
   # for processing collections and generating index pages
-  class BaseIndexGenerator < ::Jekyll::Generator
+  class BaseIndexGenerator
     include ConfigurationHelper
-
-    safe true
 
     protected
 

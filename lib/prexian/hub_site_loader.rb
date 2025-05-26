@@ -11,6 +11,10 @@ module Prexian
       super
 
       # Plus hub-specific project aggregation
+      read_projects
+    end
+
+    def read_projects
       return unless is_hub?
 
       puts 'Prexian HubSiteLoader: Starting to read projects for hub site'

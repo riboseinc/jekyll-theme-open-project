@@ -17,6 +17,7 @@ require_relative 'prexian/project_site_loader'
 require_relative 'prexian/filterable_index'
 require_relative 'prexian/blog_index'
 require_relative 'prexian/spec_builder'
+require_relative 'prexian/data_generator'
 
 Jekyll::Hooks.register :site, :after_init do |site|
   puts "[prexian] Registering ProjectReader, theme: #{site.theme&.name || 'none'}"

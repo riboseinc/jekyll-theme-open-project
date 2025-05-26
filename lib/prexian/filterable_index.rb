@@ -13,7 +13,11 @@ module Prexian
   # Below passes the `items` variable to normal (unfiltered)
   # index page layout.
 
-  class IndexPageGenerator < BaseIndexGenerator
+  class IndexPageGenerator < Jekyll::Generator
+    include ConfigurationHelper
+
+    safe true
+
     def generate(site)
       @site = site
       prexian_config['max_featured_software'] = max_featured_items
@@ -48,6 +52,60 @@ module Prexian
 
       sort_items_by_date(items)
       add_project_data_to_items(site, items)
+    end
+
+    private
+
+    def sort_items_by_date(items, date_field = 'last_update')
+      items.sort! do |i1, i2|
+        val1 = i1.data.fetch(date_field, default_time) || default_time
+        val2 = i2.data.fetch(date_field, default_time) || default_time
+        (val2 <=> val1) || 0
+      end
+    end
+
+    def add_project_data_to_items(site, items)
+      return items unless is_hub?
+
+      items.map! do |item|
+        project_name = item.url.split('/')[2]
+        project_path = "_projects/#{project_name}/index.md"
+
+        item.data['project_name'] = project_name
+        item.data['project_data'] = site.collections['projects'].docs.select do |proj|
+          proj.path.end_with? project_path
+        end [0]
+
+        item
+      end
+    end
+
+    def categorize_items(items, index_name)
+      featured_items = items.reject { |item| item.data['feature_with_priority'].nil? }
+      prexian_config["featured_#{index_name}"] = featured_items.sort_by { |item| item.data['feature_with_priority'] }
+      prexian_config["num_featured_#{index_name}"] = featured_items.size
+
+      non_featured_items = items.select { |item| item.data['feature_with_priority'].nil? }
+      prexian_config["non_featured_#{index_name}"] = non_featured_items
+      prexian_config["num_non_featured_#{index_name}"] = non_featured_items.size
+    end
+
+    def set_index_config(items, index_name)
+      prexian_config["one_#{index_name}"] = items[0] if items.length == 1
+      prexian_config["all_#{index_name}"] = items
+      prexian_config["num_all_#{index_name}"] = items.size
+    end
+
+    def collection_name_for(index_name)
+      index_name
+    end
+
+    def max_featured_items
+      3
+    end
+
+    def default_time
+      Time.new(1970, 1, 1)
     end
   end
 
