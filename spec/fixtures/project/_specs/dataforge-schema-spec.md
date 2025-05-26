@@ -5,9 +5,6 @@ featured: true
 spec_source:
   git_repo_url: "https://github.com/octocat/Hello-World"
   git_repo_branch: "master"
-  build:
-    engine: "metanorma"
-    source_file: "document.adoc"
 tags:
   audience: ["Developers", "Data Architects"]
   status: ["Draft", "Under Review"]
