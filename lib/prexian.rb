@@ -10,7 +10,6 @@ require_relative 'prexian/cli'
 
 # Only require Jekyll-dependent modules if Jekyll is available
 if defined?(Jekyll)
-  require_relative 'prexian/site_type'
   require_relative 'prexian/project_reader'
   require_relative 'prexian/hub_site_reader'
   require_relative 'prexian/project_site_reader'
