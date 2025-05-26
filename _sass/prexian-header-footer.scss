@@ -112,7 +112,7 @@ body > .underlay > footer {
       }
     }
   }
-  
+
   .site--hub.layout--home > & {
     > .hero {
       text-align: left;
@@ -285,8 +285,8 @@ body > .underlay > header {
 }
 
 body > .underlay > footer {
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 30px;
+  padding-bottom: 20px;
 
   align-items: flex-start;
   flex-flow: column nowrap;
@@ -300,6 +300,11 @@ body > .underlay > footer {
   .parent-hub-plug {
     .logo {
       display: block;
+
+      svg {
+        height: 30px;
+        vertical-align: middle;
+      }
     }
 
     display: flex;
