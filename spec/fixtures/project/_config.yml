@@ -1,0 +1,82 @@
+# Project site configuration for testing
+title: "DataForge"
+description: "Advanced data processing and transformation toolkit"
+url: "https://dataforge.example.com"
+# baseurl: ""
+
+# Collections configuration
+collections:
+  pages:
+    output: true
+    permalink: /:name/
+  software:
+    output: true
+    permalink: /:collection/:name/
+  specs:
+    output: true
+    permalink: /:collection/:name/
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
+
+# Theme configuration
+theme: prexian
+
+# Prexian-specific configuration
+prexian:
+  title: "DataForge"
+  description: "Advanced data processing and transformation toolkit"
+  tagline: "Transforming data with precision and power"
+
+  # Project site marker (not a hub)
+  site_type: project
+
+  # Parent hub configuration - pointing to local hub fixture
+  parent_hub:
+    git_repo_url: "/Users/mulgogi/src/jekyll-theme-rop/spec/fixtures/hub"
+    git_repo_branch: "main"
+    home_url: "https://techhub.example.com/"
+
+  # Git repository settings
+  default_repo_branch: main
+  refresh_remote_data: last-resort
+
+  # Tag namespaces for categorization
+  tag_namespaces:
+    software:
+      writtenin: "Written in"
+      audience: "Audience"
+      interface: "Interface"
+    specs:
+      audience: "Audience"
+      status: "Status"
+      type: "Type"
+
+  # Landing page priority
+  landing_priority:
+    - software
+    - specs
+    - blog
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Plugins
+plugins:
+  - prexian
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - .git/
+  - .github/
