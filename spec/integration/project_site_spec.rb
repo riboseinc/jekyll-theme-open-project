@@ -17,7 +17,7 @@ RSpec.describe 'Project Site Integration', type: :integration do
     it 'has parent hub configuration' do
       prexian_config = site.config['prexian'] || {}
       hub = prexian_config['hub'] || {}
-      expect(hub['git_repo_url']).to include('fixtures/hub')
+      expect(hub['git_repo_url']).to include('../hub')
       expect(hub['home_url']).to eq('https://techhub.example.com/')
     end
 
