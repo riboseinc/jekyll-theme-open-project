@@ -116,18 +116,15 @@
           <span class="label">{{ site.prexian.title }} is</span>
           <a class="logo" role="presentation" href="{{ site.prexian.hub.home_url }}"
             aria-label="hub project logo">
-            {% capture hub_symbol %}{% include hub/assets/symbol.svg %}{% endcapture %}
-            {% unless hub_symbol contains "Liquid error" %}
-            {% assign symbol_exists = true %}
-            {% endunless %}
+
             {% capture hub_title %}{% include hub/title.html %}{% endcapture %}
             {% unless hub_title contains "Liquid error" %}
             {% assign title_exists = true %}
             {% endunless %}
 
-            {% if symbol_exists %}
-              {{ hub_symbol }}
-            {% endif %}
+            {% assign relative_symbol_path = "/hub/assets/img/symbol.svg" | relative_path %}
+            <img src="{{ relative_symbol_path }}"/>
+
             &nbsp;<span class="title">
             {% if title_exists %}
               {{ hub_title }}

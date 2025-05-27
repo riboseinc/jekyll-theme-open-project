@@ -1,4 +1,4 @@
-{% assign symbol_path = include.item_id | split: "/" | slice: 2, 1 | join: "/" | append: "/assets/symbol.svg" %}
+{% assign symbol_path = include.item_id | split: "/" | slice: 2, 1 | join: "/" | append: "/assets/img/symbol.svg" | relative_path %}
 {% assign relative_symbol_path = "/software/" | append: symbol_path %}
 
 <div class="logo">

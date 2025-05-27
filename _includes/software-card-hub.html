@@ -19,7 +19,7 @@
 
   <header>
     {% if include.item.project_data != nil and include.item.project_name != nil %}
-      {% assign project_symbol_path = include.item.project_name | append: "/assets/symbol.svg" %}
+      {% assign project_symbol_path = include.item.project_name | append: "/assets/img/symbol.svg" | relative_path %}
       {% assign relative_symbol_path = "/projects/" | append: project_symbol_path %}
       <div class="parent-project">
         <div class="project-logo"><img src="{{ relative_symbol_path }}"></div>

@@ -77,3 +77,28 @@ exclude:
   - vendor/ruby/
   - .git/
   - .github/
+
+defaults:
+  - scope:
+      path: "assets/img"
+    values:
+      image: true
+  - scope:
+      path: ""
+    values:
+      layout: default
+  - scope:
+      path: _posts
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: _software
+      type: software
+    values:
+      layout: product
+  - scope:
+      path: _specs
+      type: specs
+    values:
+      layout: spec

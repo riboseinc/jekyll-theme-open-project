@@ -62,7 +62,7 @@ module Prexian
 
       directories_to_clean = [
         'spec/fixtures/hub/_project-sites',
-        'spec/fixtures/project/_parent-hub',
+        'spec/fixtures/project/_hub-site',
         Dir.glob('spec/fixtures/*/_site')
       ].flatten
 

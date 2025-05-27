@@ -160,7 +160,7 @@ prexian:
 
 #### For Hub Sites
 
-- **`assets/symbol.svg`** - Your site's logo (SVG format recommended) inserted at the footer
+- **`assets/img/symbol.svg`** - Your site's logo (SVG format recommended) inserted at the footer
 - **`title.html`** - Your site's title (HTML format recommended) to be included in the footer
 
 Without these two files the rendering of a project site will crash.
@@ -339,7 +339,7 @@ feature_with_priority: 1  # Featured on home page
 Your software description goes here...
 ```
 
-**Software Logo**: Place an SVG logo at `_software/my-tool/assets/symbol.svg`
+**Software Logo**: Place an SVG logo at `_software/my-tool/assets/img/symbol.svg`
 
 ### Adding Specifications
 
@@ -635,7 +635,7 @@ For project sites with a parent hub, Prexian automatically:
 3. **Adds it to include paths** so you can reference hub assets
 
 This allows project sites to:
-- Use the hub's logo: `{% include hub/assets/symbol.svg %}`
+- Use the hub's logo: `{% include hub/assets/img/symbol.svg %}`
 - Reference hub branding: `{% include hub/title.html %}`
 - Maintain consistent styling with the hub
 
@@ -682,7 +682,7 @@ Override theme layouts by creating files in `_layouts/` and includes in your sit
 #### Site Symbol
 - **Format**: SVG
 - **Size**: Should look good at 30x30px and 60x60px
-- **Location**: `assets/symbol.svg`
+- **Location**: `assets/img/symbol.svg`
 - **Requirements**:
   - No IDs in SVG markup (appears multiple times on page)
   - Root `<svg>` element must have `viewBox` attribute
@@ -1049,7 +1049,7 @@ If you're migrating from the old `jekyll-theme-open-project`:
    ```
 
 5. **Make sure you have required files**:
-    - `assets/symbol.svg`
+    - `assets/img/symbol.svg`
     - `title.html`
 
 ## 🌟 Examples
@@ -1231,7 +1231,7 @@ Commonly overridden includes:
 - **`title.html`**: Site name/logo
 - **`custom-intro.html`**: Custom introduction section
 - **`project-nav.html`**: Additional navigation links
-- **`assets/symbol.svg`**: Site symbol
+- **`assets/img/symbol.svg`**: Site symbol
 - **`head.html`**: Custom head content
 - **`scripts.html`**: Custom JavaScript
 

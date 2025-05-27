@@ -4,7 +4,8 @@ layout: default
 
 <section class="items">
   {% if site.prexian.site_type == "hub" %}
-    {% include assets/symbol.svg %}
+    {% assign relative_symbol_path = "/hub/assets/img/symbol.svg" | relative_path %}
+    <img src="{{ relative_symbol_path }}"/>
   {% endif %}
 
   {% for item in site.prexian.posts_combined %}
@@ -14,6 +15,5 @@ layout: default
       {% assign can_be_featured = false %}
     {% endif %}
 
-    {% include post-card.html post=item can_be_featured=can_be_featured %}
   {% endfor %}
 </section>
