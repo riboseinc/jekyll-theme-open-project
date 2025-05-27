@@ -1,24 +1,24 @@
 <span class="copyright">
-  <span class="copyright-head">Copyright © {{ site.time | date: '%Y' }} {{ site.legal.name }} —</span>
+  <span class="copyright-head">Copyright © {{ site.time | date: '%Y' }} {{ site.prexian.legal.name }} —</span>
   <span class="copyright-tail">All rights reserved.</span>
 </span>
 
-{% if site.legal.privacy_policy_link or site.legal.tos_link %}
+{% if site.prexian.legal.privacy_policy_link or site.prexian.legal.tos_link %}
   <nav aria-label="legal links">
-    {% if site.legal.tos_link %}
-      <a href="{{ site.legal.tos_link }}">Terms of Service</a>
+    {% if site.prexian.legal.tos_link %}
+      <a href="{{ site.prexian.legal.tos_link }}">Terms of Service</a>
     {% endif %}
-    {% if site.legal.privacy_policy_link %}
-      <a href="{{ site.legal.privacy_policy_link }}">Privacy Policy</a>
+    {% if site.prexian.legal.privacy_policy_link %}
+      <a href="{{ site.prexian.legal.privacy_policy_link }}">Privacy Policy</a>
     {% endif %}
-    {% if site.legal.security_advisories_link %}
-      <a href="{{ site.legal.security_advisories_link }}">Advisories</a>
+    {% if site.prexian.legal.security_advisories_link %}
+      <a href="{{ site.prexian.legal.security_advisories_link }}">Advisories</a>
     {% endif %}
-    {% if site.legal.disclosure_policy_link %}
-      <a href="{{ site.legal.disclosure_policy_link }}">Disclosure policy</a>
+    {% if site.prexian.legal.disclosure_policy_link %}
+      <a href="{{ site.prexian.legal.disclosure_policy_link }}">Disclosure policy</a>
     {% endif %}
-    {% if site.legal.security_feedback_link %}
-      <a href="{{ site.legal.security_feedback_link }}">Security feedback</a>
+    {% if site.prexian.legal.security_feedback_link %}
+      <a href="{{ site.prexian.legal.security_feedback_link }}">Security feedback</a>
     {% endif %}
   </nav>
 {% endif %}

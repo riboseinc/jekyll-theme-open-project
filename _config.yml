@@ -1,50 +1,121 @@
-markdown: kramdown
+## Prexian site configuration to be filled
+## Default is a project site
 
-includes_dir: .
+# url: # URL for the site, e.g. "https://prexian.example.com"
 
-permalink: /blog/:year-:month-:day-:title/
+## Development settings
 
-# algolia_search:
-#   api_key: ''
-#   index_name: ''
-# Uncomment this if you want to use Algolia’s search.
-# It’s free for open-source projects.
+# incremental: true
+# livereload: true
 
-exclude:
-  - home-hero.html
-  - title.html
-  - nav-links.html
-  - flavor-sample-summary.html
-  - project-nav.html
-  - /**/.git/*
-  - /_projects/**/_*_repo/*
-  - /_projects/*/assets/css/*
-  - /_projects/**/docs/*
-  - .sass-cache/
+prexian:
+  ## TO CHANGE FOR HUB SITE
+  site_type: project
 
-external_links:
-  selector: 'body.site--project main a, body.site--hub.layout--post main a'
-  ignored_selectors:
-    - .layout--home a
-    - a[href*=travis]
-    - a[href*=coverity]
-    - a[href*=codecov]
+  ## TO SET FOR PROJECT SITE
+  # hub:
+  #   git_repo_url: https://github.com/riboseinc/open.ribose.com
+  #   home_url: https://open.ribose.com/
 
-landing_priority: [software, specs, blog]
 
-plugins:
-  - jekyll-theme-rop
-  - jekyll-seo-tag
-  - jekyll-sitemap
-  - jekyll-data
-  - jekyll-asciidoc
-  - jekyll-redirect-from
-  - kramdown-parser-gfm
-  - kramdown-syntax-coderay
+  ## TO SET
+  # title: Prexian
+  # description: Managing a nexus of open-source software and specification projects.
+  ## The above two are used by jekyll-seo-tag for things such as
+  ## `<title>` and `<meta>` tags, as well as elsewhere by the theme.
 
+  ## TO SET
+  # tagline: >-
+  #   Managing a nexus of open-source software and specification projects.
+
+  ## TO SET
+  # pitch: >-
+  #   Prexian provides a Jekyll theme (with accompanying plugin code) aiming to help
+  #   organizations and individuals present open-source software and specifications in
+  #   a navigable and elegant way.
+
+  ## TO SET
+  # author: "Ribose Inc."
+
+  ## TO SET
+  # authors:
+  #   - name: Ribose Inc.
+  #     email: open.source@ribose.com
+  # contact_email: open.source@ribose.com
+
+  permalink: /blog/:year-:month-:day-:title/
+
+  # algolia_search:
+  #   api_key: '0193b06d928ee52f653c6e5ea95d9f97'
+  #   index_name: 'rnpgp'
+
+  landing_priority:
+    - software
+    - specs
+    - blog
+
+  external_links:
+    selector: 'body.site--project main a, body.site--hub.layout--post main a'
+    ignored_selectors:
+      - .layout--home a
+      - a[href*=travis]
+      - a[href*=coverity]
+      - a[href*=codecov]
+
+  fontawesome_cdn:
+    version: v5.8.1
+    integrity: "sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
+  # Only applies if no_auto_fontawesome is not set.
+
+  no_auto_fontawesome: false
+  # If set to yes, site (with default design) must specify <script> elements
+  # that make required FA styles available in SVG mode.
+
+  # Debug mode for development
+  # debug: true
+
+  ## TO SET
+  # social:
+  #   links:
+  #     - {social link 1 URL}
+  #     - {social link 2 URL}
+
+  ## TO SET
+  # legal:
+  #   name: Ribose
+  #   tos_link: https://www.ribose.com/terms-of-service
+  #   privacy_policy_link: https://www.ribose.com/privacy-policy
+
+  ## TO SET
+  # home_calls_to_action:
+  #   - { url: "/about", title: "About Prexian" }
+
+  ## TO SET
+  # github_repo_url: https://github.com/riboseinc/prexian
+
+## CAN BE SET
+# tag_namespaces:
+#   software:
+#     writtenin: "Written in"
+#     bindingsfor: "Bindings for"
+#     user: "Target user"
+#     interface: "Interface"
+#   specs:
+#     audience: "Audience"
+#     completion_status: "Status"
+
+# Jekyll configuration
+# includes_dir: '_includes'
+
+## Prexian site configuration defaults
+
+# Default is a project site
+# Must be set for Prexian
 collections:
+  ## TO CHANGE FOR HUB SITE
   projects:
     output: false
+
   software:
     output: true
     permalink: /software/:path/
@@ -53,21 +124,16 @@ collections:
     permalink: /specs/:path/
   posts:
     output: true
-    permalink: /blog/:month-:day-:year/:title/
+    permalink: /blog/:year-:month-:day-:title/
   pages:
     output: true
     permalink: /:name/
 
-fontawesome_cdn:
-  version: v5.8.1
-  integrity: "sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
-# Only applies if no_auto_fontawesome is not set.
-
-no_auto_fontawesome: false
-# If set to yes, site (with default design) must specify <script> elements
-# that make required FA styles available in SVG mode.
-
+# Must be set for Prexian
 defaults:
+  # Theme defaults.
+  # MUST be duplicated from theme’s _config.yml
+  # (does not get inherited, unlike the collections hash)
   - scope:
       path: ""
     values:
@@ -87,3 +153,41 @@ defaults:
       type: specs
     values:
       layout: spec
+
+markdown: kramdown
+
+exclude:
+  - /**/.git/*
+  - /_projects/**/_*_repo/*
+  - /_projects/*/assets/css/*
+  - /_projects/**/docs/*
+  - README.*
+  - lib*
+  - prexian.gemspec
+  - exe*
+  - develop
+  - bin
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - '**/*.rb'
+  - script
+  - Rakefile
+
+plugins:
+  - prexian
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-data
+  - jekyll-asciidoc
+  - jekyll-redirect-from
+  - kramdown-parser-gfm
+  - kramdown-syntax-coderay
+

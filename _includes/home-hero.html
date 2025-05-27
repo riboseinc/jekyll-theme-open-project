@@ -1,21 +1,21 @@
 <div class="text">
-  <h1 class="title">{{ site.tagline }}</h1>
+  <h1 class="title">{{ site.prexian.tagline }}</h1>
 
-  {% if site.pitch %}
-    <p class="desc">{{ site.pitch | safe }}</p>
+  {% if site.prexian.pitch %}
+    <p class="desc">{{ site.prexian.pitch | safe }}</p>
   {% endif %}
 
-  {% if site.is_hub %}
+  {% if site.prexian.site_type == "hub" %}
     <div class="cta">
       <a class="button" href="{{ "/projects/" | relative_url }}">
         <i class="icon fas fa-search"></i>
         Explore Projects
       </a>
     </div>
-  {% else if site.one_software %}
+  {% else if site.prexian.one_software %}
   {% else %}
     <div class="cta">
-      {% assign ctas = site.home_calls_to_action | slice: 0, 2 %}
+      {% assign ctas = site.prexian.home_calls_to_action | slice: 0, 2 %}
 
       {% for link in ctas %}
         <a class="button" href="{{ link.url | relative_url }}">

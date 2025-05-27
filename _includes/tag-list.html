@@ -4,7 +4,7 @@
     {% for tag in include.tags %}
       {% if tag contains ":" %}
         {% assign namespace_id = tag | split: ":" | first %}
-        {% assign namespace = site.tag_namespaces[include.item_type][namespace_id] %}
+        {% assign namespace = site.prexian.tag_namespaces[include.item_type][namespace_id] %}
         {% assign tag_human = tag | split: ":" | last | replace: "_", " " %}
       {% else %}
         {% assign tag_human = tag | replace: "_", " " %}

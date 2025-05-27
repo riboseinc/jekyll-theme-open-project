@@ -1,0 +1,871 @@
+@use "sass:color";
+
+@mixin tbd($color: red) {
+  position: relative;
+  padding: 0 .3em;
+  border: 1px dashed color.adjust($main-font-color, $lightness: 70%);
+
+  &:after {
+    position: absolute;
+    left: 100%;
+    content: "TBD";
+    color: color.adjust($main-font-color, $lightness: 70%);
+    font-size: .6em;
+    line-height: 1;
+    padding: .05em .4em;
+  }
+}
+
+@mixin wide-container() {
+  @media screen and (min-width: $bigscreen-breakpoint) {
+    padding: 0 2em;
+    width: $bigscreen-breakpoint - $gutter * 8;
+  }
+  @media screen and (min-width: $widescreen-breakpoint) {
+    width: $widescreen-breakpoint - $gutter * 8;
+  }
+}
+
+@mixin padded-code-snippet() {
+  padding: .2em .5em;
+  margin: 0 .2em;
+
+  font-size: 15px;
+
+  background: $code-listing-background-color;
+
+  border-color: $code-listing-border-color;
+  border-width: 0 1px 0 1px;
+  border-style: dashed;
+  border-radius: 0;
+}
+
+@mixin padded-code-snippet--reset() {
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+@mixin code-snippet-container() {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  line-height: 1.2;
+
+  @include padded-code-snippet();
+  padding-top: .5em;
+  padding-bottom: .5em;
+
+  border-width: 0 0 0 1px;
+  border-radius: 0 .25em .25em 0;
+
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+  margin-left: -.1em;
+
+  > code {
+    // Avoid bad formatting in case of <code> element nested
+    // inside a <pre>
+    @include padded-code-snippet--reset();
+  }
+}
+
+@mixin code-snippet() {
+  color: color.adjust($main-font-color, $lightness: 24%);
+
+  @include padded-code-snippet();
+  margin-top: -1px;
+  margin-bottom: -1px;
+
+  font-family: $font-family-source;
+
+  code {
+    // Avoid bad formatting in case of <code> elements nested
+    // into each other (possible with adoc output)
+    @include padded-code-snippet--reset();
+  }
+}
+
+@mixin cta-button($bgcolor, $color) {
+  font-weight: 800;
+  font-size: 18px;
+  padding: 12px 32px;
+  display: inline-block;
+  margin-right: 10px;
+  transition: box-shadow .2s ease-out;
+
+  &, &:link, &:visited {
+    color: $color;
+    background-color: $bgcolor;
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 4px rgba(black, 0.2);
+  }
+
+  .icon {
+    margin-right: 10px;
+    font-weight: 400;
+    position: relative;
+    top: 2px;
+    font-size: 120%;
+  }
+}
+
+@mixin cta-button-mini($bgcolor, $color) {
+  @include cta-button($bgcolor, $color);
+  font-size: 14px;
+  padding: 6px 16px;
+}
+
+@mixin hoverable-card($base-y, $base-blur, $color) {
+  $hovered-y: $base-y * 2;
+  $hovered-blur: $base-blur * 2;
+
+  box-shadow: 0px $base-y $base-blur $color;
+
+  transition: box-shadow .17s ease, transform .17s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0px $hovered-y $hovered-blur $color;
+  }
+}
+
+@mixin reset-list() {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin static-link-color($color) {
+  &:link, &:hover, &:visited {
+    color: $color;
+  }
+}
+
+@mixin asciidoc-markup($highlight-color) {
+
+  h1, h2, h3, h4, h5, h6 {
+    // Header highlight when in-page navigation links are used
+    &.highlighted {
+      &:before {
+        content: "→";
+        margin-right: .5em;
+      }
+    }
+  }
+
+  // Small text
+  span.small {
+    font-size: 80%;
+  }
+
+  // Callouts
+  .conum {
+    color: $primary-dark-color;
+    font-family: $font-family;
+    opacity: 0.7;
+    transition: opacity .4s ease-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .colist {
+    ol {
+      list-style: none;
+      counter-reset: item;
+      padding-left: 1.5em;
+
+      li {
+        counter-increment: item;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-start;
+
+        &:before {
+          margin-left: -1.5em;
+          flex-shrink: 0;
+          width: 1.75em;
+          height: 1.75em;
+          margin-right: .25em;
+          margin-top: -.1em;
+
+          border-radius: 100%;
+          padding: .1em;
+          line-height: 1.8;
+
+          content: counter(item);
+          font-size: 100%;
+          font-weight: bold;
+          text-align: center;
+          background-color: $primary-dark-color;
+          font-family: monospace;
+          color: white;
+          transform: scale(0.8);
+        }
+      }
+    }
+  }
+
+  // Generic title
+  // Used for e.g. code listing headings and tip block labels
+  .title {
+    text-transform: uppercase;
+    font-size: 12px;
+    border-radius: .25em;
+    background-color: $main-font-color;
+    color: white;
+    font-weight: bold;
+    padding: .3em .6em;
+  }
+
+  // Blocks
+
+  .admonitionblock {
+    > table {
+      display: flex;
+      flex-flow: column nowrap;
+
+      tbody {
+        display: flex;
+        flex-flow: column nowrap;
+
+        tr {
+          display: flex;
+          flex-flow: column nowrap;
+
+          @media screen and (min-width: $bigscreen-breakpoint) {
+            flex-flow: row nowrap;
+          }
+
+          td.content {
+            overflow-x: hidden;
+          }
+        }
+      }
+    }
+  }
+
+  .admonitionblock,
+  .listingblock {
+    margin: 1em 0;
+  }
+
+  .admonitionblock.warning {
+    td.icon .title {
+      background-color: $warning-color;
+    }
+  }
+  .admonitionblock.important {
+    td.icon .title {
+      background-color: $important-color;
+    }
+  }
+
+  .imageblock {
+    .title {
+      background-color: $accent-color;
+      color: white;
+    }
+  }
+
+  .listingblock {
+    display: flex;
+    flex-flow: column nowrap;
+
+    .title {
+      align-self: flex-start;
+      background-color: $code-listing-border-color;
+      color: white;
+      border-radius: 0;
+    }
+
+    .content {
+      align-self: stretch;
+
+      position: relative;
+      button.listing-clipboard-button {
+        position: absolute;
+        right: 0;
+        top: .25em;
+        padding: .3em .3em;
+        font-size: 80%;
+        transform: translateX(100%);
+        color: $code-listing-border-color;
+        background: $code-listing-background-color;
+        border: 0;
+        cursor: pointer;
+      }
+
+      pre {
+        margin: 0;
+      }
+    }
+  }
+
+  .admonitionblock {
+    padding-left: .5em;
+    background-color: rgba(black, 0.03);
+
+    @media screen and (min-width: $bigscreen-breakpoint) {
+      overflow-x: scroll;
+    }
+
+    > table:first-child {
+      margin-top: 0;
+    }
+    > table:last-child {
+      margin-bottom: 0;
+    }
+
+    td.icon {
+      vertical-align: top;
+      padding-left: 0;
+      font-size: 90%;
+    }
+
+    .title {
+      background-color: $primary-dark-color;
+      color: white;
+    }
+
+    .content {
+      font-size: 90%;
+
+      .title {
+        background: transparent;
+        color: $main-font-color;
+        padding-left: 0;
+      }
+
+      .listingblock pre {
+        font-size: 100%;
+      }
+
+      > div:first-child {
+        > :first-child {
+          margin-top: 0;
+        }
+      }
+      > div:last-child {
+        > :last-child {
+          margin-bottom: 0;
+        }
+        &.ulist {
+          li:first-child > :first-child {
+            margin-top: 0;
+          }
+          li:last-child > :last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin item-external-links($onDark: false) {
+  ul.nav-items {
+    @include reset-list();
+  }
+
+  > .nav-items > li {
+    flex-basis: 50%;
+    width: 50%;
+    max-width: 200px;
+
+    &:first-child {
+      a {
+        margin-left: 1px;
+      }
+    }
+
+    > a {
+      @if $onDark == true {
+        @include static-link-color(white);
+        background-color: rgba(black, 0.7);
+      } @else {
+        @include static-link-color(#444);
+        background-color: rgba(black, 0.08);
+      }
+
+      display: block;
+      font-weight: bold;
+      padding: .5em 1em .5em 1.5em;
+
+      margin: 1px 1px 1px 0;
+
+      display: flex;
+      flex-flow: row nowrap;
+
+      .lbl {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        flex: 1;
+      }
+      .ico {
+        flex-shrink: 0;
+        width: 32px;
+      }
+      .ico-ext {
+        flex-shrink: 0;
+        text-align: right;
+        width: 32px;
+      }
+    }
+
+    &.featured {
+      > a {
+        @if $onDark == true {
+          @include static-link-color($primary-color);
+          background-color: white;
+        } @else {
+          @include static-link-color(white);
+          background-color: $primary-dark-color;
+        }
+      }
+    }
+  }
+}
+
+@mixin item-nav-toc() {
+  // Used for ToC on software item’s landing and elsewhere,
+  // (though not in docs sidebar)
+
+  ul.nav-items {
+    @include reset-list;
+    font-size: 15px;
+  }
+
+  > ul.nav-items > li {
+    > .item-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+      line-height: 1.8;
+    }
+    ul {
+      line-height: 2;
+    }
+  }
+}
+
+@mixin docs-page($primary-dark-color) {
+  .leaflet-pane {
+    // To ensure leaflet does not obscure navigation sidebar
+    z-index: 3;
+  }
+  .leaflet-top, .leaflet-bottom {
+    // To ensure leaflet buttons get covered by expandable top menu
+    z-index: 5;
+  }
+
+  > header.documentation-header,
+  > section.documentation {
+    align-self: stretch;
+    width: auto;
+  }
+
+  > header.documentation-header {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 0 0 0 2em;
+    position: fixed;
+    right: 0;
+    z-index: 4;
+
+    transition: background .1s linear, border-bottom .1s linear, transform .1s linear;
+
+    .nav-header {
+      padding: 10px 2em 10px 2em;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      transition: background .6s $easeOutCirc;
+
+      .title {
+        white-space: nowrap;
+        line-height: 1;
+        font-weight: normal;
+        font-size: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+
+        a {
+          @include static-link-color(#444);
+        }
+
+        .nav-toggle-icon {
+          cursor: pointer;
+        }
+      }
+
+      .logo-container {
+        $logoSize: 32px;
+
+        margin-right: 10px;
+        height: $logoSize;
+        width: $logoSize;
+
+        .logo > :only-child {
+          width: $logoSize;
+          height: $logoSize;
+        }
+      }
+
+      .nav-toggle-icon {
+        margin-left: 1em;
+
+        > .close { display: none; }
+        > .open { display: block; }
+      }
+    }
+
+    &.nav-expanded {
+      .nav-header {
+        background-color: #f7f7f7;
+      }
+      .nav-header .nav-toggle-icon {
+        > .open { display: none; }
+        > .close { display: block; }
+      }
+    }
+
+    .item-type {
+      display: none;
+      margin-right: 10px;
+    }
+
+    &.headroom--not-top {
+      background: rgba(white, 0.9);
+      box-shadow: rbga(white, 0.9) 0 20px 30px;
+    }
+
+    &.unpinned {
+      .item-type, .subsection {
+        display: inline-block;
+      }
+    }
+  }
+
+  > section.documentation {
+    flex: 1;
+    overflow-x: auto; // on narrow screens, code snippets & tables may overflow width
+
+    @media screen and (min-width: $bigscreen-breakpoint) {
+      display: flex;
+      flex-flow: column nowrap;
+    }
+
+    .docs-nav {
+      $navFlexShare: 20%;
+
+      background: transparent;
+      flex-basis: 20%;
+
+      transition: flex-basis .6s $easeOutCirc;
+
+      > section {
+        margin-bottom: 15px;
+      }
+
+      // New style: Nav with nested items
+      > ul.nav-items {
+        $sidePadding: 1em;
+
+        @include reset-list;
+
+        position: fixed;
+        overflow-y: auto;
+        bottom: 0;
+        right: 0;
+        left: 0;
+
+        padding: .75em $sidePadding;
+        z-index: 5;
+        background: #f7f7f7;
+        box-shadow: rgba(black, 0.7) -30px 0px 60px -60px;
+
+        transition:
+          // Collapsing of header when scrolling (w/headroom):
+          top .1s linear,
+          // Toggling sidebar open/closed
+          transform .6s $easeOutCirc,
+          opacity .6s $easeOutCirc,
+          box-shadow .6s $easeOutCirc;
+
+        @media screen and (min-width: $bigscreen-breakpoint) {
+          left: unset;
+        }
+
+        @media screen and (min-width: $bigscreen-breakpoint) {
+          max-width: calc(#{$navFlexShare} - #{$sidePadding});
+        }
+
+        li {
+          font-size: 15px;
+          font-weight: normal;
+
+          > .item-title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          &.selected {
+            > .item-title {
+              background-color: #f0f0f0;
+              margin-left: -2em;
+              padding-left: 2em;
+            }
+
+            span {
+              font-weight: bold;
+            }
+          }
+          a { @include static-link-color(#444); }
+        }
+
+        > li {
+          > .item-title {
+            font-size: 20px;
+            margin: 0;
+            line-height: 1.8;
+          }
+          > ul {
+            margin-left: .75em;
+            padding-left: 0;
+            line-height: 2;
+            margin-bottom: .5em;
+          }
+
+          ul {
+            margin-left: 1.25em;
+            padding-left: 0;
+          }
+
+          ul.in-page-toc {
+            padding: .25em .25em .25em0;
+            margin-left: 0;
+            margin-bottom: .5em;
+            border-radius: 0 0 0 1em;
+
+            &, ul {
+              list-style: none;
+            }
+            ul {
+              padding: 0;
+            }
+            li {
+              font-size: 13px;
+              line-height: 1.5;
+
+              &.highlighted > .item-title {
+                a:link, a:visited {
+                  font-weight: bold;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    > article {
+      @extend .main-article;
+
+      .body {
+        font-size: 17px;
+        line-height: 1.6;
+      }
+
+      margin: 0 auto;
+      flex: 1;
+
+      background: white;
+      z-index: 1;
+
+      > header, > footer {
+        [role=toolbar] {
+          line-height: 1;
+
+          button, a {
+            border: 0;
+            padding: 0;
+            margin-right: 1em;
+
+            font-family: inherit;
+            font-size: 80%;
+            font-weight: bold;
+
+            background: white;
+            color: $primary-dark-color;
+            cursor: pointer;
+
+            text-decoration: none;
+
+            &:last-child {
+              margin-right: 0;
+            }
+
+            .ico-ext {
+              margin-left: .5em;
+            }
+          }
+        }
+      }
+
+      > header {
+        > [role=toolbar] {
+          margin-top: -2em;
+          margin-bottom: 4em;
+        }
+        > .title {
+          padding-top: 70px;
+
+          @media screen and (min-width: $bigscreen-breakpoint) {
+            display: flex;
+            flex-flow: row nowrap;
+          }
+
+          > .logo-container {
+            margin-right: 22px;
+
+            > :only-child {
+              width: 58px;
+              height: 58px;
+            }
+          }
+
+          .text {
+            flex: 1;
+            font-size: 36px;
+
+            margin: 0;
+            font-weight: 500;
+          }
+        }
+        .lead {
+          font-weight: normal;
+          font-size: 20px;
+        }
+      }
+
+      > .body {
+        @include asciidoc-markup($primary-dark-color);
+      }
+    }
+
+    .docs-nav,
+    &.docs-landing > article > header {
+      .external-links {
+        @include item-external-links();
+      }
+    }
+
+    .docs-nav {
+      .external-links {
+        margin-bottom: .5em;
+
+        > .nav-items > li {
+          flex-basis: unset;
+          width: 100%;
+          a {
+            padding: 0;
+            background: none;
+          }
+          &.featured {
+            a {
+              background: none;
+              @include static-link-color($main-font-color);
+            }
+          }
+        }
+      }
+    }
+
+    &.docs-landing > article {
+      > header {
+        .external-links {
+          margin-bottom: 2em;
+
+          > .nav-items > li {
+            width: unset;
+          }
+        }
+        > .title {
+          border-bottom-width: 0;
+          padding-bottom: 0;
+        }
+      }
+
+      @include item-nav-toc();
+    }
+
+    @media screen and (min-width: $bigscreen-breakpoint) {
+      flex-flow: row nowrap;
+      flex-direction: row-reverse;
+
+      > article {
+        flex: 2;
+      }
+
+      > .docs-nav {
+        padding: 70px 0 0 0;
+      }
+
+      &.docs-landing {
+        flex-direction: column-reverse;
+
+        > article {
+          border-left-width: 0;
+
+          .external-links {
+            > .nav-items {
+              display: flex;
+              flex-flow: row wrap;
+            }
+          }
+
+          > header,
+          > .body {
+            margin-left: 0;
+          }
+
+          @media screen and (min-width: $bigscreen-breakpoint) {
+            > .body {
+              padding-top: 20px;
+            }
+          }
+        }
+      }
+
+      &.with-collapsed-toc {
+        > article {
+          > header, > .body {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+
+    &.with-collapsed-toc {
+      position: relative;
+
+      > .docs-nav {
+        flex-basis: 0;
+
+        .nav-items {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+      }
+    }
+  }
+}

@@ -1,10 +1,10 @@
-{% assign num_featured_software = site.featured_software | size %}
-{% assign num_featured_specs = site.featured_specs | size %}
-{% assign num_posts = site.num_posts_combined %}
+{% assign num_featured_software = site.prexian.featured_software | size %}
+{% assign num_featured_specs = site.prexian.featured_specs | size %}
+{% assign num_posts = site.prexian.num_posts_combined %}
 
 {% assign num_posts_specs = num_posts | plus: num_featured_specs %}
 
-{% for section_name in site.landing_priority %}
+{% for section_name in site.prexian.landing_priority %}
   {% if section_name == "specs" and num_featured_specs > 0 %}
     {% include featured_specs.html %}
   {% elsif section_name == "software" and num_featured_software > 0 %}

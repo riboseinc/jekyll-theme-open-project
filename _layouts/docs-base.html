@@ -47,14 +47,14 @@ layout: default
         <h1 class="text">{{ prominent_title | default: title }}</h1>
       </div>
 
-      {% if site.github_repo_url or num_top_nav_items > 0 %}
+      {% if site.prexian.github_repo_url or num_top_nav_items > 0 %}
         <nav role="toolbar">
           {% if num_top_nav_items > 0 %}
             <button class="docs-nav-toggle">Toggle table of contents</button>
           {% endif %}
 
-          {% if site.github_repo_url %}
-            <a href="{{ site.github_repo_url }}/edit/{{ item_data.docs.github_repo_branch | default: site.default_repo_branch | default: 'main' }}/{{ page.path }}" class="docs-suggest-edits">Suggest edits to this page</a>
+          {% if site.prexian.github_repo_url %}
+            <a href="{{ site.prexian.github_repo_url }}/edit/{{ item_data.docs.github_repo_branch | default: site.prexian.default_repo_branch | default: 'main' }}/{{ page.path }}" class="docs-suggest-edits">Suggest edits to this page</a>
           {% endif %}
         </nav>
       {% endif %}

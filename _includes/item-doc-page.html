@@ -29,7 +29,7 @@ supporting expandable navigation widget.
 {% if is_docs_landing != true %}
   <header class="documentation-header {% if num_top_nav_items > 0 %} has-nav {% endif %}">
     <div class="nav-header">
-      {% if site.one_software %}
+      {% if site.prexian.one_software %}
         <h3 class="title">
           Docs
         </h3>
@@ -103,7 +103,7 @@ supporting expandable navigation widget.
 
           {% assign suggest_edits_base_url = item_data.docs.git_repo_url | default: item_data.repo_url %}
           {% if suggest_edits_base_url %}
-            <a href="{{ suggest_edits_base_url }}/edit/{{ item_data.docs.git_repo_branch | default: site.default_repo_branch | default: 'main' }} /{{ item_data.docs.git_repo_subtree | default: "docs" }}/{{ page.path | split: "/" | last }}" class="docs-suggest-edits">Suggest edits to this page</a>
+            <a href="{{ suggest_edits_base_url }}/edit/{{ item_data.docs.git_repo_branch | default: site.prexian.default_repo_branch | default: 'main' }} /{{ item_data.docs.git_repo_subtree | default: "docs" }}/{{ page.path | split: "/" | last }}" class="docs-suggest-edits">Suggest edits to this page</a>
           {% endif %}
         </nav>
       {% endif %}

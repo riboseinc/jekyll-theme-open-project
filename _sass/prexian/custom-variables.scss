@@ -1,0 +1,8 @@
+// Placeholder to allow overriding variable defaults and mixins.
+// This file is loaded before the base styles, so you can override
+// any variables defined in the theme.
+
+// Default theme variables (can be overridden)
+$primary-color: #05C7DF !default;
+$accent-color: #FF6357 !default;
+$main-background: linear-gradient(135deg, #0446CC 0%, #2864DD 100%) !default;

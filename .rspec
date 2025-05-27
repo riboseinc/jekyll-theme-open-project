@@ -1,0 +1,4 @@
+--require spec_helper
+--exclude-pattern "spec/fixtures/**/*_spec.rb"
+--format documentation
+--color

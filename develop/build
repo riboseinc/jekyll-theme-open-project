@@ -15,4 +15,4 @@ bundle exec jekyll build
 bundle exec htmlproofer ./_site --check-html --check-sri --disable-external
 bundle exec rubocop -D
 bundle exec develop/check-html
-gem build jekyll-theme-rop.gemspec
+gem build prexian.gemspec

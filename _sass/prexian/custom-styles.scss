@@ -1,0 +1,8 @@
+// Placeholder to allow overriding styles defined in the theme.
+// This file is loaded after the base styles, so you can override
+// any styles defined in the theme.
+
+// Default site logo styling
+.site-logo svg path {
+  fill: white;
+}

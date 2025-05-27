@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-{% assign projects = site.projects | where_exp: "item", "item.home_url != nil" %}
+{% assign projects = site.prexian.projects | where_exp: "item", "item.home_url != nil" %}
 {% assign num_projects = projects | size %}
 
 {% if num_projects > 0 %}

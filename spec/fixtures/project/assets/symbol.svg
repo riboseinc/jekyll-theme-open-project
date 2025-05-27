@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="projectGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Project box/package shape -->
+  <rect x="20" y="25" width="60" height="50" rx="8" ry="8" fill="url(#projectGradient)" stroke="#047857" stroke-width="2"/>
+  
+  <!-- Project icon/gear inside -->
+  <circle cx="50" cy="50" r="12" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+  <circle cx="50" cy="50" r="3" fill="#FFFFFF"/>
+  
+  <!-- Gear teeth -->
+  <rect x="48" y="32" width="4" height="6" fill="#FFFFFF"/>
+  <rect x="48" y="62" width="4" height="6" fill="#FFFFFF"/>
+  <rect x="32" y="48" width="6" height="4" fill="#FFFFFF"/>
+  <rect x="62" y="48" width="6" height="4" fill="#FFFFFF"/>
+  
+  <!-- Corner indicators -->
+  <circle cx="30" cy="35" r="2" fill="#FFFFFF"/>
+  <circle cx="70" cy="35" r="2" fill="#FFFFFF"/>
+  <circle cx="30" cy="65" r="2" fill="#FFFFFF"/>
+  <circle cx="70" cy="65" r="2" fill="#FFFFFF"/>
+  
+  <!-- Text -->
+  <text x="50" y="90" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#047857">PROJECT</text>
+</svg>
