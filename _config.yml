@@ -13,7 +13,7 @@ prexian:
   site_type: project
 
   ## TO SET FOR PROJECT SITE
-  # parent_hub:
+  # hub:
   #   git_repo_url: https://github.com/riboseinc/open.ribose.com
   #   home_url: https://open.ribose.com/
 

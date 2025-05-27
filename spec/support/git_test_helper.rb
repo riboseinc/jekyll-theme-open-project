@@ -192,7 +192,7 @@ module GitTestHelper
         site_type: project
 
         # Parent hub configuration
-        parent_hub:
+        hub:
           git_repo_url: "file://#{@hub_repo_path}"
           git_repo_branch: main
           home_url: "https://test-hub.example.com/"

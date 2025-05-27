@@ -116,9 +116,10 @@ module Prexian
 
       begin
         # Check if this is a local path (indicated by branch being nil and path being local)
-        if config[:branch].nil? && File.directory?(config[:repo_url])
-          puts "Prexian GitContentProcessor: Handling local path: #{config[:repo_url]}"
-          checkout_result = handle_local_path(config[:repo_url], destination)
+        resolved_path = resolve_local_path(config[:repo_url])
+        if config[:branch].nil? && resolved_path && File.directory?(resolved_path)
+          puts "Prexian GitContentProcessor: Handling local path: #{config[:repo_url]} -> #{resolved_path}"
+          checkout_result = handle_local_path(resolved_path, destination)
         else
           puts "Prexian GitContentProcessor: Handling git repository: #{config[:repo_url]}"
           # Use GitService to handle checkout and copy
@@ -171,6 +172,18 @@ module Prexian
       end
     end
 
+    def resolve_local_path(path)
+      return nil if path.nil? || path.empty?
+
+      # If it's already an absolute path, return it
+      return path if File.absolute_path?(path)
+
+      # For relative paths, resolve them relative to the site source directory
+      resolved = File.expand_path(path, @site.source)
+      puts "Prexian GitContentProcessor: Resolved relative path '#{path}' to '#{resolved}'"
+      resolved
+    end
+
     def handle_local_path(source_path, destination)
       require 'fileutils'
 
@@ -179,11 +192,20 @@ module Prexian
       # Create destination directory if it doesn't exist
       FileUtils.mkdir_p(destination)
 
-      # Copy all content from source to destination
+      # Copy all content from source to destination, but skip existing collection directories
+      # to avoid nested _software/_software and _specs/_specs
       Dir.glob("#{source_path}/*", File::FNM_DOTMATCH).each do |item|
         next if File.basename(item) == '.' || File.basename(item) == '..'
 
-        dest_item = File.join(destination, File.basename(item))
+        item_name = File.basename(item)
+        dest_item = File.join(destination, item_name)
+
+        # Skip if destination already has this directory (avoid duplicates)
+        if File.directory?(item) && File.directory?(dest_item)
+          puts "Prexian GitContentProcessor: Skipping existing directory: #{item_name}"
+          next
+        end
+
         if File.directory?(item)
           FileUtils.cp_r(item, dest_item)
         else

@@ -16,9 +16,9 @@ RSpec.describe 'Project Site Integration', type: :integration do
 
     it 'has parent hub configuration' do
       prexian_config = site.config['prexian'] || {}
-      parent_hub = prexian_config['parent_hub'] || {}
-      expect(parent_hub['git_repo_url']).to include('fixtures/hub')
-      expect(parent_hub['home_url']).to eq('https://techhub.example.com/')
+      hub = prexian_config['hub'] || {}
+      expect(hub['git_repo_url']).to include('fixtures/hub')
+      expect(hub['home_url']).to eq('https://techhub.example.com/')
     end
 
     it 'fetches hub logo from parent hub' do
@@ -31,14 +31,14 @@ RSpec.describe 'Project Site Integration', type: :integration do
         # This should attempt to fetch from the parent hub (our local fixture)
         expect { project_reader.read_content }.not_to raise_error
 
-        # Check that parent-hub directory structure is created
-        parent_hub_path = File.join(site.source, '_parent-hub')
-        expect(Dir.exist?(parent_hub_path) || Dir.exist?(File.join(parent_hub_path, 'parent-hub'))).to be_truthy
+        # Check that hub directory structure is created
+        hub_path = File.join(site.source, '_hub-site')
+        expect(Dir.exist?(hub_path) || Dir.exist?(File.join(hub_path, 'hub'))).to be_truthy
       ensure
         FileUtils.rm_rf(cache_dir) if Dir.exist?(cache_dir)
-        # Clean up parent-hub directory
-        parent_hub_path = File.join(site.source, 'parent-hub')
-        FileUtils.rm_rf(parent_hub_path) if Dir.exist?(parent_hub_path)
+        # Clean up hub directory
+        hub_path = File.join(site.source, 'hub')
+        FileUtils.rm_rf(hub_path) if Dir.exist?(hub_path)
       end
     end
 
@@ -83,7 +83,7 @@ RSpec.describe 'Project Site Integration', type: :integration do
       begin
         # Create a site with invalid parent hub URL
         invalid_config = site.config.dup
-        invalid_config['prexian']['parent_hub']['git_repo_url'] = 'https://invalid-repo-url.com/repo.git'
+        invalid_config['prexian']['hub']['git_repo_url'] = 'https://invalid-repo-url.com/repo.git'
 
         invalid_site = Jekyll::Site.new(Jekyll::Configuration.from(invalid_config))
         invalid_site.collections['software'] = Jekyll::Collection.new(invalid_site, 'software')
@@ -123,11 +123,11 @@ RSpec.describe 'Project Site Integration', type: :integration do
 
     it 'validates project site configuration' do
       prexian_config = site.config['prexian'] || {}
-      parent_hub = prexian_config['parent_hub'] || {}
+      hub = prexian_config['hub'] || {}
 
       expect(prexian_config['site_type']).to eq('project')
-      expect(parent_hub['git_repo_url']).to be_a(String)
-      expect(parent_hub['git_repo_branch'] || prexian_config['default_repo_branch'] || 'main').to eq('main')
+      expect(hub['git_repo_url']).to be_a(String)
+      expect(hub['git_repo_branch'] || prexian_config['default_repo_branch'] || 'main').to eq('main')
     end
 
     it 'handles refresh conditions' do

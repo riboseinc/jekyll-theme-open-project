@@ -126,7 +126,7 @@ RSpec.describe 'Hub Site Integration', type: :integration do
       prexian_config = site.config['prexian'] || {}
 
       expect(prexian_config['site_type']).to eq('hub')
-      expect(prexian_config['parent_hub']).to be_nil
+      expect(prexian_config['hub']).to be_nil
       expect(prexian_config['tag_namespaces']).to be_a(Hash)
       expect(prexian_config['landing_priority']).to be_an(Array)
     end

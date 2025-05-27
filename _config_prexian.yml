@@ -32,7 +32,7 @@ exclude:
   - '**/*.rb'
   - script
   - Rakefile
-
+  - spec/
 
 plugins:
   - prexian
@@ -99,7 +99,7 @@ prexian:
   # Debug mode for development
   debug: true
 
-  parent_hub:
+  hub:
     git_repo_url: https://github.com/riboseinc/open.ribose.com
     home_url: https://open.ribose.com/
 
@@ -174,5 +174,5 @@ defaults:
       layout: spec
 
 # Development settings
-incremental: true
-livereload: true
+# incremental: true
+# livereload: true

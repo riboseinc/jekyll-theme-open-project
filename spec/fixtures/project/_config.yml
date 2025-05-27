@@ -31,9 +31,9 @@ prexian:
   # Project site marker (not a hub)
   site_type: project
 
-  # Parent hub configuration - pointing to local hub fixture
-  parent_hub:
-    git_repo_url: "/Users/mulgogi/src/jekyll-theme-rop/spec/fixtures/hub"
+  # Hub configuration - pointing to local hub fixture
+  hub:
+    git_repo_url: "../hub"
     git_repo_branch: "main"
     home_url: "https://techhub.example.com/"
 

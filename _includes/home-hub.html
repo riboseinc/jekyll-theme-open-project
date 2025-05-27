@@ -14,7 +14,7 @@
         <a class="item" href="{{ item.home_url }}" role="article">
           <header>
             <div class="logo-container">
-              {% assign project_name = item.path | split: "/" | last | replace: ".md", "" %}
+              {% assign project_name = item.path | split: "/" | last | replace: ".md", "" | replace: ".adoc", "" %}
               {% assign relative_symbol_path = "/assets/projects/" | append: project_name | append: "/symbol.svg" %}
               <div class="logo"><img src="{{ relative_symbol_path }}"></div>
             </div>
@@ -60,7 +60,7 @@
       <a class="item" href="{{ item.home_url }}" role="article">
         <header>
           <div class="logo-container">
-            {% assign project_name = item.path | split: "/" | last | replace: ".md", "" %}
+            {% assign project_name = item.path | split: "/" | last | replace: ".md", "" | replace: ".adoc", "" %}
             {% assign relative_symbol_path = "/assets/projects/" | append: project_name | append: "/symbol.svg" %}
             <div class="logo"><img src="{{ relative_symbol_path }}"></div>
           </div>

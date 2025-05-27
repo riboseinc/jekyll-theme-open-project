@@ -4,7 +4,7 @@ description: "Advanced data processing and transformation toolkit"
 featured: true
 home_url: "https://dataforge.example.com"
 site:
-  local_path: "/Users/mulgogi/src/jekyll-theme-rop/spec/fixtures/project"
+  local_path: "../project"
 ---
 
 # DataForge

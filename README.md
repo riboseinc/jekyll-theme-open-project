@@ -152,7 +152,7 @@ If your project site has a parent hub, add this to `_config.yml`:
 
 ```yaml
 prexian:
-  parent_hub:
+  hub:
     git_repo_url: https://github.com/your-org/hub-site
     git_repo_branch: main  # optional, defaults to 'main'
     home_url: https://your-hub-site.com/
@@ -160,7 +160,15 @@ prexian:
 
 #### For Hub Sites
 
-Create a `_projects` directory with project definitions:
+- **`assets/symbol.svg`** - Your site's logo (SVG format recommended) inserted at the footer
+- **`title.html`** - Your site's title (HTML format recommended) to be included in the footer
+
+Without these two files the rendering of a project site will crash.
+
+TODO: Fix this problem by detecting and skipping.
+
+
+- a **`_projects`** directory with project definitions:
 
 ```yaml
 # _projects/my-project.md
@@ -178,9 +186,8 @@ Detailed project description...
 
 ### Optional Files
 
-#### Site Logo/Symbol
+#### Site Favicon
 
-- **`assets/symbol.svg`** - Your site's logo (SVG format recommended)
 - **`assets/favicon.png`** - Site favicon
 
 #### Custom Styling
@@ -211,8 +218,9 @@ my-project-site/
 ├── _config.yml           # Required: Site configuration
 ├── index.md              # Required: Homepage
 ├── Gemfile               # Required: Dependencies
+├── title.html            # Required (for hub): Title file
 ├── assets/
-│   ├── symbol.svg        # Optional: Site logo
+│   ├── symbol.svg        # Required (for hub): Site logo
 │   └── css/
 │       └── style.scss    # Optional: Custom styles
 ├── _pages/               # Optional: Static pages
@@ -248,7 +256,7 @@ Project sites are designed to be comprehensive resources for a single project, p
 # _config.yml for project site
 prexian:
   site_type: project
-  parent_hub:
+  hub:
     git_repo_url: https://github.com/your-org/hub-site
     git_repo_branch: main
     home_url: https://your-org.github.io/
@@ -572,7 +580,7 @@ All Git repository references support branch/version specification:
 ```yaml
 # For parent hub
 prexian:
-  parent_hub:
+  hub:
     git_repo_url: https://github.com/your-org/hub-site
     git_repo_branch: main  # or version tag like 'v1.2.3'
 
@@ -618,23 +626,23 @@ Aggregates content from multiple project repositories for hub sites.
 #### `Prexian::ProjectSiteLoader`
 Handles individual project site content and parent hub integration.
 
-### The `_parent-hub` Directory
+### The `_hub-site` Directory
 
 For project sites with a parent hub, Prexian automatically:
 
 1. **Fetches hub content** from the parent hub repository
-2. **Copies it** to `_parent-hub/parent-hub/` in your project site
+2. **Copies it** to `_hub-site/hub/` in your project site
 3. **Adds it to include paths** so you can reference hub assets
 
 This allows project sites to:
-- Use the hub's logo: `{% include parent-hub/assets/symbol.svg %}`
-- Reference hub branding: `{% include parent-hub/title.html %}`
+- Use the hub's logo: `{% include hub/assets/symbol.svg %}`
+- Reference hub branding: `{% include hub/title.html %}`
 - Maintain consistent styling with the hub
 
-The `_parent-hub` directory structure:
+The `_hub-site` directory structure:
 ```
-_parent-hub/
-└── parent-hub/
+_hub-site/
+└── hub/
     ├── assets/
     │   └── symbol.svg
     ├── title.html
@@ -702,6 +710,182 @@ bundle exec prexian cache clear
 bundle exec prexian cache status
 ```
 
+## 🐛 Debugging and Troubleshooting
+
+### Building this site itself
+
+The Prexian site itself is a project site of the ribose.com hub site.
+
+```bash
+./script/build
+./script/test
+./script/server
+```
+
+### Testing Site Builds
+
+Use the provided test scripts to verify your site works correctly:
+
+#### Test Hub Sites
+```bash
+# Test hub site functionality
+./script/test-hub
+
+# Build hub site for production
+./script/build-hub
+
+# Verify these elements are present:
+# - Project software components from all projects
+# - Project specifications from all projects
+# - Project blog posts alongside hub posts
+# - Proper navigation and layout
+```
+
+#### Test Project Sites
+```bash
+# Test project site functionality
+./script/test-project
+
+# Build project site for production
+./script/build-project
+
+# Verify these elements are present:
+# - Parent hub logo/link in footer
+# - Proper /specs/ page layout and content
+# - All project-specific content (software, specs, blog)
+# - Consistent styling with parent hub
+```
+
+### Common Debugging Steps
+
+#### 1. Check Configuration
+Ensure your `_config.yml` has the required settings:
+
+```yaml
+# For project sites
+prexian:
+  site_type: project
+  hub:
+    git_repo_url: https://github.com/your-org/hub-site
+    git_repo_branch: main
+    home_url: https://your-hub-site.com/
+
+# For hub sites
+prexian:
+  site_type: hub
+
+collections:
+  projects:
+    output: false
+```
+
+#### 2. Verify Repository Access
+Check that all Git repositories are accessible:
+
+```bash
+# Test hub repository access (for project sites)
+git ls-remote https://github.com/your-org/hub-site
+
+# Test project repository access (for hub sites)
+git ls-remote https://github.com/your-org/project-site
+```
+
+#### 3. Clear Cache
+If you're seeing stale content:
+
+```bash
+bundle exec prexian cache clear
+bundle exec jekyll clean
+```
+
+#### 4. Check Build Output
+Look for error messages during build:
+
+```bash
+bundle exec jekyll build --verbose
+```
+
+#### 5. Inspect Generated Files
+Check that content is being loaded correctly:
+
+```bash
+# For project sites, verify hub content is loaded
+ls -la _hub-site/hub/
+
+# For hub sites, verify project content is loaded
+ls -la _project-sites/
+```
+
+### Common Issues and Solutions
+
+#### Hub Sites Not Showing Project Content
+**Symptoms**: Hub site builds successfully but doesn't display software, specifications, or blog posts from projects.
+
+**Check**:
+- Verify project definitions in `_projects/` directory
+- Ensure project repositories are accessible
+- Check that project sites have the correct `site_type: project` configuration
+- Clear cache and rebuild: `bundle exec prexian cache clear && bundle exec jekyll build`
+
+#### Project Sites Missing Hub Assets
+**Symptoms**: Project site builds but missing parent hub logo, branding, or styling.
+
+**Check**:
+- Verify `hub` configuration in `_config.yml`
+- Ensure hub repository is accessible
+- Check that hub site has the correct `site_type: hub` configuration
+- Verify `_hub-site/hub/` directory is created during build
+
+#### Broken `/specs/` Page Layout
+**Symptoms**: Specifications page loads but has incorrect styling or missing content.
+
+**Check**:
+- Verify specifications are defined in `_specs/` collection
+- Check that `specs` collection is configured in `_config.yml`
+- Ensure specification files have correct frontmatter
+- Verify `spec-index` layout is available
+
+### Path Configuration
+
+All paths for software, specifications, and projects should use **relative paths** from the repository root, not absolute filesystem paths.
+
+**Correct**:
+```yaml
+# _software/my-tool.md
+docs:
+  git_repo_url: https://github.com/your-org/my-tool
+  git_repo_subtree: docs  # Relative path within the repository
+
+# _specs/my-spec.md
+spec_source:
+  git_repo_url: https://github.com/your-org/spec-repo
+  git_repo_subtree: specification  # Relative path within the repository
+```
+
+**Incorrect**:
+```yaml
+# Don't use absolute paths
+docs:
+  git_repo_subtree: /Users/username/projects/docs  # ❌ Absolute path
+```
+
+### Performance Tips
+
+- Use `git_repo_branch` to pin to specific versions for stability
+- Use shallow clones (automatic) for faster builds
+- Clear cache periodically: `bundle exec prexian cache clear`
+- Use `bundle exec jekyll serve --incremental` for faster development builds
+
+### Development Workflow
+
+When developing themes or debugging issues:
+
+1. **Use test scripts**: `./script/test-hub` or `./script/test-project`
+2. **Check logs**: Look for error messages in Jekyll build output
+3. **Inspect generated files**: Verify content is loaded in `_hub-site/` or `_project-sites/`
+4. **Clear cache**: Use `bundle exec prexian cache clear` when switching between configurations
+5. **Test incrementally**: Make small changes and test frequently
+
 ## 🛠️ Theme Development
 
 ### Building the Theme
@@ -762,7 +946,7 @@ After making changes to the theme:
    script/server
    ```
 
-## � Content Authoring
+## 📝 Content Authoring
 
 ### AsciiDoc Support
 
@@ -864,6 +1048,10 @@ If you're migrating from the old `jekyll-theme-open-project`:
    engine: png_diagram_page
    ```
 
+5. **Make sure you have required files**:
+    - `assets/symbol.svg`
+    - `title.html`
+
 ## 🌟 Examples
 
 See Prexian in action:
@@ -922,7 +1110,7 @@ prexian:
   contact_email: your.email@example.com
 
   # Parent hub (for project sites)
-  parent_hub:
+  hub:
     git_repo_url: https://github.com/your-org/hub-site
     git_repo_branch: main
     home_url: https://your-org.github.io/

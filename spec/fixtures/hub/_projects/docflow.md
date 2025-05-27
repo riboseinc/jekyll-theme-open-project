@@ -4,7 +4,7 @@ description: "Document processing and workflow automation platform"
 featured: true
 home_url: "https://docflow.example.com"
 site:
-  local_path: "/Users/mulgogi/src/jekyll-theme-rop/spec/fixtures/docflow"
+  local_path: "../docflow"
 ---
 
 # DocFlow

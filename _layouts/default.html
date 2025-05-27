@@ -111,21 +111,28 @@
       {% if config.site_type == 'hub' %}
         <div class="site-logo" aria-label="logo">{% include logo.html %}</div>
       {% else %}
-        {% if config.parent_hub.home_url %}
-        <div class="parent-hub-plug">
+        {% if config.hub.home_url %}
+        <div class="hub-plug">
           <span class="label">{{ site.prexian.title }} is</span>
-          <a class="logo" role="presentation" href="{{ site.prexian.parent_hub.home_url }}"
-            aria-label="parent project logo">
-            {% capture parent_hub_symbol %}parent-hub/assets/symbol.svg{% endcapture %}
-            {% capture parent_hub_title %}parent-hub/title.html{% endcapture %}
-            {% if site.static_files contains parent_hub_symbol %}
-              {% include parent-hub/assets/symbol.svg %}
+          <a class="logo" role="presentation" href="{{ site.prexian.hub.home_url }}"
+            aria-label="hub project logo">
+            {% capture hub_symbol %}{% include hub/assets/symbol.svg %}{% endcapture %}
+            {% unless hub_symbol contains "Liquid error" %}
+            {% assign symbol_exists = true %}
+            {% endunless %}
+            {% capture hub_title %}{% include hub/title.html %}{% endcapture %}
+            {% unless hub_title contains "Liquid error" %}
+            {% assign title_exists = true %}
+            {% endunless %}
+
+            {% if symbol_exists %}
+              {{ hub_symbol }}
             {% endif %}
             &nbsp;<span class="title">
-            {% if site.static_files contains parent_hub_title %}
-              {% include parent-hub/title.html %}
+            {% if title_exists %}
+              {{ hub_title }}
             {% else %}
-              {{ site.prexian.parent_hub.title | default: "Parent Hub" }}
+              {{ site.data.hub.title }}
             {% endif %}
             </span>
           </a>

@@ -26,50 +26,74 @@ module Prexian
     private
 
     def fetch_hub_logo
-      puts 'Prexian SiteLoader: Fetching hub logo'
-      Jekyll.logger.debug('Prexian SiteLoader: Fetching hub logo')
+      puts 'Prexian SiteLoader: Fetching hub data'
+      Jekyll.logger.debug('Prexian SiteLoader: Fetching hub data')
 
-      # Check if parent_hub configuration exists
-      parent_hub_config = prexian_config['parent_hub']
-      unless parent_hub_config
-        Jekyll.logger.warn('[WARNING] prexian.parent_hub is required but not set, skipping hub logo fetch')
+      # Check if hub configuration exists
+      hub_config = prexian_config['hub']
+      unless hub_config
+        Jekyll.logger.warn('[WARNING] prexian.hub is required but not set, skipping hub data fetch')
         return
       end
 
-      parent_hub_repo_url = parent_hub_config['git_repo_url']
-      unless parent_hub_repo_url
-        Jekyll.logger.warn('[WARNING] prexian.parent_hub.git_repo_url is required but not set, skipping hub logo fetch')
+      hub_repo_url = hub_config['git_repo_url']
+      unless hub_repo_url
+        Jekyll.logger.warn('[WARNING] prexian.hub.git_repo_url is required but not set, skipping hub data fetch')
         return
       end
 
-      parent_hub_repo_branch = prexian_config['parent_hub']['git_repo_branch'] || default_repo_branch
+      hub_repo_branch = prexian_config['hub']['git_repo_branch'] || default_repo_branch
 
-      puts "Prexian SiteLoader: Parent hub repository branch: #{parent_hub_repo_branch}"
-      Jekyll.logger.debug("Prexian SiteLoader: Parent hub repository branch: #{parent_hub_repo_branch}")
+      puts "Prexian SiteLoader: Hub repository branch: #{hub_repo_branch}"
+      Jekyll.logger.debug("Prexian SiteLoader: Hub repository branch: #{hub_repo_branch}")
 
       begin
-        hub_config = {
-          repo_url: parent_hub_repo_url,
-          branch: parent_hub_repo_branch
+        hub_git_config = {
+          repo_url: hub_repo_url,
+          branch: hub_repo_branch
         }
 
-        hub_destination = File.join(@site.source, '_parent-hub')
-        parent_hub_includes = File.join(hub_destination, 'parent-hub')
+        hub_destination = File.join(@site.source, '_hub-site')
+        hub_includes = File.join(hub_destination, 'hub')
 
         checkout_result = @git_service.checkout_and_copy_content(
-          hub_config,
-          parent_hub_includes,
+          hub_git_config,
+          hub_includes,
           refresh_condition: refresh_condition
         )
 
         puts "Prexian SiteLoader: Checkout result: #{checkout_result.inspect}"
-        return unless File.directory?(parent_hub_includes)
+        return unless File.directory?(hub_includes)
 
-        puts "Prexian SiteLoader: Hub site copied to #{parent_hub_includes}"
+        puts "Prexian SiteLoader: Hub site copied to #{hub_includes}"
 
         add_to_includes_load_paths(hub_destination)
+        extract_hub_data(hub_includes)
       rescue Prexian::GitService::GitError => e
-        Jekyll.logger.warn("Prexian SiteLoader: Failed to fetch hub logo: #{e.message}")
+        Jekyll.logger.warn("Prexian SiteLoader: Failed to fetch hub data: #{e.message}")
+      end
+    end
+
+    def extract_hub_data(hub_path)
+      hub_config_path = File.join(hub_path, '_config.yml')
+      return unless File.exist?(hub_config_path)
+
+      begin
+        require 'yaml'
+        hub_config = YAML.load_file(hub_config_path)
+
+        # Extract hub data and make it available to Jekyll
+        @site.data ||= {}
+        @site.data['hub'] = {
+          'title' => hub_config.dig('prexian', 'title') || hub_config['title'],
+          'description' => hub_config.dig('prexian', 'description') || hub_config['description'],
+          'url' => hub_config['url']
+        }
+
+        puts "Prexian SiteLoader: Extracted hub data: #{@site.data['hub'].inspect}"
+        Jekyll.logger.debug("Prexian SiteLoader: Extracted hub data: #{@site.data['hub'].inspect}")
+      rescue => e
+        Jekyll.logger.warn("Prexian SiteLoader: Failed to extract hub data: #{e.message}")
       end
     end
 
@@ -80,9 +104,9 @@ module Prexian
       Jekyll.logger.debug("Prexian SiteLoader: Adding #{directory_path} to includes_load_paths")
 
       # Add directory to Jekyll's includes_load_paths
-      @site.config['includes_load_paths'] ||= []
-      unless @site.config['includes_load_paths'].include?(directory_path)
-        @site.config['includes_load_paths'] << directory_path
+      unless @site.includes_load_paths.include?(directory_path)
+
+        @site.includes_load_paths << directory_path
       end
     end
   end
