@@ -20,15 +20,15 @@
 
   <link id="themeCSS" rel="stylesheet" href="{{ "assets/css/style.css" | relative_url }}">
 
-  {% unless site.no_auto_fontawesome %}
+  {% unless site.prexian.no_auto_fontawesome %}
     <script
       defer
-      src="https://use.fontawesome.com/releases/{{ site.fontawesome_cdn.version }}/js/all.js"
-      integrity="{{ site.fontawesome_cdn.integrity }}"
+      src="https://use.fontawesome.com/releases/{{ site.prexian.fontawesome_cdn.version }}/js/all.js"
+      integrity="{{ site.prexian.fontawesome_cdn.integrity }}"
       crossorigin="anonymous"></script>
   {% endunless %}
 
-  {% if site.algolia_search %}
+  {% if site.prexian.algolia_search %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
   {% endif %}
 
@@ -49,14 +49,14 @@
   {% include head.html %}
 </head>
 
-{% assign num_projects = site.projects | size %}
+{% assign num_projects = site.prexian.projects | size %}
 <body class="
     {{ page.html-class }} {{ layout.html-class }}
     {% if num_projects > 0 %}
       site--hub
     {% else %}
       site--project
-      {% if site.one_software %}site--project--one-software{% endif %}
+      {% if site.prexian.one_software %}site--project--one-software{% endif %}
     {% endif %}
     {% if page.layout %}layout--{{ page.layout }}{% endif %}">
   <div class="underlay header">
@@ -93,30 +93,50 @@
 
   <div class="underlay footer">
     <footer>
-      {% if site.num_all_specs > 0 or site.num_all_software > 0 or site.extra_footer_links %}
+      {% if site.prexian.num_all_specs > 0 or site.prexian.num_all_software > 0 or site.prexian.extra_footer_links %}
       <nav class="links" aria-label="site links">
-        {% for link in site.extra_footer_links %}
+        {% for link in site.prexian.extra_footer_links %}
           <a href="{{ link.url }}">{{ link.title }}</a>
         {% endfor %}
-        {% if site.num_all_software > 0 %}
-          <a href="/software/">All {{ site.title }} software</a>
+        {% if site.prexian.num_all_software > 0 %}
+          <a href="/software/">All {{ site.prexian.title }} software</a>
         {% endif %}
-        {% if site.num_all_specs > 0 %}
+        {% if site.prexian.num_all_specs > 0 %}
           <a href="/specs/">All specifications</a>
         {% endif %}
       </nav>
       {% endif %}
 
-      {% if site.is_hub %}
+      {% assign config = site.prexian %}
+      {% if config.site_type == 'hub' %}
         <div class="site-logo" aria-label="logo">{% include logo.html %}</div>
       {% else %}
-        <div class="parent-hub-plug">
-          <span class="label">{{ site.title }} is</span>
-          <a class="logo" role="presentation" href="{{ site.parent_hub.home_url }}"
-            aria-label="parent project logo">
-            {% include parent-hub/assets/symbol.svg %}&nbsp;<span class="title">{% include parent-hub/title.html %}</span>
+        {% if config.hub.home_url %}
+        <div class="hub-plug">
+          <span class="label">{{ site.prexian.title }} is</span>
+          <a class="logo" role="presentation" href="{{ site.prexian.hub.home_url }}"
+            aria-label="hub project logo">
+
+            {% capture hub_title %}{% include hub/title.html %}{% endcapture %}
+            {% unless hub_title contains "Liquid error" %}
+            {% assign title_exists = true %}
+            {% endunless %}
+
+            {% assign relative_symbol_path = "/hub/assets/img/symbol.svg" | relative_path %}
+            <img src="{{ relative_symbol_path }}"/>
+
+            &nbsp;<span class="title">
+            {% if title_exists %}
+              {{ hub_title }}
+            {% else %}
+              {{ site.data.hub.title }}
+            {% endif %}
+            </span>
           </a>
         </div>
+        {% else %}
+        <div class="site-logo" aria-label="logo">{% include logo.html %}</div>
+        {% endif %}
       {% endif %}
 
       <div class="legal">{% include legal.html %}</div>
@@ -125,7 +145,7 @@
     </footer>
   </div>
 
-  {% if site.algolia_search %}
+  {% if site.prexian.algolia_search %}
     <script src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 
     {% comment %}
@@ -137,8 +157,8 @@
       window.initAlgolia = function () {
         if (window.docsearch) {
           docsearch({
-            apiKey: '{{ site.algolia_search.api_key }}',
-            indexName: '{{ site.algolia_search.index_name }}',
+            apiKey: '{{ site.prexian.algolia_search.api_key }}',
+            indexName: '{{ site.prexian.algolia_search.index_name }}',
             inputSelector: 'input[type=search]',
             debug: false,
           });

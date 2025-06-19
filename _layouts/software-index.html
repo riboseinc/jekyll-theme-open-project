@@ -2,29 +2,30 @@
 layout: default
 ---
 
-{% include index-page-item-filter.html url_tag_prefix="/software/" tag_namespaces="software" items=site.all_software tag=page.tag %}
+{% include index-page-item-filter.html url_tag_prefix="/software/" tag_namespaces="software" items=site.prexian.all_software tag=page.tag %}
 
 <section class="items">
-  {% if site.is_hub %}
-    {% include assets/symbol.svg %}
+  {% if site.prexian.site_type == "hub" %}
+    {% assign symbol_path = "/assets/img/symbol.svg" | relative_path %}
+    <img
   {% endif %}
 
   {% if page.tag and page.items %}
     {% for item in page.items %}
       {% include software-card-hub.html item=item item_type='software' %}
     {% endfor %}
-  {% elsif site.is_hub %}
-    {% for item in site.all_software %}
+  {% elsif site.prexian.site_type == "hub" %}
+    {% for item in site.prexian.all_software %}
       {% include software-card-hub.html item=item item_type='software' %}
     {% endfor %}
   {% else %}
-    {% if site.num_featured_software > 0 %}
-      {% for item in site.featured_software %}
+    {% if site.prexian.num_featured_software > 0 %}
+      {% for item in site.prexian.featured_software %}
         {% include software-card-hub.html item=item item_type='software' %}
       {% endfor %}
       <hr>
     {% endif %}
-    {% for item in site.non_featured_software %}
+    {% for item in site.prexian.non_featured_software %}
       {% include software-card-hub.html item=item item_type='software' %}
     {% endfor %}
   {% endif %}

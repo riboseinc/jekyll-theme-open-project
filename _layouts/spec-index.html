@@ -2,29 +2,30 @@
 layout: default
 ---
 
-{% include index-page-item-filter.html url_tag_prefix="/specs/" tag_namespaces="specs" items=site.all_specs tag=page.tag %}
+{% include index-page-item-filter.html url_tag_prefix="/specs/" tag_namespaces="specs" items=site.prexian.all_specs tag=page.tag %}
 
 <section class="items">
-  {% if site.is_hub %}
-    {% include assets/symbol.svg %}
+  {% if site.prexian.site_type == "hub" %}
+    {% assign relative_symbol_path = "/hub/assets/img/symbol.svg" | relative_path %}
+    <img src="{{ relative_symbol_path }}"/>
   {% endif %}
 
   {% if page.tag and page.items %}
     {% for item in page.items %}
       {% include software-card-hub.html item=item item_type='specs' %}
     {% endfor %}
-  {% elsif site.is_hub %}
-    {% for item in site.all_specs %}
+  {% elsif site.prexian.site_type == "hub" %}
+    {% for item in site.prexian.all_specs %}
       {% include software-card-hub.html item=item item_type='specs' %}
     {% endfor %}
   {% else %}
-    {% if site.num_featured_specs > 0 %}
-      {% for item in site.featured_specs %}
+    {% if site.prexian.num_featured_specs > 0 %}
+      {% for item in site.prexian.featured_specs %}
         {% include software-card-hub.html item=item item_type='specs' %}
       {% endfor %}
       <hr>
     {% endif %}
-    {% for item in site.non_featured_specs %}
+    {% for item in site.prexian.non_featured_specs %}
       {% include software-card-hub.html item=item item_type='specs' %}
     {% endfor %}
   {% endif %}

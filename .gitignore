@@ -1,4 +1,7 @@
-_site/*
+_site*/*
 *.scssc
 Gemfile.lock
-jekyll-theme-rop-*.gem
+prexian-*.gem
+_hub-site
+coverage
+pkg/

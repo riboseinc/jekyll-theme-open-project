@@ -1,12 +1,13 @@
 ---
 layout: default
 ---
-{% assign projects = site.projects | where_exp: "item", "item.home_url != nil" %}
+{% assign projects = site.prexian.projects | where_exp: "item", "item.home_url != nil" %}
 {% assign num_projects = projects | size %}
 
 {% if num_projects > 0 %}
   <section class="items">
-    {% include assets/symbol.svg %}
+    {% assign relative_symbol_path = "/hub/assets/img/symbol.svg" | relative_path %}
+    <img src="{{ relative_symbol_path }}"/>
 
     {% for project in projects %}
       <a class="item {% if project.featured == true %}featured{% endif %}"
@@ -15,7 +16,7 @@ layout: default
 
         <header>
           <div class="logo-container">
-            {% assign symbol_path = project.path | split: "/" | slice: 1, 1 | join: "/" | append: "/assets/symbol.svg" %}
+            {% assign symbol_path = project.path | split: "/" | slice: 1, 1 | join: "/" | append: "/assets/img/symbol.svg" | relative_path %}
             {% assign relative_symbol_path = "/projects/" | append: symbol_path %}
             <div class="logo"><img src="{{ relative_symbol_path }}"></div>
           </div>

@@ -25,15 +25,16 @@
   {% endif %}
 
   <div class="card-body">
-    {% if include.post.parent_project == nil and site.is_hub == true %}
+    {% if include.post.parent_project == nil and site.prexian.site_type == "hub" %}
       <div class="hub-symbol">
-        {% include assets/symbol.svg %}
+        {% assign relative_symbol_path = "/assets/img/symbol.svg" | relative_path %}
+        <img src="{{ relative_symbol_path }}"/>
       </div>
     {% endif %}
 
     <header>
       {% if include.post.parent_project %}
-        {% assign project_symbol_path = include.post.parent_project.name | append: "/assets/symbol.svg" %}
+        {% assign project_symbol_path = include.post.parent_project.name | append: "/assets/img/symbol.svg" | relative_path %}
         {% assign relative_symbol_path = "/projects/" | append: project_symbol_path %}
         <div class="parent-project">
           <div class="project-logo">

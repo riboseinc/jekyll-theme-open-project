@@ -1,15 +1,15 @@
 <section class="specs">
   <h2 class="title">
-    Specification{% if site.num_all_specs > 1 %}s{% endif %}
-    {% if site.num_all_specs > site.num_featured_specs %}
+    Specification{% if site.prexian.num_all_specs > 1 %}s{% endif %}
+    {% if site.prexian.num_all_specs > site.prexian.num_featured_specs %}
       — <a href="/specs/">see all</a>
     {% endif %}
   </h2>
   <div class="items">
-    {% assign specs = site.featured_specs %}
-    {% for item in specs | limit: site.max_featured_specs %}
+    {% assign specs = site.prexian.featured_specs %}
+    {% for item in specs | limit: site.prexian.max_featured_specs %}
       {% assign url = item.url %}
-      {% assign item_data = site.specs | where_exp: "item", "item.url == url" | first %}
+      {% assign item_data = site.prexian.specs | where_exp: "item", "item.url == url" | first %}
 
       <div class="item" role="article">
         <header>

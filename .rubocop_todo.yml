@@ -11,14 +11,14 @@
 # Include: **/*.gemspec
 Gemspec/RequiredRubyVersion:
   Exclude:
-    - 'jekyll-theme-rop.gemspec'
+    - 'prexian.gemspec'
 
 # Offense count: 2
 # Configuration parameters: AllowedParentClasses.
 Lint/MissingSuper:
   Exclude:
-    - 'lib/rop/filterable_index.rb'
-    - 'lib/rop/png_diagram_page.rb'
+    - 'lib/prexian/filterable_index.rb'
+    - 'lib/prexian/png_diagram_page.rb'
 
 # Offense count: 11
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
@@ -69,7 +69,7 @@ Naming/FileName:
   Exclude:
     - 'Rakefile.rb'
     - 'lib/jekyll-theme-open-project.rb'
-    - 'lib/jekyll-theme-rop.rb'
+    - 'lib/prexian.rb'
 
 # Offense count: 1
 # Configuration parameters: NamePrefix, ForbiddenPrefixes, AllowedMethods, MethodDefinitionMacros, UseSorbetSigs.
@@ -80,12 +80,12 @@ Naming/FileName:
 Naming/PredicateName:
   Exclude:
     - 'spec/**/*'
-    - 'lib/rop/project_reader.rb'
+    - 'lib/prexian/project_reader.rb'
 
 # Offense count: 1
 Style/ClassVars:
   Exclude:
-    - 'lib/rop/project_reader.rb'
+    - 'lib/prexian/project_reader.rb'
 
 # Offense count: 9
 # Configuration parameters: AllowedConstants.
@@ -93,11 +93,11 @@ Style/Documentation:
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
-    - 'lib/jekyll-theme-rop.rb'
-    - 'lib/rop/filterable_index.rb'
-    - 'lib/rop/png_diagram_page.rb'
-    - 'lib/rop/project_reader.rb'
-    - 'lib/rop/spec_builder.rb'
+    - 'lib/prexian.rb'
+    - 'lib/prexian/filterable_index.rb'
+    - 'lib/prexian/png_diagram_page.rb'
+    - 'lib/prexian/project_reader.rb'
+    - 'lib/prexian/spec_builder.rb'
 
 # Offense count: 5
 # Configuration parameters: AllowedVariables.

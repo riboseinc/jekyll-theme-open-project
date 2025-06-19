@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd spec/fixtures/project
+bundle
+bundle exec jekyll serve --config _config.yml $@

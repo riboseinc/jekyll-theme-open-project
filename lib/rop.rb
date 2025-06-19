@@ -1,5 +1,0 @@
-require_relative 'rop/site_type'
-require_relative 'rop/project_reader'
-require_relative 'rop/filterable_index'
-require_relative 'rop/blog_index'
-require_relative 'rop/spec_builder'

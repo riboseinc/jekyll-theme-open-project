@@ -1,0 +1,104 @@
+# Hub site configuration for testing
+title: "TechHub Central"
+description: "A central hub for open source technology projects"
+url: "https://techhub.example.com"
+baseurl: ""
+
+# Collections configuration
+collections:
+  pages:
+    output: true
+    permalink: /:name/
+  projects:
+    output: true
+    permalink: /projects/:name/
+  software:
+    output: true
+    permalink: /:collection/:name/
+  specs:
+    output: true
+    permalink: /:collection/:name/
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
+
+# Theme configuration
+theme: prexian
+
+# Prexian-specific configuration
+prexian:
+  title: "TechHub Central"
+  description: "A central hub for open source technology projects"
+  tagline: "Connecting innovation across projects"
+
+  # Hub site marker
+  site_type: hub
+
+  # Git repository settings
+  default_repo_branch: main
+  refresh_remote_data: last-resort
+
+  # Tag namespaces for categorization
+  tag_namespaces:
+    software:
+      writtenin: "Written in"
+      audience: "Audience"
+      interface: "Interface"
+    specs:
+      audience: "Audience"
+      status: "Status"
+      type: "Type"
+
+  # Landing page priority
+  landing_priority:
+    - software
+    - specs
+    - blog
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Plugins
+plugins:
+  - prexian
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - .git/
+  - .github/
+
+defaults:
+  - scope:
+      path: "assets/img"
+    values:
+      image: true
+  - scope:
+      path: ""
+    values:
+      layout: default
+  - scope:
+      path: _posts
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: _software
+      type: software
+    values:
+      layout: product
+  - scope:
+      path: _specs
+      type: specs
+    values:
+      layout: spec

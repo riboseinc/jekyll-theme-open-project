@@ -1,6 +1,6 @@
-{% assign projects = site.projects | where_exp: "item", "item.home_url != nil" %}
-{% assign posts = site.posts_combined %}
-{% assign num_posts = site.num_posts_combined %}
+{% assign projects = site.prexian.projects | where_exp: "item", "item.home_url != nil" %}
+{% assign posts = site.prexian.posts_combined %}
+{% assign num_posts = site.prexian.num_posts_combined %}
 
 {% assign featured_projects = projects | where: "featured", true %}
 {% assign num_featured_projects = featured_projects | size %}
@@ -14,8 +14,8 @@
         <a class="item" href="{{ item.home_url }}" role="article">
           <header>
             <div class="logo-container">
-              {% assign symbol_path = item.path | split: "/" | slice: 1, 1 | join: "/" | append: "/assets/symbol.svg" %}
-              {% assign relative_symbol_path = "/projects/" | append: symbol_path %}
+              {% assign project_name = item.path | split: "/" | last | replace: ".md", "" | replace: ".adoc", "" %}
+              {% assign relative_symbol_path = "/assets/projects/" | append: project_name | append: "/symbol.svg" | relative_path %}
               <div class="logo"><img src="{{ relative_symbol_path }}"></div>
             </div>
             <h3 class="title">{{ item.title }}</h3>
@@ -51,7 +51,8 @@
 {% assign num_other_projects = other_projects | size %}
 {% if num_other_projects > 0 %}
 <section class="other-projects">
-  {% include assets/symbol.svg %}
+  {% assign relative_symbol_path = "/assets/img/symbol.svg" | relative_path %}
+  <img src="{{ relative_symbol_path }}"/>
 
   <h2 class="title">Other Projects</h2>
 
@@ -60,8 +61,8 @@
       <a class="item" href="{{ item.home_url }}" role="article">
         <header>
           <div class="logo-container">
-            {% assign symbol_path = item.path | split: "/" | slice: 1, 1 | join: "/" | append: "/assets/symbol.svg" %}
-            {% assign relative_symbol_path = "/projects/" | append: symbol_path %}
+            {% assign project_name = item.path | split: "/" | last | replace: ".md", "" | replace: ".adoc", "" %}
+            {% assign relative_symbol_path = "/assets/projects/" | append: project_name | append: "/symbol.svg" | relative_path %}
             <div class="logo"><img src="{{ relative_symbol_path }}"></div>
           </div>
           <h3 class="title">{{ item.title }}</h3>
