@@ -179,7 +179,7 @@ module Prexian
     def get_projects(site)
       projects = site.collections['projects'].docs.select do |item|
         pieces = item.url.split('/')
-        pieces.length == 4 && pieces[-1] == 'index' && pieces[1] == 'projects'
+        pieces[1] == 'projects'
       end
 
       # Add project name (matches directory name, may differ from title)
