@@ -107,6 +107,7 @@
       </nav>
       {% endif %}
 
+      {% assign symbol_svg = site.static_files | where: "path", "/assets/symbol2.svg" | first %}
       {% assign config = site.prexian %}
       {% if config.site_type == 'hub' %}
         <div class="site-logo" aria-label="logo">{% include logo.html %}</div>
@@ -116,7 +117,7 @@
           <span class="label">{{ site.prexian.title }} is</span>
           <a class="logo" role="presentation" href="{{ site.prexian.hub.home_url }}"
             aria-label="hub project logo">
-            {% capture hub_symbol %}{% include hub/assets/symbol.svg %}{% endcapture %}
+            <img src="{{symbol_svg.path}}" alt="symbol">
             {% unless hub_symbol contains "Liquid error" %}
             {% assign symbol_exists = true %}
             {% endunless %}
