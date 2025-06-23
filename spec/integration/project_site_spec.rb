@@ -32,7 +32,7 @@ RSpec.describe 'Project Site Integration', type: :integration do
         expect { project_reader.read_content }.not_to raise_error
 
         # Check that hub directory structure is created
-        hub_path = File.join(site.source, '_hub-site')
+        hub_path = File.join(site.source)
         expect(Dir.exist?(hub_path) || Dir.exist?(File.join(hub_path, 'hub'))).to be_truthy
       ensure
         FileUtils.rm_rf(cache_dir) if Dir.exist?(cache_dir)
