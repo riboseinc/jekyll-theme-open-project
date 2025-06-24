@@ -126,9 +126,9 @@
             {% assign title_exists = true %}
             {% endunless %}
 
-            {% if symbol_exists %}
-              {{ hub_symbol }}
-            {% endif %}
+            {% assign relative_symbol_path = "/hub/assets/img/symbol.svg" | relative_path %}
+            <img src="{{ relative_symbol_path }}"/>
+
             &nbsp;<span class="title">
             {% if title_exists %}
               {{ hub_title }}

@@ -6,7 +6,8 @@ layout: default
 
 <section class="items">
   {% if site.prexian.site_type == "hub" %}
-    {% include assets/symbol.svg %}
+    {% assign relative_symbol_path = "/hub/assets/img/symbol.svg" | relative_path %}
+    <img src="{{ relative_symbol_path }}"/>
   {% endif %}
 
   {% if page.tag and page.items %}
