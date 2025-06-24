@@ -1,6 +1,7 @@
 {% assign projects = site.prexian.projects | where_exp: "item", "item.home_url != nil" %}
 {% assign posts = site.prexian.posts_combined %}
 {% assign num_posts = site.prexian.num_posts_combined %}
+{% assign symbol_svg = site.static_files | where: "path", "/assets/hub_symbol.svg" | first %}
 
 {% assign featured_projects = projects | where: "featured", true %}
 {% assign num_featured_projects = featured_projects | size %}
@@ -51,8 +52,7 @@
 {% assign num_other_projects = other_projects | size %}
 {% if num_other_projects > 0 %}
 <section class="other-projects">
-  {% assign relative_symbol_path = "/assets/img/symbol.svg" | relative_path %}
-  <img src="{{ relative_symbol_path }}"/>
+  <img src="{{symbol_svg.path}}" alt="Symbol">
 
   <h2 class="title">Other Projects</h2>
 
