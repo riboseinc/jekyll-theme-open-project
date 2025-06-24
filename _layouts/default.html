@@ -118,9 +118,6 @@
           <a class="logo" role="presentation" href="{{ site.prexian.hub.home_url }}"
             aria-label="hub project logo">
             <img src="{{symbol_svg.path}}" alt="symbol">
-            {% unless hub_symbol contains "Liquid error" %}
-            {% assign symbol_exists = true %}
-            {% endunless %}
             {% capture hub_title %}{% include hub/title.html %}{% endcapture %}
             {% unless hub_title contains "Liquid error" %}
             {% assign title_exists = true %}
